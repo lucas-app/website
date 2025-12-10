@@ -1181,17 +1181,20 @@
   <span class="text-lucas-green">"asset_id"</span>: <span class="text-amber-300">"marina-404"</span>,
   <span class="text-lucas-green">"timestamp"</span>: <span class="text-amber-300">"2025-01-15T10:30:00Z"</span>,
   <span class="text-lucas-green">"location_verified"</span>: <span class="text-blue-400">true</span>,
-  <span class="text-lucas-green">"condition_score"</span>: <span class="text-blue-400">92</span>,
-  <span class="text-lucas-green">"yield_risk"</span>: <span class="text-amber-300">"low"</span>,
-  <span class="text-lucas-green">"issues_flagged"</span>: <span class="text-blue-400">1</span>,
+  <span class="text-lucas-green">"condition_score"</span>: <span class="text-blue-400">87</span>,
+  <span class="text-lucas-green">"yield_risk"</span>: <span class="text-amber-300">"medium"</span>,
+  <span class="text-lucas-green">"issues_flagged"</span>: <span class="text-blue-400">3</span>,
+  <span class="text-lucas-green">"issues"</span>: [
+    <span class="text-amber-300">"ac_condensation_leak"</span>,
+    <span class="text-amber-300">"bathroom_sealant_wear"</span>,
+    <span class="text-amber-300">"balcony_paint_peeling"</span>
+  ],
   <span class="text-lucas-green">"evidence"</span>: {
     <span class="text-lucas-green">"photos"</span>: <span class="text-blue-400">47</span>,
-    <span class="text-lucas-green">"photos_hash"</span>: <span class="text-amber-300">"0x7f2c...a3d1"</span>,
-    <span class="text-lucas-green">"checklist_hash"</span>: <span class="text-amber-300">"0x4e8b...f092"</span>
+    <span class="text-lucas-green">"photos_hash"</span>: <span class="text-amber-300">"0x7f2c...a3d1"</span>
   },
   <span class="text-lucas-green">"inspector_id"</span>: <span class="text-amber-300">"INS-7721"</span>,
-  <span class="text-lucas-green">"proof_hash"</span>: <span class="text-amber-300">"0x8f3a...b7c4"</span>,
-  <span class="text-lucas-green">"signature"</span>: <span class="text-amber-300">"0x9d4b...e156"</span>
+  <span class="text-lucas-green">"proof_hash"</span>: <span class="text-amber-300">"0x8f3a...b7c4"</span>
 }</code></pre>
                         </div>
                     </div>
@@ -1263,49 +1266,76 @@
                                         <span class="text-lg font-bold text-gray-900">Medium</span>
                                     </div>
                                 </div>
-                                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 relative inspector-hover-trigger cursor-pointer">
+                                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 relative inspector-hover-trigger cursor-pointer group/inspector">
                                     <p class="text-[10px] text-gray-400 uppercase tracking-wider font-bold mb-2">Verified By</p>
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-7 h-7 rounded-full bg-lucas-green/20 border-2 border-lucas-green flex items-center justify-center">
-                                            <i class="fa-solid fa-user-check text-lucas-green text-xs"></i>
+                                    <div class="flex items-center gap-2.5">
+                                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-md ring-2 ring-emerald-500/20">
+                                            <span class="text-white text-xs font-bold tracking-tight">AR</span>
                                         </div>
-                                        <span class="text-sm font-bold text-gray-900">Ahmed R.</span>
+                                        <div class="flex flex-col">
+                                            <span class="text-sm font-bold text-gray-900 leading-tight">Ahmed R.</span>
+                                            <span class="text-[10px] text-emerald-600 font-medium flex items-center gap-1">
+                                                <i class="fa-solid fa-circle-check text-[8px]"></i> Verified
+                                            </span>
+                                        </div>
                                     </div>
                                     
                                     <!-- Inspector Tooltip -->
-                                    <div class="inspector-tooltip absolute left-0 bottom-full mb-2 w-56 bg-lucas-card border border-lucas-green/30 rounded-xl p-4 shadow-2xl z-50">
-                                        <div class="flex items-center gap-3 mb-3">
-                                            <div class="w-10 h-10 rounded-full bg-lucas-green/20 border-2 border-lucas-green/50 flex items-center justify-center">
-                                                <i class="fa-solid fa-user-check text-lucas-green"></i>
+                                    <div class="inspector-tooltip absolute left-0 bottom-full mb-2 w-64 bg-white border border-gray-200 rounded-2xl p-5 shadow-xl z-50">
+                                        <div class="flex items-center gap-4 mb-4 pb-4 border-b border-gray-100">
+                                            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg ring-4 ring-emerald-500/10">
+                                                <span class="text-white text-xl font-bold tracking-tight">AR</span>
                                             </div>
                                             <div>
-                                                <p class="text-white font-bold text-sm">Ahmed Al Rashid</p>
-                                                <p class="text-lucas-green text-xs">Verified Inspector</p>
+                                                <p class="text-gray-900 font-bold text-base">Ahmed Al Rashid</p>
+                                                <p class="text-emerald-600 text-xs font-semibold flex items-center gap-1">
+                                                    <i class="fa-solid fa-shield-check"></i> LUCAS Verified Inspector
+                                                </p>
                                             </div>
                                         </div>
-                                        <div class="space-y-1.5 text-xs">
-                                            <div class="flex items-center gap-2 text-gray-400">
-                                                <i class="fa-solid fa-id-card text-lucas-green w-4"></i>
-                                                <span>Emirates ID Verified</span>
+                                        <div class="space-y-2.5 text-sm">
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-gray-500 flex items-center gap-2">
+                                                    <i class="fa-solid fa-id-card text-gray-400 w-4"></i> Emirates ID
+                                                </span>
+                                                <span class="text-emerald-600 font-semibold flex items-center gap-1">
+                                                    <i class="fa-solid fa-check text-[10px]"></i> Verified
+                                                </span>
                                             </div>
-                                            <div class="flex items-center gap-2 text-gray-400">
-                                                <i class="fa-solid fa-star text-lucas-green w-4"></i>
-                                                <span>4.9 rating · 312 inspections</span>
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-gray-500 flex items-center gap-2">
+                                                    <i class="fa-solid fa-star text-gray-400 w-4"></i> Rating
+                                                </span>
+                                                <span class="text-gray-900 font-semibold">4.9 <span class="text-gray-400 font-normal">(312)</span></span>
                                             </div>
-                                            <div class="flex items-center gap-2 text-gray-400">
-                                                <i class="fa-solid fa-location-dot text-lucas-green w-4"></i>
-                                                <span>Marina, JBR, Palm Jumeirah</span>
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-gray-500 flex items-center gap-2">
+                                                    <i class="fa-solid fa-clipboard-check text-gray-400 w-4"></i> Inspections
+                                                </span>
+                                                <span class="text-gray-900 font-semibold">312</span>
+                                            </div>
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-gray-500 flex items-center gap-2">
+                                                    <i class="fa-solid fa-location-dot text-gray-400 w-4"></i> Areas
+                                                </span>
+                                                <span class="text-gray-900 font-medium text-xs">Marina, JBR, Palm</span>
                                             </div>
                                         </div>
                                         <!-- Tooltip arrow -->
-                                        <div class="absolute left-6 -bottom-2 w-3 h-3 bg-lucas-card border-r border-b border-lucas-green/30 transform rotate-45"></div>
+                                        <div class="absolute left-8 -bottom-2 w-4 h-4 bg-white border-r border-b border-gray-200 transform rotate-45"></div>
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="flex items-center justify-between pt-4 border-t border-gray-100 text-xs text-gray-400">
                                 <span class="flex items-center gap-1.5"><i class="fa-solid fa-camera text-gray-400"></i> 47 photos</span>
-                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-clock text-gray-400"></i> 2h ago</span>
+                                <span class="flex items-center gap-1.5">
+                                    <span class="relative flex h-2 w-2">
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-lucas-green opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-lucas-green"></span>
+                                    </span>
+                                    <span id="inspection-elapsed">2h 11m 18s ago</span>
+                                </span>
                                 <span class="flex items-center gap-1.5"><i class="fa-solid fa-calendar text-gray-400"></i> Next: 28d</span>
                             </div>
                         </div>
@@ -2308,6 +2338,22 @@
                     }
                 });
             });
+
+            // Live timestamp for dashboard mock
+            const liveTimestamp = document.getElementById('live-timestamp');
+            if (liveTimestamp) {
+                let seconds = 0;
+                setInterval(() => {
+                    seconds++;
+                    if (seconds < 60) {
+                        liveTimestamp.textContent = seconds + 's ago';
+                    } else if (seconds < 3600) {
+                        liveTimestamp.textContent = Math.floor(seconds / 60) + 'm ago';
+                    } else {
+                        liveTimestamp.textContent = Math.floor(seconds / 3600) + 'h ago';
+                    }
+                }, 1000);
+            }
         });
     </script>
 </body>
