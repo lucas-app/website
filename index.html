@@ -1225,20 +1225,32 @@
                                 <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
                                     <p class="text-[10px] text-gray-400 uppercase tracking-wider font-bold mb-2">Condition Score</p>
                                     <div class="flex items-end gap-2">
-                                        <span class="text-3xl font-extrabold text-gray-900">92</span>
-                                        <span class="text-xs text-lucas-green font-bold mb-1">+2 ↑</span>
+                                        <span class="text-3xl font-extrabold text-gray-900">87</span>
+                                        <span class="text-xs text-amber-500 font-bold mb-1">-3 ↓</span>
                                     </div>
                                 </div>
                                 <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 relative issues-hover-trigger cursor-pointer">
                                     <p class="text-[10px] text-gray-400 uppercase tracking-wider font-bold mb-2">Issues</p>
                                     <div class="flex items-center gap-2">
-                                        <span class="text-3xl font-extrabold text-amber-500">1</span>
-                                        <span class="text-xs text-gray-400 font-medium">minor</span>
+                                        <span class="text-3xl font-extrabold text-amber-500">3</span>
+                                        <span class="text-xs text-gray-400 font-medium">detected</span>
                                     </div>
-                                    <div class="issues-tooltip absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-gray-900 text-white rounded-xl p-3 shadow-2xl z-50 opacity-0 invisible transition-all duration-200 pointer-events-none">
+                                    <div class="issues-tooltip absolute left-1/2 -translate-x-1/2 top-full mt-2 w-56 bg-gray-900 text-white rounded-xl p-3 shadow-2xl z-50 opacity-0 invisible transition-all duration-200 pointer-events-none">
                                         <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-gray-900 rotate-45"></div>
-                                        <p class="text-xs font-semibold text-amber-400 mb-1">AC Condensation</p>
-                                        <p class="text-[10px] text-gray-400">Minor leak detected. Est. fix: 400 AED</p>
+                                        <div class="space-y-2">
+                                            <div>
+                                                <p class="text-xs font-semibold text-amber-400">AC Condensation Leak</p>
+                                                <p class="text-[10px] text-gray-400">Drip tray overflow · Est. 350 AED</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs font-semibold text-amber-400">Bathroom Sealant Wear</p>
+                                                <p class="text-[10px] text-gray-400">Silicone cracking · Est. 200 AED</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs font-semibold text-yellow-300">Paint Peeling (Balcony)</p>
+                                                <p class="text-[10px] text-gray-400">Humidity damage · Est. 600 AED</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1247,25 +1259,27 @@
                                 <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
                                     <p class="text-[10px] text-gray-400 uppercase tracking-wider font-bold mb-2">Yield Risk</p>
                                     <div class="flex items-center gap-2">
-                                        <span class="w-2 h-2 rounded-full bg-lucas-green"></span>
-                                        <span class="text-lg font-bold text-gray-900">Low</span>
+                                        <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                                        <span class="text-lg font-bold text-gray-900">Medium</span>
                                     </div>
                                 </div>
                                 <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 relative inspector-hover-trigger cursor-pointer">
                                     <p class="text-[10px] text-gray-400 uppercase tracking-wider font-bold mb-2">Verified By</p>
                                     <div class="flex items-center gap-2">
-                                        <div class="w-7 h-7 rounded-full overflow-hidden border-2 border-lucas-green">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Hamdan_bin_Mohammed_Al_Maktoum.jpg/220px-Hamdan_bin_Mohammed_Al_Maktoum.jpg" alt="Inspector" class="w-full h-full object-cover">
+                                        <div class="w-7 h-7 rounded-full bg-lucas-green/20 border-2 border-lucas-green flex items-center justify-center">
+                                            <i class="fa-solid fa-user-check text-lucas-green text-xs"></i>
                                         </div>
-                                        <span class="text-sm font-bold text-gray-900">Fazza H.</span>
+                                        <span class="text-sm font-bold text-gray-900">Ahmed R.</span>
                                     </div>
                                     
                                     <!-- Inspector Tooltip -->
                                     <div class="inspector-tooltip absolute left-0 bottom-full mb-2 w-56 bg-lucas-card border border-lucas-green/30 rounded-xl p-4 shadow-2xl z-50">
                                         <div class="flex items-center gap-3 mb-3">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Hamdan_bin_Mohammed_Al_Maktoum.jpg/220px-Hamdan_bin_Mohammed_Al_Maktoum.jpg" alt="Inspector" class="w-10 h-10 rounded-full object-cover border-2 border-lucas-green/50">
+                                            <div class="w-10 h-10 rounded-full bg-lucas-green/20 border-2 border-lucas-green/50 flex items-center justify-center">
+                                                <i class="fa-solid fa-user-check text-lucas-green"></i>
+                                            </div>
                                             <div>
-                                                <p class="text-white font-bold text-sm">Fazza Al Maktoum</p>
+                                                <p class="text-white font-bold text-sm">Ahmed Al Rashid</p>
                                                 <p class="text-lucas-green text-xs">Verified Inspector</p>
                                             </div>
                                         </div>
@@ -1276,11 +1290,11 @@
                                             </div>
                                             <div class="flex items-center gap-2 text-gray-400">
                                                 <i class="fa-solid fa-star text-lucas-green w-4"></i>
-                                                <span>4.9 rating · 847 inspections</span>
+                                                <span>4.9 rating · 312 inspections</span>
                                             </div>
                                             <div class="flex items-center gap-2 text-gray-400">
                                                 <i class="fa-solid fa-location-dot text-lucas-green w-4"></i>
-                                                <span>Downtown, DIFC, Business Bay</span>
+                                                <span>Marina, JBR, Palm Jumeirah</span>
                                             </div>
                                         </div>
                                         <!-- Tooltip arrow -->
