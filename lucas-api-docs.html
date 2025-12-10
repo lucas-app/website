@@ -537,6 +537,7 @@
         }
         
         .params-table tr:last-child td { border-bottom: none; }
+        .params-table tr { transition: background 0.15s ease; }
         .params-table tr:hover td { background: var(--bg-secondary); }
         
         .param-name { font-family: 'JetBrains Mono', monospace; color: var(--lime); font-size: 0.8125rem; }
@@ -698,6 +699,149 @@
             .docs-panel { border-right: none; border-bottom: 1px solid var(--border); padding: var(--space-8) var(--space-6); }
             .code-panel { padding: var(--space-6); }
             .feature-grid { grid-template-columns: 1fr; }
+        }
+        
+        /* ========================================
+           WORLD-CLASS POLISH
+           ======================================== */
+        
+        /* Smooth page load */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section { animation: fadeIn 0.4s ease-out both; }
+        .section:nth-child(2) { animation-delay: 0.05s; }
+        .section:nth-child(3) { animation-delay: 0.1s; }
+        .section:nth-child(4) { animation-delay: 0.15s; }
+        .section:nth-child(5) { animation-delay: 0.2s; }
+        
+        /* Code block glow on hover */
+        .code-block {
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .code-block:hover {
+            border-color: var(--border);
+            box-shadow: 0 0 0 1px var(--border), 0 4px 24px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Feature card lift */
+        .feature-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--text-tertiary);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Nav link smooth indicator */
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 0;
+            background: var(--lime);
+            border-radius: 1px;
+            transition: height 0.2s ease;
+        }
+        
+        .nav-link.active::before {
+            height: 16px;
+        }
+        
+        /* Endpoint row polish */
+        .endpoint {
+            transition: all 0.15s ease;
+            cursor: pointer;
+        }
+        
+        .endpoint:hover {
+            background: var(--bg-elevated);
+            border-color: var(--text-tertiary);
+            transform: translateX(2px);
+        }
+        
+        /* Better focus states */
+        .search-input:focus,
+        .btn-ghost:focus,
+        .lang-tab:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--lime-dim);
+        }
+        
+        /* Subtle gradient on topbar */
+        .topbar::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+        
+        /* Section icon pulse on hover */
+        .section-icon {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        h2:hover .section-icon {
+            transform: scale(1.05);
+        }
+        
+        .section-icon.lime:hover { box-shadow: 0 0 20px rgba(222, 255, 154, 0.3); }
+        .section-icon.blue:hover { box-shadow: 0 0 20px rgba(96, 165, 250, 0.3); }
+        .section-icon.purple:hover { box-shadow: 0 0 20px rgba(168, 85, 247, 0.3); }
+        
+        /* Copy button micro-interaction */
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* Logo subtle glow */
+        .sidebar-logo img {
+            transition: filter 0.3s ease;
+        }
+        
+        .sidebar-logo:hover img {
+            filter: drop-shadow(0 0 8px rgba(222, 255, 154, 0.4));
+        }
+        
+        /* Scrollbar only on hover for sidebar */
+        .sidebar-nav::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
+        
+        .sidebar-nav:hover::-webkit-scrollbar-thumb {
+            background: var(--border);
+        }
+        
+        /* Response badge pulse */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .response-badge.success::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: pulse 2s ease-in-out infinite;
         }
     </style>
 </head>
