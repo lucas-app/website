@@ -93,6 +93,20 @@
         .snap-x { scroll-snap-type: x mandatory; }
         .snap-center { scroll-snap-align: center; }
         
+        /* Navbar scroll behavior */
+        #navbar { transition: all 0.3s ease; }
+        #navbar.navbar-scrolled .bg-lucas-dark\/80 { 
+            background-color: rgba(10, 10, 10, 0.95); 
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+        #navbar.navbar-scrolled #announcement-bar { display: none !important; }
+        
+        /* Active nav link */
+        .nav-link-active { 
+            color: #DEFF9A !important; 
+            background-color: rgba(222, 255, 154, 0.1);
+        }
+        
         /* Issues Tooltip Hover */
         .issues-tooltip, .inspector-tooltip { opacity: 0; visibility: hidden; transition: all 0.2s ease; }
         .issues-hover-trigger:hover .issues-tooltip { opacity: 1; visibility: visible; }
@@ -204,53 +218,124 @@
 </head>
 <body class="antialiased selection:bg-lucas-green selection:text-black overflow-x-hidden">
 
-    <!-- Navbar -->
-    <nav class="fixed w-full z-50 bg-lucas-dark/80 backdrop-blur-md border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <a href="#" class="flex items-center">
-                    <img src="logo.png" alt="LUCAS" class="h-10 w-auto" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                    <span class="text-xl font-bold tracking-tight text-white hidden items-center gap-2">LUCAS<span class="text-lucas-green">.</span></span>
-                </a>
-                
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="#solution" class="text-sm font-medium text-gray-400 hover:text-white transition">Solution</a>
-                    <a href="#pricing" class="text-sm font-medium text-gray-400 hover:text-white transition">Pricing</a>
-                    <a href="#faq" class="text-sm font-medium text-gray-400 hover:text-white transition">FAQ</a>
-                </div>
-                
-                <div class="flex items-center gap-3">
-                    <a href="lucas-inspectors.html" class="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/20 text-gray-400 hover:border-white/40 hover:text-white transition text-sm font-medium">
-                        <i class="fa-solid fa-camera-retro text-xs"></i>
-                        <span>Inspectors</span>
+    <!-- Navbar - World-Class Redesign -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300">
+        <!-- Optional: Announcement Bar -->
+        <div id="announcement-bar" class="bg-gradient-to-r from-lucas-green/10 via-lucas-green/5 to-lucas-green/10 border-b border-lucas-green/20 py-2 px-4 text-center hidden sm:block">
+            <p class="text-xs text-gray-300">
+                <span class="text-lucas-green font-semibold">New:</span> 
+                Now serving Dubai Marina, JBR & Downtown. 
+                <a href="#audit-pilot" class="text-lucas-green hover:underline ml-1">Start your free audit →</a>
+            </p>
+        </div>
+        
+        <div class="bg-lucas-dark/80 backdrop-blur-xl border-b border-white/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16 sm:h-20">
+                    <!-- Logo -->
+                    <a href="#" class="flex items-center gap-2 group">
+                        <img src="LUCAS_logo White_on Rectangle_Transparent.svg" alt="LUCAS" class="h-8 sm:h-10 w-auto" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <span class="text-xl font-bold tracking-tight text-white hidden items-center gap-1">LUCAS<span class="text-lucas-green">.</span></span>
                     </a>
-                    <a href="#audit-pilot" class="hidden sm:block bg-lucas-green text-black px-5 py-2.5 rounded-full font-bold hover:bg-white transition text-sm">
-                        Free Audit Pilot
-                    </a>
-                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-gray-400 hover:text-white transition">
-                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
-                    </button>
+                    
+                    <!-- Desktop Navigation -->
+                    <div class="hidden lg:flex items-center gap-1">
+                        <a href="#problem" class="nav-link px-4 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all">Problem</a>
+                        <a href="#solution" class="nav-link px-4 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all">Solution</a>
+                        <a href="#pricing" class="nav-link px-4 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all">Pricing</a>
+                        <a href="#faq" class="nav-link px-4 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all">FAQ</a>
+                        <a href="lucas-api-docs.html" target="_blank" class="nav-link px-4 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all flex items-center gap-1.5">
+                            API
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-50"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Right Side Actions -->
+                    <div class="flex items-center gap-2 sm:gap-3">
+                        <!-- Dashboard/Login - Desktop only -->
+                        <a href="https://app.lucas.app" class="hidden lg:flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-gray-400 hover:text-white transition">
+                            <span>Dashboard</span>
+                            <i class="fa-solid fa-arrow-right text-xs opacity-50"></i>
+                        </a>
+                        
+                        <!-- Primary CTA - Always Visible -->
+                        <a href="#audit-pilot" class="bg-lucas-green text-black px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-bold hover:bg-white hover:scale-105 transition-all text-sm shadow-lg shadow-lucas-green/20">
+                            <span class="hidden sm:inline">Free Audit</span>
+                            <span class="sm:hidden">Start Free</span>
+                        </a>
+                        
+                        <!-- Mobile Menu Toggle -->
+                        <button onclick="toggleMobileMenu()" class="lg:hidden p-2 text-gray-400 hover:text-white transition rounded-lg hover:bg-white/5">
+                            <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-72 border-l border-lucas-border z-50 p-6 bg-lucas-dark">
-        <div class="flex justify-between items-center mb-8">
-            <span class="text-lg font-bold text-white">Menu</span>
-            <button onclick="toggleMobileMenu()" class="p-2 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-        </div>
-        <div class="flex flex-col gap-6">
-            <a href="#solution" onclick="toggleMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-lucas-green">Solution</a>
-            <a href="#pricing" onclick="toggleMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-lucas-green">Pricing</a>
-            <a href="#faq" onclick="toggleMobileMenu()" class="text-lg font-medium text-gray-300 hover:text-lucas-green">FAQ</a>
-            <hr class="border-lucas-border">
-            <a href="#audit-pilot" onclick="toggleMobileMenu()" class="bg-lucas-green text-black px-5 py-3 rounded-full font-bold hover:bg-white transition text-center">Free Audit Pilot</a>
-            <a href="lucas-inspectors.html" onclick="toggleMobileMenu()" class="flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-white/20 text-gray-400 hover:border-white/40 hover:text-white transition text-sm font-medium">
-                <i class="fa-solid fa-camera-retro"></i>
-                <span>Become an Inspector</span>
-            </a>
+    <!-- Mobile Menu - Redesigned -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-80 z-50 bg-lucas-dark/95 backdrop-blur-xl border-l border-white/10 shadow-2xl">
+        <div class="flex flex-col h-full">
+            <!-- Header -->
+            <div class="flex justify-between items-center p-5 border-b border-white/10">
+                <span class="text-lg font-bold text-white">Menu</span>
+                <button onclick="toggleMobileMenu()" class="p-2 text-gray-400 hover:text-white rounded-lg hover:bg-white/10 transition">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Navigation Links -->
+            <div class="flex-1 overflow-y-auto py-4">
+                <div class="px-4 space-y-1">
+                    <a href="#problem" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition">
+                        <i class="fa-solid fa-triangle-exclamation text-red-400 w-5"></i>
+                        <span class="font-medium">The Problem</span>
+                    </a>
+                    <a href="#solution" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition">
+                        <i class="fa-solid fa-shield-halved text-lucas-green w-5"></i>
+                        <span class="font-medium">Solution</span>
+                    </a>
+                    <a href="#how-it-works" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition">
+                        <i class="fa-solid fa-list-check text-blue-400 w-5"></i>
+                        <span class="font-medium">How It Works</span>
+                    </a>
+                    <a href="#pricing" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition">
+                        <i class="fa-solid fa-tags text-amber-400 w-5"></i>
+                        <span class="font-medium">Pricing</span>
+                    </a>
+                    <a href="#faq" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition">
+                        <i class="fa-solid fa-circle-question text-purple-400 w-5"></i>
+                        <span class="font-medium">FAQ</span>
+                    </a>
+                </div>
+                
+                <div class="px-4 mt-4 pt-4 border-t border-white/10">
+                    <p class="px-4 text-xs text-gray-500 uppercase tracking-wider mb-2">Resources</p>
+                    <a href="lucas-api-docs.html" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition">
+                        <i class="fa-solid fa-code text-gray-400 w-5"></i>
+                        <span class="font-medium">API Documentation</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-500 ml-auto"></i>
+                    </a>
+                    <a href="https://app.lucas.app" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition">
+                        <i class="fa-solid fa-gauge-high text-gray-400 w-5"></i>
+                        <span class="font-medium">Dashboard</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-500 ml-auto"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Footer CTAs -->
+            <div class="p-4 border-t border-white/10 space-y-3">
+                <a href="#audit-pilot" onclick="toggleMobileMenu()" class="flex items-center justify-center gap-2 bg-lucas-green text-black px-5 py-3.5 rounded-xl font-bold hover:bg-white transition text-center">
+                    <span>Start Free Audit</span>
+                    <i class="fa-solid fa-arrow-right text-sm"></i>
+                </a>
+                <a href="lucas-inspectors.html" onclick="toggleMobileMenu()" class="flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-white/20 text-gray-400 hover:border-lucas-green/50 hover:text-lucas-green transition text-sm font-medium">
+                    <i class="fa-solid fa-camera-retro"></i>
+                    <span>Become an Inspector</span>
+                </a>
+            </div>
         </div>
     </div>
     <div id="mobile-overlay" onclick="toggleMobileMenu()" class="fixed inset-0 bg-black/80 z-40 hidden backdrop-blur-sm"></div>
@@ -1880,56 +1965,134 @@
     <!-- ============================================ -->
     <!-- FOOTER (WITH WHATSAPP & TRUST SIGNALS) -->
     <!-- ============================================ -->
-    <footer class="relative z-10 bg-lucas-dark border-t border-lucas-border py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-gray-400 text-sm mb-10 italic">Proof of physical reserve for tokenized real estate.</p>
-            
-            <div class="flex justify-center mb-8">
-                <img src="LUCAS_logo White_on Rectangle_Transparent.svg" alt="LUCAS Logo" class="h-12 w-auto object-contain" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-                <span class="text-2xl font-bold text-white hidden">LUCAS<span class="text-lucas-green">.</span></span>
-            </div>
-            
-            <div class="flex justify-center items-center gap-4 mb-8">
-                <!-- WhatsApp -->
-                <a href="https://wa.me/971585072588" target="_blank" rel="noopener noreferrer" class="whatsapp-btn w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center text-white hover:scale-110 transition-transform" aria-label="WhatsApp">
-                    <i class="fa-brands fa-whatsapp text-2xl"></i>
-                </a>
-                <a href="https://www.linkedin.com/company/joinlucas/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-lucas-card border border-lucas-border flex items-center justify-center text-gray-400 hover:text-lucas-green hover:border-lucas-green/50 transition" aria-label="LinkedIn">
-                    <i class="fa-brands fa-linkedin-in text-lg"></i>
-                </a>
-                <a href="https://x.com/joinLUCASapp" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-lucas-card border border-lucas-border flex items-center justify-center text-gray-400 hover:text-lucas-green hover:border-lucas-green/50 transition" aria-label="X">
-                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                </a>
-                <a href="/cdn-cgi/l/email-protection#462e232a2a29062a3325273568273636" class="w-10 h-10 rounded-full bg-lucas-card border border-lucas-border flex items-center justify-center text-gray-400 hover:text-lucas-green hover:border-lucas-green/50 transition" aria-label="Email">
-                    <i class="fa-solid fa-envelope text-lg"></i>
-                </a>
-            </div>
-            
-            <div class="flex justify-center gap-6 sm:gap-8 text-sm text-gray-400 mb-10 flex-wrap">
-                <a href="#solution" class="hover:text-lucas-green transition">Solution</a>
-                <a href="#pricing" class="hover:text-lucas-green transition">Pricing</a>
-                <a href="#faq" class="hover:text-lucas-green transition">FAQ</a>
-                <a href="lucas-api-docs.html" target="_blank" class="hover:text-lucas-green transition">API Docs</a>
-            </div>
-            
-            <!-- Inspector Recruitment - Elevated Design -->
-            <div class="flex justify-center mb-10">
-                <a href="lucas-inspectors.html" class="group relative">
-                    <div class="absolute -inset-0.5 bg-gradient-to-r from-lucas-green/50 via-lucas-green/20 to-lucas-green/50 rounded-2xl blur opacity-40 group-hover:opacity-70 transition duration-300"></div>
-                    <div class="relative flex items-center gap-4 px-6 py-4 bg-lucas-card border border-lucas-border rounded-xl hover:border-lucas-green/30 transition-all">
-                        <div class="w-10 h-10 rounded-full bg-lucas-green/10 border border-lucas-green/30 flex items-center justify-center flex-shrink-0">
-                            <i class="fa-solid fa-camera-retro text-lucas-green"></i>
-                        </div>
-                        <div class="text-left">
-                            <p class="text-white font-semibold text-sm">Become a LUCAS Inspector</p>
-                            <p class="text-gray-400 text-xs">Earn 700–800 AED/day · Flexible schedule</p>
-                        </div>
-                        <i class="fa-solid fa-arrow-right text-lucas-green/60 group-hover:text-lucas-green group-hover:translate-x-1 transition-all ml-2"></i>
+    <!-- Footer - World-Class Redesign -->
+    <footer class="relative z-10 bg-lucas-dark border-t border-lucas-border">
+        <!-- Main Footer Content -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 lg:gap-12">
+                
+                <!-- Brand Column -->
+                <div class="col-span-2">
+                    <a href="#" class="inline-block mb-4">
+                        <img src="LUCAS_logo White_on Rectangle_Transparent.svg" alt="LUCAS Logo" class="h-10 w-auto" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+                        <span class="text-2xl font-bold text-white hidden">LUCAS<span class="text-lucas-green">.</span></span>
+                    </a>
+                    <p class="text-gray-400 text-sm mb-6 max-w-xs">
+                        Proof of physical reserve for tokenized real estate. Verified inspections. Immutable records.
+                    </p>
+                    
+                    <!-- Social Icons - Consistent sizing -->
+                    <div class="flex items-center gap-3">
+                        <a href="https://wa.me/971585072588" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-[#25D366]/10 border border-[#25D366]/30 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all" aria-label="WhatsApp">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/joinlucas/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-lucas-card border border-lucas-border flex items-center justify-center text-gray-400 hover:text-lucas-green hover:border-lucas-green/50 transition-all" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in text-lg"></i>
+                        </a>
+                        <a href="https://x.com/joinLUCASapp" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-lucas-card border border-lucas-border flex items-center justify-center text-gray-400 hover:text-lucas-green hover:border-lucas-green/50 transition-all" aria-label="X">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="mailto:hello@lucas.app" class="w-10 h-10 rounded-full bg-lucas-card border border-lucas-border flex items-center justify-center text-gray-400 hover:text-lucas-green hover:border-lucas-green/50 transition-all" aria-label="Email">
+                            <i class="fa-solid fa-envelope text-lg"></i>
+                        </a>
                     </div>
-                </a>
+                </div>
+                
+                <!-- Product Column -->
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4">Product</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#solution" class="text-gray-400 text-sm hover:text-lucas-green transition">Solution</a></li>
+                        <li><a href="#how-it-works" class="text-gray-400 text-sm hover:text-lucas-green transition">How It Works</a></li>
+                        <li><a href="#pricing" class="text-gray-400 text-sm hover:text-lucas-green transition">Pricing</a></li>
+                        <li><a href="#faq" class="text-gray-400 text-sm hover:text-lucas-green transition">FAQ</a></li>
+                        <li>
+                            <a href="#audit-pilot" class="text-lucas-green text-sm hover:text-white transition inline-flex items-center gap-1">
+                                Free Audit
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Developers Column -->
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4">Developers</h4>
+                    <ul class="space-y-3">
+                        <li><a href="lucas-api-docs.html" target="_blank" class="text-gray-400 text-sm hover:text-lucas-green transition">API Reference</a></li>
+                        <li><a href="lucas-api-docs.html#authentication" target="_blank" class="text-gray-400 text-sm hover:text-lucas-green transition">Authentication</a></li>
+                        <li><a href="lucas-api-docs.html#webhooks" target="_blank" class="text-gray-400 text-sm hover:text-lucas-green transition">Webhooks</a></li>
+                        <li><a href="lucas-api-docs.html#sdks" target="_blank" class="text-gray-400 text-sm hover:text-lucas-green transition">SDKs</a></li>
+                        <li>
+                            <span class="inline-flex items-center gap-1.5 text-xs text-gray-500">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                                All systems operational
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Company Column -->
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="lucas-inspectors.html" class="text-gray-400 text-sm hover:text-lucas-green transition">Become an Inspector</a></li>
+                        <li><a href="https://app.lucas.app" class="text-gray-400 text-sm hover:text-lucas-green transition">Dashboard</a></li>
+                        <li><a href="mailto:hello@lucas.app" class="text-gray-400 text-sm hover:text-lucas-green transition">Contact Us</a></li>
+                        <li><a href="https://www.linkedin.com/company/joinlucas/jobs/" target="_blank" class="text-gray-400 text-sm hover:text-lucas-green transition">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Newsletter Column -->
+                <div class="col-span-2 md:col-span-4 lg:col-span-1">
+                    <h4 class="text-white font-semibold text-sm mb-4">Stay Updated</h4>
+                    <p class="text-gray-400 text-sm mb-4">Get product updates and industry insights.</p>
+                    <form class="space-y-2" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='<i class=\'fa-solid fa-check\'></i> Subscribed'; this.querySelector('input').disabled=true;">
+                        <input type="email" placeholder="you@company.com" required class="w-full px-4 py-2.5 bg-lucas-card border border-lucas-border rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:border-lucas-green/50 transition">
+                        <button type="submit" class="w-full px-4 py-2.5 bg-lucas-green/10 border border-lucas-green/30 text-lucas-green rounded-lg text-sm font-medium hover:bg-lucas-green hover:text-black transition-all">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
             </div>
             
-            <p class="text-center text-gray-400 text-xs">© 2025 LUCAS. All rights reserved. Dubai, UAE.</p>
+            <!-- Trust Signals / Metrics -->
+            <div class="mt-12 pt-8 border-t border-lucas-border">
+                <div class="flex flex-wrap justify-center gap-8 sm:gap-12 mb-8">
+                    <div class="text-center">
+                        <p class="text-2xl sm:text-3xl font-bold text-white">12</p>
+                        <p class="text-xs text-gray-500 uppercase tracking-wider">Active Pilots</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl sm:text-3xl font-bold text-white">500+</p>
+                        <p class="text-xs text-gray-500 uppercase tracking-wider">Units Inspected</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl sm:text-3xl font-bold text-white">47</p>
+                        <p class="text-xs text-gray-500 uppercase tracking-wider">Point Checklist</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl sm:text-3xl font-bold text-white">UAE</p>
+                        <p class="text-xs text-gray-500 uppercase tracking-wider">Based in Dubai</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Bar -->
+        <div class="border-t border-lucas-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-500 text-xs order-2 sm:order-1">
+                        © 2025 LUCAS Technologies. All rights reserved.
+                    </p>
+                    <div class="flex items-center gap-6 order-1 sm:order-2">
+                        <a href="#" class="text-gray-500 text-xs hover:text-gray-300 transition">Privacy Policy</a>
+                        <a href="#" class="text-gray-500 text-xs hover:text-gray-300 transition">Terms of Service</a>
+                        <a href="#" class="text-gray-500 text-xs hover:text-gray-300 transition">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -1951,6 +2114,47 @@
                 document.body.style.overflow = '';
             }
         }
+
+        // Navbar scroll behavior - shrink and solidify on scroll
+        let lastScroll = 0;
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            // Add/remove scrolled class based on scroll position
+            if (currentScroll > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+        
+        // Active nav link highlighting
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('nav-link-active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('nav-link-active');
+                }
+            });
+        });
 
         function toggleFaq(button) {
             const item = button.closest('.faq-item');
