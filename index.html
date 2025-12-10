@@ -1302,7 +1302,7 @@
                 <p class="text-black text-sm font-semibold tracking-[0.3em] uppercase mb-4">Pricing</p>
                 <h2 class="text-4xl sm:text-6xl font-bold text-black tracking-tight">Protect Your Asset.</h2>
                 <h2 class="text-4xl sm:text-6xl font-bold text-black tracking-tight mb-6">
-                    <span id="typewriter-text"></span><span id="typewriter-cursor" class="animate-pulse">|</span>
+                    <span id="typewriter-text"></span><span id="typewriter-cursor" class="transition-opacity duration-300">|</span>
                 </h2>
                 <p class="text-black max-w-2xl mx-auto mb-4 text-lg">Hidden damage erodes property value. LUCAS catches issues early — before a 350 AED problem becomes a 12,000 AED disaster.</p>
                 <p class="text-sm text-black font-medium">For portfolios with 10+ units · Custom pricing for 500+</p>
@@ -1499,7 +1499,7 @@
     <script>
     // Typewriter effect for pricing section
     (function() {
-        const text = "Protect Your Returns.";
+        const text = "Protect Your Returns";
         const el = document.getElementById('typewriter-text');
         const cursor = document.getElementById('typewriter-cursor');
         let hasTyped = false;
@@ -1517,10 +1517,16 @@
                     i++;
                     setTimeout(type, speed);
                 } else {
-                    // Hide cursor after typing completes
+                    // Fade out cursor
+                    if (cursor) cursor.style.opacity = '0';
+                    
+                    // Append blinking dot directly to text
                     setTimeout(() => {
-                        if (cursor) cursor.style.opacity = '0';
-                    }, 500);
+                        const dot = document.createElement('span');
+                        dot.textContent = '.';
+                        dot.className = 'animate-pulse';
+                        el.appendChild(dot);
+                    }, 300);
                 }
             }
             
