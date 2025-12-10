@@ -4,878 +4,1146 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUCAS API Documentation</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwindcss.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'lucas-dark': '#0a0a0a',
-                        'lucas-darker': '#050505',
-                        'lucas-card': '#111111',
-                        'lucas-border': '#1e1e1e',
-                        'lucas-green': '#DEFF9A',
-                        'code-bg': '#0d0d0d',
-                    },
-                    fontFamily: {
-                        'mono': ['JetBrains Mono', 'monospace'],
-                        'sans': ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    
     <style>
-        html, body { background-color: #0a0a0a !important; color: #e5e7eb; }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #0a0a0a; }
-        ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }
-        .sidebar-section.open .sidebar-items { display: block; }
-        .sidebar-section .sidebar-items { display: none; }
-        .sidebar-section .chevron { transition: transform 0.2s; }
-        .sidebar-section.open .chevron { transform: rotate(90deg); }
-        .nav-link.active { color: #DEFF9A; background: rgba(222, 255, 154, 0.05); border-left-color: #DEFF9A; }
-        .hljs-keyword { color: #c792ea; }
-        .hljs-string { color: #c3e88d; }
-        .hljs-number { color: #f78c6c; }
-        .hljs-attr { color: #ffcb6b; }
-        .hljs-built_in { color: #82aaff; }
-        .hljs-comment { color: #546e7a; font-style: italic; }
-        .method-get { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
-        .method-post { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
-        .method-delete { background: rgba(239, 68, 68, 0.15); color: #f87171; }
-        .lang-tab.active { color: #DEFF9A; border-bottom-color: #DEFF9A; }
-        .param-row:hover { background: rgba(255,255,255,0.02); }
-        .copy-btn.copied { color: #4ade80; }
+        /* ========================================
+           DESIGN SYSTEM
+           ======================================== */
+        :root {
+            /* Background - 3 levels */
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-elevated: #111111;
+            --bg-code: #0d0d0d;
+            
+            /* Text - 3 levels */
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-tertiary: #52525b;
+            
+            /* Brand */
+            --lime: #DEFF9A;
+            --lime-dim: rgba(222, 255, 154, 0.15);
+            
+            /* Semantic */
+            --green: #4ade80;
+            --blue: #60a5fa;
+            --red: #f87171;
+            --amber: #fbbf24;
+            --purple: #a855f7;
+            
+            /* Border */
+            --border: #1f1f1f;
+            
+            /* Spacing */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 20px;
+            --space-6: 24px;
+            --space-8: 32px;
+            --space-10: 40px;
+            --space-12: 48px;
+            
+            --sidebar-width: 280px;
+        }
+        
+        /* ========================================
+           RESET & BASE
+           ======================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        ::selection {
+            background: var(--lime-dim);
+            color: var(--lime);
+        }
+        
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #2a2a2a; }
+        
+        /* ========================================
+           TYPOGRAPHY
+           ======================================== */
+        h1, h2, h3, h4 {
+            color: var(--text-primary);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+        }
+        
+        h1 { font-size: 2rem; }
+        h2 { font-size: 1.5rem; }
+        h3 { font-size: 1.125rem; }
+        
+        code, pre {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.15s ease;
+        }
+        
+        /* ========================================
+           LAYOUT
+           ======================================== */
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* ========================================
+           SIDEBAR
+           ======================================== */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--bg-primary);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+        
+        .sidebar-header {
+            padding: var(--space-5);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .sidebar-logo img {
+            height: 24px;
+        }
+        
+        .sidebar-logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .sidebar-logo-text span {
+            color: var(--lime);
+        }
+        
+        .sidebar-badge {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            padding: 2px 8px;
+            background: var(--bg-elevated);
+            border-radius: 4px;
+        }
+        
+        .sidebar-search {
+            padding: var(--space-4);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .search-wrapper {
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: var(--space-3) var(--space-4);
+            padding-left: 36px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            font-family: inherit;
+            transition: all 0.15s ease;
+        }
+        
+        .search-input::placeholder {
+            color: var(--text-tertiary);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--lime);
+            background: var(--bg-elevated);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-tertiary);
+            font-size: 0.75rem;
+        }
+        
+        .search-shortcut {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.625rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-tertiary);
+            background: var(--bg-primary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+        
+        .sidebar-nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--space-4);
+        }
+        
+        .nav-group {
+            margin-bottom: var(--space-6);
+        }
+        
+        .nav-group-title {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: var(--space-2) var(--space-3);
+            margin-bottom: var(--space-1);
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-2) var(--space-3);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            border-radius: 6px;
+            transition: all 0.15s ease;
+            margin-bottom: 2px;
+        }
+        
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: var(--bg-elevated);
+        }
+        
+        .nav-link.active {
+            color: var(--lime);
+            background: var(--lime-dim);
+        }
+        
+        .nav-link i {
+            font-size: 0.75rem;
+            width: 16px;
+            opacity: 0.6;
+        }
+        
+        .nav-link.active i {
+            opacity: 1;
+        }
+        
+        .sidebar-footer {
+            padding: var(--space-4);
+            border-top: 1px solid var(--border);
+        }
+        
+        .sidebar-footer a {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 0.8125rem;
+            color: var(--text-tertiary);
+        }
+        
+        .sidebar-footer a:hover {
+            color: var(--lime);
+        }
+        
+        /* ========================================
+           MAIN
+           ======================================== */
+        .main {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+        }
+        
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: var(--space-3) var(--space-8);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 0.8125rem;
+        }
+        
+        .breadcrumb-item { color: var(--text-tertiary); }
+        .breadcrumb-item.current { color: var(--text-secondary); }
+        .breadcrumb-sep { color: var(--text-tertiary); font-size: 0.625rem; }
+        
+        .topbar-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+        }
+        
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+        }
+        
+        .btn-ghost {
+            padding: var(--space-2) var(--space-4);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        
+        .btn-ghost:hover {
+            color: var(--text-primary);
+            border-color: var(--text-tertiary);
+        }
+        
+        /* ========================================
+           SECTIONS
+           ======================================== */
+        .section {
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .section-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .docs-panel {
+            padding: var(--space-12) var(--space-10);
+            border-right: 1px solid var(--border);
+        }
+        
+        .docs-panel h1 { margin-bottom: var(--space-4); }
+        .docs-panel h2 {
+            margin-top: var(--space-10);
+            margin-bottom: var(--space-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        .docs-panel h3 {
+            margin-top: var(--space-6);
+            margin-bottom: var(--space-3);
+        }
+        .docs-panel p { margin-bottom: var(--space-4); }
+        .docs-panel > p:first-of-type { font-size: 1.125rem; }
+        
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+        }
+        
+        .section-icon.lime { background: var(--lime-dim); color: var(--lime); }
+        .section-icon.blue { background: rgba(96, 165, 250, 0.15); color: var(--blue); }
+        .section-icon.green { background: rgba(74, 222, 128, 0.15); color: var(--green); }
+        
+        .base-url {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: var(--space-4);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            margin: var(--space-6) 0;
+        }
+        
+        .base-url .prefix { color: var(--text-tertiary); }
+        .base-url .domain { color: var(--lime); }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-4);
+            margin: var(--space-6) 0;
+        }
+        
+        .feature-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: var(--space-5);
+            transition: border-color 0.15s ease;
+        }
+        
+        .feature-card:hover { border-color: var(--text-tertiary); }
+        
+        .feature-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-3);
+            font-size: 0.875rem;
+        }
+        
+        .feature-icon.blue { background: rgba(96, 165, 250, 0.1); color: var(--blue); }
+        .feature-icon.purple { background: rgba(168, 85, 247, 0.1); color: var(--purple); }
+        .feature-icon.lime { background: var(--lime-dim); color: var(--lime); }
+        .feature-icon.amber { background: rgba(251, 191, 36, 0.1); color: var(--amber); }
+        
+        .feature-card h4 { font-size: 0.875rem; margin-bottom: var(--space-1); }
+        .feature-card p { font-size: 0.75rem; color: var(--text-tertiary); margin: 0; }
+        
+        .endpoint-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+            margin: var(--space-6) 0;
+        }
+        
+        .endpoint {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-4);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.15s ease;
+            cursor: pointer;
+        }
+        
+        .endpoint:hover {
+            border-color: var(--lime);
+            background: var(--bg-secondary);
+        }
+        
+        .method {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.625rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+        
+        .method.get { background: rgba(74, 222, 128, 0.15); color: var(--green); }
+        .method.post { background: rgba(96, 165, 250, 0.15); color: var(--blue); }
+        .method.delete { background: rgba(248, 113, 113, 0.15); color: var(--red); }
+        
+        .endpoint-path {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8125rem;
+            color: var(--text-primary);
+        }
+        
+        .endpoint-path .param { color: var(--text-tertiary); }
+        .endpoint-desc { margin-left: auto; font-size: 0.75rem; color: var(--text-tertiary); }
+        
+        .params-table {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: var(--space-4) 0;
+        }
+        
+        .params-table th {
+            background: var(--bg-secondary);
+            padding: var(--space-3) var(--space-4);
+            text-align: left;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .params-table td {
+            padding: var(--space-3) var(--space-4);
+            font-size: 0.8125rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .params-table tr:last-child td { border-bottom: none; }
+        .params-table tr:hover td { background: var(--bg-secondary); }
+        
+        .param-name { font-family: 'JetBrains Mono', monospace; color: var(--lime); font-size: 0.8125rem; }
+        .param-type { color: var(--text-tertiary); font-size: 0.75rem; }
+        .param-desc { color: var(--text-secondary); }
+        
+        /* ========================================
+           CODE PANEL
+           ======================================== */
+        .code-panel {
+            background: var(--bg-code);
+            padding: var(--space-10);
+        }
+        
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-3);
+        }
+        
+        .code-label {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .lang-tabs { display: flex; gap: var(--space-1); }
+        
+        .lang-tab {
+            padding: var(--space-2) var(--space-3);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            background: transparent;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-family: inherit;
+        }
+        
+        .lang-tab:hover { color: var(--text-secondary); background: var(--bg-elevated); }
+        .lang-tab.active { color: var(--lime); background: var(--lime-dim); }
+        
+        .code-block {
+            position: relative;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: var(--space-4);
+        }
+        
+        .code-block pre {
+            padding: var(--space-5);
+            overflow-x: auto;
+            font-size: 0.8125rem;
+            line-height: 1.7;
+        }
+        
+        .code-block code { color: var(--text-secondary); }
+        
+        .copy-btn {
+            position: absolute;
+            top: var(--space-3);
+            right: var(--space-3);
+            padding: var(--space-2) var(--space-3);
+            font-size: 0.6875rem;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-family: inherit;
+        }
+        
+        .copy-btn:hover { color: var(--text-primary); border-color: var(--text-tertiary); }
+        .copy-btn.copied { color: var(--green); border-color: var(--green); }
+        
+        .response-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6875rem;
+            font-weight: 500;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        .response-badge.success { background: rgba(74, 222, 128, 0.15); color: var(--green); }
+        .response-badge.error { background: rgba(248, 113, 113, 0.15); color: var(--red); }
+        
+        /* Syntax */
+        .hl-keyword { color: #c792ea; }
+        .hl-string { color: #c3e88d; }
+        .hl-number { color: #f78c6c; }
+        .hl-property { color: #82aaff; }
+        .hl-boolean { color: #ff5370; }
+        .hl-comment { color: #546e7a; font-style: italic; }
+        .hl-url { color: var(--lime); }
+        
+        .callout {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            padding: var(--space-4);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.8125rem;
+            margin: var(--space-4) 0;
+        }
+        
+        .callout i { color: var(--text-tertiary); margin-top: 2px; }
+        .callout code { background: var(--bg-primary); padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
+        
+        /* ========================================
+           MOBILE
+           ======================================== */
+        .mobile-header {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-4);
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-primary);
+        }
+        
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            cursor: pointer;
+        }
+        
+        .sidebar-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+        }
+        
+        .sidebar-backdrop.show { display: block; }
+        
+        @media (max-width: 1024px) {
+            .mobile-header { display: flex; }
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .sidebar.open { transform: translateX(0); }
+            .main { margin-left: 0; }
+            .topbar { display: none; }
+            .section-inner { grid-template-columns: 1fr; }
+            .docs-panel { border-right: none; border-bottom: 1px solid var(--border); padding: var(--space-8) var(--space-6); }
+            .code-panel { padding: var(--space-6); }
+            .feature-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
-<body class="bg-lucas-dark text-gray-300 font-sans antialiased">
-    <div class="flex min-h-screen">
-        
-        <!-- Sidebar -->
-        <aside class="w-72 border-r border-lucas-border fixed h-screen overflow-y-auto bg-lucas-dark z-50 flex flex-col">
-            <!-- Logo Header -->
-            <div class="p-5 border-b border-lucas-border flex-shrink-0">
-                <a href="https://lucas.app" class="flex items-center gap-3">
-                    <img src="LUCAS_logo White_on Rectangle_Transparent.svg" alt="LUCAS" class="h-8" onerror="this.outerHTML='<span class=\'text-white font-bold text-lg\'>LUCAS</span>'">
-                    <span class="text-gray-500 text-sm">API</span>
+<body>
+    <div class="mobile-header">
+        <a href="https://lucas.app" class="sidebar-logo">
+            <img src="LUCAS_logo%20White_on%20Rectangle_Transparent.png" alt="LUCAS" style="height: 24px;" onerror="this.outerHTML='<span class=\'sidebar-logo-text\'>LUCAS<span>.</span></span>'">
+        </a>
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+    
+    <div class="sidebar-backdrop" onclick="toggleSidebar()"></div>
+    
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="https://lucas.app" class="sidebar-logo">
+                    <img src="LUCAS_logo%20White_on%20Rectangle_Transparent.png" alt="LUCAS" style="height: 24px;" onerror="this.outerHTML='<span class=\'sidebar-logo-text\'>LUCAS<span>.</span></span>'">
+                    <span class="sidebar-badge">API</span>
                 </a>
             </div>
             
-            <!-- Version Badge -->
-            <div class="px-5 py-3 border-b border-lucas-border flex-shrink-0">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-lucas-green"></span>
-                        <span class="text-xs font-mono text-gray-400">v1.0</span>
-                    </div>
-                    <span class="text-xs px-2 py-0.5 rounded bg-lucas-green/10 text-lucas-green border border-lucas-green/20">Stable</span>
+            <div class="sidebar-search">
+                <div class="search-wrapper">
+                    <i class="fa-solid fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Search docs...">
+                    <span class="search-shortcut">⌘K</span>
                 </div>
             </div>
             
-            <!-- Search -->
-            <div class="p-4 border-b border-lucas-border flex-shrink-0">
-                <div class="relative">
-                    <input type="text" placeholder="Search docs..." class="w-full px-3 py-2 pl-9 bg-lucas-card border border-lucas-border rounded-lg text-sm focus:outline-none focus:border-lucas-green/50 transition text-gray-300 placeholder-gray-600">
-                    <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 text-xs"></i>
-                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-gray-600 font-mono border border-lucas-border px-1.5 py-0.5 rounded">⌘K</span>
-                </div>
-            </div>
-            
-            <!-- Navigation -->
-            <nav class="flex-1 overflow-y-auto p-4">
-                <!-- Getting Started -->
-                <div class="sidebar-section open mb-4">
-                    <button onclick="toggleSection(this)" class="flex items-center justify-between w-full text-left px-3 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider hover:text-gray-300 transition">
-                        <span>Getting Started</span>
-                        <i class="fa-solid fa-chevron-right chevron text-[10px]"></i>
-                    </button>
-                    <div class="sidebar-items mt-1 space-y-0.5">
-                        <a href="#introduction" class="nav-link active block px-3 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 hover:bg-white/[0.02] transition rounded-r">Introduction</a>
-                        <a href="#authentication" class="nav-link block px-3 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 hover:bg-white/[0.02] transition rounded-r">Authentication</a>
-                        <a href="#errors" class="nav-link block px-3 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 hover:bg-white/[0.02] transition rounded-r">Errors</a>
-                    </div>
+            <nav class="sidebar-nav">
+                <div class="nav-group">
+                    <div class="nav-group-title">Getting Started</div>
+                    <a href="#introduction" class="nav-link active"><i class="fa-solid fa-book"></i>Introduction</a>
+                    <a href="#authentication" class="nav-link"><i class="fa-solid fa-key"></i>Authentication</a>
                 </div>
                 
-                <!-- Core Resources -->
-                <div class="sidebar-section open mb-4">
-                    <button onclick="toggleSection(this)" class="flex items-center justify-between w-full text-left px-3 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider hover:text-gray-300 transition">
-                        <span>Core Resources</span>
-                        <i class="fa-solid fa-chevron-right chevron text-[10px]"></i>
-                    </button>
-                    <div class="sidebar-items mt-1 space-y-0.5">
-                        <a href="#proofs" class="nav-link block px-3 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 hover:bg-white/[0.02] transition rounded-r">LUCAS Proofs</a>
-                        <a href="#assets" class="nav-link block px-3 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 hover:bg-white/[0.02] transition rounded-r">Assets</a>
-                        <a href="#inspections" class="nav-link block px-3 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 hover:bg-white/[0.02] transition rounded-r">Inspections</a>
-                    </div>
+                <div class="nav-group">
+                    <div class="nav-group-title">Core Resources</div>
+                    <a href="#proofs" class="nav-link"><i class="fa-solid fa-file-shield"></i>LUCAS Proofs</a>
+                    <a href="#assets" class="nav-link"><i class="fa-solid fa-building"></i>Assets</a>
                 </div>
                 
-                <!-- Webhooks & Events -->
-                <div class="sidebar-section open mb-4">
-                    <button onclick="toggleSection(this)" class="flex items-center justify-between w-full text-left px-3 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider hover:text-gray-300 transition">
-                        <span>Webhooks & Events</span>
-                        <i class="fa-solid fa-chevron-right chevron text-[10px]"></i>
-                    </button>
-                    <div class="sidebar-items mt-1 space-y-0.5">
-                        <a href="#webhooks" class="nav-link block px-3 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 hover:bg-white/[0.02] transition rounded-r">Webhooks</a>
-                        <a href="#events" class="nav-link block px-3 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 hover:bg-white/[0.02] transition rounded-r">Event Types</a>
-                    </div>
-                </div>
-                
-                <!-- On-chain -->
-                <div class="sidebar-section open mb-4">
-                    <button onclick="toggleSection(this)" class="flex items-center justify-between w-full text-left px-3 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider hover:text-gray-300 transition">
-                        <span>On-chain</span>
-                        <i class="fa-solid fa-chevron-right chevron text-[10px]"></i>
-                    </button>
-                    <div class="sidebar-items mt-1 space-y-0.5">
-                        <a href="#anchoring" class="nav-link block px-3 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 hover:bg-white/[0.02] transition rounded-r">Proof Anchoring</a>
-                        <a href="#verification" class="nav-link block px-3 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 hover:bg-white/[0.02] transition rounded-r">On-chain Verification</a>
-                    </div>
-                </div>
-                
-                <!-- SDKs -->
-                <div class="sidebar-section open mb-4">
-                    <button onclick="toggleSection(this)" class="flex items-center justify-between w-full text-left px-3 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider hover:text-gray-300 transition">
-                        <span>SDKs & Libraries</span>
-                        <i class="fa-solid fa-chevron-right chevron text-[10px]"></i>
-                    </button>
-                    <div class="sidebar-items mt-1 space-y-0.5">
-                        <a href="#sdks" class="nav-link block px-3 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 hover:bg-white/[0.02] transition rounded-r">Official SDKs</a>
-                        <a href="#rate-limits" class="nav-link block px-3 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 hover:bg-white/[0.02] transition rounded-r">Rate Limits</a>
-                    </div>
+                <div class="nav-group">
+                    <div class="nav-group-title">Platform</div>
+                    <a href="#webhooks" class="nav-link"><i class="fa-solid fa-bolt"></i>Webhooks</a>
+                    <a href="#sdks" class="nav-link"><i class="fa-solid fa-cube"></i>SDKs</a>
                 </div>
             </nav>
             
-            <!-- Footer -->
-            <div class="p-4 border-t border-lucas-border flex-shrink-0">
-                <a href="https://lucas.app" class="flex items-center gap-2 text-sm text-gray-500 hover:text-lucas-green transition">
-                    <i class="fa-solid fa-arrow-left text-xs"></i>
-                    Back to lucas.app
-                </a>
+            <div class="sidebar-footer">
+                <a href="https://lucas.app"><i class="fa-solid fa-arrow-left"></i>Back to lucas.app</a>
             </div>
         </aside>
         
-        <!-- Main Content Area -->
-        <main class="flex-1 ml-72">
-            <!-- Top Bar -->
-            <header class="sticky top-0 z-40 bg-lucas-dark/90 backdrop-blur-xl border-b border-lucas-border">
-                <div class="flex items-center justify-between px-8 py-3">
-                    <div class="flex items-center gap-2 text-sm text-gray-500">
-                        <a href="#" class="hover:text-white transition">Docs</a>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-gray-600"></i>
-                        <span class="text-gray-300">API Reference</span>
+        <main class="main">
+            <header class="topbar">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Docs</span>
+                    <i class="fa-solid fa-chevron-right breadcrumb-sep"></i>
+                    <span class="breadcrumb-item current">API Reference</span>
+                </div>
+                <div class="topbar-actions">
+                    <div class="status-indicator">
+                        <span class="status-dot"></span>
+                        All systems operational
                     </div>
-                    <div class="flex items-center gap-4">
-                        <a href="#" class="text-sm text-gray-400 hover:text-white transition flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                            API Status
-                        </a>
-                        <a href="#" class="px-4 py-1.5 bg-lucas-card border border-lucas-border rounded-lg text-sm text-gray-300 hover:border-lucas-green/50 transition">Dashboard</a>
-                    </div>
+                    <a href="https://app.lucas.app" class="btn-ghost">Dashboard</a>
                 </div>
             </header>
             
-            <!-- Two-Panel Content -->
-            <div class="docs-content">
-                
-                <!-- Introduction Section -->
-                <section id="introduction" class="border-b border-lucas-border">
-                    <div class="flex">
-                        <!-- Left Panel: Documentation -->
-                        <div class="w-1/2 p-10 border-r border-lucas-border">
-                            <h1 class="text-3xl font-bold text-white mb-4">LUCAS API</h1>
-                            <p class="text-gray-400 text-lg leading-relaxed mb-6">
-                                The LUCAS API provides programmatic access to physical asset verification. Request inspections, retrieve cryptographically signed proofs, and integrate real-world condition data into your applications and smart contracts.
-                            </p>
-                            
-                            <div class="mb-8">
-                                <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Base URL</h3>
-                                <div class="bg-lucas-card border border-lucas-border rounded-lg px-4 py-3 font-mono text-sm">
-                                    <span class="text-gray-500">https://</span><span class="text-lucas-green">api.lucas.app</span><span class="text-gray-500">/v1</span>
-                                </div>
+            <!-- Introduction -->
+            <section id="introduction" class="section">
+                <div class="section-inner">
+                    <div class="docs-panel">
+                        <h1>LUCAS API</h1>
+                        <p>The LUCAS API provides programmatic access to physical asset verification. Request inspections, retrieve cryptographically signed proofs, and integrate real-world condition data into your applications.</p>
+                        
+                        <div class="base-url">
+                            <span class="prefix">https://</span><span class="domain">api.lucas.app</span><span class="prefix">/v1</span>
+                        </div>
+                        
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon blue"><i class="fa-solid fa-shield-halved"></i></div>
+                                <h4>Verified Data</h4>
+                                <p>GPS-stamped, cryptographically signed</p>
                             </div>
-                            
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="bg-lucas-card border border-lucas-border rounded-xl p-4">
-                                    <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center mb-3">
-                                        <i class="fa-solid fa-shield-halved text-blue-400 text-sm"></i>
-                                    </div>
-                                    <h4 class="text-white font-semibold text-sm mb-1">Verified Data</h4>
-                                    <p class="text-xs text-gray-500">GPS-stamped, cryptographically signed</p>
-                                </div>
-                                <div class="bg-lucas-card border border-lucas-border rounded-xl p-4">
-                                    <div class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center mb-3">
-                                        <i class="fa-solid fa-link text-purple-400 text-sm"></i>
-                                    </div>
-                                    <h4 class="text-white font-semibold text-sm mb-1">On-chain Ready</h4>
-                                    <p class="text-xs text-gray-500">Anchor to any EVM chain</p>
-                                </div>
-                                <div class="bg-lucas-card border border-lucas-border rounded-xl p-4">
-                                    <div class="w-8 h-8 rounded-lg bg-lucas-green/10 flex items-center justify-center mb-3">
-                                        <i class="fa-solid fa-bolt text-lucas-green text-sm"></i>
-                                    </div>
-                                    <h4 class="text-white font-semibold text-sm mb-1">Real-time</h4>
-                                    <p class="text-xs text-gray-500">Webhooks for live updates</p>
-                                </div>
-                                <div class="bg-lucas-card border border-lucas-border rounded-xl p-4">
-                                    <div class="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center mb-3">
-                                        <i class="fa-solid fa-cube text-amber-400 text-sm"></i>
-                                    </div>
-                                    <h4 class="text-white font-semibold text-sm mb-1">SDKs</h4>
-                                    <p class="text-xs text-gray-500">JavaScript, Python, Go</p>
-                                </div>
+                            <div class="feature-card">
+                                <div class="feature-icon purple"><i class="fa-solid fa-link"></i></div>
+                                <h4>On-chain Ready</h4>
+                                <p>Anchor proofs to any EVM chain</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon lime"><i class="fa-solid fa-bolt"></i></div>
+                                <h4>Real-time</h4>
+                                <p>Webhooks for instant updates</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon amber"><i class="fa-solid fa-cube"></i></div>
+                                <h4>SDKs</h4>
+                                <p>JavaScript, Python, Go</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="code-panel">
+                        <div class="code-header">
+                            <span class="code-label">Quick Start</span>
+                            <div class="lang-tabs">
+                                <button class="lang-tab active" onclick="switchLang('curl', 'intro')">cURL</button>
+                                <button class="lang-tab" onclick="switchLang('node', 'intro')">Node.js</button>
+                                <button class="lang-tab" onclick="switchLang('python', 'intro')">Python</button>
                             </div>
                         </div>
                         
-                        <!-- Right Panel: Code -->
-                        <div class="w-1/2 bg-code-bg p-8">
-                            <div class="mb-6">
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Quick Start</span>
-                                    <div class="flex gap-1">
-                                        <button onclick="switchLang(this, 'curl', 'intro')" class="lang-tab active px-3 py-1 text-xs text-gray-500 border-b-2 border-transparent hover:text-gray-300 transition" data-group="intro">cURL</button>
-                                        <button onclick="switchLang(this, 'js', 'intro')" class="lang-tab px-3 py-1 text-xs text-gray-500 border-b-2 border-transparent hover:text-gray-300 transition" data-group="intro">Node.js</button>
-                                        <button onclick="switchLang(this, 'python', 'intro')" class="lang-tab px-3 py-1 text-xs text-gray-500 border-b-2 border-transparent hover:text-gray-300 transition" data-group="intro">Python</button>
-                                    </div>
-                                </div>
-                                <div class="relative">
-                                    <pre class="bg-lucas-darker border border-lucas-border rounded-lg p-4 overflow-x-auto text-sm leading-relaxed"><code class="lang-curl" data-group="intro"><span class="hljs-built_in">curl</span> https://api.lucas.app/v1/proofs \
-  <span class="hljs-attr">-H</span> <span class="hljs-string">"Authorization: Bearer lcs_live_xxx"</span> \
-  <span class="hljs-attr">-H</span> <span class="hljs-string">"Content-Type: application/json"</span></code><code class="lang-js hidden" data-group="intro"><span class="hljs-keyword">import</span> Lucas <span class="hljs-keyword">from</span> <span class="hljs-string">'@lucas/sdk'</span>;
+                        <div class="code-block">
+                            <pre><code id="intro-curl"><span class="hl-keyword">curl</span> <span class="hl-url">https://api.lucas.app/v1/proofs</span> \
+  -H <span class="hl-string">"Authorization: Bearer lcs_live_xxx"</span> \
+  -H <span class="hl-string">"Content-Type: application/json"</span></code><code id="intro-node" style="display:none"><span class="hl-keyword">import</span> Lucas <span class="hl-keyword">from</span> <span class="hl-string">'@lucas/sdk'</span>;
 
-<span class="hljs-keyword">const</span> lucas = <span class="hljs-keyword">new</span> Lucas(<span class="hljs-string">'lcs_live_xxx'</span>);
+<span class="hl-keyword">const</span> lucas = <span class="hl-keyword">new</span> Lucas(<span class="hl-string">'lcs_live_xxx'</span>);
+<span class="hl-keyword">const</span> proofs = <span class="hl-keyword">await</span> lucas.proofs.list();
 
-<span class="hljs-keyword">const</span> proofs = <span class="hljs-keyword">await</span> lucas.proofs.list();
-<span class="hljs-built_in">console</span>.log(proofs);</code><code class="lang-python hidden" data-group="intro"><span class="hljs-keyword">import</span> lucas
+console.log(proofs);</code><code id="intro-python" style="display:none"><span class="hl-keyword">import</span> lucas
 
-client = lucas.Client(<span class="hljs-string">'lcs_live_xxx'</span>)
-
+client = lucas.Client(<span class="hl-string">'lcs_live_xxx'</span>)
 proofs = client.proofs.list()
-<span class="hljs-built_in">print</span>(proofs)</code></pre>
-                                    <button onclick="copyCode(this)" class="copy-btn absolute top-3 right-3 px-2 py-1 text-xs text-gray-500 hover:text-white bg-lucas-card border border-lucas-border rounded transition">
-                                        <i class="fa-regular fa-copy mr-1"></i>Copy
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div class="text-xs text-gray-600 flex items-center gap-2 mb-6">
-                                <i class="fa-solid fa-circle-info"></i>
-                                <span>Install SDK: <code class="text-gray-400">npm install @lucas/sdk</code></span>
-                            </div>
-                            
-                            <div class="p-4 bg-lucas-darker border border-lucas-border rounded-lg">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <span class="text-xs font-semibold text-gray-500 uppercase">Response Preview</span>
-                                    <span class="text-xs px-2 py-0.5 bg-green-500/10 text-green-400 rounded font-mono">200</span>
-                                </div>
-                                <pre class="text-xs text-gray-400 font-mono overflow-x-auto"><code>{
-  "object": "list",
-  "data": [
-    { "proof_id": "PROOF-2024-0847", ... }
+
+<span class="hl-keyword">print</span>(proofs)</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i>Copy</button>
+                        </div>
+                        
+                        <div class="callout">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span>Install SDK: <code>npm install @lucas/sdk</code></span>
+                        </div>
+                        
+                        <div class="code-header" style="margin-top: var(--space-6);">
+                            <span class="code-label">Response</span>
+                            <span class="response-badge success">200 OK</span>
+                        </div>
+                        
+                        <div class="code-block">
+                            <pre><code>{
+  <span class="hl-property">"object"</span>: <span class="hl-string">"list"</span>,
+  <span class="hl-property">"data"</span>: [
+    {
+      <span class="hl-property">"proof_id"</span>: <span class="hl-string">"prf_2x8K9mNqLr"</span>,
+      <span class="hl-property">"asset_id"</span>: <span class="hl-string">"ast_marina_1205"</span>,
+      <span class="hl-property">"status"</span>: <span class="hl-string">"verified"</span>,
+      <span class="hl-property">"condition_score"</span>: <span class="hl-number">87</span>
+    }
   ]
 }</code></pre>
-                            </div>
                         </div>
-                    </div>
-                </section>
-                
-                <!-- Authentication Section -->
-                <section id="authentication" class="border-b border-lucas-border">
-                    <div class="flex">
-                        <!-- Left Panel -->
-                        <div class="w-1/2 p-10 border-r border-lucas-border">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center">
-                                    <i class="fa-solid fa-key text-amber-400 text-sm"></i>
-                                </div>
-                                <h2 class="text-2xl font-bold text-white">Authentication</h2>
-                            </div>
-                            
-                            <p class="text-gray-400 mb-6">
-                                The LUCAS API uses API keys to authenticate requests. Include your key in the <code class="px-1.5 py-0.5 bg-lucas-card rounded text-sm font-mono text-gray-300">Authorization</code> header of every request.
-                            </p>
-                            
-                            <div class="mb-6">
-                                <h3 class="text-sm font-semibold text-white mb-3">API Key Format</h3>
-                                <div class="bg-lucas-card border border-lucas-border rounded-lg px-4 py-3 font-mono text-sm">
-                                    <span class="text-gray-500">lcs_</span><span class="text-amber-400">live</span><span class="text-gray-500">_</span><span class="text-lucas-green">xxxxxxxxxxxxxxxx</span>
-                                </div>
-                                <p class="text-xs text-gray-500 mt-2">Test keys use <code class="text-amber-400">test</code> prefix instead of <code class="text-amber-400">live</code></p>
-                            </div>
-                            
-                            <div class="p-4 bg-amber-500/5 border border-amber-500/20 rounded-xl">
-                                <div class="flex gap-3">
-                                    <i class="fa-solid fa-triangle-exclamation text-amber-400 mt-0.5"></i>
-                                    <div>
-                                        <p class="text-sm text-amber-200 font-medium">Protect your API keys</p>
-                                        <p class="text-xs text-gray-400 mt-1">Never expose keys in client-side code or commit them to version control.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Right Panel -->
-                        <div class="w-1/2 bg-code-bg p-8">
-                            <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 block">Authenticated Request</span>
-                            <div class="relative">
-                                <pre class="bg-lucas-darker border border-lucas-border rounded-lg p-4 overflow-x-auto text-sm leading-relaxed"><code><span class="hljs-built_in">curl</span> https://api.lucas.app/v1/proofs/PROOF-2024-0847 \
-  <span class="hljs-attr">-H</span> <span class="hljs-string">"Authorization: Bearer lcs_live_xxxxxxxxxxxx"</span></code></pre>
-                                <button onclick="copyCode(this)" class="copy-btn absolute top-3 right-3 px-2 py-1 text-xs text-gray-500 hover:text-white bg-lucas-card border border-lucas-border rounded transition">
-                                    <i class="fa-regular fa-copy mr-1"></i>Copy
-                                </button>
-                            </div>
-                            
-                            <div class="mt-6 p-4 bg-lucas-darker border border-lucas-border rounded-lg">
-                                <div class="flex items-center gap-2 mb-3">
-                                    <span class="text-xs font-semibold text-gray-500 uppercase">Response Headers</span>
-                                </div>
-                                <code class="text-xs text-gray-400 font-mono block leading-relaxed">
-                                    X-RateLimit-Limit: 100<br>
-                                    X-RateLimit-Remaining: 99<br>
-                                    X-Request-Id: req_abc123xyz
-                                </code>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- LUCAS Proofs Section -->
-                <section id="proofs" class="border-b border-lucas-border">
-                    <div class="flex">
-                        <!-- Left Panel -->
-                        <div class="w-1/2 p-10 border-r border-lucas-border">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-8 h-8 rounded-lg bg-lucas-green/10 flex items-center justify-center">
-                                    <i class="fa-solid fa-file-shield text-lucas-green text-sm"></i>
-                                </div>
-                                <h2 class="text-2xl font-bold text-white">LUCAS Proofs</h2>
-                            </div>
-                            
-                            <p class="text-gray-400 mb-6">
-                                A LUCAS Proof is a cryptographically signed, immutable record of a physical asset's condition at a specific point in time. Each proof contains inspection data, photos, GPS verification, condition scores, and detected issues.
-                            </p>
-                            
-                            <!-- Endpoints -->
-                            <div class="space-y-3 mb-8">
-                                <div class="flex items-center gap-3 p-3 bg-lucas-card border border-lucas-border rounded-lg hover:border-lucas-green/30 transition cursor-pointer">
-                                    <span class="method-get px-2 py-0.5 rounded text-[10px] font-bold font-mono">GET</span>
-                                    <code class="text-sm text-gray-300 font-mono">/proofs</code>
-                                    <span class="text-xs text-gray-500 ml-auto">List all proofs</span>
-                                </div>
-                                <div class="flex items-center gap-3 p-3 bg-lucas-card border border-lucas-border rounded-lg hover:border-lucas-green/30 transition cursor-pointer">
-                                    <span class="method-get px-2 py-0.5 rounded text-[10px] font-bold font-mono">GET</span>
-                                    <code class="text-sm text-gray-300 font-mono">/proofs/<span class="text-gray-500">{proof_id}</span></code>
-                                    <span class="text-xs text-gray-500 ml-auto">Retrieve a proof</span>
-                                </div>
-                                <div class="flex items-center gap-3 p-3 bg-lucas-card border border-lucas-border rounded-lg hover:border-lucas-green/30 transition cursor-pointer">
-                                    <span class="method-post px-2 py-0.5 rounded text-[10px] font-bold font-mono">POST</span>
-                                    <code class="text-sm text-gray-300 font-mono">/proofs/request</code>
-                                    <span class="text-xs text-gray-500 ml-auto">Request new inspection</span>
-                                </div>
-                            </div>
-                            
-                            <!-- Parameters Table -->
-                            <h3 class="text-sm font-semibold text-white mb-3">The Proof Object</h3>
-                            <div class="border border-lucas-border rounded-lg overflow-hidden">
-                                <table class="w-full text-sm">
-                                    <tbody class="divide-y divide-lucas-border">
-                                        <tr class="param-row">
-                                            <td class="px-4 py-3 font-mono text-lucas-green">proof_id</td>
-                                            <td class="px-4 py-3 text-gray-500">string</td>
-                                            <td class="px-4 py-3 text-gray-400">Unique identifier</td>
-                                        </tr>
-                                        <tr class="param-row">
-                                            <td class="px-4 py-3 font-mono text-lucas-green">asset_id</td>
-                                            <td class="px-4 py-3 text-gray-500">string</td>
-                                            <td class="px-4 py-3 text-gray-400">Asset this proof belongs to</td>
-                                        </tr>
-                                        <tr class="param-row">
-                                            <td class="px-4 py-3 font-mono text-lucas-green">condition.score</td>
-                                            <td class="px-4 py-3 text-gray-500">integer</td>
-                                            <td class="px-4 py-3 text-gray-400">Score from 0-100</td>
-                                        </tr>
-                                        <tr class="param-row">
-                                            <td class="px-4 py-3 font-mono text-lucas-green">condition.grade</td>
-                                            <td class="px-4 py-3 text-gray-500">string</td>
-                                            <td class="px-4 py-3 text-gray-400">A, B, C, D, or F</td>
-                                        </tr>
-                                        <tr class="param-row">
-                                            <td class="px-4 py-3 font-mono text-lucas-green">issues</td>
-                                            <td class="px-4 py-3 text-gray-500">array</td>
-                                            <td class="px-4 py-3 text-gray-400">Detected issues list</td>
-                                        </tr>
-                                        <tr class="param-row">
-                                            <td class="px-4 py-3 font-mono text-lucas-green">signature.hash</td>
-                                            <td class="px-4 py-3 text-gray-500">string</td>
-                                            <td class="px-4 py-3 text-gray-400">SHA-256 proof hash</td>
-                                        </tr>
-                                        <tr class="param-row">
-                                            <td class="px-4 py-3 font-mono text-lucas-green">signature.anchor_tx</td>
-                                            <td class="px-4 py-3 text-gray-500">string</td>
-                                            <td class="px-4 py-3 text-gray-400">Blockchain tx hash</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        
-                        <!-- Right Panel -->
-                        <div class="w-1/2 bg-code-bg p-8">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Response</span>
-                                <span class="text-xs px-2 py-0.5 bg-green-500/10 text-green-400 rounded font-mono">200 OK</span>
-                            </div>
-                            <div class="relative">
-                                <pre class="bg-lucas-darker border border-lucas-border rounded-lg p-4 overflow-x-auto text-sm leading-relaxed max-h-[600px]"><code>{
-  <span class="hljs-attr">"proof_id"</span>: <span class="hljs-string">"PROOF-2024-0847"</span>,
-  <span class="hljs-attr">"asset_id"</span>: <span class="hljs-string">"asset_marina_1205"</span>,
-  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"recurring_inspection"</span>,
-  <span class="hljs-attr">"timestamp"</span>: <span class="hljs-string">"2024-12-05T14:32:00Z"</span>,
-  <span class="hljs-attr">"inspector"</span>: {
-    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"insp_ahmed_k"</span>,
-    <span class="hljs-attr">"verified"</span>: <span class="hljs-keyword">true</span>,
-    <span class="hljs-attr">"credentials"</span>: [<span class="hljs-string">"RICS"</span>, <span class="hljs-string">"RERA"</span>]
-  },
-  <span class="hljs-attr">"location"</span>: {
-    <span class="hljs-attr">"lat"</span>: <span class="hljs-number">25.0762</span>,
-    <span class="hljs-attr">"lng"</span>: <span class="hljs-number">55.1304</span>,
-    <span class="hljs-attr">"verified"</span>: <span class="hljs-keyword">true</span>,
-    <span class="hljs-attr">"accuracy_m"</span>: <span class="hljs-number">3.2</span>
-  },
-  <span class="hljs-attr">"condition"</span>: {
-    <span class="hljs-attr">"score"</span>: <span class="hljs-number">94</span>,
-    <span class="hljs-attr">"grade"</span>: <span class="hljs-string">"A"</span>,
-    <span class="hljs-attr">"issues_found"</span>: <span class="hljs-number">1</span>,
-    <span class="hljs-attr">"issues_critical"</span>: <span class="hljs-number">0</span>
-  },
-  <span class="hljs-attr">"issues"</span>: [
-    {
-      <span class="hljs-attr">"id"</span>: <span class="hljs-string">"issue_001"</span>,
-      <span class="hljs-attr">"category"</span>: <span class="hljs-string">"hvac"</span>,
-      <span class="hljs-attr">"severity"</span>: <span class="hljs-string">"low"</span>,
-      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Minor AC drain condensation"</span>,
-      <span class="hljs-attr">"estimated_cost"</span>: <span class="hljs-number">150</span>,
-      <span class="hljs-attr">"if_ignored_cost"</span>: <span class="hljs-number">1350</span>
-    }
-  ],
-  <span class="hljs-attr">"signature"</span>: {
-    <span class="hljs-attr">"hash"</span>: <span class="hljs-string">"sha256:7f83b1657ff1fc53..."</span>,
-    <span class="hljs-attr">"algorithm"</span>: <span class="hljs-string">"SHA-256"</span>,
-    <span class="hljs-attr">"anchor_tx"</span>: <span class="hljs-string">"0x1234...abcd"</span>,
-    <span class="hljs-attr">"chain"</span>: <span class="hljs-string">"polygon"</span>
-  },
-  <span class="hljs-attr">"yield_impact"</span>: {
-    <span class="hljs-attr">"risk_level"</span>: <span class="hljs-string">"low"</span>,
-    <span class="hljs-attr">"projected_apy_effect"</span>: <span class="hljs-number">-0.02</span>
-  }
-}</code></pre>
-                                <button onclick="copyCode(this)" class="copy-btn absolute top-3 right-3 px-2 py-1 text-xs text-gray-500 hover:text-white bg-lucas-card border border-lucas-border rounded transition">
-                                    <i class="fa-regular fa-copy mr-1"></i>Copy
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Webhooks Section -->
-                <section id="webhooks" class="border-b border-lucas-border">
-                    <div class="flex">
-                        <!-- Left Panel -->
-                        <div class="w-1/2 p-10 border-r border-lucas-border">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center">
-                                    <i class="fa-solid fa-bolt text-purple-400 text-sm"></i>
-                                </div>
-                                <h2 class="text-2xl font-bold text-white">Webhooks</h2>
-                            </div>
-                            
-                            <p class="text-gray-400 mb-6">
-                                Receive real-time notifications when events occur. LUCAS sends <code class="px-1.5 py-0.5 bg-lucas-card rounded text-sm font-mono text-gray-300">POST</code> requests to your configured endpoints with event data.
-                            </p>
-                            
-                            <!-- Endpoints -->
-                            <div class="space-y-3 mb-8">
-                                <div class="flex items-center gap-3 p-3 bg-lucas-card border border-lucas-border rounded-lg">
-                                    <span class="method-post px-2 py-0.5 rounded text-[10px] font-bold font-mono">POST</span>
-                                    <code class="text-sm text-gray-300 font-mono">/webhooks</code>
-                                    <span class="text-xs text-gray-500 ml-auto">Create webhook</span>
-                                </div>
-                                <div class="flex items-center gap-3 p-3 bg-lucas-card border border-lucas-border rounded-lg">
-                                    <span class="method-get px-2 py-0.5 rounded text-[10px] font-bold font-mono">GET</span>
-                                    <code class="text-sm text-gray-300 font-mono">/webhooks</code>
-                                    <span class="text-xs text-gray-500 ml-auto">List webhooks</span>
-                                </div>
-                                <div class="flex items-center gap-3 p-3 bg-lucas-card border border-lucas-border rounded-lg">
-                                    <span class="method-delete px-2 py-0.5 rounded text-[10px] font-bold font-mono">DELETE</span>
-                                    <code class="text-sm text-gray-300 font-mono">/webhooks/<span class="text-gray-500">{id}</span></code>
-                                    <span class="text-xs text-gray-500 ml-auto">Delete webhook</span>
-                                </div>
-                            </div>
-                            
-                            <!-- Event Types -->
-                            <h3 class="text-sm font-semibold text-white mb-3">Event Types</h3>
-                            <div class="space-y-2">
-                                <div class="flex items-center justify-between p-3 bg-lucas-card border border-lucas-border rounded-lg">
-                                    <code class="text-sm font-mono text-lucas-green">proof.completed</code>
-                                    <span class="text-xs text-gray-500">New proof ready</span>
-                                </div>
-                                <div class="flex items-center justify-between p-3 bg-lucas-card border border-lucas-border rounded-lg">
-                                    <code class="text-sm font-mono text-lucas-green">proof.anchored</code>
-                                    <span class="text-xs text-gray-500">Proof written to chain</span>
-                                </div>
-                                <div class="flex items-center justify-between p-3 bg-lucas-card border border-lucas-border rounded-lg">
-                                    <code class="text-sm font-mono text-lucas-green">asset.score_changed</code>
-                                    <span class="text-xs text-gray-500">Condition score updated</span>
-                                </div>
-                                <div class="flex items-center justify-between p-3 bg-lucas-card border border-lucas-border rounded-lg">
-                                    <code class="text-sm font-mono text-lucas-green">issue.detected</code>
-                                    <span class="text-xs text-gray-500">New issue found</span>
-                                </div>
-                                <div class="flex items-center justify-between p-3 bg-lucas-card border border-lucas-border rounded-lg">
-                                    <code class="text-sm font-mono text-lucas-green">issue.resolved</code>
-                                    <span class="text-xs text-gray-500">Issue marked fixed</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Right Panel -->
-                        <div class="w-1/2 bg-code-bg p-8">
-                            <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 block">Webhook Payload</span>
-                            <div class="relative mb-6">
-                                <pre class="bg-lucas-darker border border-lucas-border rounded-lg p-4 overflow-x-auto text-sm leading-relaxed"><code>{
-  <span class="hljs-attr">"id"</span>: <span class="hljs-string">"evt_1234567890"</span>,
-  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"proof.completed"</span>,
-  <span class="hljs-attr">"created"</span>: <span class="hljs-string">"2024-12-05T14:32:00Z"</span>,
-  <span class="hljs-attr">"data"</span>: {
-    <span class="hljs-attr">"proof_id"</span>: <span class="hljs-string">"PROOF-2024-0847"</span>,
-    <span class="hljs-attr">"asset_id"</span>: <span class="hljs-string">"asset_marina_1205"</span>,
-    <span class="hljs-attr">"condition_score"</span>: <span class="hljs-number">94</span>,
-    <span class="hljs-attr">"issues_found"</span>: <span class="hljs-number">1</span>
-  }
-}</code></pre>
-                                <button onclick="copyCode(this)" class="copy-btn absolute top-3 right-3 px-2 py-1 text-xs text-gray-500 hover:text-white bg-lucas-card border border-lucas-border rounded transition">
-                                    <i class="fa-regular fa-copy mr-1"></i>Copy
-                                </button>
-                            </div>
-                            
-                            <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 block">Signature Verification</span>
-                            <div class="relative">
-                                <pre class="bg-lucas-darker border border-lucas-border rounded-lg p-4 overflow-x-auto text-sm leading-relaxed"><code><span class="hljs-comment">// Verify webhook signature</span>
-<span class="hljs-keyword">const</span> signature = req.headers[<span class="hljs-string">'x-lucas-signature'</span>];
-<span class="hljs-keyword">const</span> isValid = lucas.webhooks.verify(
-  req.body,
-  signature,
-  webhookSecret
-);</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- SDKs Section -->
-                <section id="sdks" class="border-b border-lucas-border">
-                    <div class="flex">
-                        <!-- Left Panel -->
-                        <div class="w-1/2 p-10 border-r border-lucas-border">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center">
-                                    <i class="fa-solid fa-cube text-blue-400 text-sm"></i>
-                                </div>
-                                <h2 class="text-2xl font-bold text-white">SDKs & Libraries</h2>
-                            </div>
-                            
-                            <p class="text-gray-400 mb-6">
-                                Official client libraries for popular languages. All SDKs are open source and available on GitHub.
-                            </p>
-                            
-                            <div class="space-y-4">
-                                <div class="bg-lucas-card border border-lucas-border rounded-xl p-5 hover:border-lucas-green/30 transition">
-                                    <div class="flex items-center gap-3 mb-3">
-                                        <i class="fa-brands fa-js text-yellow-400 text-2xl"></i>
-                                        <span class="text-white font-semibold">JavaScript / TypeScript</span>
-                                    </div>
-                                    <code class="text-xs font-mono text-gray-500 block mb-3 bg-lucas-darker px-3 py-2 rounded">npm install @lucas/sdk</code>
-                                    <a href="#" class="text-xs text-lucas-green hover:underline">View on GitHub →</a>
-                                </div>
-                                
-                                <div class="bg-lucas-card border border-lucas-border rounded-xl p-5 hover:border-lucas-green/30 transition">
-                                    <div class="flex items-center gap-3 mb-3">
-                                        <i class="fa-brands fa-python text-blue-400 text-2xl"></i>
-                                        <span class="text-white font-semibold">Python</span>
-                                    </div>
-                                    <code class="text-xs font-mono text-gray-500 block mb-3 bg-lucas-darker px-3 py-2 rounded">pip install lucas-sdk</code>
-                                    <a href="#" class="text-xs text-lucas-green hover:underline">View on GitHub →</a>
-                                </div>
-                                
-                                <div class="bg-lucas-card border border-lucas-border rounded-xl p-5 hover:border-lucas-green/30 transition">
-                                    <div class="flex items-center gap-3 mb-3">
-                                        <i class="fa-brands fa-golang text-cyan-400 text-2xl"></i>
-                                        <span class="text-white font-semibold">Go</span>
-                                    </div>
-                                    <code class="text-xs font-mono text-gray-500 block mb-3 bg-lucas-darker px-3 py-2 rounded">go get github.com/lucas-app/lucas-go</code>
-                                    <a href="#" class="text-xs text-lucas-green hover:underline">View on GitHub →</a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Right Panel -->
-                        <div class="w-1/2 bg-code-bg p-8">
-                            <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 block">JavaScript SDK Example</span>
-                            <div class="relative">
-                                <pre class="bg-lucas-darker border border-lucas-border rounded-lg p-4 overflow-x-auto text-sm leading-relaxed"><code><span class="hljs-keyword">import</span> Lucas <span class="hljs-keyword">from</span> <span class="hljs-string">'@lucas/sdk'</span>;
-
-<span class="hljs-keyword">const</span> lucas = <span class="hljs-keyword">new</span> Lucas(<span class="hljs-string">'lcs_live_xxxxxxxxxxxx'</span>);
-
-<span class="hljs-comment">// Get latest proof for an asset</span>
-<span class="hljs-keyword">const</span> proof = <span class="hljs-keyword">await</span> lucas.assets.getLatestProof(
-  <span class="hljs-string">'asset_marina_1205'</span>
-);
-
-console.log(<span class="hljs-string">`Score: ${proof.condition.score}`</span>);
-console.log(<span class="hljs-string">`Issues: ${proof.issues.length}`</span>);
-
-<span class="hljs-comment">// Request a new inspection</span>
-<span class="hljs-keyword">const</span> request = <span class="hljs-keyword">await</span> lucas.proofs.request({
-  asset_id: <span class="hljs-string">'asset_marina_1205'</span>,
-  type: <span class="hljs-string">'recurring_inspection'</span>,
-  priority: <span class="hljs-string">'standard'</span>,
-  webhook_url: <span class="hljs-string">'https://yourapp.com/webhooks'</span>
-});</code></pre>
-                                <button onclick="copyCode(this)" class="copy-btn absolute top-3 right-3 px-2 py-1 text-xs text-gray-500 hover:text-white bg-lucas-card border border-lucas-border rounded transition">
-                                    <i class="fa-regular fa-copy mr-1"></i>Copy
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Rate Limits Section -->
-                <section id="rate-limits" class="border-b border-lucas-border">
-                    <div class="flex">
-                        <!-- Left Panel -->
-                        <div class="w-1/2 p-10 border-r border-lucas-border">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center">
-                                    <i class="fa-solid fa-gauge-high text-red-400 text-sm"></i>
-                                </div>
-                                <h2 class="text-2xl font-bold text-white">Rate Limits</h2>
-                            </div>
-                            
-                            <p class="text-gray-400 mb-6">
-                                API requests are rate limited based on your plan. Rate limit headers are included in every response.
-                            </p>
-                            
-                            <div class="border border-lucas-border rounded-lg overflow-hidden">
-                                <table class="w-full text-sm">
-                                    <thead class="bg-lucas-card">
-                                        <tr>
-                                            <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Plan</th>
-                                            <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Rate Limit</th>
-                                            <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Burst</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-lucas-border">
-                                        <tr class="param-row">
-                                            <td class="px-4 py-3 text-white font-medium">Pilot</td>
-                                            <td class="px-4 py-3 text-gray-400">100 req/min</td>
-                                            <td class="px-4 py-3 text-gray-400">200 req</td>
-                                        </tr>
-                                        <tr class="param-row">
-                                            <td class="px-4 py-3 text-white font-medium">Growth</td>
-                                            <td class="px-4 py-3 text-gray-400">500 req/min</td>
-                                            <td class="px-4 py-3 text-gray-400">1,000 req</td>
-                                        </tr>
-                                        <tr class="param-row">
-                                            <td class="px-4 py-3 text-white font-medium">Enterprise</td>
-                                            <td class="px-4 py-3 text-gray-400">Custom</td>
-                                            <td class="px-4 py-3 text-gray-400">Custom</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        
-                        <!-- Right Panel -->
-                        <div class="w-1/2 bg-code-bg p-8">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Rate Limit Headers</span>
-                            </div>
-                            <div class="relative mb-6">
-                                <pre class="bg-lucas-darker border border-lucas-border rounded-lg p-4 overflow-x-auto text-sm leading-relaxed"><code>X-RateLimit-Limit: 100
-X-RateLimit-Remaining: 99
-X-RateLimit-Reset: 1701792000</code></pre>
-                            </div>
-                            
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">429 Response</span>
-                                <span class="text-xs px-2 py-0.5 bg-amber-500/10 text-amber-400 rounded font-mono">429</span>
-                            </div>
-                            <pre class="bg-lucas-darker border border-lucas-border rounded-lg p-4 overflow-x-auto text-sm leading-relaxed"><code>{
-  <span class="hljs-attr">"error"</span>: {
-    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"rate_limit_error"</span>,
-    <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Rate limit exceeded"</span>,
-    <span class="hljs-attr">"retry_after"</span>: <span class="hljs-number">60</span>
-  }
-}</code></pre>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Errors Section -->
-                <section id="errors" class="border-b border-lucas-border">
-                    <div class="flex">
-                        <!-- Left Panel -->
-                        <div class="w-1/2 p-10 border-r border-lucas-border">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center">
-                                    <i class="fa-solid fa-circle-exclamation text-red-400 text-sm"></i>
-                                </div>
-                                <h2 class="text-2xl font-bold text-white">Errors</h2>
-                            </div>
-                            
-                            <p class="text-gray-400 mb-6">
-                                LUCAS uses conventional HTTP response codes. Codes in the 2xx range indicate success, 4xx indicate client errors, and 5xx indicate server errors.
-                            </p>
-                            
-                            <div class="border border-lucas-border rounded-lg overflow-hidden">
-                                <table class="w-full text-sm">
-                                    <thead class="bg-lucas-card">
-                                        <tr>
-                                            <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Code</th>
-                                            <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Description</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-lucas-border">
-                                        <tr class="param-row">
-                                            <td class="px-4 py-3"><span class="text-green-400 font-mono">200</span></td>
-                                            <td class="px-4 py-3 text-gray-400">Success</td>
-                                        </tr>
-                                        <tr class="param-row">
-                                            <td class="px-4 py-3"><span class="text-amber-400 font-mono">400</span></td>
-                                            <td class="px-4 py-3 text-gray-400">Bad request — invalid parameters</td>
-                                        </tr>
-                                        <tr class="param-row">
-                                            <td class="px-4 py-3"><span class="text-amber-400 font-mono">401</span></td>
-                                            <td class="px-4 py-3 text-gray-400">Unauthorized — invalid API key</td>
-                                        </tr>
-                                        <tr class="param-row">
-                                            <td class="px-4 py-3"><span class="text-amber-400 font-mono">404</span></td>
-                                            <td class="px-4 py-3 text-gray-400">Not found — resource doesn't exist</td>
-                                        </tr>
-                                        <tr class="param-row">
-                                            <td class="px-4 py-3"><span class="text-amber-400 font-mono">429</span></td>
-                                            <td class="px-4 py-3 text-gray-400">Rate limit exceeded</td>
-                                        </tr>
-                                        <tr class="param-row">
-                                            <td class="px-4 py-3"><span class="text-red-400 font-mono">500</span></td>
-                                            <td class="px-4 py-3 text-gray-400">Server error — try again later</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        
-                        <!-- Right Panel -->
-                        <div class="w-1/2 bg-code-bg p-8">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Error Response</span>
-                                <span class="text-xs px-2 py-0.5 bg-red-500/10 text-red-400 rounded font-mono">401</span>
-                            </div>
-                            <div class="relative">
-                                <pre class="bg-lucas-darker border border-lucas-border rounded-lg p-4 overflow-x-auto text-sm leading-relaxed"><code>{
-  <span class="hljs-attr">"error"</span>: {
-    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"authentication_error"</span>,
-    <span class="hljs-attr">"code"</span>: <span class="hljs-string">"invalid_api_key"</span>,
-    <span class="hljs-attr">"message"</span>: <span class="hljs-string">"The API key provided is invalid."</span>,
-    <span class="hljs-attr">"doc_url"</span>: <span class="hljs-string">"https://docs.lucas.app/errors#invalid_api_key"</span>
-  }
-}</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-            </div>
-            
-            <!-- Footer -->
-            <footer class="border-t border-lucas-border py-8 px-10">
-                <div class="flex items-center justify-between text-sm">
-                    <p class="text-gray-600">© 2025 LUCAS. All rights reserved.</p>
-                    <div class="flex items-center gap-6">
-                        <a href="#" class="text-gray-500 hover:text-white transition">Terms</a>
-                        <a href="#" class="text-gray-500 hover:text-white transition">Privacy</a>
-                        <a href="https://lucas.app" class="text-gray-500 hover:text-lucas-green transition">lucas.app</a>
                     </div>
                 </div>
-            </footer>
+            </section>
+            
+            <!-- Authentication -->
+            <section id="authentication" class="section">
+                <div class="section-inner">
+                    <div class="docs-panel">
+                        <h2><div class="section-icon blue"><i class="fa-solid fa-key"></i></div>Authentication</h2>
+                        <p>The LUCAS API uses API keys to authenticate requests. You can view and manage your API keys in the Dashboard. All requests must be made over HTTPS.</p>
+                        
+                        <h3>API Key Types</h3>
+                        <table class="params-table">
+                            <thead><tr><th>Key Prefix</th><th>Environment</th><th>Description</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="param-name">lcs_live_</span></td><td class="param-type">Production</td><td class="param-desc">Live data, real inspections</td></tr>
+                                <tr><td><span class="param-name">lcs_test_</span></td><td class="param-type">Sandbox</td><td class="param-desc">Test data, no real inspections</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="code-panel">
+                        <div class="code-header"><span class="code-label">Example Request</span></div>
+                        <div class="code-block">
+                            <pre><code><span class="hl-keyword">curl</span> <span class="hl-url">https://api.lucas.app/v1/proofs</span> \
+  -H <span class="hl-string">"Authorization: Bearer lcs_live_xxx"</span></code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i>Copy</button>
+                        </div>
+                        
+                        <div class="code-header" style="margin-top: var(--space-6);"><span class="code-label">Error Response</span><span class="response-badge error">401</span></div>
+                        <div class="code-block">
+                            <pre><code>{
+  <span class="hl-property">"error"</span>: {
+    <span class="hl-property">"code"</span>: <span class="hl-string">"unauthorized"</span>,
+    <span class="hl-property">"message"</span>: <span class="hl-string">"Invalid API key"</span>
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Proofs -->
+            <section id="proofs" class="section">
+                <div class="section-inner">
+                    <div class="docs-panel">
+                        <h2><div class="section-icon lime"><i class="fa-solid fa-file-shield"></i></div>LUCAS Proofs</h2>
+                        <p>A LUCAS Proof is a cryptographically signed, immutable record of a physical asset's condition. Each proof contains inspection data, photos, GPS verification, and condition scores.</p>
+                        
+                        <div class="endpoint-list">
+                            <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/proofs</span><span class="endpoint-desc">List all proofs</span></div>
+                            <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/proofs/<span class="param">{id}</span></span><span class="endpoint-desc">Retrieve a proof</span></div>
+                            <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/proofs/request</span><span class="endpoint-desc">Request inspection</span></div>
+                        </div>
+                        
+                        <h3>The Proof Object</h3>
+                        <table class="params-table">
+                            <thead><tr><th>Attribute</th><th>Type</th><th>Description</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="param-name">proof_id</span></td><td class="param-type">string</td><td class="param-desc">Unique identifier</td></tr>
+                                <tr><td><span class="param-name">asset_id</span></td><td class="param-type">string</td><td class="param-desc">Associated asset</td></tr>
+                                <tr><td><span class="param-name">condition_score</span></td><td class="param-type">integer</td><td class="param-desc">Score 0-100</td></tr>
+                                <tr><td><span class="param-name">issues</span></td><td class="param-type">array</td><td class="param-desc">Detected issues</td></tr>
+                                <tr><td><span class="param-name">signature</span></td><td class="param-type">object</td><td class="param-desc">Cryptographic signature</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="code-panel">
+                        <div class="code-header"><span class="code-label">Response</span><span class="response-badge success">200 OK</span></div>
+                        <div class="code-block">
+                            <pre><code>{
+  <span class="hl-property">"proof_id"</span>: <span class="hl-string">"prf_2x8K9mNqLr"</span>,
+  <span class="hl-property">"asset_id"</span>: <span class="hl-string">"ast_marina_1205"</span>,
+  <span class="hl-property">"status"</span>: <span class="hl-string">"verified"</span>,
+  <span class="hl-property">"condition"</span>: {
+    <span class="hl-property">"score"</span>: <span class="hl-number">87</span>,
+    <span class="hl-property">"grade"</span>: <span class="hl-string">"A"</span>
+  },
+  <span class="hl-property">"issues"</span>: [
+    {
+      <span class="hl-property">"category"</span>: <span class="hl-string">"hvac"</span>,
+      <span class="hl-property">"severity"</span>: <span class="hl-string">"low"</span>,
+      <span class="hl-property">"description"</span>: <span class="hl-string">"AC filter needs replacement"</span>
+    }
+  ],
+  <span class="hl-property">"signature"</span>: {
+    <span class="hl-property">"hash"</span>: <span class="hl-string">"0x8f3a..."</span>,
+    <span class="hl-property">"anchor_tx"</span>: <span class="hl-string">"0xabc..."</span>
+  },
+  <span class="hl-property">"created_at"</span>: <span class="hl-string">"2024-12-05T14:32:00Z"</span>
+}</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i>Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Assets -->
+            <section id="assets" class="section">
+                <div class="section-inner">
+                    <div class="docs-panel">
+                        <h2><div class="section-icon green"><i class="fa-solid fa-building"></i></div>Assets</h2>
+                        <p>Assets represent physical properties registered in LUCAS. Each asset has a unique identifier and can have multiple proofs associated over time.</p>
+                        
+                        <div class="endpoint-list">
+                            <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/assets</span><span class="endpoint-desc">List all assets</span></div>
+                            <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/assets/<span class="param">{id}</span></span><span class="endpoint-desc">Retrieve an asset</span></div>
+                            <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/assets</span><span class="endpoint-desc">Register new asset</span></div>
+                        </div>
+                        
+                        <h3>The Asset Object</h3>
+                        <table class="params-table">
+                            <thead><tr><th>Attribute</th><th>Type</th><th>Description</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="param-name">asset_id</span></td><td class="param-type">string</td><td class="param-desc">Unique identifier</td></tr>
+                                <tr><td><span class="param-name">name</span></td><td class="param-type">string</td><td class="param-desc">Property name</td></tr>
+                                <tr><td><span class="param-name">type</span></td><td class="param-type">string</td><td class="param-desc">apartment, villa, commercial</td></tr>
+                                <tr><td><span class="param-name">address</span></td><td class="param-type">object</td><td class="param-desc">Location details</td></tr>
+                                <tr><td><span class="param-name">latest_proof</span></td><td class="param-type">object</td><td class="param-desc">Most recent proof</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="code-panel">
+                        <div class="code-header"><span class="code-label">Response</span><span class="response-badge success">200 OK</span></div>
+                        <div class="code-block">
+                            <pre><code>{
+  <span class="hl-property">"asset_id"</span>: <span class="hl-string">"ast_marina_1205"</span>,
+  <span class="hl-property">"name"</span>: <span class="hl-string">"Marina Tower Unit 1205"</span>,
+  <span class="hl-property">"type"</span>: <span class="hl-string">"apartment"</span>,
+  <span class="hl-property">"address"</span>: {
+    <span class="hl-property">"building"</span>: <span class="hl-string">"Marina Tower"</span>,
+    <span class="hl-property">"unit"</span>: <span class="hl-string">"1205"</span>,
+    <span class="hl-property">"area"</span>: <span class="hl-string">"Dubai Marina"</span>
+  },
+  <span class="hl-property">"latest_proof"</span>: {
+    <span class="hl-property">"proof_id"</span>: <span class="hl-string">"prf_2x8K9mNqLr"</span>,
+    <span class="hl-property">"score"</span>: <span class="hl-number">87</span>
+  }
+}</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i>Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Webhooks -->
+            <section id="webhooks" class="section">
+                <div class="section-inner">
+                    <div class="docs-panel">
+                        <h2><div class="section-icon blue"><i class="fa-solid fa-bolt"></i></div>Webhooks</h2>
+                        <p>Receive real-time notifications when events occur. Configure webhook endpoints in your Dashboard.</p>
+                        
+                        <h3>Event Types</h3>
+                        <table class="params-table">
+                            <thead><tr><th>Event</th><th>Description</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="param-name">proof.created</span></td><td class="param-desc">New proof generated</td></tr>
+                                <tr><td><span class="param-name">proof.verified</span></td><td class="param-desc">Proof anchored on-chain</td></tr>
+                                <tr><td><span class="param-name">inspection.completed</span></td><td class="param-desc">Inspection finished</td></tr>
+                                <tr><td><span class="param-name">issue.detected</span></td><td class="param-desc">Critical issue found</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="code-panel">
+                        <div class="code-header"><span class="code-label">Webhook Payload</span></div>
+                        <div class="code-block">
+                            <pre><code>{
+  <span class="hl-property">"id"</span>: <span class="hl-string">"evt_1234567890"</span>,
+  <span class="hl-property">"type"</span>: <span class="hl-string">"proof.created"</span>,
+  <span class="hl-property">"data"</span>: {
+    <span class="hl-property">"proof_id"</span>: <span class="hl-string">"prf_2x8K9mNqLr"</span>,
+    <span class="hl-property">"asset_id"</span>: <span class="hl-string">"ast_marina_1205"</span>,
+    <span class="hl-property">"condition_score"</span>: <span class="hl-number">87</span>
+  }
+}</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i>Copy</button>
+                        </div>
+                        
+                        <div class="callout">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>Verify signatures using <code>X-Lucas-Signature</code> header</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SDKs -->
+            <section id="sdks" class="section">
+                <div class="section-inner">
+                    <div class="docs-panel">
+                        <h2><div class="section-icon lime"><i class="fa-solid fa-cube"></i></div>SDKs & Libraries</h2>
+                        <p>Official client libraries for all major languages. All SDKs are open source.</p>
+                        
+                        <div class="feature-grid" style="margin-top: var(--space-6);">
+                            <div class="feature-card">
+                                <div class="feature-icon amber"><i class="fa-brands fa-js"></i></div>
+                                <h4>JavaScript / TypeScript</h4>
+                                <p>npm install @lucas/sdk</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon blue"><i class="fa-brands fa-python"></i></div>
+                                <h4>Python</h4>
+                                <p>pip install lucas</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon lime"><i class="fa-brands fa-golang"></i></div>
+                                <h4>Go</h4>
+                                <p>go get github.com/lucas/go</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon purple"><i class="fa-solid fa-gem"></i></div>
+                                <h4>Ruby</h4>
+                                <p>gem install lucas</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="code-panel">
+                        <div class="code-header"><span class="code-label">Usage Example</span></div>
+                        <div class="code-block">
+                            <pre><code><span class="hl-keyword">import</span> Lucas <span class="hl-keyword">from</span> <span class="hl-string">'@lucas/sdk'</span>;
+
+<span class="hl-keyword">const</span> lucas = <span class="hl-keyword">new</span> Lucas({
+  apiKey: process.env.LUCAS_API_KEY
+});
+
+<span class="hl-comment">// List all proofs for an asset</span>
+<span class="hl-keyword">const</span> proofs = <span class="hl-keyword">await</span> lucas.proofs.list({
+  asset_id: <span class="hl-string">'ast_marina_1205'</span>
+});
+
+<span class="hl-comment">// Request a new inspection</span>
+<span class="hl-keyword">const</span> inspection = <span class="hl-keyword">await</span> lucas.inspections.create({
+  asset_id: <span class="hl-string">'ast_marina_1205'</span>,
+  type: <span class="hl-string">'standard'</span>
+});</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i>Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
     
     <script>
-        // Toggle sidebar sections
-        function toggleSection(btn) {
-            const section = btn.closest('.sidebar-section');
-            section.classList.toggle('open');
+        function switchLang(lang, group) {
+            document.querySelectorAll(`[id^="${group}-"]`).forEach(el => {
+                el.style.display = el.id === `${group}-${lang}` ? 'block' : 'none';
+            });
+            event.target.parentElement.querySelectorAll('.lang-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
         }
         
-        // Switch language tabs
-        function switchLang(btn, lang, group) {
-            const container = btn.closest('div');
-            const section = btn.closest('section') || btn.closest('.docs-content');
-            
-            // Update tabs in this group
-            container.querySelectorAll('.lang-tab').forEach(tab => tab.classList.remove('active'));
-            btn.classList.add('active');
-            
-            // Find the pre element and show/hide code
-            const pre = container.parentElement.querySelector('pre');
-            if (pre) {
-                pre.querySelectorAll('code').forEach(code => {
-                    code.classList.add('hidden');
-                    if (code.classList.contains('lang-' + lang)) {
-                        code.classList.remove('hidden');
-                    }
-                });
-            }
-        }
-        
-        // Copy code
         function copyCode(btn) {
-            const pre = btn.closest('.relative').querySelector('pre');
-            const code = pre.querySelector('code:not(.hidden)') || pre.querySelector('code');
-            navigator.clipboard.writeText(code.innerText);
-            
+            const code = btn.parentElement.querySelector('code:not([style*="display: none"])') || btn.parentElement.querySelector('code');
+            navigator.clipboard.writeText(code.textContent);
             btn.classList.add('copied');
-            btn.innerHTML = '<i class="fa-solid fa-check mr-1"></i>Copied!';
-            
+            btn.innerHTML = '<i class="fa-solid fa-check"></i>Copied';
             setTimeout(() => {
                 btn.classList.remove('copied');
-                btn.innerHTML = '<i class="fa-regular fa-copy mr-1"></i>Copy';
+                btn.innerHTML = '<i class="fa-regular fa-copy"></i>Copy';
             }, 2000);
         }
         
-        // Active nav highlighting on scroll
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('open');
+            document.querySelector('.sidebar-backdrop').classList.toggle('show');
+        }
         
+        // Active nav on scroll
+        const sections = document.querySelectorAll('section[id]');
         window.addEventListener('scroll', () => {
             let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
+            sections.forEach(s => { if (scrollY >= s.offsetTop - 100) current = s.id; });
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
             });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
+        });
+        
+        // ⌘K shortcut
+        document.addEventListener('keydown', e => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                document.querySelector('.search-input').focus();
+            }
         });
     </script>
 </body>
