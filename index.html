@@ -1738,7 +1738,7 @@
                             <span class="text-5xl sm:text-6xl font-black text-white">10</span>
                             <div>
                                 <p class="text-base sm:text-lg text-white font-semibold">Units Audited</p>
-                                <p class="text-gray-400 text-xs">47-point inspection each</p>
+                                <p class="text-gray-400 text-xs">47-point inspection per unit</p>
                             </div>
                         </div>
                         <div class="w-px h-12 bg-gradient-to-b from-transparent via-lucas-green/30 to-transparent"></div>
@@ -1746,7 +1746,7 @@
                             <span class="text-5xl sm:text-6xl font-black text-lucas-green">3+</span>
                             <div>
                                 <p class="text-base sm:text-lg text-white font-semibold">Issues Found</p>
-                                <p class="text-gray-400 text-xs">Or it's free</p>
+                                <p class="text-gray-400 text-xs">Fewer than 3? You pay 0 AED</p>
                             </div>
                         </div>
                     </div>
@@ -1759,7 +1759,7 @@
                             </div>
                             <div>
                                 <p class="text-white font-medium text-sm">GPS-locked photo evidence</p>
-                                <p class="text-gray-400 text-xs">Every corner documented</p>
+                                <p class="text-gray-400 text-xs">Every room, timestamped and geotagged</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-3 p-3 bg-white/[0.02] border border-white/5 rounded-xl hover:border-lucas-green/20 transition-colors">
@@ -1768,7 +1768,7 @@
                             </div>
                             <div>
                                 <p class="text-white font-medium text-sm">10 LUCAS Proofs delivered</p>
-                                <p class="text-gray-400 text-xs">Machine-readable JSON format</p>
+                                <p class="text-gray-400 text-xs">One digital record per unit, also in JSON</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-3 p-3 bg-white/[0.02] border border-white/5 rounded-xl hover:border-lucas-green/20 transition-colors">
@@ -1777,7 +1777,7 @@
                             </div>
                             <div>
                                 <p class="text-white font-medium text-sm">Portfolio risk report</p>
-                                <p class="text-gray-400 text-xs">Prioritized recommendations</p>
+                                <p class="text-gray-400 text-xs">Top risks ranked, with clear next steps</p>
                             </div>
                         </div>
                     </div>
@@ -1807,7 +1807,7 @@
 
                         <!-- The Guarantee Visual -->
                         <div class="text-center py-5 border-y border-lucas-border/50">
-                            <p class="text-gray-400 text-xs uppercase tracking-wider mb-2">If we find fewer than 3 issues</p>
+                            <p class="text-gray-400 text-xs uppercase tracking-wider mb-2">If we find fewer than 3 material issues</p>
                             <div class="flex items-center justify-center gap-2">
                                 <span class="text-5xl font-black text-white">0</span>
                                 <span class="text-2xl text-gray-500 font-light">AED</span>
@@ -1819,15 +1819,16 @@
                         <div class="grid grid-cols-2 gap-3 mt-5">
                             <div class="text-center p-3 bg-black/30 rounded-xl">
                                 <p class="text-2xl font-bold text-white">12</p>
-                                <p class="text-gray-400 text-[10px] uppercase tracking-wider mt-0.5">Pilots Completed</p>
+                                <p class="text-gray-400 text-[10px] uppercase tracking-wider mt-0.5">Pilots in Dubai</p>
                             </div>
                             <div class="text-center p-3 bg-black/30 rounded-xl">
                                 <p class="text-2xl font-bold text-lucas-green">0</p>
-                                <p class="text-gray-400 text-[10px] uppercase tracking-wider mt-0.5">Refunds Given</p>
+                                <p class="text-gray-400 text-[10px] uppercase tracking-wider mt-0.5">Refunds So Far</p>
                             </div>
                         </div>
 
-                        <p class="text-center text-gray-400 text-xs mt-4 italic">We've never failed to find issues.</p>
+                        <p class="text-center text-gray-400 text-xs mt-4 italic">So far, every pilot has uncovered issues worth acting on.</p>
+                        <p class="text-center text-gray-500 text-[10px] mt-1">Worst case? You get a free clean bill of health.</p>
                     </div>
                 </div>
             </div>
@@ -1845,7 +1846,7 @@
                             <div class="w-7 h-7 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 border-2 border-black flex items-center justify-center text-[9px] font-bold text-white">SK</div>
                             <div class="w-7 h-7 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 border-2 border-black flex items-center justify-center text-[9px] font-bold text-white">AH</div>
                         </div>
-                        <p class="text-gray-400 text-xs"><span class="text-white font-medium">3 pilots</span> this week</p>
+                        <p class="text-gray-400 text-xs"><span class="text-white font-medium">3 pilots</span> running in Dubai</p>
                     </div>
                 </div>
                 <p class="text-gray-400 text-xs mt-4">Dubai · 10+ units · Results in 5 days</p>
@@ -2259,6 +2260,28 @@
 
         // Form submissions
         document.addEventListener('DOMContentLoaded', function() {
+            // Inspection elapsed time counter
+            (function() {
+                // Start time: 2 hours, 11 minutes, 18 seconds ago
+                let totalSeconds = (2 * 3600) + (11 * 60) + 18;
+                
+                function updateElapsed() {
+                    const hours = Math.floor(totalSeconds / 3600);
+                    const minutes = Math.floor((totalSeconds % 3600) / 60);
+                    const seconds = totalSeconds % 60;
+                    
+                    const el = document.getElementById('inspection-elapsed');
+                    if (el) {
+                        el.textContent = `${hours}h ${minutes}m ${seconds}s ago`;
+                    }
+                    totalSeconds++;
+                }
+                
+                // Update immediately and then every second
+                updateElapsed();
+                setInterval(updateElapsed, 1000);
+            })();
+
             const forms = document.querySelectorAll('form[action*="formspree"]');
             
             forms.forEach(form => {
@@ -2338,22 +2361,6 @@
                     }
                 });
             });
-
-            // Live timestamp for dashboard mock
-            const liveTimestamp = document.getElementById('live-timestamp');
-            if (liveTimestamp) {
-                let seconds = 0;
-                setInterval(() => {
-                    seconds++;
-                    if (seconds < 60) {
-                        liveTimestamp.textContent = seconds + 's ago';
-                    } else if (seconds < 3600) {
-                        liveTimestamp.textContent = Math.floor(seconds / 60) + 'm ago';
-                    } else {
-                        liveTimestamp.textContent = Math.floor(seconds / 3600) + 'h ago';
-                    }
-                }, 1000);
-            }
         });
     </script>
 </body>
