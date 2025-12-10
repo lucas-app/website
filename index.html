@@ -85,6 +85,14 @@
         .faq-item.open .faq-icon { transform: rotate(180deg); }
         .faq-item.open button { border-color: rgba(222, 255, 154, 0.3); background-color: rgba(222, 255, 154, 0.03); }
         
+        /* Hide scrollbar for horizontal scroll */
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        
+        /* Snap scroll for mobile cards */
+        .snap-x { scroll-snap-type: x mandatory; }
+        .snap-center { scroll-snap-align: center; }
+        
         /* Issues Tooltip Hover */
         .issues-tooltip, .inspector-tooltip { opacity: 0; visibility: hidden; transition: all 0.2s ease; }
         .issues-hover-trigger:hover .issues-tooltip { opacity: 1; visibility: visible; }
@@ -285,23 +293,75 @@
                     </p>
                 </div>
                     
-                <!-- ICP Targeting -->
-                <div class="flex flex-col items-center gap-3 sm:gap-3 animate-fade-in-delay-2 mb-10 sm:mb-12">
-                    <span class="text-[10px] sm:text-xs text-white uppercase tracking-widest font-medium">Built for</span>
-                    <div class="flex flex-col items-center gap-2 sm:gap-2.5">
-                        <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-2.5">
-                            <span class="w-56 sm:w-64 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-lucas-green/5 border border-lucas-green/20 text-xs sm:text-sm text-gray-300 font-medium hover:bg-lucas-green/10 hover:border-lucas-green/30 hover:text-white transition-all text-center">
+                <!-- ICP Targeting - World-Class Mobile Design -->
+                <div class="flex flex-col items-center gap-3 animate-fade-in-delay-2 mb-10 sm:mb-12 w-full">
+                    <span class="text-[10px] sm:text-xs text-white/60 uppercase tracking-[0.2em] font-medium">Built for</span>
+                    
+                    <!-- Mobile: Horizontal scroll with snap -->
+                    <div class="sm:hidden w-full overflow-x-auto scrollbar-hide px-4 -mx-4">
+                        <div class="flex gap-2 pb-2 snap-x snap-mandatory" style="width: max-content; padding-left: calc(50vw - 160px); padding-right: calc(50vw - 160px);">
+                            <div class="snap-center flex-shrink-0 w-[200px] px-4 py-3 rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 backdrop-blur-sm">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-lucas-green/20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fa-solid fa-chart-pie text-lucas-green text-xs"></i>
+                                    </div>
+                                    <span class="text-xs text-white font-medium leading-tight">Fractional Real Estate</span>
+                                </div>
+                            </div>
+                            <div class="snap-center flex-shrink-0 w-[200px] px-4 py-3 rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 backdrop-blur-sm">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fa-solid fa-key text-blue-400 text-xs"></i>
+                                    </div>
+                                    <span class="text-xs text-white font-medium leading-tight">Short-Term Rentals</span>
+                                </div>
+                            </div>
+                            <div class="snap-center flex-shrink-0 w-[200px] px-4 py-3 rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 backdrop-blur-sm">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fa-solid fa-building text-amber-400 text-xs"></i>
+                                    </div>
+                                    <span class="text-xs text-white font-medium leading-tight">Developers & Owners</span>
+                                </div>
+                            </div>
+                            <div class="snap-center flex-shrink-0 w-[200px] px-4 py-3 rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 backdrop-blur-sm">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fa-solid fa-link text-purple-400 text-xs"></i>
+                                    </div>
+                                    <span class="text-xs text-white font-medium leading-tight">RWA Protocols</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mobile scroll indicator -->
+                    <div class="sm:hidden flex items-center gap-1.5 mt-1">
+                        <div class="w-4 h-1 rounded-full bg-lucas-green/60"></div>
+                        <div class="w-1.5 h-1 rounded-full bg-white/20"></div>
+                        <div class="w-1.5 h-1 rounded-full bg-white/20"></div>
+                        <div class="w-1.5 h-1 rounded-full bg-white/20"></div>
+                    </div>
+                    
+                    <!-- Desktop: Original 2x2 grid layout -->
+                    <div class="hidden sm:flex flex-col items-center gap-2.5">
+                        <div class="flex items-center justify-center gap-2.5">
+                            <span class="px-5 py-2.5 rounded-full bg-lucas-green/5 border border-lucas-green/20 text-sm text-gray-300 font-medium hover:bg-lucas-green/10 hover:border-lucas-green/30 hover:text-white transition-all cursor-default flex items-center gap-2">
+                                <i class="fa-solid fa-chart-pie text-lucas-green text-xs"></i>
                                 Fractional Real Estate Platforms
                             </span>
-                            <span class="w-56 sm:w-64 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-lucas-green/5 border border-lucas-green/20 text-xs sm:text-sm text-gray-300 font-medium hover:bg-lucas-green/10 hover:border-lucas-green/30 hover:text-white transition-all text-center">
+                            <span class="px-5 py-2.5 rounded-full bg-lucas-green/5 border border-lucas-green/20 text-sm text-gray-300 font-medium hover:bg-lucas-green/10 hover:border-lucas-green/30 hover:text-white transition-all cursor-default flex items-center gap-2">
+                                <i class="fa-solid fa-key text-blue-400 text-xs"></i>
                                 Short-Term Rental Operators
                             </span>
                         </div>
-                        <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-2.5">
-                            <span class="w-56 sm:w-64 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-lucas-green/5 border border-lucas-green/20 text-xs sm:text-sm text-gray-300 font-medium hover:bg-lucas-green/10 hover:border-lucas-green/30 hover:text-white transition-all text-center">
+                        <div class="flex items-center justify-center gap-2.5">
+                            <span class="px-5 py-2.5 rounded-full bg-lucas-green/5 border border-lucas-green/20 text-sm text-gray-300 font-medium hover:bg-lucas-green/10 hover:border-lucas-green/30 hover:text-white transition-all cursor-default flex items-center gap-2">
+                                <i class="fa-solid fa-building text-amber-400 text-xs"></i>
                                 Real Estate Developers & Owners
                             </span>
-                            <span class="w-56 sm:w-64 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-lucas-green/5 border border-lucas-green/20 text-xs sm:text-sm text-gray-300 font-medium hover:bg-lucas-green/10 hover:border-lucas-green/30 hover:text-white transition-all text-center">
+                            <span class="px-5 py-2.5 rounded-full bg-lucas-green/5 border border-lucas-green/20 text-sm text-gray-300 font-medium hover:bg-lucas-green/10 hover:border-lucas-green/30 hover:text-white transition-all cursor-default flex items-center gap-2">
+                                <i class="fa-solid fa-link text-purple-400 text-xs"></i>
                                 RWA & Lending Protocols
                             </span>
                         </div>
@@ -1819,7 +1879,7 @@
                 <a href="https://x.com/joinLUCASapp" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-lucas-card border border-lucas-border flex items-center justify-center text-gray-400 hover:text-lucas-green hover:border-lucas-green/50 transition" aria-label="X">
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 </a>
-                <a href="mailto:hello@lucas.app" class="w-10 h-10 rounded-full bg-lucas-card border border-lucas-border flex items-center justify-center text-gray-400 hover:text-lucas-green hover:border-lucas-green/50 transition" aria-label="Email">
+                <a href="/cdn-cgi/l/email-protection#462e232a2a29062a3325273568273636" class="w-10 h-10 rounded-full bg-lucas-card border border-lucas-border flex items-center justify-center text-gray-400 hover:text-lucas-green hover:border-lucas-green/50 transition" aria-label="Email">
                     <i class="fa-solid fa-envelope text-lg"></i>
                 </a>
             </div>
@@ -1855,7 +1915,7 @@
     <!-- ============================================ -->
     <!-- SCRIPTS -->
     <!-- ============================================ -->
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             const overlay = document.getElementById('mobile-overlay');
@@ -1925,11 +1985,4 @@
                 });
             }, observerOptions);
 
-            document.querySelectorAll('.reveal').forEach(el => {
-                el.classList.add('animate');
-                observer.observe(el);
-            });
-        });
-    </script>
-</body>
-</html>
+            document.querySelectorAll('.reveal').forEach(el
