@@ -99,7 +99,6 @@
             background-color: rgba(10, 10, 10, 0.95); 
             border-bottom-color: rgba(255, 255, 255, 0.1);
         }
-        #navbar.navbar-scrolled #announcement-bar { display: none !important; }
         
         /* Active nav link */
         .nav-link-active { 
@@ -220,22 +219,12 @@
 
     <!-- Navbar - World-Class Redesign -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-300">
-        <!-- Optional: Announcement Bar -->
-        <div id="announcement-bar" class="bg-gradient-to-r from-lucas-green/10 via-lucas-green/5 to-lucas-green/10 border-b border-lucas-green/20 py-2 px-4 text-center hidden sm:block">
-            <p class="text-xs text-gray-300">
-                <span class="text-lucas-green font-semibold">New:</span> 
-                Now serving Dubai Marina, JBR & Downtown. 
-                <a href="#audit-pilot" class="text-lucas-green hover:underline ml-1">Start your free audit →</a>
-            </p>
-        </div>
-        
         <div class="bg-lucas-dark/80 backdrop-blur-xl border-b border-white/5">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between h-16 sm:h-20">
                     <!-- Logo -->
                     <a href="#" class="flex items-center gap-2 group">
-                        <img src="LUCAS_logo White_on Rectangle_Transparent.svg" alt="LUCAS" class="h-8 sm:h-10 w-auto" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                        <span class="text-xl font-bold tracking-tight text-white hidden items-center gap-1">LUCAS<span class="text-lucas-green">.</span></span>
+                        <span class="text-xl font-bold tracking-tight text-white flex items-center gap-1">LUCAS<span class="text-lucas-green">.</span></span>
                     </a>
                     
                     <!-- Desktop Navigation -->
@@ -1970,8 +1959,7 @@
                 <!-- Brand Column -->
                 <div class="col-span-2">
                     <a href="#" class="inline-block mb-4">
-                        <img src="LUCAS_logo White_on Rectangle_Transparent.svg" alt="LUCAS Logo" class="h-10 w-auto" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-                        <span class="text-2xl font-bold text-white hidden">LUCAS<span class="text-lucas-green">.</span></span>
+                        <span class="text-2xl font-bold text-white">LUCAS<span class="text-lucas-green">.</span></span>
                     </a>
                     <p class="text-gray-400 text-sm mb-6 max-w-xs">
                         Proof of physical reserve for tokenized real estate. Verified inspections. Immutable records.
@@ -2049,28 +2037,6 @@
                             Subscribe
                         </button>
                     </form>
-                </div>
-            </div>
-            
-            <!-- Trust Signals / Metrics -->
-            <div class="mt-12 pt-8 border-t border-lucas-border">
-                <div class="flex flex-wrap justify-center gap-8 sm:gap-12 mb-8">
-                    <div class="text-center">
-                        <p class="text-2xl sm:text-3xl font-bold text-white">12</p>
-                        <p class="text-xs text-gray-500 uppercase tracking-wider">Active Pilots</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-2xl sm:text-3xl font-bold text-white">500+</p>
-                        <p class="text-xs text-gray-500 uppercase tracking-wider">Units Inspected</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-2xl sm:text-3xl font-bold text-white">47</p>
-                        <p class="text-xs text-gray-500 uppercase tracking-wider">Point Checklist</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-2xl sm:text-3xl font-bold text-white">UAE</p>
-                        <p class="text-xs text-gray-500 uppercase tracking-wider">Based in Dubai</p>
-                    </div>
                 </div>
             </div>
         </div>
