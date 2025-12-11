@@ -2101,7 +2101,7 @@
                         <span class="text-2xl font-bold text-white hidden">LUCAS<span class="text-lucas-green">.</span></span>
                     </a>
                     <p class="text-gray-400 text-sm mb-6 max-w-xs">
-                        Proof of physical reserve for tokenized real estate. Verified inspections. Immutable records.
+                        Ground truth for real estate.
                     </p>
                     
                     <!-- Social Icons - Consistent sizing -->
@@ -2115,7 +2115,7 @@
                         <a href="https://x.com/joinLUCASapp" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-lucas-card border border-lucas-border flex items-center justify-center text-gray-400 hover:text-lucas-green hover:border-lucas-green/50 transition-all" aria-label="X">
                             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                         </a>
-                        <a href="/cdn-cgi/l/email-protection#046c6168686b4468716765772a657474" class="w-10 h-10 rounded-full bg-lucas-card border border-lucas-border flex items-center justify-center text-gray-400 hover:text-lucas-green hover:border-lucas-green/50 transition-all" aria-label="Email">
+                        <a href="mailto:hello@lucas.app" class="w-10 h-10 rounded-full bg-lucas-card border border-lucas-border flex items-center justify-center text-gray-400 hover:text-lucas-green hover:border-lucas-green/50 transition-all" aria-label="Email">
                             <i class="fa-solid fa-envelope text-lg"></i>
                         </a>
                     </div>
@@ -2162,7 +2162,7 @@
                         <li><a href="lucas-inspectors.html" class="text-gray-400 text-sm hover:text-lucas-green transition">Become an Inspector</a></li>
                         <li><a href="https://app.lucas.app/inspectors.html" class="text-gray-400 text-sm hover:text-lucas-green transition">Inspector Portal</a></li>
                         <li><a href="https://app.lucas.app/" class="text-gray-400 text-sm hover:text-lucas-green transition">Dashboard</a></li>
-                        <li><a href="/cdn-cgi/l/email-protection#0169646d6d6e416d746260722f607171" class="text-gray-400 text-sm hover:text-lucas-green transition">Contact Us</a></li>
+                        <li><a href="mailto:hello@lucas.app" class="text-gray-400 text-sm hover:text-lucas-green transition">Contact Us</a></li>
                         <li><a href="https://www.linkedin.com/company/joinlucas/jobs/" target="_blank" class="text-gray-400 text-sm hover:text-lucas-green transition">Careers</a></li>
                     </ul>
                 </div>
@@ -2364,4 +2364,11 @@
 
                 navLinks.forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href') === `
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
