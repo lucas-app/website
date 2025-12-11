@@ -223,6 +223,38 @@
             transform: translateY(0);
         }
     </style>
+    
+    <!-- Critical Functions - Must load before body -->
+    <script>
+        function toggleMobileMenu() {
+            var menu = document.getElementById('mobile-menu');
+            var overlay = document.getElementById('mobile-overlay');
+            var icon = document.getElementById('menu-icon');
+            if (!menu || !overlay || !icon) return;
+            menu.classList.toggle('open');
+            overlay.classList.toggle('hidden');
+            if (menu.classList.contains('open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+                document.body.style.overflow = 'hidden';
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        function toggleFaq(button) {
+            var item = button.parentElement;
+            var allItems = document.querySelectorAll('.faq-item');
+            for (var i = 0; i < allItems.length; i++) {
+                if (allItems[i] !== item) {
+                    allItems[i].classList.remove('open');
+                }
+            }
+            item.classList.toggle('open');
+        }
+    </script>
 </head>
 <body class="antialiased selection:bg-lucas-green selection:text-black overflow-x-hidden">
 
@@ -1398,7 +1430,7 @@
                 <h2 class="text-4xl sm:text-6xl font-bold text-black tracking-tight mb-6">
                     <span id="typewriter-text"></span><span id="typewriter-cursor" class="transition-opacity duration-300">|</span>
                 </h2>
-                <p class="text-black max-w-2xl mx-auto mb-4 text-lg">Hidden damage erodes property value. LUCAS catches issues early — before a 350 AED problem becomes a 12,000 AED disaster.</p>
+                <p class="text-black max-w-2xl mx-auto mb-4 text-lg">Hidden damage erodes property value. LUCAS catches issues early, before a 350 AED problem becomes a 12,000 AED disaster.</p>
                 <p class="text-sm text-black font-medium">For portfolios with 10+ units · Custom pricing for 500+</p>
             </div>
 
@@ -2023,22 +2055,6 @@
         </div>
     </section>
 
-    <!-- FAQ Toggle Script - Self-contained -->
-    <script>
-    (function() {
-        window.toggleFaq = function(button) {
-            var item = button.parentElement;
-            var allItems = document.querySelectorAll('.faq-item');
-            for (var i = 0; i < allItems.length; i++) {
-                if (allItems[i] !== item) {
-                    allItems[i].classList.remove('open');
-                }
-            }
-            item.classList.toggle('open');
-        };
-    })();
-    </script>
-
     <!-- ============================================ -->
     <!-- GET STARTED / CTA -->
     <!-- ============================================ -->
@@ -2218,21 +2234,6 @@
     <!-- SCRIPTS -->
     <!-- ============================================ -->
     <script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const overlay = document.getElementById('mobile-overlay');
-            const icon = document.getElementById('menu-icon');
-            menu.classList.toggle('open');
-            overlay.classList.toggle('hidden');
-            if (menu.classList.contains('open')) {
-                icon.classList.replace('fa-bars', 'fa-xmark');
-                document.body.style.overflow = 'hidden';
-            } else {
-                icon.classList.replace('fa-xmark', 'fa-bars');
-                document.body.style.overflow = '';
-            }
-        }
-
         // Navbar scroll behavior - shrink and solidify on scroll
         let lastScroll = 0;
         const navbar = document.getElementById('navbar');
