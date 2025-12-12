@@ -80,7 +80,49 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            mix-blend-mode: difference;
+            transition: all 0.3s ease;
+        }
+        
+        /* Dark mode (for dark/red backgrounds) */
+        .nav.nav-light {
+            /* Logo and text are white */
+        }
+        
+        .nav.nav-light .nav-logo img {
+            filter: brightness(0) invert(1); /* White */
+        }
+        
+        .nav.nav-light .nav-logo span {
+            color: white;
+        }
+        
+        .nav.nav-light .nav-cta {
+            color: white;
+            border-color: white;
+        }
+        
+        .nav.nav-light .nav-cta:hover {
+            background: white;
+            color: black;
+        }
+        
+        /* Light mode (for lime/paper backgrounds) */
+        .nav.nav-dark .nav-logo img {
+            filter: brightness(0); /* Black */
+        }
+        
+        .nav.nav-dark .nav-logo span {
+            color: black;
+        }
+        
+        .nav.nav-dark .nav-cta {
+            color: black;
+            border-color: black;
+        }
+        
+        .nav.nav-dark .nav-cta:hover {
+            background: black;
+            color: white;
         }
         
         .nav-logo {
@@ -92,15 +134,15 @@
         .nav-logo img {
             height: 40px;
             width: auto;
-            filter: brightness(0) invert(1); /* Makes logo white */
+            transition: filter 0.3s ease;
         }
         
         .nav-logo span {
             font-family: var(--font-display);
             font-size: 32px;
             font-weight: 700;
-            color: white;
             letter-spacing: -0.02em;
+            transition: color 0.3s ease;
         }
         
         .nav-cta {
@@ -108,16 +150,10 @@
             font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: white;
             text-decoration: none;
             padding: 14px 28px;
-            border: 1px solid white;
+            border: 1px solid;
             transition: all 0.3s ease;
-        }
-        
-        .nav-cta:hover {
-            background: white;
-            color: black;
         }
         
         /* ==========================================
@@ -1212,7 +1248,7 @@
 
 <body>
     <!-- NAV -->
-    <nav class="nav">
+    <nav class="nav nav-light" id="nav">
         <a href="/" class="nav-logo">
             <img src="/logo.png" alt="LUCAS" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <span style="display: none;">LUCAS</span>
@@ -1462,6 +1498,47 @@
     </div>
 
     <script>
+        // Nav color switching based on background
+        const nav = document.getElementById('nav');
+        
+        // Define sections and their nav modes
+        // light = white logo/text (for dark backgrounds)
+        // dark = black logo/text (for light backgrounds)
+        const sections = [
+            { el: document.querySelector('.hero'), mode: 'light' }, // Split - starts on red
+            { el: document.querySelector('.scene-call'), mode: 'dark' }, // Paper background
+            { el: document.querySelector('.scene-evidence'), mode: 'light' }, // Black background
+            { el: document.querySelector('.scene-cost'), mode: 'light' }, // Red background
+            { el: document.querySelector('.flip'), mode: 'light' }, // Black background
+            { el: document.querySelector('.proof'), mode: 'dark' }, // Paper background
+            { el: document.querySelector('.math'), mode: 'light' }, // Black background
+            { el: document.querySelector('.testimonial'), mode: 'dark' }, // Paper background
+            { el: document.querySelector('.cta'), mode: 'dark' }, // Lime background
+            { el: document.querySelector('.footer'), mode: 'light' }, // Black background
+        ];
+        
+        function updateNavMode() {
+            const navHeight = nav.offsetHeight;
+            const scrollPos = window.scrollY + navHeight / 2;
+            
+            // Find which section we're in
+            let currentMode = 'light';
+            for (let i = sections.length - 1; i >= 0; i--) {
+                if (sections[i].el && scrollPos >= sections[i].el.offsetTop) {
+                    currentMode = sections[i].mode;
+                    break;
+                }
+            }
+            
+            // Update nav class
+            nav.classList.remove('nav-light', 'nav-dark');
+            nav.classList.add('nav-' + currentMode);
+        }
+        
+        window.addEventListener('scroll', updateNavMode);
+        window.addEventListener('resize', updateNavMode);
+        updateNavMode(); // Initial call
+        
         // Sticky CTA
         const stickyCta = document.getElementById('sticky-cta');
         const hero = document.querySelector('.hero');
