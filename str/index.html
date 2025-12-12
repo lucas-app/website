@@ -199,8 +199,8 @@
         
         .hero-audience {
             position: absolute;
-            top: 32px;
-            left: 180px;
+            top: 28px;
+            left: 160px;
             font-family: var(--font-mono);
             font-size: 10px;
             text-transform: uppercase;
@@ -209,11 +209,12 @@
             padding-left: 16px;
             border-left: 1px solid rgba(255,255,255,0.3);
             z-index: 10;
+            line-height: 40px;
         }
         
         @media (max-width: 900px) {
             .hero-audience {
-                left: 140px;
+                left: 130px;
             }
         }
         
@@ -1386,28 +1387,56 @@
         .faq-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 40px;
+            gap: 32px;
         }
         
         @media (min-width: 700px) {
             .faq-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 48px 64px;
+                gap: 40px 64px;
             }
         }
         
         .faq-item {
+            padding: 24px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
         }
         
         .faq-question {
             font-family: var(--font-display);
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
             color: white;
             margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .faq-question::before {
+            content: '';
+            flex-shrink: 0;
+            width: 8px;
+            height: 8px;
+            background: var(--lime);
+            margin-top: 6px;
         }
         
         .faq-answer {
+            font-family: var(--font-body);
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.5);
+            padding-left: 20px;
+        }
             font-family: var(--font-body);
             font-size: 15px;
             line-height: 1.6;
