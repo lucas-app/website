@@ -201,8 +201,8 @@
         
         .hero-audience {
             position: absolute;
-            top: 30px;
-            left: 185px;
+            top: 33px;
+            left: 200px;
             font-family: var(--font-mono);
             font-size: 10px;
             text-transform: uppercase;
@@ -216,7 +216,7 @@
         
         @media (max-width: 900px) {
             .hero-audience {
-                left: 160px;
+                left: 170px;
             }
         }
         
@@ -297,7 +297,7 @@
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 0.2em;
-            color: rgba(0,0,0,0.4);
+            color: var(--black);
             margin-bottom: 24px;
             min-height: 16px;
         }
@@ -319,14 +319,14 @@
             font-family: var(--font-display);
             font-size: clamp(24px, 4vw, 48px);
             font-weight: 600;
-            color: rgba(0,0,0,0.5);
+            color: var(--black);
             margin-left: 8px;
         }
         
         .reality-stat-label {
             font-family: var(--font-body);
             font-size: 18px;
-            color: rgba(0,0,0,0.6);
+            color: var(--black);
             margin-top: 16px;
             max-width: 280px;
             line-height: 1.5;
@@ -368,7 +368,7 @@
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: rgba(0,0,0,0.5);
+            color: var(--black);
         }
         
         /* Center divider */
@@ -1456,9 +1456,22 @@
         }
         
         .footer-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .footer-logo img {
+            height: 28px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+        
+        .footer-logo span {
             font-family: var(--font-display);
             font-size: 18px;
             font-weight: 700;
+            color: white;
         }
         
         .footer-links {
@@ -1466,6 +1479,10 @@
             gap: 32px;
             font-family: var(--font-mono);
             font-size: 12px;
+        }
+        
+        .footer-links span {
+            color: rgba(255,255,255,0.5);
         }
         
         .footer-links a {
@@ -1637,7 +1654,7 @@
                     <div class="report-browser-dot"></div>
                     <div class="report-browser-dot"></div>
                     <div class="report-browser-dot"></div>
-                    <div class="report-browser-url">app.lucas.ae/reports/marina-views-1847</div>
+                    <div class="report-browser-url">app.lucas.app/reports/marina-views-1847</div>
                 </div>
                 
                 <div class="report-header">
@@ -1836,7 +1853,10 @@
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-inner">
-            <span class="footer-logo">LUCAS</span>
+            <a href="/" class="footer-logo">
+                <img src="/logo.png" alt="LUCAS" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display: none;">LUCAS</span>
+            </a>
             <div class="footer-links">
                 <span>Dubai 🇦🇪</span>
                 <a href="/">Home</a>
