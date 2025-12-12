@@ -935,7 +935,7 @@
         }
         
         .how-inner {
-            max-width: 800px;
+            max-width: 960px;
             margin: 0 auto;
         }
         
@@ -976,22 +976,33 @@
             justify-content: center;
         }
         
-        .how-step-text {
-            font-family: var(--font-body);
-            font-size: 18px;
-            color: var(--paper);
-            line-height: 1.5;
-            padding-top: 4px;
+        .how-step-content {
+            flex: 1;
         }
         
-        @media (min-width: 600px) {
+        .how-step-title {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 6px;
+        }
+        
+        .how-step-text {
+            font-family: var(--font-body);
+            font-size: 15px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.5;
+        }
+        
+        @media (min-width: 768px) {
             .how-steps {
-                flex-direction: row;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
                 gap: 32px;
             }
             
             .how-step {
-                flex: 1;
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
@@ -1001,11 +1012,38 @@
                 width: 40px;
                 height: 40px;
                 font-size: 16px;
+                margin-bottom: 16px;
+            }
+            
+            .how-step-title {
+                font-size: 16px;
+                margin-bottom: 8px;
             }
             
             .how-step-text {
-                padding-top: 0;
+                font-size: 14px;
             }
+        }
+        
+        .how-tagline {
+            text-align: center;
+            margin-top: 56px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .how-tagline-main {
+            font-family: var(--font-display);
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+        
+        .how-tagline-sub {
+            font-family: var(--font-body);
+            font-size: 16px;
+            color: rgba(255,255,255,0.5);
         }
         
         /* ==========================================
@@ -1578,16 +1616,36 @@
             <div class="how-steps">
                 <div class="how-step">
                     <span class="how-step-number">1</span>
-                    <p class="how-step-text">Monthly on-site inspection by a LUCAS inspector</p>
+                    <div class="how-step-content">
+                        <h3 class="how-step-title">We schedule</h3>
+                        <p class="how-step-text">Monthly inspections coordinated with your calendar. Works around bookings.</p>
+                    </div>
                 </div>
                 <div class="how-step">
                     <span class="how-step-number">2</span>
-                    <p class="how-step-text">GPS-stamped photos and 47-point checklist uploaded to your dashboard</p>
+                    <div class="how-step-content">
+                        <h3 class="how-step-title">We inspect</h3>
+                        <p class="how-step-text">47-point checklist. GPS-stamped photos. 30–45 min per unit.</p>
+                    </div>
                 </div>
                 <div class="how-step">
                     <span class="how-step-number">3</span>
-                    <p class="how-step-text">Owner-ready report you can forward in one click</p>
+                    <div class="how-step-content">
+                        <h3 class="how-step-title">You review first</h3>
+                        <p class="how-step-text">Full report in 24 hours. You see issues before owners do.</p>
+                    </div>
                 </div>
+                <div class="how-step">
+                    <span class="how-step-number">4</span>
+                    <div class="how-step-content">
+                        <h3 class="how-step-title">You share</h3>
+                        <p class="how-step-text">Send as-is or add notes. Your relationship, your call.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="how-tagline">
+                <p class="how-tagline-main">You're always in control.</p>
+                <p class="how-tagline-sub">LUCAS is documentation, not judgment.</p>
             </div>
         </div>
     </section>
@@ -1608,9 +1666,8 @@
             </div>
             
             <div class="math-result">
-                <span class="math-result-label">One owner staying pays for 24 years of LUCAS.</span>
+                <span class="math-result-label">Retain one owner and LUCAS pays for itself for the next two decades.</span>
                 <span class="math-result-value">24×</span>
-                <p class="math-result-context">That's before counting the repairs, the disputes, the reviews.</p>
             </div>
         </div>
     </section>
