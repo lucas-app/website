@@ -163,6 +163,7 @@
             min-height: 100vh;
             display: grid;
             grid-template-columns: 1fr 1fr;
+            align-items: stretch;
             position: relative;
         }
         
@@ -176,10 +177,11 @@
         /* LEFT: The Nightmare */
         .hero-nightmare {
             background: var(--red-dark);
-            padding: 160px 48px 80px;
+            padding: 140px 48px 100px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: flex-start;
             position: relative;
             overflow: hidden;
         }
@@ -199,8 +201,8 @@
         
         .hero-audience {
             position: absolute;
-            top: 32px;
-            left: 220px;
+            top: 30px;
+            left: 185px;
             font-family: var(--font-mono);
             font-size: 10px;
             text-transform: uppercase;
@@ -209,12 +211,12 @@
             padding-left: 16px;
             border-left: 1px solid rgba(255,255,255,0.3);
             z-index: 10;
-            line-height: 32px;
+            line-height: 36px;
         }
         
         @media (max-width: 900px) {
             .hero-audience {
-                left: 180px;
+                left: 160px;
             }
         }
         
@@ -231,6 +233,7 @@
             letter-spacing: 0.2em;
             color: rgba(255,255,255,0.5);
             margin-bottom: 24px;
+            min-height: 16px;
             position: relative;
             z-index: 1;
         }
@@ -264,11 +267,12 @@
             margin-top: 16px;
             max-width: 280px;
             line-height: 1.5;
+            min-height: 80px;
         }
         
         .nightmare-context {
             position: absolute;
-            bottom: 48px;
+            bottom: 56px;
             left: 48px;
             right: 48px;
             font-family: var(--font-mono);
@@ -280,10 +284,11 @@
         /* RIGHT: The LUCAS Reality */
         .hero-reality {
             background: var(--lime);
-            padding: 160px 48px 80px;
+            padding: 140px 48px 100px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: flex-start;
             position: relative;
         }
         
@@ -294,6 +299,7 @@
             letter-spacing: 0.2em;
             color: rgba(0,0,0,0.4);
             margin-bottom: 24px;
+            min-height: 16px;
         }
         
         .reality-stat {
@@ -324,11 +330,12 @@
             margin-top: 16px;
             max-width: 280px;
             line-height: 1.5;
+            min-height: 80px;
         }
         
         .reality-cta {
             position: absolute;
-            bottom: 48px;
+            bottom: 56px;
             left: 48px;
             right: 48px;
         }
@@ -354,7 +361,7 @@
         
         .reality-qualifier {
             position: absolute;
-            bottom: 110px;
+            bottom: 115px;
             left: 48px;
             right: 48px;
             font-family: var(--font-mono);
@@ -1360,7 +1367,7 @@
         }
         
         /* ==========================================
-           FAQ - Minimal, catches hesitant visitors
+           FAQ - Clean & Minimal
            ========================================== */
         .faq {
             background: var(--off-black);
@@ -1369,7 +1376,7 @@
         }
         
         .faq-inner {
-            max-width: 900px;
+            max-width: 640px;
             margin: 0 auto;
         }
         
@@ -1384,58 +1391,38 @@
             margin-bottom: 48px;
         }
         
-        .faq-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
-        }
-        
-        @media (min-width: 700px) {
-            .faq-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 40px 64px;
-            }
+        .faq-list {
+            display: flex;
+            flex-direction: column;
         }
         
         .faq-item {
-            padding: 24px;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.06);
-            transition: all 0.3s ease;
+            padding: 32px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
         
-        .faq-item:hover {
-            background: rgba(255,255,255,0.04);
-            border-color: rgba(255,255,255,0.1);
-            transform: translateY(-2px);
+        .faq-item:first-child {
+            padding-top: 0;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
         }
         
         .faq-question {
-            font-family: var(--font-display);
+            font-family: var(--font-body);
             font-size: 17px;
-            font-weight: 700;
+            font-weight: 600;
             color: white;
             margin-bottom: 12px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-        
-        .faq-question::before {
-            content: '';
-            flex-shrink: 0;
-            width: 8px;
-            height: 8px;
-            background: var(--lime);
-            margin-top: 6px;
         }
         
         .faq-answer {
             font-family: var(--font-body);
             font-size: 15px;
-            line-height: 1.6;
+            line-height: 1.7;
             color: rgba(255,255,255,0.5);
-            padding-left: 20px;
         }
             font-family: var(--font-body);
             font-size: 15px;
@@ -1821,22 +1808,26 @@
     <section class="faq">
         <div class="faq-inner">
             <span class="faq-label">Questions</span>
-            <div class="faq-grid">
+            
+            <div class="faq-list">
                 <div class="faq-item">
                     <h3 class="faq-question">What's in the 47-point checklist?</h3>
-                    <p class="faq-answer">AC, plumbing, appliances, fixtures, walls, flooring, furniture condition, safety items, cleanliness standards. Everything a guest or owner would notice — documented with photos.</p>
+                    <p class="faq-answer">AC, plumbing, appliances, fixtures, walls, flooring, furniture condition, safety items, cleanliness. Everything a guest or owner would notice — documented with photos.</p>
                 </div>
+                
                 <div class="faq-item">
                     <h3 class="faq-question">What if you find something serious?</h3>
                     <p class="faq-answer">You see it first. Always. We flag it in your dashboard and you decide what to tell the owner and when. We document — you control the narrative.</p>
                 </div>
+                
                 <div class="faq-item">
                     <h3 class="faq-question">How do inspectors access units?</h3>
                     <p class="faq-answer">However works for you — lockbox codes, meet your cleaner, key handoff. We coordinate around your schedule and bookings.</p>
                 </div>
+                
                 <div class="faq-item">
                     <h3 class="faq-question">Which areas do you cover?</h3>
-                    <p class="faq-answer">All of Dubai. Marina, JBR, Downtown, Business Bay, JVC, Palm — anywhere you have units. One inspector, one rate, full coverage.</p>
+                    <p class="faq-answer">All of Dubai. Marina, JBR, Downtown, Business Bay, JVC, Palm — anywhere you have units.</p>
                 </div>
             </div>
         </div>
