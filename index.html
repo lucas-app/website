@@ -2389,4 +2389,12 @@
                         entry.target.classList.add('revealed');
                     }
                 });
-            }, obs
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
