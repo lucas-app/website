@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUCAS | Property Monitoring for Vacation Rentals in Dubai</title>
+    <meta name="description" content="Monthly property inspections for Airbnb and vacation rental owners in Dubai. Catch guest damage early. Verify your PM. Protect your investment.">
+    <meta name="keywords" content="Dubai vacation rental inspection, Airbnb property monitoring, short term rental maintenance, Dubai property management verification">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="LUCAS | Eyes on Your Dubai Rental">
+    <meta property="og:description" content="Monthly inspections that catch damage early and keep your PM accountable.">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WY6D9FX91Z"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WY6D9FX91Z');
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lucas: { 
+                            green: '#deff9a',
+                            dark: '#050505',
+                            card: '#0a0a0a',
+                            border: '#1a1a1a'
+                        },
+                        warm: {
+                            50: '#faf9f7',
+                            100: '#f5f3f0'
+                        }
+                    },
+                    fontFamily: { 
+                        sans: ['Urbanist', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { 
+            background-color: #050505; 
+            color: #fff; 
+            font-family: 'Urbanist', sans-serif;
+        }
+        
+        /* Smooth reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Stagger children */
+        .reveal-stagger > * {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-stagger.revealed > *:nth-child(1) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+        .reveal-stagger.revealed > *:nth-child(2) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+        .reveal-stagger.revealed > *:nth-child(3) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+        .reveal-stagger.revealed > *:nth-child(4) { transition-delay: 0.4s; opacity: 1; transform: translateY(0); }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #deff9a 0%, #a3e635 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Subtle glow */
+        .glow-green {
+            box-shadow: 0 0 60px rgba(222, 255, 154, 0.15);
+        }
+        
+        /* Card interactions */
+        .card-lift {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .card-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* FAQ */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+        }
+        .faq-item.open .faq-chevron {
+            transform: rotate(180deg);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        
+        /* Hero gradient */
+        .hero-gradient {
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(222, 255, 154, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 50% 120%, rgba(222, 255, 154, 0.05) 0%, transparent 50%);
+        }
+        
+        /* Pulse animation for live indicator */
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        .pulse-ring {
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        /* Number counter animation */
+        @keyframes count-up {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Condition gauge */
+        .gauge-fill {
+            transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+
+<body class="antialiased overflow-x-hidden">
+
+    <!-- ============================================ -->
+    <!-- NAVBAR - Minimal, Non-Intrusive -->
+    <!-- ============================================ -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-lucas-dark/80 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-18">
+                <a href="/" class="flex items-center gap-2 group">
+                    <img src="logo.png" alt="LUCAS" class="h-7 sm:h-8 w-auto" onerror="this.outerHTML='<span class=\'text-xl font-bold text-white tracking-tight\'>LUCAS<span class=\'text-lucas-green\'>.</span></span>'">
+                </a>
+                <a href="#start" class="bg-lucas-green text-black px-5 py-2.5 rounded-full font-semibold text-sm hover:bg-white transition-all duration-300">
+                    Start Free
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================ -->
+    <!-- HERO - The Hook -->
+    <!-- ============================================ -->
+    <section class="relative min-h-screen flex items-center hero-gradient overflow-hidden">
+        <!-- Subtle grid -->
+        <div class="absolute inset-0 opacity-[0.015]" style="background-image: linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px); background-size: 80px 80px;"></div>
+        
+        <div class="max-w-5xl mx-auto px-5 sm:px-8 pt-24 pb-16 sm:pt-32 sm:pb-24 relative z-10">
+            <div class="max-w-3xl">
+                <!-- Eyebrow -->
+                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 reveal">
+                    <span class="relative flex h-2 w-2">
+                        <span class="pulse-ring absolute inline-flex h-full w-full rounded-full bg-lucas-green"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-lucas-green"></span>
+                    </span>
+                    <span class="text-gray-300 text-sm">Monthly property verification in Dubai</span>
+                </div>
+                
+                <!-- Main Headline -->
+                <h1 class="text-[2.75rem] sm:text-6xl md:text-7xl font-bold text-white leading-[1.08] tracking-tight mb-6 reveal">
+                    Your guests<br class="sm:hidden"> check out.<br>
+                    <span class="gradient-text">We check in.</span>
+                </h1>
+                
+                <!-- Subheadline -->
+                <p class="text-lg sm:text-xl text-gray-400 leading-relaxed max-w-xl mb-10 reveal">
+                    Independent monthly inspections that catch damage early, verify your PM's work, and give you peace of mind — even when you're 5,000 km away.
+                </p>
+                
+                <!-- CTAs -->
+                <div class="flex flex-col sm:flex-row items-start gap-4 mb-16 reveal">
+                    <a href="#start" class="group bg-lucas-green text-black px-7 py-4 rounded-full font-bold text-base hover:bg-white transition-all duration-300 flex items-center gap-2 shadow-lg shadow-lucas-green/20">
+                        Start Free Pilot
+                        <i class="fa-solid fa-arrow-right text-sm transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                    <a href="#how" class="text-gray-400 hover:text-white px-4 py-4 font-medium transition-colors flex items-center gap-2">
+                        <i class="fa-regular fa-circle-play"></i>
+                        See how it works
+                    </a>
+                </div>
+                
+                <!-- Trust Row -->
+                <div class="flex flex-wrap gap-x-8 gap-y-3 text-sm text-gray-500 reveal">
+                    <span class="flex items-center gap-2">
+                        <i class="fa-solid fa-shield-check text-lucas-green/70"></i>
+                        Insured & ID-verified inspectors
+                    </span>
+                    <span class="flex items-center gap-2">
+                        <i class="fa-solid fa-location-crosshairs text-lucas-green/70"></i>
+                        GPS-stamped photos
+                    </span>
+                    <span class="flex items-center gap-2">
+                        <i class="fa-solid fa-clock text-lucas-green/70"></i>
+                        Reports within 24 hours
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll hint -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-600 animate-bounce hidden sm:block">
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- THE REALITY - Paint the Pain -->
+    <!-- ============================================ -->
+    <section class="py-24 sm:py-32 bg-black relative">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+            <!-- Section Header -->
+            <div class="max-w-2xl mb-16 reveal">
+                <p class="text-amber-400/90 text-sm font-semibold tracking-widest uppercase mb-4">The reality</p>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+                    Between your visits,<br>a lot goes wrong.
+                </h2>
+                <p class="text-gray-400 text-lg">
+                    Your property manager says everything's fine. But they're not incentivized to find problems. You are.
+                </p>
+            </div>
+            
+            <!-- Problem Cards -->
+            <div class="grid md:grid-cols-3 gap-5 reveal-stagger">
+                <!-- Card 1: The Leak -->
+                <div class="bg-gradient-to-br from-lucas-card to-black border border-lucas-border rounded-2xl p-7 card-lift">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-500/20 to-red-600/10 flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-droplet text-red-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-xl mb-3">The leak you don't see</h3>
+                    <p class="text-gray-400 text-[15px] leading-relaxed mb-6">
+                        Week 1: Small AC condensation drip. Week 10: Mold spreading behind the wall. By the time you visit, it's a 15,000 AED problem.
+                    </p>
+                    <div class="pt-5 border-t border-lucas-border">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-3xl font-bold text-red-400">38×</span>
+                            <span class="text-gray-500 text-sm">cost increase if caught late</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 2: Guest Damage -->
+                <div class="bg-gradient-to-br from-lucas-card to-black border border-lucas-border rounded-2xl p-7 card-lift">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500/20 to-amber-600/10 flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-couch text-amber-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-xl mb-3">Guest damage with no proof</h3>
+                    <p class="text-gray-400 text-[15px] leading-relaxed mb-6">
+                        Stained sofa, scratched floors, broken blinds. Without timestamped photos from before and after, Airbnb denies your claim.
+                    </p>
+                    <div class="pt-5 border-t border-lucas-border">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-3xl font-bold text-amber-400">67%</span>
+                            <span class="text-gray-500 text-sm">of claims denied without documentation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 3: PM Accountability -->
+                <div class="bg-gradient-to-br from-lucas-card to-black border border-lucas-border rounded-2xl p-7 card-lift">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500/20 to-orange-600/10 flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-user-tie text-orange-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-xl mb-3">A PM you can't verify</h3>
+                    <p class="text-gray-400 text-[15px] leading-relaxed mb-6">
+                        They invoice for maintenance. They say they're on top of things. But are they? Without independent eyes, you're paying for trust.
+                    </p>
+                    <div class="pt-5 border-t border-lucas-border">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-3xl font-bold text-orange-400">Zero</span>
+                            <span class="text-gray-500 text-sm">accountability without verification</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Emotional Closer -->
+            <div class="mt-20 text-center reveal">
+                <p class="text-xl sm:text-2xl text-gray-300 leading-relaxed max-w-2xl mx-auto">
+                    You invested in property to build wealth.<br>
+                    <span class="text-white font-semibold">Not to lie awake wondering what's happening inside it.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- THE GAP - PM vs Reality -->
+    <!-- ============================================ -->
+    <section class="py-24 sm:py-32 bg-lucas-dark border-y border-lucas-border relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+            <div class="text-center mb-16 reveal">
+                <p class="text-lucas-green text-sm font-semibold tracking-widest uppercase mb-4">The gap</p>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">What you're told vs. what's real</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto reveal">
+                <!-- PM Report -->
+                <div class="bg-black border border-lucas-border rounded-2xl overflow-hidden">
+                    <div class="px-6 py-4 bg-gray-900/50 border-b border-lucas-border flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center">
+                            <i class="fa-solid fa-user text-gray-400 text-sm"></i>
+                        </div>
+                        <div>
+                            <p class="text-white font-semibold text-sm">PM Monthly Update</p>
+                            <p class="text-gray-500 text-xs">via WhatsApp</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="bg-gray-900/30 rounded-xl p-4 mb-4">
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                "Hi! Property is in good condition. Had a small cleaning after last guest. All good for next booking 👍"
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 text-xs text-gray-500">
+                            <span><i class="fa-solid fa-image mr-1.5"></i>0 photos</span>
+                            <span><i class="fa-solid fa-clipboard-check mr-1.5"></i>No checklist</span>
+                            <span><i class="fa-solid fa-location-dot mr-1.5"></i>No verification</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- LUCAS Report -->
+                <div class="bg-black border-2 border-lucas-green/30 rounded-2xl overflow-hidden glow-green">
+                    <div class="px-6 py-4 bg-lucas-green/10 border-b border-lucas-green/20 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-lucas-green/20 flex items-center justify-center">
+                                <i class="fa-solid fa-shield-check text-lucas-green text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-white font-semibold text-sm">LUCAS Inspection Report</p>
+                                <p class="text-lucas-green/70 text-xs">Independent verification</p>
+                            </div>
+                        </div>
+                        <span class="text-lucas-green text-xs font-bold px-2 py-1 bg-lucas-green/10 rounded-full">Score: 87</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 mb-4">
+                            <p class="text-amber-400 font-semibold text-sm mb-2"><i class="fa-solid fa-triangle-exclamation mr-2"></i>3 issues detected</p>
+                            <ul class="text-gray-300 text-sm space-y-1.5">
+                                <li class="flex justify-between"><span>• AC drip tray overflow</span><span class="text-amber-400">~350 AED</span></li>
+                                <li class="flex justify-between"><span>• Bathroom sealant cracking</span><span class="text-amber-400">~200 AED</span></li>
+                                <li class="flex justify-between"><span>• Balcony paint peeling</span><span class="text-amber-400">~600 AED</span></li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-4 text-xs text-gray-400">
+                            <span class="text-lucas-green"><i class="fa-solid fa-camera mr-1.5"></i>47 photos</span>
+                            <span class="text-lucas-green"><i class="fa-solid fa-clipboard-check mr-1.5"></i>47-point check</span>
+                            <span class="text-lucas-green"><i class="fa-solid fa-location-dot mr-1.5"></i>GPS verified</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center text-gray-500 text-sm mt-8 reveal">Same property. Same month. Very different picture.</p>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- HOW IT WORKS -->
+    <!-- ============================================ -->
+    <section id="how" class="py-24 sm:py-32 bg-black relative">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+            <div class="text-center mb-16 reveal">
+                <p class="text-lucas-green text-sm font-semibold tracking-widest uppercase mb-4">How it works</p>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">You don't lift a finger.</h2>
+                <p class="text-gray-400 text-lg max-w-xl mx-auto">We handle everything. You just see the results.</p>
+            </div>
+            
+            <!-- Steps -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal-stagger">
+                <!-- Step 1 -->
+                <div class="relative">
+                    <div class="bg-lucas-card border border-lucas-border rounded-2xl p-6 h-full">
+                        <div class="w-12 h-12 rounded-full bg-lucas-green text-black font-bold text-lg flex items-center justify-center mb-5">1</div>
+                        <h3 class="text-white font-bold text-lg mb-2">We coordinate</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">We schedule with your PM or use your key handoff. Zero effort from you.</p>
+                    </div>
+                    <div class="hidden lg:block absolute top-1/2 -right-3 text-lucas-border text-xl">→</div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="relative">
+                    <div class="bg-lucas-card border border-lucas-border rounded-2xl p-6 h-full">
+                        <div class="w-12 h-12 rounded-full bg-lucas-green text-black font-bold text-lg flex items-center justify-center mb-5">2</div>
+                        <h3 class="text-white font-bold text-lg mb-2">We inspect</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">47-point checklist. Every room photographed. GPS and timestamp on everything.</p>
+                    </div>
+                    <div class="hidden lg:block absolute top-1/2 -right-3 text-lucas-border text-xl">→</div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="relative">
+                    <div class="bg-lucas-card border border-lucas-border rounded-2xl p-6 h-full">
+                        <div class="w-12 h-12 rounded-full bg-lucas-green text-black font-bold text-lg flex items-center justify-center mb-5">3</div>
+                        <h3 class="text-white font-bold text-lg mb-2">You see everything</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Photos, condition score, issues prioritized by urgency. In your inbox within 24 hours.</p>
+                    </div>
+                    <div class="hidden lg:block absolute top-1/2 -right-3 text-lucas-border text-xl">→</div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div>
+                    <div class="bg-lucas-card border border-lucas-border rounded-2xl p-6 h-full">
+                        <div class="w-12 h-12 rounded-full bg-lucas-green text-black font-bold text-lg flex items-center justify-center mb-5">4</div>
+                        <h3 class="text-white font-bold text-lg mb-2">You decide</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Fix now while it's cheap, or wait. Your call. We verify again next month.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Emphasis -->
+            <div class="mt-12 text-center reveal">
+                <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-lucas-green/10 border border-lucas-green/20">
+                    <i class="fa-solid fa-clock text-lucas-green"></i>
+                    <span class="text-gray-300 text-sm">Average inspection: <span class="text-white font-semibold">35 minutes</span> · Your involvement: <span class="text-lucas-green font-semibold">0 minutes</span></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- WHAT YOU GET - Report Preview -->
+    <!-- ============================================ -->
+    <section class="py-24 sm:py-32 bg-lucas-dark relative overflow-hidden">
+        <!-- Ambient glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-lucas-green/5 rounded-full blur-[180px] pointer-events-none"></div>
+        
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- Left: Copy -->
+                <div class="reveal">
+                    <p class="text-lucas-green text-sm font-semibold tracking-widest uppercase mb-4">What you get</p>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6 leading-tight">Everything you need.<br>Nothing you don't.</h2>
+                    
+                    <div class="space-y-6 mt-10">
+                        <div class="flex gap-4">
+                            <div class="w-11 h-11 rounded-xl bg-lucas-green/10 border border-lucas-green/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-images text-lucas-green"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-semibold text-lg mb-1">47+ timestamped photos</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Every room, every angle. GPS coordinates embedded. Evidence that holds up.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-11 h-11 rounded-xl bg-lucas-green/10 border border-lucas-green/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-gauge-high text-lucas-green"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-semibold text-lg mb-1">Condition score (0-100)</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Track your property's health over time. See trends. Know exactly where you stand.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-11 h-11 rounded-xl bg-lucas-green/10 border border-lucas-green/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-list-check text-lucas-green"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-semibold text-lg mb-1">Prioritized issues + estimates</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">What needs attention now vs. later. Estimated repair costs in AED. No guesswork.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-11 h-11 rounded-xl bg-lucas-green/10 border border-lucas-green/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-brands fa-whatsapp text-lucas-green"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-semibold text-lg mb-1">Urgent alerts via WhatsApp</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Critical issue found? You know immediately — not when you check email next week.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right: Report Mock -->
+                <div class="reveal lg:pl-8">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-2xl">
+                        <!-- Report Header -->
+                        <div class="bg-gradient-to-r from-gray-900 to-black px-6 py-4 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <img src="logo.png" alt="LUCAS" class="h-5" onerror="this.outerHTML='<span class=\'text-white font-bold text-sm\'>LUCAS</span>'">
+                                <span class="text-gray-400 text-xs font-medium">Inspection Report</span>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-full bg-lucas-green/20 text-lucas-green text-xs font-bold">Jan 2025</span>
+                        </div>
+                        
+                        <!-- Report Body -->
+                        <div class="p-6">
+                            <!-- Property Header -->
+                            <div class="flex items-start justify-between mb-6 pb-6 border-b border-gray-100">
+                                <div>
+                                    <h3 class="text-gray-900 font-bold text-xl">Marina Views 404</h3>
+                                    <p class="text-gray-500 text-sm">Dubai Marina · 1BR · 785 sqft</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-4xl font-bold text-gray-900">87</div>
+                                    <div class="text-xs text-amber-500 font-semibold flex items-center justify-end gap-1">
+                                        <i class="fa-solid fa-arrow-down text-[10px]"></i> 3 from last month
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Condition Gauge -->
+                            <div class="mb-6">
+                                <div class="flex justify-between text-xs text-gray-500 mb-2">
+                                    <span>Condition</span>
+                                    <span class="text-gray-900 font-semibold">Good</span>
+                                </div>
+                                <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="gauge-fill h-full bg-gradient-to-r from-lucas-green to-green-400 rounded-full" style="width: 87%;"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Issues Alert -->
+                            <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <i class="fa-solid fa-triangle-exclamation text-amber-500"></i>
+                                    <span class="text-amber-700 font-semibold text-sm">3 issues require attention</span>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-600 flex items-center gap-2">
+                                            <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                                            AC drip tray overflow
+                                        </span>
+                                        <span class="text-amber-600 font-medium">~350 AED</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-600 flex items-center gap-2">
+                                            <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+                                            Bathroom sealant wear
+                                        </span>
+                                        <span class="text-amber-600 font-medium">~200 AED</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-600 flex items-center gap-2">
+                                            <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+                                            Balcony paint peeling
+                                        </span>
+                                        <span class="text-amber-600 font-medium">~600 AED</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Photo Grid -->
+                            <div class="grid grid-cols-4 gap-2 mb-6">
+                                <div class="aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-image text-gray-300"></i>
+                                </div>
+                                <div class="aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-image text-gray-300"></i>
+                                </div>
+                                <div class="aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-image text-gray-300"></i>
+                                </div>
+                                <div class="aspect-square bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 text-sm font-semibold">
+                                    +44
+                                </div>
+                            </div>
+                            
+                            <!-- Footer -->
+                            <div class="flex items-center justify-between text-xs text-gray-400 pt-4 border-t border-gray-100">
+                                <span class="flex items-center gap-2">
+                                    <span class="w-6 h-6 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-[10px] font-bold">AR</span>
+                                    Ahmed R. · Verified
+                                </span>
+                                <span>Next inspection: Feb 15</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- PRICING - The Math -->
+    <!-- ============================================ -->
+    <section class="py-24 sm:py-32 bg-lucas-green relative overflow-hidden">
+        <!-- Subtle pattern -->
+        <div class="absolute inset-0 opacity-[0.08]" style="background-image: radial-gradient(circle at 2px 2px, rgba(0,0,0,0.2) 1px, transparent 0); background-size: 24px 24px;"></div>
+        
+        <div class="max-w-3xl mx-auto px-5 sm:px-8 relative z-10">
+            <div class="text-center reveal">
+                <p class="text-black/60 text-sm font-semibold tracking-widest uppercase mb-4">Simple pricing</p>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold text-black mb-3">350 AED</h2>
+                <p class="text-black/60 text-lg mb-10">per unit / per month</p>
+                
+                <!-- ROI Card -->
+                <div class="bg-black rounded-2xl p-8 text-left mb-10 shadow-xl">
+                    <p class="text-gray-400 text-sm mb-6 text-center">The math is simple:</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center py-3 border-b border-lucas-border">
+                            <span class="text-gray-300">One AC leak caught early</span>
+                            <span class="text-lucas-green font-bold">saves 3,000+ AED</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-lucas-border">
+                            <span class="text-gray-300">One mold incident prevented</span>
+                            <span class="text-lucas-green font-bold">saves 12,000+ AED</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-lucas-border">
+                            <span class="text-gray-300">LUCAS cost per year</span>
+                            <span class="text-white font-bold">4,200 AED</span>
+                        </div>
+                        <div class="flex justify-between items-center py-4 bg-lucas-green/10 rounded-xl px-4 -mx-4 mt-6">
+                            <span class="text-white font-semibold">One catch pays for 1-3 years</span>
+                            <span class="text-lucas-green font-bold text-xl">✓</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Inclusions -->
+                <div class="flex flex-wrap justify-center gap-6 text-sm text-black/70 mb-10">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-check text-black"></i> No setup fees</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-check text-black"></i> Cancel anytime</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-check text-black"></i> Volume discounts available</span>
+                </div>
+                
+                <!-- CTA -->
+                <a href="#start" class="inline-flex items-center gap-3 bg-black text-lucas-green px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-900 transition-all shadow-xl">
+                    Start Your Free Pilot
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- FAQ -->
+    <!-- ============================================ -->
+    <section class="py-24 sm:py-32 bg-black">
+        <div class="max-w-2xl mx-auto px-5 sm:px-8">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white">Questions</h2>
+            </div>
+            
+            <div class="space-y-3 reveal">
+                <!-- FAQ 1 -->
+                <div class="faq-item">
+                    <button onclick="this.parentElement.classList.toggle('open')" class="w-full bg-lucas-card border border-lucas-border rounded-xl px-6 py-5 text-left flex items-center justify-between hover:border-lucas-green/30 transition-colors">
+                        <span class="font-semibold text-white pr-4">How do you access my property?</span>
+                        <i class="fa-solid fa-chevron-down text-lucas-green text-sm faq-chevron transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="px-6 py-4 text-gray-400 text-sm leading-relaxed">
+                            We coordinate with your property manager or use your existing key handoff process (lockbox, concierge, etc). All our inspectors are Emirates ID verified and insured. You don't need to be there.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="faq-item">
+                    <button onclick="this.parentElement.classList.toggle('open')" class="w-full bg-lucas-card border border-lucas-border rounded-xl px-6 py-5 text-left flex items-center justify-between hover:border-lucas-green/30 transition-colors">
+                        <span class="font-semibold text-white pr-4">Why monthly? Isn't that excessive?</span>
+                        <i class="fa-solid fa-chevron-down text-lucas-green text-sm faq-chevron transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="px-6 py-4 text-gray-400 text-sm leading-relaxed">
+                            In Dubai's climate, small issues escalate fast. An AC leak in week 1 becomes mold by week 8. Monthly inspections catch problems in the "cheap fix" window. Quarterly is too slow for vacation rentals with high guest turnover.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="faq-item">
+                    <button onclick="this.parentElement.classList.toggle('open')" class="w-full bg-lucas-card border border-lucas-border rounded-xl px-6 py-5 text-left flex items-center justify-between hover:border-lucas-green/30 transition-colors">
+                        <span class="font-semibold text-white pr-4">What if you find something urgent?</span>
+                        <i class="fa-solid fa-chevron-down text-lucas-green text-sm faq-chevron transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="px-6 py-4 text-gray-400 text-sm leading-relaxed">
+                            We flag critical issues immediately via WhatsApp with photos. You decide what to do — we don't do repairs ourselves. We verify and document. Next month, we check if it was addressed.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="faq-item">
+                    <button onclick="this.parentElement.classList.toggle('open')" class="w-full bg-lucas-card border border-lucas-border rounded-xl px-6 py-5 text-left flex items-center justify-between hover:border-lucas-green/30 transition-colors">
+                        <span class="font-semibold text-white pr-4">What areas do you cover?</span>
+                        <i class="fa-solid fa-chevron-down text-lucas-green text-sm faq-chevron transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="px-6 py-4 text-gray-400 text-sm leading-relaxed">
+                            Currently: Dubai Marina, Downtown, JBR, Palm Jumeirah, Business Bay, JLT, DIFC, and surrounding areas. Abu Dhabi coming Q2 2025.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 5 -->
+                <div class="faq-item">
+                    <button onclick="this.parentElement.classList.toggle('open')" class="w-full bg-lucas-card border border-lucas-border rounded-xl px-6 py-5 text-left flex items-center justify-between hover:border-lucas-green/30 transition-colors">
+                        <span class="font-semibold text-white pr-4">How long does an inspection take?</span>
+                        <i class="fa-solid fa-chevron-down text-lucas-green text-sm faq-chevron transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="px-6 py-4 text-gray-400 text-sm leading-relaxed">
+                            30-45 minutes for a standard 1-2BR apartment. Studios are faster (~25 min). We schedule around guest checkouts and coordinate with your PM to minimize disruption.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- FINAL CTA -->
+    <!-- ============================================ -->
+    <section id="start" class="py-24 sm:py-32 bg-lucas-dark relative overflow-hidden">
+        <!-- Glow -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-lucas-green/10 rounded-full blur-[200px] pointer-events-none"></div>
+        
+        <div class="max-w-xl mx-auto px-5 sm:px-8 relative z-10">
+            <div class="text-center mb-10 reveal">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+                    Stop wondering.<br>
+                    <span class="gradient-text">Start knowing.</span>
+                </h2>
+                <p class="text-gray-400 text-lg">Try LUCAS free on up to 10 units. No commitment.</p>
+            </div>
+            
+            <!-- Form -->
+            <div class="bg-lucas-card border border-lucas-border rounded-2xl p-6 sm:p-8 reveal">
+                <form id="pilot-form" action="https://formspree.io/f/xzzoryvn" method="POST" class="space-y-5">
+                    <input type="hidden" name="form_source" value="STR Landing Page">
+                    <input type="hidden" name="form_type" value="Free Pilot Request">
+                    
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-gray-400 text-sm mb-2 block">Name</label>
+                            <input type="text" name="name" required class="w-full bg-black border border-lucas-border rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:border-lucas-green focus:outline-none transition-colors" placeholder="Your name">
+                        </div>
+                        <div>
+                            <label class="text-gray-400 text-sm mb-2 block">Email</label>
+                            <input type="email" name="email" required class="w-full bg-black border border-lucas-border rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:border-lucas-green focus:outline-none transition-colors" placeholder="you@email.com">
+                        </div>
+                    </div>
+                    
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-gray-400 text-sm mb-2 block">WhatsApp</label>
+                            <input type="tel" name="phone" class="w-full bg-black border border-lucas-border rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:border-lucas-green focus:outline-none transition-colors" placeholder="+971 50 XXX XXXX">
+                        </div>
+                        <div>
+                            <label class="text-gray-400 text-sm mb-2 block">Number of units</label>
+                            <select name="units" class="w-full bg-black border border-lucas-border rounded-xl px-4 py-3.5 text-white focus:border-lucas-green focus:outline-none transition-colors">
+                                <option value="1-5">1-5 units</option>
+                                <option value="6-10">6-10 units</option>
+                                <option value="11-25">11-25 units</option>
+                                <option value="26-50">26-50 units</option>
+                                <option value="50+">50+ units</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="text-gray-400 text-sm mb-2 block">Property locations</label>
+                        <input type="text" name="locations" class="w-full bg-black border border-lucas-border rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:border-lucas-green focus:outline-none transition-colors" placeholder="e.g. Dubai Marina, JBR, Downtown">
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-lucas-green text-black px-6 py-4 rounded-xl font-bold text-lg hover:bg-white transition-colors">
+                        Start Free Pilot
+                    </button>
+                </form>
+                
+                <p class="text-center text-gray-500 text-xs mt-6">
+                    We'll reach out within 24 hours to schedule your first inspection.
+                </p>
+            </div>
+            
+            <!-- WhatsApp Alternative -->
+            <div class="text-center mt-8 reveal">
+                <p class="text-gray-500 text-sm mb-3">Prefer to chat?</p>
+                <a href="https://wa.me/971585072588" target="_blank" class="inline-flex items-center gap-2 text-lucas-green hover:text-white transition-colors font-medium">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    WhatsApp us directly
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================ -->
+    <footer class="bg-black border-t border-lucas-border py-12">
+        <div class="max-w-5xl mx-auto px-5 sm:px-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <img src="logo.png" alt="LUCAS" class="h-6" onerror="this.outerHTML='<span class=\'text-lg font-bold text-white\'>LUCAS<span class=\'text-lucas-green\'>.</span></span>'">
+                    <span class="text-gray-600 text-sm">Ground truth for real estate.</span>
+                </div>
+                
+                <div class="flex items-center gap-6 text-sm">
+                    <a href="/" class="text-gray-400 hover:text-white transition-colors">Main site</a>
+                    <a href="mailto:hello@lucas.app" class="text-gray-400 hover:text-white transition-colors">hello@lucas.app</a>
+                    <a href="https://wa.me/971585072588" target="_blank" class="text-gray-400 hover:text-lucas-green transition-colors flex items-center gap-1.5">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-lucas-border text-center text-gray-600 text-sm">
+                © 2025 LUCAS. Dubai, UAE.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================ -->
+    <script>
+        // Scroll reveal
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('pilot-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            
+            try {
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: new FormData(this),
+                    headers: { 'Accept': 'application/json' }
+                });
+                
+                if (response.ok) {
+                    this.innerHTML = `
+                        <div class="text-center py-8">
+                            <div class="w-16 h-16 rounded-full bg-lucas-green/20 flex items-center justify-center mx-auto mb-4">
+                                <i class="fa-solid fa-check text-lucas-green text-2xl"></i>
+                            </div>
+                            <h3 class="text-white font-bold text-xl mb-2">You're in!</h3>
+                            <p class="text-gray-400">We'll reach out within 24 hours to schedule your first inspection.</p>
+                        </div>
+                    `;
+                } else {
+                    throw new Error('Failed');
+                }
+            } catch (error) {
+                btn.disabled = false;
+                btn.textContent = originalText;
+                alert('Something went wrong. Please try again or WhatsApp us directly.');
+            }
+        });
+    </script>
+</body>
+</html>
