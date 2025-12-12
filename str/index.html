@@ -6,7 +6,7 @@
     <title>LUCAS for STR Operators | Independent Property Verification</title>
     <meta name="description" content="Independent monthly property verification for vacation rental operators. Build owner trust. Reduce churn. Scale QC.">
     
-    <meta property="og:title" content="LUCAS | The proof your owners are asking for">
+    <meta property="og:title" content="LUCAS | The proof that keeps your owners">
     <meta property="og:description" content="Independent property verification for STR operators in Dubai.">
     <meta property="og:type" content="website">
     
@@ -35,7 +35,6 @@
                     colors: {
                         lime: '#deff9a',
                         dark: '#0a0a0a',
-                        muted: '#666'
                     },
                     fontFamily: { 
                         sans: ['Inter', 'system-ui', 'sans-serif']
@@ -79,45 +78,12 @@
             background: rgba(255,255,255,0.02);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s ease;
         }
         .glass-card:hover {
             background: rgba(255,255,255,0.04);
             border-color: rgba(222,255,154,0.2);
-        }
-        
-        .bento-item {
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .bento-item:hover {
-            transform: translateY(-8px) scale(1.02);
-            z-index: 10;
-        }
-        
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .marquee-track {
-            animation: marquee 30s linear infinite;
-        }
-        
-        .glow-btn {
-            position: relative;
-            overflow: hidden;
-        }
-        .glow-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(222,255,154,0.3) 0%, transparent 50%);
-            transform: translate(-50%, -50%) scale(0);
-            transition: transform 0.6s ease;
-        }
-        .glow-btn:hover::before {
-            transform: translate(-50%, -50%) scale(1);
+            transform: translateY(-4px);
         }
         
         .stat-number {
@@ -133,8 +99,27 @@
         .faq-item.open .faq-content {
             grid-template-rows: 1fr;
         }
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
         .faq-inner {
             overflow: hidden;
+        }
+        
+        .sticky-cta {
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        .sticky-cta.visible {
+            transform: translateY(0);
+        }
+        
+        @keyframes subtle-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+            50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.1); }
+        }
+        .scenario-card {
+            animation: subtle-pulse 3s ease-in-out infinite;
         }
     </style>
 </head>
@@ -144,7 +129,7 @@
     <!-- NAVBAR -->
     <nav class="fixed top-0 left-0 w-full z-50 px-4 pt-4">
         <div class="max-w-7xl mx-auto">
-            <div class="flex items-center justify-between h-14 px-5 rounded-full bg-black/50 backdrop-blur-xl border border-white/5">
+            <div class="flex items-center justify-between h-14 px-5 rounded-full bg-black/60 backdrop-blur-xl border border-white/5">
                 <a href="/" class="flex items-center gap-2">
                     <img src="/logo.png" alt="LUCAS" class="h-6 w-auto" onerror="this.outerHTML='<span class=\'text-lg font-bold text-white\'>LUCAS</span>'">
                     <span class="text-white/30 text-sm font-medium hidden sm:inline">/</span>
@@ -153,7 +138,7 @@
                 <div class="flex items-center gap-3">
                     <a href="#how" class="hidden md:block text-white/60 hover:text-white text-sm font-medium transition-colors px-4 py-2">How it works</a>
                     <a href="#start" class="bg-lime text-black px-5 py-2 rounded-full font-semibold text-sm hover:bg-white transition-all">
-                        Get Started
+                        Free Pilot
                     </a>
                 </div>
             </div>
@@ -161,183 +146,49 @@
     </nav>
 
     <!-- HERO -->
-    <section class="min-h-screen flex items-center justify-center mesh-gradient relative pt-20">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8 py-20 sm:py-32">
-            <div class="max-w-5xl">
-                <div class="reveal mb-8">
-                    <span class="inline-flex items-center gap-2 text-lime/80 text-sm font-medium tracking-wide">
-                        <span class="w-8 h-px bg-lime/50"></span>
-                        FOR STR OPERATORS
-                    </span>
-                </div>
-                
-                <h1 class="reveal reveal-delay-1">
-                    <span class="block text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] font-bold text-white leading-[0.9] tracking-tight">
-                        Your owners
-                    </span>
-                    <span class="block text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] font-bold text-white leading-[0.9] tracking-tight">
-                        want proof.
-                    </span>
-                    <span class="block text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] font-bold text-gradient leading-[0.9] tracking-tight mt-2">
-                        Give it to them.
-                    </span>
-                </h1>
-                
-                <p class="reveal reveal-delay-2 text-white/50 text-lg sm:text-xl max-w-xl mt-8 sm:mt-12 leading-relaxed">
-                    Independent monthly verification that builds trust, reduces churn, and documents your entire portfolio.
-                </p>
-                
-                <div class="reveal reveal-delay-3 flex flex-wrap gap-4 mt-10 sm:mt-14">
-                    <a href="#start" class="glow-btn relative bg-lime text-black px-8 py-4 rounded-full font-bold text-base hover:bg-white transition-colors">
-                        <span class="relative z-10">Start Free Pilot →</span>
-                    </a>
-                    <a href="#how" class="group flex items-center gap-2 text-white/60 hover:text-white px-6 py-4 font-medium transition-colors">
-                        <span>See how it works</span>
-                        <i class="fa-solid fa-arrow-down text-sm group-hover:translate-y-1 transition-transform"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:block">
-            <div class="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-2">
-                <div class="w-1 h-2 bg-white/40 rounded-full animate-bounce"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SOCIAL PROOF -->
-    <section class="py-12 border-y border-white/5 bg-black/50 overflow-hidden">
-        <div class="flex items-center gap-8 whitespace-nowrap marquee-track">
-            <span class="text-white/20 text-sm font-medium tracking-widest uppercase">Trusted by Dubai's leading operators</span>
-            <span class="text-lime/30">◆</span>
-            <span class="text-white/20 text-sm font-medium tracking-widest uppercase">50+ properties verified</span>
-            <span class="text-lime/30">◆</span>
-            <span class="text-white/20 text-sm font-medium tracking-widest uppercase">Independent third-party</span>
-            <span class="text-lime/30">◆</span>
-            <span class="text-white/20 text-sm font-medium tracking-widest uppercase">Trusted by Dubai's leading operators</span>
-            <span class="text-lime/30">◆</span>
-            <span class="text-white/20 text-sm font-medium tracking-widest uppercase">50+ properties verified</span>
-            <span class="text-lime/30">◆</span>
-            <span class="text-white/20 text-sm font-medium tracking-widest uppercase">Independent third-party</span>
-            <span class="text-lime/30">◆</span>
-        </div>
-    </section>
-
-    <!-- PROBLEM - Bento Grid -->
-    <section class="py-24 sm:py-32">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8">
-            <div class="max-w-2xl mb-16 reveal">
-                <span class="text-lime/60 text-sm font-semibold tracking-widest uppercase">The problem</span>
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 leading-tight">
-                    Every PM says<br>"we take care of everything."
-                </h2>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-                <div class="bento-item reveal md:col-span-2 lg:col-span-2 glass-card rounded-3xl p-8 sm:p-10 transition-all">
-                    <div class="flex flex-col h-full">
-                        <div class="w-14 h-14 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-user-minus text-red-400 text-xl"></i>
-                        </div>
-                        <h3 class="text-white text-2xl sm:text-3xl font-bold mb-4">Owner churn is silent.</h3>
-                        <p class="text-white/50 text-base sm:text-lg leading-relaxed max-w-lg">
-                            They don't complain. They just leave. By the time you notice, they've already signed with your competitor who "seemed more transparent."
-                        </p>
-                        <div class="mt-auto pt-8">
-                            <div class="flex items-baseline gap-2">
-                                <span class="stat-number text-5xl sm:text-6xl font-bold text-red-400">5-10×</span>
-                                <span class="text-white/40 text-sm">cost to acquire vs retain</span>
-                            </div>
-                        </div>
+    <section class="min-h-screen flex items-center mesh-gradient relative pt-20">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- Left: Copy -->
+                <div>
+                    <div class="reveal mb-6">
+                        <span class="inline-flex items-center gap-2 text-lime/80 text-sm font-medium tracking-wide">
+                            <span class="w-8 h-px bg-lime/50"></span>
+                            FOR STR OPERATORS IN DUBAI
+                        </span>
                     </div>
-                </div>
-                
-                <div class="bento-item reveal reveal-delay-1 glass-card rounded-3xl p-8 transition-all">
-                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-scale-unbalanced text-amber-400"></i>
-                    </div>
-                    <h3 class="text-white text-xl font-bold mb-3">Disputes with no proof</h3>
-                    <p class="text-white/50 text-sm leading-relaxed">
-                        Was the damage there before? Did maintenance happen? Without documentation, every dispute is your word against theirs.
-                    </p>
-                </div>
-                
-                <div class="bento-item reveal reveal-delay-2 glass-card rounded-3xl p-8 transition-all">
-                    <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-chart-line text-orange-400"></i>
-                    </div>
-                    <h3 class="text-white text-xl font-bold mb-3">QC doesn't scale</h3>
-                    <p class="text-white/50 text-sm leading-relaxed">
-                        At 20 units you know everything. At 100+ units, problems hide until they're expensive.
-                    </p>
-                </div>
-                
-                <div class="bento-item reveal reveal-delay-3 md:col-span-2 glass-card rounded-3xl p-8 transition-all">
-                    <div class="flex flex-col sm:flex-row sm:items-center gap-6">
-                        <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
-                            <i class="fa-solid fa-equals text-white/40 text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-white text-xl font-bold mb-2">No differentiation</h3>
-                            <p class="text-white/50 text-sm leading-relaxed">
-                                "We take care of everything" — every PM says it. Owners can't tell who's actually better. You need proof, not promises.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SOLUTION -->
-    <section id="how" class="py-24 sm:py-32 bg-gradient-to-b from-transparent via-lime/[0.02] to-transparent">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                <div class="reveal">
-                    <span class="text-lime/60 text-sm font-semibold tracking-widest uppercase">The solution</span>
-                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 mb-6 leading-tight">
-                        Independent proof<br>you can share.
-                    </h2>
-                    <p class="text-white/50 text-lg leading-relaxed mb-10">
-                        LUCAS inspects your properties monthly. You get professional, verified reports. Your owners get the transparency they've been asking for.
+                    
+                    <!-- ROI-focused headline -->
+                    <h1 class="reveal reveal-delay-1 text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.05] tracking-tight mb-6">
+                        Losing an owner costs<br>
+                        <span class="text-gradient">150,000 AED/year.</span><br>
+                        Keeping one costs 350.
+                    </h1>
+                    
+                    <p class="reveal reveal-delay-2 text-white/50 text-lg max-w-lg mb-8 leading-relaxed">
+                        Independent monthly verification that gives owners the proof they need to trust you — so they stay.
                     </p>
                     
-                    <div class="space-y-6">
-                        <div class="flex gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-lime/10 border border-lime/20 flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-shield-check text-lime text-sm"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-white font-semibold mb-1">Third-party credibility</h3>
-                                <p class="text-white/40 text-sm">Reports are trusted because they're not from you.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-lime/10 border border-lime/20 flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-eye text-lime text-sm"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-white font-semibold mb-1">You review first</h3>
-                                <p class="text-white/40 text-sm">See issues before owners do. Fix or share transparently.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-lime/10 border border-lime/20 flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-trophy text-lime text-sm"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-white font-semibold mb-1">Competitive advantage</h3>
-                                <p class="text-white/40 text-sm">"We're the only PM with independent verification."</p>
-                            </div>
-                        </div>
+                    <!-- Prominent pilot offer -->
+                    <div class="reveal reveal-delay-3 bg-white/5 border border-lime/20 rounded-2xl p-5 mb-8 max-w-md">
+                        <p class="text-lime font-semibold mb-2">Free Pilot — No Commitment</p>
+                        <p class="text-white/60 text-sm">10 properties. 1 month. Full reports. See for yourself before deciding.</p>
+                    </div>
+                    
+                    <div class="reveal reveal-delay-3 flex flex-wrap gap-4">
+                        <a href="#start" class="bg-lime text-black px-8 py-4 rounded-full font-bold text-base hover:bg-white transition-colors">
+                            Start Free Pilot →
+                        </a>
+                        <a href="#scenario" class="group flex items-center gap-2 text-white/60 hover:text-white px-4 py-4 font-medium transition-colors">
+                            <span>See why it matters</span>
+                            <i class="fa-solid fa-arrow-down text-sm group-hover:translate-y-1 transition-transform"></i>
+                        </a>
                     </div>
                 </div>
                 
-                <div class="reveal reveal-delay-2 relative">
-                    <div class="relative bg-white rounded-3xl overflow-hidden shadow-2xl shadow-black/50 transform lg:rotate-1 hover:rotate-0 transition-transform duration-700">
+                <!-- Right: Report with ISSUES -->
+                <div class="reveal reveal-delay-2 relative hidden lg:block">
+                    <div class="relative bg-white rounded-3xl overflow-hidden shadow-2xl shadow-black/50 transform rotate-1 hover:rotate-0 transition-transform duration-700">
                         <div class="bg-gradient-to-r from-gray-900 to-black px-6 py-4 flex items-center justify-between">
                             <div class="flex items-center gap-3">
                                 <div class="w-8 h-8 rounded-lg bg-lime/20 flex items-center justify-center">
@@ -354,122 +205,334 @@
                             </div>
                         </div>
                         
-                        <div class="p-6 sm:p-8">
-                            <div class="flex items-start justify-between mb-6">
+                        <div class="p-6">
+                            <div class="flex items-start justify-between mb-5">
                                 <div>
-                                    <h3 class="text-gray-900 text-xl font-bold">Marina Heights 1204</h3>
-                                    <p class="text-gray-500 text-sm">Dubai Marina · 2BR · 1,450 sqft</p>
+                                    <h3 class="text-gray-900 text-lg font-bold">Marina Views 1847</h3>
+                                    <p class="text-gray-500 text-sm">Dubai Marina · 1BR</p>
                                 </div>
                                 <div class="text-right">
-                                    <p class="text-5xl font-bold text-gray-900 stat-number">94</p>
-                                    <p class="text-green-600 text-sm font-medium">Excellent</p>
+                                    <p class="text-4xl font-bold text-gray-900 stat-number">78</p>
+                                    <p class="text-amber-600 text-sm font-medium">Needs attention</p>
                                 </div>
                             </div>
                             
-                            <div class="bg-green-50 border border-green-200 rounded-2xl p-4 mb-6">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center">
-                                        <i class="fa-solid fa-check text-white"></i>
+                            <!-- Issues found - THIS IS THE VALUE -->
+                            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 mb-5">
+                                <p class="text-amber-800 font-semibold text-sm mb-3 flex items-center gap-2">
+                                    <i class="fa-solid fa-triangle-exclamation"></i>
+                                    3 issues detected
+                                </p>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-700">AC drain pan overflow</span>
+                                        <span class="text-amber-700 font-semibold">~350 AED</span>
                                     </div>
-                                    <div>
-                                        <p class="text-green-800 font-semibold">All 47 checkpoints passed</p>
-                                        <p class="text-green-600 text-sm">No issues detected this inspection</p>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-700">Bathroom sealant cracking</span>
+                                        <span class="text-amber-700 font-semibold">~200 AED</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-700">Balcony drain blocked</span>
+                                        <span class="text-amber-700 font-semibold">~150 AED</span>
+                                    </div>
+                                </div>
+                                <div class="mt-3 pt-3 border-t border-amber-200 flex justify-between text-sm">
+                                    <span class="text-gray-600">Est. total to fix now</span>
+                                    <span class="text-amber-800 font-bold">~700 AED</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <p class="text-gray-500 text-xs mb-2">47 verified photos</p>
+                                <div class="grid grid-cols-4 gap-1.5">
+                                    <div class="aspect-square bg-gray-100 rounded-lg"></div>
+                                    <div class="aspect-square bg-gray-100 rounded-lg"></div>
+                                    <div class="aspect-square bg-gray-100 rounded-lg"></div>
+                                    <div class="aspect-square bg-gray-200 rounded-lg flex items-center justify-center">
+                                        <span class="text-gray-500 text-xs font-bold">+43</span>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="mb-6">
-                                <p class="text-gray-500 text-sm mb-3">47 verified photos</p>
-                                <div class="grid grid-cols-4 gap-2">
-                                    <div class="aspect-square bg-gray-100 rounded-xl"></div>
-                                    <div class="aspect-square bg-gray-100 rounded-xl"></div>
-                                    <div class="aspect-square bg-gray-100 rounded-xl"></div>
-                                    <div class="aspect-square bg-gray-200 rounded-xl flex items-center justify-center">
-                                        <span class="text-gray-500 font-bold">+43</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                                <div class="flex items-center gap-2 text-gray-400 text-xs">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                    <span>GPS Verified</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-400 text-xs">
-                                    <i class="fa-solid fa-clock"></i>
-                                    <span>Jan 15, 2025 · 10:32 AM</span>
-                                </div>
+                            <div class="flex items-center justify-between pt-3 border-t border-gray-100 text-xs text-gray-400">
+                                <span><i class="fa-solid fa-location-dot mr-1"></i> GPS Verified</span>
+                                <span><i class="fa-solid fa-clock mr-1"></i> Jan 15, 10:32 AM</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="absolute -bottom-4 -left-4 sm:-left-8 bg-dark border border-white/10 rounded-2xl px-5 py-4 shadow-xl">
-                        <p class="text-white/50 text-xs mb-1">Share with owner</p>
-                        <p class="text-white font-bold">Trust built ✓</p>
+                    <div class="absolute -bottom-4 -left-6 bg-dark border border-lime/30 rounded-2xl px-5 py-4 shadow-xl">
+                        <p class="text-white/50 text-xs mb-1">Caught early</p>
+                        <p class="text-white font-bold">700 AED fix <span class="text-lime">→</span> Not 8,000</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PROCESS -->
-    <section class="py-24 sm:py-32">
+    <!-- THE SCENARIO -->
+    <section id="scenario" class="py-20 sm:py-28 bg-black">
+        <div class="max-w-4xl mx-auto px-5 sm:px-8">
+            <div class="text-center mb-12 reveal">
+                <span class="text-red-400/80 text-sm font-semibold tracking-widest uppercase">This happens every month</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-4">The call you don't want to get</h2>
+            </div>
+            
+            <div class="reveal scenario-card bg-gradient-to-br from-red-500/10 to-transparent border border-red-500/20 rounded-3xl p-8 sm:p-10 mb-12">
+                <div class="flex items-start gap-4 mb-6">
+                    <div class="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-phone text-red-400"></i>
+                    </div>
+                    <div>
+                        <p class="text-white/40 text-sm">Owner calls after visiting their JBR apartment</p>
+                        <p class="text-white font-semibold mt-1">"I found water damage behind the bathroom cabinet. It's been there for months. Why didn't you catch this?"</p>
+                    </div>
+                </div>
+                
+                <div class="bg-black/30 rounded-2xl p-6 space-y-4">
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-xmark text-red-400 mt-1"></i>
+                        <p class="text-white/60 text-sm">You have no photos from the past 6 months</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-xmark text-red-400 mt-1"></i>
+                        <p class="text-white/60 text-sm">Your cleaning team "didn't notice anything"</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-xmark text-red-400 mt-1"></i>
+                        <p class="text-white/60 text-sm">The repair now costs 12,000 AED instead of 800</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-xmark text-red-400 mt-1"></i>
+                        <p class="text-white/60 text-sm">The owner is talking to your competitor</p>
+                    </div>
+                </div>
+                
+                <div class="mt-6 pt-6 border-t border-red-500/20 text-center">
+                    <p class="text-white/40 text-sm">This isn't about bad property managers. It's about having <span class="text-white font-medium">no system for documentation</span>.</p>
+                </div>
+            </div>
+            
+            <div class="reveal glass-card rounded-3xl p-8 sm:p-10 border-lime/20">
+                <div class="flex items-start gap-4 mb-6">
+                    <div class="w-12 h-12 rounded-full bg-lime/20 flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-shield-check text-lime"></i>
+                    </div>
+                    <div>
+                        <p class="text-lime/60 text-sm">With LUCAS, you would have said:</p>
+                        <p class="text-white font-semibold mt-1">"Actually, we caught this in our January inspection. Here's the report we sent you. It was fixed Feb 3rd for 800 AED."</p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-wrap gap-4 text-sm">
+                    <span class="flex items-center gap-2 text-white/60">
+                        <i class="fa-solid fa-check text-lime"></i>
+                        Documented monthly
+                    </span>
+                    <span class="flex items-center gap-2 text-white/60">
+                        <i class="fa-solid fa-check text-lime"></i>
+                        Caught early
+                    </span>
+                    <span class="flex items-center gap-2 text-white/60">
+                        <i class="fa-solid fa-check text-lime"></i>
+                        Owner trusts you more
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE MATH -->
+    <section class="py-20 sm:py-28 border-y border-white/5">
+        <div class="max-w-5xl mx-auto px-5 sm:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-lime/60 text-sm font-semibold tracking-widest uppercase">The math</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-4">Owner retention is your growth lever</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6 reveal">
+                <div class="bg-red-500/10 border border-red-500/20 rounded-3xl p-8 text-center">
+                    <p class="text-red-400/80 text-sm font-medium mb-4">Cost to lose 1 owner</p>
+                    <p class="stat-number text-5xl sm:text-6xl font-bold text-red-400">150K</p>
+                    <p class="text-white/40 text-sm mt-2">AED/year in lost fees</p>
+                    <p class="text-white/30 text-xs mt-4">Based on avg. 12,500 AED/month management fee</p>
+                </div>
+                
+                <div class="bg-amber-500/10 border border-amber-500/20 rounded-3xl p-8 text-center">
+                    <p class="text-amber-400/80 text-sm font-medium mb-4">Cost to acquire new owner</p>
+                    <p class="stat-number text-5xl sm:text-6xl font-bold text-amber-400">15-25K</p>
+                    <p class="text-white/40 text-sm mt-2">AED in sales & onboarding</p>
+                    <p class="text-white/30 text-xs mt-4">Time, marketing, site visits, setup</p>
+                </div>
+                
+                <div class="bg-lime/10 border border-lime/30 rounded-3xl p-8 text-center">
+                    <p class="text-lime/80 text-sm font-medium mb-4">Cost of LUCAS per property</p>
+                    <p class="stat-number text-5xl sm:text-6xl font-bold text-lime">4,200</p>
+                    <p class="text-white/40 text-sm mt-2">AED/year</p>
+                    <p class="text-white/30 text-xs mt-4">350 AED × 12 months</p>
+                </div>
+            </div>
+            
+            <div class="reveal mt-12 bg-white/5 rounded-2xl p-6 sm:p-8 text-center max-w-2xl mx-auto">
+                <p class="text-white text-lg sm:text-xl font-medium">
+                    Keep <span class="text-lime font-bold">one owner</span> who would have left = 
+                    <span class="text-lime font-bold">35× ROI</span> on LUCAS
+                </p>
+                <p class="text-white/40 text-sm mt-3">150,000 ÷ 4,200 = 35× return</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="py-20 sm:py-28 bg-gradient-to-b from-transparent via-lime/[0.02] to-transparent">
         <div class="max-w-7xl mx-auto px-5 sm:px-8">
             <div class="text-center mb-16 reveal">
                 <span class="text-lime/60 text-sm font-semibold tracking-widest uppercase">How it works</span>
-                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-4">Four steps. Zero friction.</h2>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-4">You do nothing. We handle it.</h2>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 reveal">
+                <div class="relative bg-white/[0.02] border border-white/5 rounded-3xl p-7 hover:bg-white/[0.04] hover:border-lime/20 transition-all group">
+                    <div class="absolute top-6 right-6 text-5xl font-bold text-white/[0.03] group-hover:text-lime/10 transition-colors">1</div>
+                    <div class="w-12 h-12 rounded-2xl bg-lime text-black flex items-center justify-center mb-5">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <h3 class="text-white text-lg font-bold mb-2">We schedule</h3>
+                    <p class="text-white/40 text-sm leading-relaxed">Monthly inspections coordinated with your ops. Works around bookings.</p>
+                </div>
+                
+                <div class="relative bg-white/[0.02] border border-white/5 rounded-3xl p-7 hover:bg-white/[0.04] hover:border-lime/20 transition-all group">
+                    <div class="absolute top-6 right-6 text-5xl font-bold text-white/[0.03] group-hover:text-lime/10 transition-colors">2</div>
+                    <div class="w-12 h-12 rounded-2xl bg-lime text-black flex items-center justify-center mb-5">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+                    <h3 class="text-white text-lg font-bold mb-2">We inspect</h3>
+                    <p class="text-white/40 text-sm leading-relaxed">47-point checklist. GPS-stamped photos. 30-45 min per unit.</p>
+                </div>
+                
+                <div class="relative bg-white/[0.02] border border-white/5 rounded-3xl p-7 hover:bg-white/[0.04] hover:border-lime/20 transition-all group">
+                    <div class="absolute top-6 right-6 text-5xl font-bold text-white/[0.03] group-hover:text-lime/10 transition-colors">3</div>
+                    <div class="w-12 h-12 rounded-2xl bg-lime text-black flex items-center justify-center mb-5">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <h3 class="text-white text-lg font-bold mb-2">You review first</h3>
+                    <p class="text-white/40 text-sm leading-relaxed">Full report in 24h. You see issues before owners do.</p>
+                </div>
+                
+                <div class="relative bg-white/[0.02] border border-white/5 rounded-3xl p-7 hover:bg-white/[0.04] hover:border-lime/20 transition-all group">
+                    <div class="absolute top-6 right-6 text-5xl font-bold text-white/[0.03] group-hover:text-lime/10 transition-colors">4</div>
+                    <div class="w-12 h-12 rounded-2xl bg-lime text-black flex items-center justify-center mb-5">
+                        <i class="fa-solid fa-share-from-square"></i>
+                    </div>
+                    <h3 class="text-white text-lg font-bold mb-2">Share with owners</h3>
+                    <p class="text-white/40 text-sm leading-relaxed">Send reports directly. Build trust proactively.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADDRESSING THE HIDDEN OBJECTION -->
+    <section class="py-20 sm:py-28 bg-black">
+        <div class="max-w-4xl mx-auto px-5 sm:px-8">
+            <div class="reveal glass-card rounded-3xl p-8 sm:p-12">
+                <div class="flex items-start gap-5 mb-8">
+                    <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-circle-question text-white/60 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-white text-xl sm:text-2xl font-bold mb-2">"What if LUCAS finds something embarrassing?"</h3>
+                        <p class="text-white/50">The question every operator thinks but doesn't ask.</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-6 pl-0 sm:pl-[4.5rem]">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-lime/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span class="text-lime font-bold text-sm">1</span>
+                        </div>
+                        <div>
+                            <p class="text-white font-medium">You see every report before owners do.</p>
+                            <p class="text-white/40 text-sm mt-1">Nothing goes out without your review.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-lime/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span class="text-lime font-bold text-sm">2</span>
+                        </div>
+                        <div>
+                            <p class="text-white font-medium">Fix issues before sharing — or share transparently.</p>
+                            <p class="text-white/40 text-sm mt-1">Either way, you look proactive, not negligent.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-lime/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span class="text-lime font-bold text-sm">3</span>
+                        </div>
+                        <div>
+                            <p class="text-white font-medium">Catching issues early makes you look better, not worse.</p>
+                            <p class="text-white/40 text-sm mt-1">Owners respect "we found and fixed this" over "we didn't know."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-white/10 pl-0 sm:pl-[4.5rem]">
+                    <p class="text-white/60 text-sm">
+                        <span class="text-lime font-medium">Bottom line:</span> You're always in control. LUCAS is documentation, not judgment.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT'S INCLUDED -->
+    <section class="py-20 sm:py-28">
+        <div class="max-w-5xl mx-auto px-5 sm:px-8">
+            <div class="text-center mb-14 reveal">
+                <span class="text-lime/60 text-sm font-semibold tracking-widest uppercase">What's included</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-4">Every inspection, every month</h2>
             </div>
             
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 reveal">
-                <div class="group relative bg-white/[0.02] border border-white/5 rounded-3xl p-6 sm:p-8 hover:bg-white/[0.04] hover:border-lime/20 transition-all">
-                    <div class="absolute top-6 right-6 sm:top-8 sm:right-8 text-6xl font-bold text-white/[0.03] group-hover:text-lime/10 transition-colors">1</div>
-                    <div class="relative">
-                        <div class="w-12 h-12 rounded-2xl bg-lime text-black font-bold text-lg flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-calendar"></i>
-                        </div>
-                        <h3 class="text-white text-lg font-bold mb-2">We schedule</h3>
-                        <p class="text-white/40 text-sm leading-relaxed">Monthly inspections coordinated with your ops team.</p>
+                <div class="bg-white/[0.02] border border-white/5 rounded-2xl p-6 text-center hover:border-lime/20 transition-colors">
+                    <div class="w-12 h-12 rounded-xl bg-lime/10 flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-camera text-lime"></i>
                     </div>
+                    <h3 class="text-white font-semibold mb-1">47+ photos</h3>
+                    <p class="text-white/40 text-sm">GPS & timestamp verified</p>
                 </div>
                 
-                <div class="group relative bg-white/[0.02] border border-white/5 rounded-3xl p-6 sm:p-8 hover:bg-white/[0.04] hover:border-lime/20 transition-all">
-                    <div class="absolute top-6 right-6 sm:top-8 sm:right-8 text-6xl font-bold text-white/[0.03] group-hover:text-lime/10 transition-colors">2</div>
-                    <div class="relative">
-                        <div class="w-12 h-12 rounded-2xl bg-lime text-black font-bold text-lg flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-clipboard-check"></i>
-                        </div>
-                        <h3 class="text-white text-lg font-bold mb-2">We inspect</h3>
-                        <p class="text-white/40 text-sm leading-relaxed">47-point checklist. GPS-stamped photos.</p>
+                <div class="bg-white/[0.02] border border-white/5 rounded-2xl p-6 text-center hover:border-lime/20 transition-colors">
+                    <div class="w-12 h-12 rounded-xl bg-lime/10 flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-list-check text-lime"></i>
                     </div>
+                    <h3 class="text-white font-semibold mb-1">47-point checklist</h3>
+                    <p class="text-white/40 text-sm">Comprehensive inspection</p>
                 </div>
                 
-                <div class="group relative bg-white/[0.02] border border-white/5 rounded-3xl p-6 sm:p-8 hover:bg-white/[0.04] hover:border-lime/20 transition-all">
-                    <div class="absolute top-6 right-6 sm:top-8 sm:right-8 text-6xl font-bold text-white/[0.03] group-hover:text-lime/10 transition-colors">3</div>
-                    <div class="relative">
-                        <div class="w-12 h-12 rounded-2xl bg-lime text-black font-bold text-lg flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-eye"></i>
-                        </div>
-                        <h3 class="text-white text-lg font-bold mb-2">You review</h3>
-                        <p class="text-white/40 text-sm leading-relaxed">Full report in 24h. Flag issues for action.</p>
+                <div class="bg-white/[0.02] border border-white/5 rounded-2xl p-6 text-center hover:border-lime/20 transition-colors">
+                    <div class="w-12 h-12 rounded-xl bg-lime/10 flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-gauge-high text-lime"></i>
                     </div>
+                    <h3 class="text-white font-semibold mb-1">Condition score</h3>
+                    <p class="text-white/40 text-sm">Track trends over time</p>
                 </div>
                 
-                <div class="group relative bg-white/[0.02] border border-white/5 rounded-3xl p-6 sm:p-8 hover:bg-white/[0.04] hover:border-lime/20 transition-all">
-                    <div class="absolute top-6 right-6 sm:top-8 sm:right-8 text-6xl font-bold text-white/[0.03] group-hover:text-lime/10 transition-colors">4</div>
-                    <div class="relative">
-                        <div class="w-12 h-12 rounded-2xl bg-lime text-black font-bold text-lg flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-share"></i>
-                        </div>
-                        <h3 class="text-white text-lg font-bold mb-2">Owners see proof</h3>
-                        <p class="text-white/40 text-sm leading-relaxed">Share reports directly. Build trust.</p>
+                <div class="bg-white/[0.02] border border-white/5 rounded-2xl p-6 text-center hover:border-lime/20 transition-colors">
+                    <div class="w-12 h-12 rounded-xl bg-lime/10 flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-file-export text-lime"></i>
                     </div>
+                    <h3 class="text-white font-semibold mb-1">Shareable reports</h3>
+                    <p class="text-white/40 text-sm">Professional, branded</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- PRICING -->
-    <section class="py-24 sm:py-32 relative overflow-hidden">
+    <section class="py-20 sm:py-28 relative overflow-hidden">
         <div class="absolute inset-0 bg-lime/5"></div>
         <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgba(222,255,154,0.05) 1px, transparent 0); background-size: 32px 32px;"></div>
         
@@ -477,22 +540,22 @@
             <div class="text-center reveal">
                 <span class="text-lime/60 text-sm font-semibold tracking-widest uppercase">Pricing</span>
                 
-                <div class="mt-8 mb-6">
-                    <span class="text-7xl sm:text-8xl md:text-9xl font-bold text-white stat-number">350</span>
-                    <span class="text-2xl sm:text-3xl text-white/40 font-medium ml-2">AED</span>
+                <div class="mt-8 mb-4">
+                    <span class="text-7xl sm:text-8xl font-bold text-white stat-number">350</span>
+                    <span class="text-2xl text-white/40 font-medium ml-2">AED</span>
                 </div>
-                <p class="text-white/50 text-xl mb-12">per unit / per month</p>
+                <p class="text-white/50 text-lg mb-10">per unit / per month</p>
                 
-                <div class="bg-black/50 backdrop-blur-xl border border-white/5 rounded-3xl p-8 sm:p-10 max-w-md mx-auto mb-12">
-                    <p class="text-white/40 text-sm mb-6">Volume pricing</p>
-                    <div class="space-y-4 text-left">
+                <div class="bg-black/50 backdrop-blur-xl border border-white/5 rounded-3xl p-8 max-w-md mx-auto mb-10">
+                    <p class="text-white/40 text-sm mb-5">Volume pricing</p>
+                    <div class="space-y-3 text-left">
                         <div class="flex items-center justify-between py-3 border-b border-white/5">
-                            <span class="text-white/60">20-50 units</span>
+                            <span class="text-white/60">10-50 units</span>
                             <span class="text-white font-semibold">350 AED/unit</span>
                         </div>
                         <div class="flex items-center justify-between py-3 border-b border-white/5">
                             <span class="text-white/60">50-100 units</span>
-                            <span class="text-lime font-semibold">Custom</span>
+                            <span class="text-lime font-semibold">300 AED/unit</span>
                         </div>
                         <div class="flex items-center justify-between py-3">
                             <span class="text-white/60">100+ units</span>
@@ -501,22 +564,23 @@
                     </div>
                 </div>
                 
-                <div class="flex flex-wrap justify-center gap-6 text-sm text-white/40 mb-12">
+                <div class="flex flex-wrap justify-center gap-5 text-sm text-white/40 mb-10">
                     <span class="flex items-center gap-2"><i class="fa-solid fa-check text-lime/60"></i> No setup fees</span>
                     <span class="flex items-center gap-2"><i class="fa-solid fa-check text-lime/60"></i> Monthly billing</span>
                     <span class="flex items-center gap-2"><i class="fa-solid fa-check text-lime/60"></i> Cancel anytime</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-check text-lime/60"></i> Free pilot first</span>
                 </div>
                 
-                <a href="#start" class="glow-btn relative inline-flex items-center gap-2 bg-lime text-black px-10 py-5 rounded-full font-bold text-lg hover:bg-white transition-colors">
-                    <span class="relative z-10">Start Free Pilot</span>
-                    <i class="fa-solid fa-arrow-right relative z-10"></i>
+                <a href="#start" class="inline-flex items-center gap-2 bg-lime text-black px-10 py-5 rounded-full font-bold text-lg hover:bg-white transition-colors">
+                    Start Free Pilot
+                    <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- FAQ -->
-    <section class="py-24 sm:py-32">
+    <section class="py-20 sm:py-28">
         <div class="max-w-2xl mx-auto px-5 sm:px-8">
             <div class="text-center mb-12 reveal">
                 <h2 class="text-3xl sm:text-4xl font-bold text-white">Questions</h2>
@@ -525,12 +589,24 @@
             <div class="space-y-3 reveal">
                 <div class="faq-item border border-white/5 rounded-2xl overflow-hidden hover:border-white/10 transition-colors">
                     <button onclick="this.parentElement.classList.toggle('open')" class="w-full px-6 py-5 text-left flex items-center justify-between">
-                        <span class="font-semibold text-white pr-4">How does scheduling work?</span>
-                        <i class="fa-solid fa-plus text-lime/60 text-sm"></i>
+                        <span class="font-semibold text-white pr-4">Why monthly instead of quarterly?</span>
+                        <i class="fa-solid fa-plus text-lime/60 text-sm faq-icon transition-transform"></i>
                     </button>
                     <div class="faq-content">
                         <div class="faq-inner px-6 pb-5 text-white/50 text-sm leading-relaxed">
-                            We coordinate with your ops team. Inspections happen during turnover windows — typically 30-45 minutes per unit.
+                            In Dubai's climate, issues escalate fast. An AC leak becomes mold in 6-8 weeks. Monthly catches problems when they're still cheap to fix. Quarterly is damage control.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item border border-white/5 rounded-2xl overflow-hidden hover:border-white/10 transition-colors">
+                    <button onclick="this.parentElement.classList.toggle('open')" class="w-full px-6 py-5 text-left flex items-center justify-between">
+                        <span class="font-semibold text-white pr-4">How does scheduling work with bookings?</span>
+                        <i class="fa-solid fa-plus text-lime/60 text-sm faq-icon transition-transform"></i>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-inner px-6 pb-5 text-white/50 text-sm leading-relaxed">
+                            We coordinate directly with your ops team. Inspections happen during turnover windows or vacancy days — typically 30-45 minutes per unit. We work around your schedule.
                         </div>
                     </div>
                 </div>
@@ -538,23 +614,35 @@
                 <div class="faq-item border border-white/5 rounded-2xl overflow-hidden hover:border-white/10 transition-colors">
                     <button onclick="this.parentElement.classList.toggle('open')" class="w-full px-6 py-5 text-left flex items-center justify-between">
                         <span class="font-semibold text-white pr-4">Why aren't reports white-labeled?</span>
-                        <i class="fa-solid fa-plus text-lime/60 text-sm"></i>
+                        <i class="fa-solid fa-plus text-lime/60 text-sm faq-icon transition-transform"></i>
                     </button>
                     <div class="faq-content">
                         <div class="faq-inner px-6 pb-5 text-white/50 text-sm leading-relaxed">
-                            The value is independence. Owners trust LUCAS reports because they're third-party, not from you.
+                            The value is independence. Owners trust LUCAS reports because they're third-party, not coming from you. That credibility is what builds trust — it's the whole point.
                         </div>
                     </div>
                 </div>
                 
                 <div class="faq-item border border-white/5 rounded-2xl overflow-hidden hover:border-white/10 transition-colors">
                     <button onclick="this.parentElement.classList.toggle('open')" class="w-full px-6 py-5 text-left flex items-center justify-between">
-                        <span class="font-semibold text-white pr-4">What if issues are found?</span>
-                        <i class="fa-solid fa-plus text-lime/60 text-sm"></i>
+                        <span class="font-semibold text-white pr-4">What if we disagree with a finding?</span>
+                        <i class="fa-solid fa-plus text-lime/60 text-sm faq-icon transition-transform"></i>
                     </button>
                     <div class="faq-content">
                         <div class="faq-inner px-6 pb-5 text-white/50 text-sm leading-relaxed">
-                            You see reports first. Issues are flagged with severity and cost estimates. Fix before sharing or share transparently.
+                            All findings include photos, GPS coordinates, and timestamps. If you believe something was misidentified, we'll review it together. We're not adversaries — we're documentation.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item border border-white/5 rounded-2xl overflow-hidden hover:border-white/10 transition-colors">
+                    <button onclick="this.parentElement.classList.toggle('open')" class="w-full px-6 py-5 text-left flex items-center justify-between">
+                        <span class="font-semibold text-white pr-4">Does this integrate with our PMS?</span>
+                        <i class="fa-solid fa-plus text-lime/60 text-sm faq-icon transition-transform"></i>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-inner px-6 pb-5 text-white/50 text-sm leading-relaxed">
+                            Currently, reports are delivered via email and WhatsApp. API integrations with major PMS platforms are on our roadmap for Q2 2025. Let us know what you use.
                         </div>
                     </div>
                 </div>
@@ -562,11 +650,23 @@
                 <div class="faq-item border border-white/5 rounded-2xl overflow-hidden hover:border-white/10 transition-colors">
                     <button onclick="this.parentElement.classList.toggle('open')" class="w-full px-6 py-5 text-left flex items-center justify-between">
                         <span class="font-semibold text-white pr-4">What areas do you cover?</span>
-                        <i class="fa-solid fa-plus text-lime/60 text-sm"></i>
+                        <i class="fa-solid fa-plus text-lime/60 text-sm faq-icon transition-transform"></i>
                     </button>
                     <div class="faq-content">
                         <div class="faq-inner px-6 pb-5 text-white/50 text-sm leading-relaxed">
-                            All major Dubai areas: Marina, Downtown, JBR, Palm, Business Bay, JLT, DIFC. Abu Dhabi coming Q2 2025.
+                            All major Dubai areas: Marina, Downtown, JBR, Palm Jumeirah, Business Bay, JLT, DIFC, and surrounding communities. Abu Dhabi launching Q2 2025.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item border border-white/5 rounded-2xl overflow-hidden hover:border-white/10 transition-colors">
+                    <button onclick="this.parentElement.classList.toggle('open')" class="w-full px-6 py-5 text-left flex items-center justify-between">
+                        <span class="font-semibold text-white pr-4">What's the minimum commitment?</span>
+                        <i class="fa-solid fa-plus text-lime/60 text-sm faq-icon transition-transform"></i>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-inner px-6 pb-5 text-white/50 text-sm leading-relaxed">
+                            None. Start with a free pilot on up to 10 properties. After that, it's month-to-month. No annual contracts. Cancel anytime.
                         </div>
                     </div>
                 </div>
@@ -574,70 +674,85 @@
         </div>
     </section>
 
-    <!-- CTA -->
-    <section id="start" class="py-24 sm:py-32 relative">
+    <!-- CTA / FORM -->
+    <section id="start" class="py-20 sm:py-28 relative">
         <div class="absolute inset-0 mesh-gradient"></div>
         
         <div class="max-w-xl mx-auto px-5 sm:px-8 relative z-10">
-            <div class="text-center mb-12 reveal">
-                <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight">
+            <div class="text-center mb-10 reveal">
+                <h2 class="text-4xl sm:text-5xl font-bold text-white leading-tight">
                     Start with 10.<br>
-                    <span class="text-gradient">See the difference.</span>
+                    <span class="text-gradient">See for yourself.</span>
                 </h2>
-                <p class="text-white/50 text-lg mt-6">Free pilot. No commitment. Full reports.</p>
+                <p class="text-white/50 text-lg mt-4">Free pilot. No commitment. Full reports.</p>
             </div>
             
-            <div class="reveal reveal-delay-1 bg-white/[0.02] backdrop-blur-xl border border-white/5 rounded-3xl p-6 sm:p-10">
+            <div class="reveal bg-white/[0.02] backdrop-blur-xl border border-white/5 rounded-3xl p-6 sm:p-10">
                 <form id="pilot-form" action="https://formspree.io/f/xzzoryvn" method="POST" class="space-y-5">
-                    <input type="hidden" name="form_source" value="STR Operator Page v3">
+                    <input type="hidden" name="form_source" value="STR Operator Page v4">
                     <input type="hidden" name="form_type" value="Operator Pilot Request">
                     
                     <div class="grid sm:grid-cols-2 gap-4">
                         <div>
                             <label class="text-white/40 text-sm mb-2 block">Name</label>
-                            <input type="text" name="name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/30 focus:border-lime/50 focus:outline-none focus:bg-white/[0.07] transition-all" placeholder="Your name">
+                            <input type="text" name="name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/30 focus:border-lime/50 focus:outline-none transition-all" placeholder="Your name">
                         </div>
                         <div>
                             <label class="text-white/40 text-sm mb-2 block">Company</label>
-                            <input type="text" name="company" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/30 focus:border-lime/50 focus:outline-none focus:bg-white/[0.07] transition-all" placeholder="Company name">
+                            <input type="text" name="company" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/30 focus:border-lime/50 focus:outline-none transition-all" placeholder="Company name">
                         </div>
                     </div>
                     
                     <div class="grid sm:grid-cols-2 gap-4">
                         <div>
                             <label class="text-white/40 text-sm mb-2 block">Email</label>
-                            <input type="email" name="email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/30 focus:border-lime/50 focus:outline-none focus:bg-white/[0.07] transition-all" placeholder="you@company.com">
+                            <input type="email" name="email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/30 focus:border-lime/50 focus:outline-none transition-all" placeholder="you@company.com">
                         </div>
                         <div>
                             <label class="text-white/40 text-sm mb-2 block">Phone</label>
-                            <input type="tel" name="phone" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/30 focus:border-lime/50 focus:outline-none focus:bg-white/[0.07] transition-all" placeholder="+971 50 XXX XXXX">
+                            <input type="tel" name="phone" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/30 focus:border-lime/50 focus:outline-none transition-all" placeholder="+971 50 XXX XXXX">
                         </div>
                     </div>
                     
                     <div>
                         <label class="text-white/40 text-sm mb-2 block">Portfolio size</label>
                         <select name="portfolio_size" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:border-lime/50 focus:outline-none transition-all">
-                            <option value="20-50" class="bg-dark">20-50 units</option>
+                            <option value="10-30" class="bg-dark">10-30 units</option>
+                            <option value="30-50" class="bg-dark">30-50 units</option>
                             <option value="50-100" class="bg-dark">50-100 units</option>
                             <option value="100-200" class="bg-dark">100-200 units</option>
-                            <option value="200-500" class="bg-dark">200-500 units</option>
-                            <option value="500+" class="bg-dark">500+ units</option>
+                            <option value="200+" class="bg-dark">200+ units</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="text-white/40 text-sm mb-2 block">What's your biggest challenge with owner communication?</label>
+                        <select name="challenge" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:border-lime/50 focus:outline-none transition-all">
+                            <option value="" class="bg-dark">Select one...</option>
+                            <option value="trust" class="bg-dark">Building trust with new owners</option>
+                            <option value="retention" class="bg-dark">Retaining owners long-term</option>
+                            <option value="disputes" class="bg-dark">Handling maintenance disputes</option>
+                            <option value="documentation" class="bg-dark">Documenting property condition</option>
+                            <option value="scaling" class="bg-dark">Scaling QC across portfolio</option>
+                            <option value="other" class="bg-dark">Other</option>
                         </select>
                     </div>
                     
                     <button type="submit" class="w-full bg-lime text-black px-6 py-4 rounded-xl font-bold text-lg hover:bg-white transition-colors mt-2">
-                        Request Pilot
+                        Request Free Pilot
                     </button>
                 </form>
                 
-                <p class="text-center text-white/30 text-sm mt-6">We'll reach out within 24 hours.</p>
+                <p class="text-center text-white/30 text-sm mt-6">
+                    We'll call you within 24 hours to set up your pilot properties.
+                </p>
             </div>
             
-            <div class="text-center mt-10 reveal reveal-delay-2">
-                <p class="text-white/40 text-sm mb-3">Prefer to talk?</p>
+            <div class="text-center mt-10 reveal">
+                <p class="text-white/40 text-sm mb-3">Prefer a call?</p>
                 <a href="https://wa.me/971585072588" target="_blank" class="inline-flex items-center gap-2 text-lime hover:text-white transition-colors font-medium">
                     <i class="fa-brands fa-whatsapp text-xl"></i>
-                    WhatsApp us
+                    WhatsApp us directly
                 </a>
             </div>
         </div>
@@ -647,17 +762,25 @@
     <footer class="py-12 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-5 sm:px-8">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-4">
                     <img src="/logo.png" alt="LUCAS" class="h-5" onerror="this.outerHTML='<span class=\'text-base font-bold text-white\'>LUCAS</span>'">
                     <span class="text-white/20 text-sm">Ground truth for real estate.</span>
                 </div>
                 <div class="flex items-center gap-6 text-sm">
+                    <span class="text-white/30">Built in Dubai 🇦🇪</span>
                     <a href="/" class="text-white/40 hover:text-white transition-colors">Main site</a>
                     <a href="mailto:hello@lucas.app" class="text-white/40 hover:text-white transition-colors">hello@lucas.app</a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- STICKY MOBILE CTA -->
+    <div id="sticky-cta" class="sticky-cta fixed bottom-0 left-0 right-0 z-40 p-4 bg-gradient-to-t from-black via-black/95 to-transparent sm:hidden">
+        <a href="#start" class="block w-full bg-lime text-black py-4 rounded-xl font-bold text-center">
+            Start Free Pilot →
+        </a>
+    </div>
 
     <!-- SCRIPTS -->
     <script>
@@ -677,6 +800,21 @@
             });
         });
 
+        const stickyCta = document.getElementById('sticky-cta');
+        const heroSection = document.querySelector('section');
+        
+        const stickyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    stickyCta.classList.add('visible');
+                } else {
+                    stickyCta.classList.remove('visible');
+                }
+            });
+        }, { threshold: 0 });
+        
+        stickyObserver.observe(heroSection);
+
         document.getElementById('pilot-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = this.querySelector('button[type="submit"]');
@@ -691,13 +829,14 @@
                 });
                 
                 if (response.ok) {
-                    this.innerHTML = '<div class="text-center py-8"><div class="w-16 h-16 rounded-full bg-lime/20 flex items-center justify-center mx-auto mb-4"><i class="fa-solid fa-check text-lime text-2xl"></i></div><h3 class="text-white font-bold text-xl mb-2">Request received.</h3><p class="text-white/50">We\'ll be in touch within 24 hours.</p></div>';
+                    this.innerHTML = '<div class="text-center py-8"><div class="w-16 h-16 rounded-full bg-lime/20 flex items-center justify-center mx-auto mb-4"><i class="fa-solid fa-check text-lime text-2xl"></i></div><h3 class="text-white font-bold text-xl mb-2">Request received!</h3><p class="text-white/50">We\'ll call you within 24 hours to set up your pilot properties.</p></div>';
+                    stickyCta.style.display = 'none';
                 } else {
                     throw new Error('Failed');
                 }
             } catch (error) {
                 btn.disabled = false;
-                btn.textContent = 'Request Pilot';
+                btn.textContent = 'Request Free Pilot';
                 alert('Something went wrong. Please try WhatsApp instead.');
             }
         });
