@@ -570,21 +570,37 @@
             text-transform: uppercase;
             letter-spacing: 0.3em;
             color: var(--lime);
-            margin-bottom: 48px;
+            margin-bottom: 32px;
         }
         
         .flip-headline {
-            font-family: var(--font-display);
-            font-size: clamp(40px, 8vw, 96px);
-            font-weight: 700;
-            line-height: 1;
-            letter-spacing: -0.03em;
-            max-width: 1000px;
+            font-family: var(--font-body);
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 500;
+            line-height: 1.4;
+            letter-spacing: -0.01em;
+            max-width: 800px;
             margin: 0 auto;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+        }
+        
+        .flip-headline::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-display);
+            font-size: 80px;
+            color: var(--lime);
+            opacity: 0.3;
+            line-height: 1;
         }
         
         .flip-headline .lime {
             color: var(--lime);
+            font-weight: 700;
         }
         
         /* ==========================================
@@ -1415,7 +1431,7 @@
     <section class="flip">
         <span class="flip-label">Now imagine</span>
         <h2 class="flip-headline">
-            "We caught it in January. Here's the report. Fixed it for <span class="lime">800 AED</span>. Mohammed's still with us."
+            We caught it in January. Here's the report. Fixed it for <span class="lime">800 AED</span>. Mohammed's still with us.
         </h2>
     </section>
 
