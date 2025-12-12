@@ -874,6 +874,90 @@
         }
         
         /* ==========================================
+           HOW IT WORKS - Simple 3 steps
+           ========================================== */
+        .how {
+            background: var(--off-black);
+            padding: 80px 32px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .how-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .how-label {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .how-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .how-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .how-step-number {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--lime);
+            color: var(--black);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .how-step-text {
+            font-family: var(--font-body);
+            font-size: 18px;
+            color: var(--paper);
+            line-height: 1.5;
+            padding-top: 4px;
+        }
+        
+        @media (min-width: 600px) {
+            .how-steps {
+                flex-direction: row;
+                gap: 32px;
+            }
+            
+            .how-step {
+                flex: 1;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .how-step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            
+            .how-step-text {
+                padding-top: 0;
+            }
+        }
+        
+        /* ==========================================
            THE MATH - Simple, brutal
            ========================================== */
         .math {
@@ -1335,6 +1419,22 @@
         </h2>
     </section>
 
+    <!-- TESTIMONIAL (moved up for early social proof) -->
+    <section class="testimonial">
+        <div class="testimonial-inner">
+            <blockquote class="testimonial-quote">
+                We lost two owners last year over maintenance disputes we couldn't prove. Since LUCAS, owner retention went from 85% to 96%. That's 7 owners who stayed — do the math on what that's worth over 4 years.
+            </blockquote>
+            <div class="testimonial-author">
+                <div class="testimonial-avatar">SA</div>
+                <div class="testimonial-info">
+                    <p class="testimonial-name">Sarah A.</p>
+                    <p class="testimonial-role">Founder · 62-unit portfolio · JBR & Marina</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- THE PROOF -->
     <section class="proof">
         <div class="proof-header">
@@ -1407,6 +1507,27 @@
         </div>
     </section>
 
+    <!-- HOW IT WORKS -->
+    <section class="how">
+        <div class="how-inner">
+            <span class="how-label">How it works</span>
+            <div class="how-steps">
+                <div class="how-step">
+                    <span class="how-step-number">1</span>
+                    <p class="how-step-text">Monthly on-site inspection by a LUCAS inspector</p>
+                </div>
+                <div class="how-step">
+                    <span class="how-step-number">2</span>
+                    <p class="how-step-text">GPS-stamped photos and 47-point checklist uploaded to your dashboard</p>
+                </div>
+                <div class="how-step">
+                    <span class="how-step-number">3</span>
+                    <p class="how-step-text">Owner-ready report you can forward in one click</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- THE MATH -->
     <section class="math">
         <div class="math-inner">
@@ -1426,22 +1547,6 @@
                 <span class="math-result-label">One owner. Four years. That's what you're protecting.</span>
                 <span class="math-result-value">24×</span>
                 <p class="math-result-context">Plus every repair caught early. Every dispute you win with documentation. Every bad review you prevent.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- TESTIMONIAL -->
-    <section class="testimonial">
-        <div class="testimonial-inner">
-            <blockquote class="testimonial-quote">
-                We lost two owners last year over maintenance disputes we couldn't prove. Since LUCAS, owner retention went from 85% to 96%. That's 7 owners who stayed — do the math on what that's worth over 4 years.
-            </blockquote>
-            <div class="testimonial-author">
-                <div class="testimonial-avatar">SA</div>
-                <div class="testimonial-info">
-                    <p class="testimonial-name">Sarah A.</p>
-                    <p class="testimonial-role">Founder · 62-unit portfolio · JBR & Marina</p>
-                </div>
             </div>
         </div>
     </section>
@@ -1509,9 +1614,10 @@
             { el: document.querySelector('.scene-evidence'), mode: 'light' }, // Black background
             { el: document.querySelector('.scene-cost'), mode: 'light' }, // Red background
             { el: document.querySelector('.flip'), mode: 'light' }, // Black background
+            { el: document.querySelector('.testimonial'), mode: 'dark' }, // Paper background (moved up)
             { el: document.querySelector('.proof'), mode: 'dark' }, // Paper background
+            { el: document.querySelector('.how'), mode: 'light' }, // Dark background (new)
             { el: document.querySelector('.math'), mode: 'light' }, // Black background
-            { el: document.querySelector('.testimonial'), mode: 'dark' }, // Paper background
             { el: document.querySelector('.cta'), mode: 'dark' }, // Lime background
             { el: document.querySelector('.footer'), mode: 'light' }, // Black background
         ];
