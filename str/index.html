@@ -325,6 +325,18 @@
             gap: 20px;
         }
         
+        .reality-qualifier {
+            position: absolute;
+            bottom: 110px;
+            left: 48px;
+            right: 48px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(0,0,0,0.5);
+        }
+        
         /* Center divider */
         .hero-divider {
             position: absolute;
@@ -614,7 +626,7 @@
         
         .proof-header {
             max-width: 600px;
-            margin: 0 auto 80px;
+            margin: 0 auto 60px;
             text-align: center;
         }
         
@@ -634,36 +646,58 @@
             letter-spacing: -0.02em;
         }
         
-        /* Report as physical document */
-        .report {
-            max-width: 700px;
+        /* Report as app/dashboard preview */
+        .report-container {
+            max-width: 800px;
             margin: 0 auto;
-            background: white;
-            box-shadow: 
-                0 2px 4px rgba(0,0,0,0.02),
-                0 8px 16px rgba(0,0,0,0.04),
-                0 24px 48px rgba(0,0,0,0.06),
-                0 48px 96px rgba(0,0,0,0.08);
-            position: relative;
         }
         
-        /* Paper clip decoration */
-        .report::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: 60px;
-            width: 40px;
-            height: 80px;
-            border: 3px solid #999;
-            border-radius: 20px 20px 0 0;
-            border-bottom: none;
-            transform: rotate(-5deg);
+        .report {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 
+                0 0 0 1px rgba(0,0,0,0.05),
+                0 4px 6px rgba(0,0,0,0.04),
+                0 10px 20px rgba(0,0,0,0.04),
+                0 25px 50px rgba(0,0,0,0.06);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .report-browser-bar {
+            background: #f5f5f5;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .report-browser-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+        }
+        
+        .report-browser-dot:nth-child(1) { background: #ff5f57; }
+        .report-browser-dot:nth-child(2) { background: #ffbd2e; }
+        .report-browser-dot:nth-child(3) { background: #28ca42; }
+        
+        .report-browser-url {
+            flex: 1;
+            margin-left: 12px;
+            background: white;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
         }
         
         .report-header {
             background: var(--black);
-            padding: 32px;
+            padding: 24px 32px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -714,7 +748,7 @@
         }
         
         .report-body {
-            padding: 40px;
+            padding: 32px;
         }
         
         .report-property {
@@ -814,24 +848,16 @@
         .report-photos {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 24px;
+            gap: 12px;
+            margin-bottom: 16px;
         }
         
         .report-photo {
             aspect-ratio: 1;
             background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            border-radius: 8px;
             position: relative;
             overflow: hidden;
-        }
-        
-        /* Fake polaroid style */
-        .report-photo::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border: 8px solid white;
-            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
         }
         
         .report-photo:nth-child(1) { background: linear-gradient(135deg, #e8d5c4 0%, #d4c4b4 100%); }
@@ -844,6 +870,7 @@
             font-size: 11px;
             color: var(--text-muted);
             text-align: center;
+            margin-bottom: 24px;
         }
         
         .report-footer {
@@ -856,37 +883,45 @@
             color: var(--text-muted);
         }
         
-        /* Floating annotation */
-        .report-annotation {
-            position: absolute;
-            bottom: -40px;
-            right: -40px;
-            background: var(--black);
-            color: var(--lime);
-            padding: 20px 28px;
-            font-family: var(--font-body);
-            font-weight: 700;
-            transform: rotate(3deg);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        @media (max-width: 600px) {
+            .report-footer {
+                flex-direction: column;
+                gap: 8px;
+            }
         }
         
-        .report-annotation span {
+        /* Sample report CTA */
+        .report-cta {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .report-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-body);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            padding: 16px 32px;
+            background: white;
+            border: 2px solid var(--text);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        .report-cta a:hover {
+            background: var(--text);
+            color: white;
+        }
+        
+        .report-cta p {
+            margin-top: 12px;
             font-family: var(--font-mono);
             font-size: 12px;
-            font-weight: 400;
-            color: rgba(255,255,255,0.6);
-            display: block;
-            margin-bottom: 4px;
-        }
-        
-        @media (max-width: 768px) {
-            .report-annotation {
-                position: relative;
-                bottom: auto;
-                right: auto;
-                margin-top: 24px;
-                transform: none;
-            }
+            color: var(--text-muted);
         }
         
         /* ==========================================
@@ -1384,6 +1419,7 @@
             <div class="reality-cta">
                 <a href="#cta">Start free pilot <i class="fa-solid fa-arrow-right"></i></a>
             </div>
+            <p class="reality-qualifier">For STR operators managing 10+ units in Dubai</p>
         </div>
     </section>
 
@@ -1431,7 +1467,7 @@
     <section class="flip">
         <span class="flip-label">With LUCAS</span>
         <h2 class="flip-headline">
-            We caught it three weeks in. Report sent. <span class="lime">800 AED</span> fix. Mohammed didn't find out from a visit — he found out from us, with 47 photos attached.
+            We caught it three weeks in. Report sent. <span class="lime">800 AED</span> fix. Mohammed didn't find out from a visit — he found out from us, report in hand.
         </h2>
     </section>
 
@@ -1439,7 +1475,7 @@
     <section class="testimonial">
         <div class="testimonial-inner">
             <blockquote class="testimonial-quote">
-                We lost two owners last year over maintenance disputes we couldn't prove. Since LUCAS, owner retention went from 85% to 96%. That's 7 owners who stayed — over 700,000 AED in fees we didn't lose.
+                We lost two owners last year over maintenance disputes we couldn't prove. Since LUCAS, owner retention went from 85% to 96%. That's 7 owners who stayed — about 700,000 AED in fees we didn't lose.
             </blockquote>
             <div class="testimonial-author">
                 <div class="testimonial-avatar">SA</div>
@@ -1458,67 +1494,79 @@
             <h2 class="proof-title">The report that ends "why didn't you catch this?"</h2>
         </div>
         
-        <div class="report">
-            <div class="report-header">
-                <div class="report-logo">
-                    <div class="report-logo-mark">L</div>
-                    <div class="report-logo-text">
-                        LUCAS Verification
-                        <span>January 2025</span>
+        <div class="report-container">
+            <div class="report">
+                <div class="report-browser-bar">
+                    <div class="report-browser-dot"></div>
+                    <div class="report-browser-dot"></div>
+                    <div class="report-browser-dot"></div>
+                    <div class="report-browser-url">app.lucas.app/reports/marina-views-1847</div>
+                </div>
+                
+                <div class="report-header">
+                    <div class="report-logo">
+                        <div class="report-logo-mark">L</div>
+                        <div class="report-logo-text">
+                            LUCAS Verification
+                            <span>Monthly Inspection Report</span>
+                        </div>
+                    </div>
+                    <span class="report-stamp">✓ Verified</span>
+                </div>
+                
+                <div class="report-body">
+                    <div class="report-property">
+                        <div>
+                            <h3 class="report-property-name">Marina Views 1847</h3>
+                            <p class="report-property-details">Dubai Marina · 1BR · Owner: Ahmed K.</p>
+                        </div>
+                        <div class="report-score">
+                            <span class="report-score-number">92</span>
+                            <span class="report-score-label">Excellent</span>
+                        </div>
+                    </div>
+                    
+                    <div class="report-issues">
+                        <p class="report-issues-header">
+                            <i class="fa-solid fa-flag"></i>
+                            2 issues caught early
+                        </p>
+                        <div class="report-issue">
+                            <span class="report-issue-name">AC drain pan — minor overflow starting</span>
+                            <span class="report-issue-cost">~350 AED</span>
+                        </div>
+                        <div class="report-issue">
+                            <span class="report-issue-name">Bathroom sealant — cracking, needs reseal</span>
+                            <span class="report-issue-cost">~200 AED</span>
+                        </div>
+                        <div class="report-issues-total">
+                            <span>Fix now before it spreads</span>
+                            <span class="report-issue-cost">~550 AED</span>
+                        </div>
+                    </div>
+                    
+                    <div class="report-photos">
+                        <div class="report-photo"></div>
+                        <div class="report-photo"></div>
+                        <div class="report-photo"></div>
+                        <div class="report-photo"></div>
+                    </div>
+                    <p class="report-photos-label">GPS-verified photos attached · Full 47-point checklist included</p>
+                    
+                    <div class="report-footer">
+                        <span><i class="fa-solid fa-location-dot"></i> GPS: 25.0762° N, 55.1330° E</span>
+                        <span><i class="fa-solid fa-clock"></i> Dec 15, 2024 · 10:32 AM</span>
+                        <span><i class="fa-solid fa-user-check"></i> Inspector: Khalid M.</span>
                     </div>
                 </div>
-                <span class="report-stamp">✓ Verified</span>
             </div>
             
-            <div class="report-body">
-                <div class="report-property">
-                    <div>
-                        <h3 class="report-property-name">Marina Views 1847</h3>
-                        <p class="report-property-details">Dubai Marina · 1BR · Owner: Ahmed K.</p>
-                    </div>
-                    <div class="report-score">
-                        <span class="report-score-number">92</span>
-                        <span class="report-score-label">Excellent</span>
-                    </div>
-                </div>
-                
-                <div class="report-issues">
-                    <p class="report-issues-header">
-                        <i class="fa-solid fa-flag"></i>
-                        2 issues caught early
-                    </p>
-                    <div class="report-issue">
-                        <span class="report-issue-name">AC drain pan — minor overflow starting</span>
-                        <span class="report-issue-cost">~350 AED</span>
-                    </div>
-                    <div class="report-issue">
-                        <span class="report-issue-name">Bathroom sealant — cracking, needs reseal</span>
-                        <span class="report-issue-cost">~200 AED</span>
-                    </div>
-                    <div class="report-issues-total">
-                        <span>Fix now before it spreads</span>
-                        <span class="report-issue-cost">~550 AED</span>
-                    </div>
-                </div>
-                
-                <div class="report-photos">
-                    <div class="report-photo"></div>
-                    <div class="report-photo"></div>
-                    <div class="report-photo"></div>
-                    <div class="report-photo"></div>
-                </div>
-                <p class="report-photos-label">47 GPS-verified photos attached · Full checklist included</p>
-                
-                <div class="report-footer">
-                    <span><i class="fa-solid fa-location-dot"></i> GPS: 25.0762° N, 55.1330° E</span>
-                    <span><i class="fa-solid fa-clock"></i> Jan 15, 2025 · 10:32 AM</span>
-                    <span><i class="fa-solid fa-user-check"></i> Inspector: Khalid M.</span>
-                </div>
-            </div>
-            
-            <div class="report-annotation">
-                <span>Caught early</span>
-                550 AED → not 8,000
+            <div class="report-cta">
+                <a href="/sample-report.pdf" target="_blank">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    View full sample report
+                </a>
+                <p>See exactly what your owners will receive</p>
             </div>
         </div>
     </section>
@@ -1550,17 +1598,17 @@
             <div class="math-equation">
                 <div class="math-term">
                     <span class="math-term-value white">4,200</span>
-                    <span class="math-term-label">AED/year risk</span>
+                    <span class="math-term-label">AED/year — LUCAS</span>
                 </div>
                 <span class="math-operator">→</span>
                 <div class="math-term">
                     <span class="math-term-value lime">100K</span>
-                    <span class="math-term-label">AED protected</span>
+                    <span class="math-term-label">AED — owner lifetime value</span>
                 </div>
             </div>
             
             <div class="math-result">
-                <span class="math-result-label">One owner. Four years. That's what you're protecting.</span>
+                <span class="math-result-label">One owner staying pays for 24 years of LUCAS.</span>
                 <span class="math-result-value">24×</span>
                 <p class="math-result-context">That's before counting the repairs, the disputes, the reviews.</p>
             </div>
