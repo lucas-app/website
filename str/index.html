@@ -344,30 +344,33 @@
             position: relative;
         }
         
-        .report-preview-logo { display: flex; align-items: center; justify-content: center; gap: 5px; margin-bottom: 12px; }
-        .report-preview-logo-mark { width: 16px; height: 16px; background: var(--black); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 700; color: var(--lime); }
-        .report-preview-logo-text { font-size: 8px; color: rgba(0,0,0,0.4); letter-spacing: 0.04em; }
-        .report-preview-property { font-family: var(--font-display); font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
-        .report-preview-location { font-size: 8px; color: rgba(0,0,0,0.4); margin-bottom: 12px; }
+        .report-preview-logo { 
+            width: 28px;
+            height: auto;
+            margin: 0 auto 10px;
+        }
+        .report-preview-logo img { width: 100%; height: auto; }
+        .report-preview-property { font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+        .report-preview-location { font-size: 9px; color: rgba(0,0,0,0.5); margin-bottom: 14px; }
         
         /* Score ring with glowing halo */
         .report-preview-score { 
             position: relative; 
-            width: 80px; 
-            height: 80px; 
+            width: 90px; 
+            height: 90px; 
             margin: 0 auto;
         }
         
         /* Halo glow - visible, pulsing ring of light */
         .score-halo {
             position: absolute;
-            inset: -12px;
+            inset: -6px;
             border-radius: 50%;
             background: transparent;
             box-shadow: 
-                0 0 20px 8px rgba(190, 240, 74, 0.5),
-                0 0 40px 16px rgba(190, 240, 74, 0.25),
-                0 0 60px 24px rgba(190, 240, 74, 0.1);
+                0 0 15px 6px rgba(190, 240, 74, 0.5),
+                0 0 30px 12px rgba(190, 240, 74, 0.25),
+                0 0 45px 18px rgba(190, 240, 74, 0.1);
             animation: haloGlow 2.5s ease-in-out infinite;
         }
         
@@ -402,7 +405,7 @@
         
         .report-preview-score-inner { 
             position: absolute; 
-            inset: 8px; 
+            inset: 10px; 
             background: white; 
             border-radius: 50%; 
             display: flex; 
@@ -413,8 +416,8 @@
             z-index: 3;
         }
         
-        .report-preview-score-number { font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--text); line-height: 1; }
-        .report-preview-score-label { font-size: 6px; color: var(--text-muted); margin-top: 1px; }
+        .report-preview-score-number { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--text); line-height: 1; }
+        .report-preview-score-label { font-size: 7px; color: var(--text-muted); margin-top: 2px; }
         
         .report-preview-badge { display: inline-flex; align-items: center; gap: 4px; background: rgba(22,163,74,0.1); padding: 3px 8px; border-radius: 100px; margin-top: 12px; }
         .report-preview-badge-dot { width: 4px; height: 4px; background: #16a34a; border-radius: 50%; }
@@ -468,9 +471,12 @@
             .phone-screen { border-radius: 38px; }
             .phone-dynamic-island { width: 72px; height: 22px; top: 10px; }
             .report-preview-hero { padding: 44px 14px 18px; }
-            .report-preview-score { width: 70px; height: 70px; }
-            .score-halo { inset: -6px; }
-            .report-preview-score-number { font-size: 20px; }
+            .report-preview-logo { width: 24px; margin-bottom: 8px; }
+            .report-preview-property { font-size: 13px; }
+            .report-preview-location { font-size: 8px; }
+            .report-preview-score { width: 80px; height: 80px; }
+            .score-halo { inset: -5px; box-shadow: 0 0 12px 5px rgba(190, 240, 74, 0.5), 0 0 24px 10px rgba(190, 240, 74, 0.25); }
+            .report-preview-score-number { font-size: 22px; }
             .proof-features { gap: 24px; }
             .proof-feature { gap: 16px; }
             .proof-feature-icon { width: 40px; height: 40px; border-radius: 10px; }
@@ -731,8 +737,7 @@
                             <div class="report-preview">
                                 <div class="report-preview-hero">
                                     <div class="report-preview-logo">
-                                        <div class="report-preview-logo-mark">L</div>
-                                        <span class="report-preview-logo-text">LUCAS Report</span>
+                                        <img src="https://raw.githubusercontent.com/lucas-app/website/main/logoverticalblack.png" alt="LUCAS">
                                     </div>
                                     <p class="report-preview-property">Marina Views 1802</p>
                                     <p class="report-preview-location">Dubai Marina, UAE</p>
