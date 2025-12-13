@@ -567,9 +567,10 @@
         
         /* FAQ */
         .faq { background: var(--black); padding: 100px 32px; }
-        .faq-inner { max-width: 540px; margin: 0 auto; }
+        .faq-inner { max-width: 900px; margin: 0 auto; }
         .faq-label { display: block; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.3); text-align: center; margin-bottom: 48px; }
-        .chat-window { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 32px; }
+        .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .chat-window { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 24px; }
         .chat-messages { display: flex; flex-direction: column; gap: 24px; }
         .chat-message { display: flex; gap: 12px; max-width: 90%; }
         .chat-message-user { align-self: flex-end; flex-direction: row-reverse; }
@@ -585,6 +586,7 @@
         @media (max-width: 768px) {
             .faq { padding: 64px 20px; }
             .faq-label { margin-bottom: 32px; font-size: 10px; }
+            .faq-grid { grid-template-columns: 1fr; gap: 16px; }
             .chat-window { padding: 20px; border-radius: 12px; }
             .chat-messages { gap: 16px; }
             .chat-message { gap: 10px; max-width: 95%; }
@@ -924,18 +926,24 @@
     <section class="faq">
         <div class="faq-inner">
             <span class="faq-label">Questions</span>
-            <div class="chat-window">
-                <div class="chat-messages">
-                    <div class="chat-message chat-message-user"><div class="chat-bubble">What happens after the free pilot?</div></div>
-                    <div class="chat-message chat-message-lucas"><div class="chat-avatar">L</div><div class="chat-bubble">350 AED/month per property. No contracts. Cancel anytime. Most operators continue — but there's zero pressure.</div></div>
-                    <div class="chat-message chat-message-user"><div class="chat-bubble">What if you find something serious?</div></div>
-                    <div class="chat-message chat-message-lucas"><div class="chat-avatar">L</div><div class="chat-bubble">You see it first. Always. We flag it, you decide what to tell the owner and when. Your relationship, your call.</div></div>
-                    <div class="chat-message chat-message-user"><div class="chat-bubble">Will owners think I wasn't doing my job before?</div></div>
-                    <div class="chat-message chat-message-lucas"><div class="chat-avatar">L</div><div class="chat-bubble">Opposite. You're the operator who upgraded to independent verification. That's a selling point, not a weakness.</div></div>
-                    <div class="chat-message chat-message-user"><div class="chat-bubble">Who actually does the inspections?</div></div>
-                    <div class="chat-message chat-message-lucas"><div class="chat-avatar">L</div><div class="chat-bubble">Trained, background-checked, insured inspectors. Same person for your portfolio when possible — they learn your properties.</div></div>
-                    <div class="chat-message chat-message-user"><div class="chat-bubble">How long does an inspection take?</div></div>
-                    <div class="chat-message chat-message-lucas"><div class="chat-avatar">L</div><div class="chat-bubble">30–45 minutes. We coordinate around your guest bookings — no disruption to your calendar.</div></div>
+            <div class="faq-grid">
+                <div class="chat-window">
+                    <div class="chat-messages">
+                        <div class="chat-message chat-message-user"><div class="chat-bubble">What happens after the free pilot?</div></div>
+                        <div class="chat-message chat-message-lucas"><div class="chat-avatar">L</div><div class="chat-bubble">350 AED/month per property. No contracts. Cancel anytime.</div></div>
+                        <div class="chat-message chat-message-user"><div class="chat-bubble">What if you find something serious?</div></div>
+                        <div class="chat-message chat-message-lucas"><div class="chat-avatar">L</div><div class="chat-bubble">You see it first. Always. We flag it, you decide what to tell the owner and when.</div></div>
+                        <div class="chat-message chat-message-user"><div class="chat-bubble">Will owners think I wasn't doing my job?</div></div>
+                        <div class="chat-message chat-message-lucas"><div class="chat-avatar">L</div><div class="chat-bubble">Opposite. You're the operator who upgraded to independent verification.</div></div>
+                    </div>
+                </div>
+                <div class="chat-window">
+                    <div class="chat-messages">
+                        <div class="chat-message chat-message-user"><div class="chat-bubble">Who does the inspections?</div></div>
+                        <div class="chat-message chat-message-lucas"><div class="chat-avatar">L</div><div class="chat-bubble">Trained, background-checked, insured inspectors. Same person for your portfolio when possible.</div></div>
+                        <div class="chat-message chat-message-user"><div class="chat-bubble">How long does an inspection take?</div></div>
+                        <div class="chat-message chat-message-lucas"><div class="chat-avatar">L</div><div class="chat-bubble">30–45 minutes. We coordinate around your guest bookings.</div></div>
+                    </div>
                 </div>
             </div>
             <a href="https://wa.me/971585072588" target="_blank" class="chat-cta"><i class="fa-brands fa-whatsapp"></i> More questions? Let's chat</a>
