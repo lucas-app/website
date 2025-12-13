@@ -1153,9 +1153,528 @@
             font-size: 14px;
             color: var(--stone-400);
         }
+        /* ============================================
+           SHARE UI - Premium Shareable Experience
+           ============================================ */
+        
+        /* Share URL Strip - Shows this is shareable */
+        .share-strip {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: var(--stone-900);
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            transform: translateY(-100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .share-strip.visible {
+            transform: translateY(0);
+        }
+        
+        .share-strip-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--lime);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .share-strip-label svg {
+            width: 14px;
+            height: 14px;
+        }
+        
+        .share-strip-url {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            background: var(--stone-800);
+            border-radius: 8px;
+            max-width: 400px;
+        }
+        
+        .share-strip-url-text {
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--stone-300);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .share-strip-copy {
+            padding: 6px 14px;
+            background: var(--lime);
+            border: none;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--black);
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        
+        .share-strip-copy:hover {
+            background: var(--white);
+        }
+        
+        .share-strip-close {
+            width: 32px;
+            height: 32px;
+            background: transparent;
+            border: 1px solid var(--stone-700);
+            border-radius: 8px;
+            color: var(--stone-400);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .share-strip-close:hover {
+            background: var(--stone-800);
+            color: var(--white);
+        }
+        
+        @media (max-width: 600px) {
+            .share-strip {
+                padding: 10px 16px;
+                gap: 10px;
+            }
+            .share-strip-label {
+                display: none;
+            }
+            .share-strip-url {
+                flex: 1;
+            }
+        }
+        
+        /* Floating Share Button (FAB) */
+        .share-fab {
+            position: fixed;
+            bottom: calc(var(--safe-bottom) + 24px);
+            right: 24px;
+            z-index: 90;
+            width: 60px;
+            height: 60px;
+            background: var(--stone-900);
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .share-fab:hover {
+            transform: scale(1.1);
+            background: var(--black);
+        }
+        
+        .share-fab svg {
+            width: 24px;
+            height: 24px;
+            color: var(--lime);
+        }
+        
+        .share-fab-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 20px;
+            height: 20px;
+            background: var(--lime);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .share-fab-badge svg {
+            width: 12px;
+            height: 12px;
+            color: var(--black);
+        }
+        
+        @media (min-width: 768px) {
+            .share-fab {
+                display: none;
+            }
+        }
+        
+        /* Share Modal */
+        .share-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .share-modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .share-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+        }
+        
+        .share-modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            background: var(--white);
+            border-radius: 24px 24px 0 0;
+            padding: 20px 24px calc(var(--safe-bottom) + 24px);
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .share-modal.open .share-modal-content {
+            transform: translateY(0);
+        }
+        
+        @media (min-width: 600px) {
+            .share-modal {
+                align-items: center;
+            }
+            .share-modal-content {
+                border-radius: 24px;
+                padding: 28px;
+                max-height: 90vh;
+                margin: 24px;
+                transform: translateY(20px) scale(0.95);
+            }
+            .share-modal.open .share-modal-content {
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .share-modal-handle {
+            width: 40px;
+            height: 4px;
+            background: var(--stone-200);
+            border-radius: 2px;
+            margin: 0 auto 20px;
+        }
+        
+        @media (min-width: 600px) {
+            .share-modal-handle {
+                display: none;
+            }
+        }
+        
+        .share-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+        
+        .share-modal-title {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .share-modal-close {
+            width: 36px;
+            height: 36px;
+            background: var(--stone-100);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--stone-500);
+            transition: all 0.2s;
+        }
+        
+        .share-modal-close:hover {
+            background: var(--stone-200);
+            color: var(--stone-900);
+        }
+        
+        /* Share Link Box */
+        .share-link-box {
+            background: var(--stone-50);
+            border: 1px solid var(--stone-200);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .share-link-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--stone-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .share-link-label svg {
+            width: 14px;
+            height: 14px;
+            color: var(--green);
+        }
+        
+        .share-link-row {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .share-link-input {
+            flex: 1;
+            padding: 14px 16px;
+            background: var(--white);
+            border: 1px solid var(--stone-200);
+            border-radius: 12px;
+            font-family: monospace;
+            font-size: 13px;
+            color: var(--stone-700);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .share-link-copy {
+            padding: 14px 24px;
+            background: var(--stone-900);
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--white);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .share-link-copy:hover {
+            background: var(--black);
+        }
+        
+        .share-link-copy.copied {
+            background: var(--green);
+        }
+        
+        .share-link-copy svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        /* Share Options */
+        .share-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .share-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 12px;
+            background: var(--stone-50);
+            border: 1px solid var(--stone-100);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        
+        .share-option:hover {
+            background: var(--stone-100);
+            border-color: var(--stone-200);
+            transform: translateY(-2px);
+        }
+        
+        .share-option-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .share-option-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+        
+        .share-option-icon.whatsapp {
+            background: #25D366;
+            color: white;
+        }
+        
+        .share-option-icon.email {
+            background: var(--stone-800);
+            color: white;
+        }
+        
+        .share-option-icon.download {
+            background: var(--lime);
+            color: var(--black);
+        }
+        
+        .share-option-icon.more {
+            background: var(--stone-200);
+            color: var(--stone-600);
+        }
+        
+        .share-option-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--stone-600);
+        }
+        
+        /* Share Footer */
+        .share-footer {
+            padding-top: 20px;
+            border-top: 1px solid var(--stone-100);
+            text-align: center;
+        }
+        
+        .share-footer-text {
+            font-size: 12px;
+            color: var(--stone-400);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        
+        .share-footer-text svg {
+            width: 14px;
+            height: 14px;
+            color: var(--green);
+        }
+        
     </style>
 </head>
 <body>
+    <!-- Share URL Strip -->
+    <div class="share-strip" id="shareStrip">
+        <div class="share-strip-label">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+            Shareable Link
+        </div>
+        <div class="share-strip-url">
+            <span class="share-strip-url-text" id="shareUrlText">lucas.app/r/MV1802-A7X9</span>
+            <button class="share-strip-copy" onclick="copyShareLink(this)">Copy</button>
+        </div>
+        <button class="share-strip-close" onclick="hideShareStrip()">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+    </div>
+    
+    <!-- Floating Share Button (Mobile) -->
+    <button class="share-fab" onclick="openShareModal()">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+        <div class="share-fab-badge">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101"/></svg>
+        </div>
+    </button>
+    
+    <!-- Share Modal -->
+    <div class="share-modal" id="shareModal" onclick="if(event.target === this) closeShareModal()">
+        <div class="share-modal-backdrop"></div>
+        <div class="share-modal-content">
+            <div class="share-modal-handle"></div>
+            
+            <div class="share-modal-header">
+                <h3 class="share-modal-title serif">Share Report</h3>
+                <button class="share-modal-close" onclick="closeShareModal()">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            
+            <div class="share-link-box">
+                <div class="share-link-label">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    Verified Report Link
+                </div>
+                <div class="share-link-row">
+                    <div class="share-link-input" id="shareLinkInput">lucas.app/r/MV1802-A7X9</div>
+                    <button class="share-link-copy" id="shareLinkCopy" onclick="copyShareLinkModal(this)">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        Copy
+                    </button>
+                </div>
+            </div>
+            
+            <div class="share-options">
+                <a href="https://wa.me/?text=LUCAS%20Inspection%20Report%20for%20Marina%20Views%201802%20%E2%80%94%2095%2F100%20%F0%9F%8F%A0%0Ahttps%3A%2F%2Flucas.app%2Fr%2FMV1802-A7X9" target="_blank" class="share-option">
+                    <div class="share-option-icon whatsapp">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </div>
+                    <span class="share-option-label">WhatsApp</span>
+                </a>
+                
+                <a href="mailto:?subject=LUCAS%20Inspection%20Report%20%E2%80%94%20Marina%20Views%201802&body=Here%27s%20the%20verified%20inspection%20report%20for%20Marina%20Views%201802.%0A%0AScore%3A%2095%2F100%20(Excellent)%0A%0AView%20Report%3A%20https%3A%2F%2Flucas.app%2Fr%2FMV1802-A7X9" class="share-option">
+                    <div class="share-option-icon email">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <span class="share-option-label">Email</span>
+                </a>
+                
+                <button class="share-option" onclick="downloadPDF()">
+                    <div class="share-option-icon download">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </div>
+                    <span class="share-option-label">PDF</span>
+                </button>
+                
+                <button class="share-option" onclick="nativeShare()">
+                    <div class="share-option-icon more">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                    </div>
+                    <span class="share-option-label">More</span>
+                </button>
+            </div>
+            
+            <div class="share-footer">
+                <p class="share-footer-text">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    Link is secure and verified by LUCAS
+                </p>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero -->
     <section class="hero">
         <div class="hero-ambient"></div>
@@ -1165,9 +1684,9 @@
                 <img src="https://raw.githubusercontent.com/lucas-app/website/main/logo.png" alt="LUCAS" class="logo-img">
             </div>
             <div class="hero-actions">
-                <button class="btn btn-ghost" onclick="shareReport()">
+                <button class="btn btn-primary" onclick="openShareModal()">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
-                    Share
+                    Share Report
                 </button>
             </div>
         </header>
@@ -1175,7 +1694,7 @@
         <div class="hero-content">
             <div class="property-badge">
                 <div class="property-badge-dot"></div>
-                <span class="property-badge-text">Verified • Dec 12, 2024</span>
+                <span class="property-badge-text">Verified Report • Dec 12, 2024</span>
             </div>
             
             <h1 class="property-name serif">Marina Views 1802</h1>
@@ -1785,15 +2304,84 @@
             setTimeout(() => event.target.textContent = 'Copy', 2000);
         }
         
-        // Share
-        function shareReport() {
+        // Share Modal Functions
+        const shareUrl = 'lucas.app/r/MV1802-A7X9';
+        const fullShareUrl = 'https://lucas.app/r/MV1802-A7X9';
+        
+        function openShareModal() {
+            document.getElementById('shareModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeShareModal() {
+            document.getElementById('shareModal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        
+        function copyShareLink(btn) {
+            navigator.clipboard.writeText(fullShareUrl);
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = 'Copy', 2000);
+        }
+        
+        function copyShareLinkModal(btn) {
+            navigator.clipboard.writeText(fullShareUrl);
+            btn.classList.add('copied');
+            btn.innerHTML = '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Copied!';
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                btn.innerHTML = '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> Copy';
+            }, 2000);
+        }
+        
+        function downloadPDF() {
+            // In production, this would generate/download a PDF
+            alert('PDF download will be available soon. For now, you can print this page as PDF.');
+            window.print();
+        }
+        
+        function nativeShare() {
             if (navigator.share) {
-                navigator.share({ title: 'Marina Views 1802 — 96/100', text: 'LUCAS Verified Inspection', url: location.href });
+                navigator.share({
+                    title: 'Marina Views 1802 — 95/100',
+                    text: 'LUCAS Verified Inspection Report',
+                    url: fullShareUrl
+                });
             } else {
-                navigator.clipboard.writeText(location.href);
-                alert('Link copied!');
+                copyShareLinkModal(document.getElementById('shareLinkCopy'));
             }
         }
+        
+        // Share Strip
+        function showShareStrip() {
+            document.getElementById('shareStrip').classList.add('visible');
+        }
+        
+        function hideShareStrip() {
+            document.getElementById('shareStrip').classList.remove('visible');
+        }
+        
+        // Show share strip after scrolling a bit (to indicate shareability)
+        let shareStripShown = false;
+        window.addEventListener('scroll', () => {
+            if (!shareStripShown && window.scrollY > 300) {
+                showShareStrip();
+                shareStripShown = true;
+                // Auto-hide after 5 seconds
+                setTimeout(() => {
+                    if (document.getElementById('shareStrip').classList.contains('visible')) {
+                        hideShareStrip();
+                    }
+                }, 5000);
+            }
+        });
+        
+        // Close modal on escape
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && document.getElementById('shareModal').classList.contains('open')) {
+                closeShareModal();
+            }
+        });
         
         // Init
         animateScore();
