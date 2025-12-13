@@ -462,29 +462,86 @@
         }
         
         /* MATH */
-        .math { background: var(--black); padding: 120px 32px; }
-        .math-inner { max-width: 1000px; margin: 0 auto; }
-        .math-equation { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 32px; margin-bottom: 64px; }
-        .math-term { text-align: center; }
-        .math-term-value { font-family: var(--font-display); font-size: clamp(48px, 10vw, 96px); font-weight: 700; line-height: 1; }
-        .math-term-value.white { color: white; }
-        .math-term-value.lime { color: var(--lime); }
-        .math-term-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.5); margin-top: 12px; }
-        .math-operator { font-family: var(--font-display); font-size: 48px; color: rgba(255,255,255,0.3); }
-        .math-result { text-align: center; padding: 48px; border: 1px solid rgba(255,255,255,0.1); }
-        .math-result-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
-        .math-result-value { font-family: var(--font-display); font-size: clamp(64px, 12vw, 120px); font-weight: 700; color: var(--lime); line-height: 1; }
+        /* MATH - Clean equation */
+        .math { background: var(--black); padding: 100px 32px; }
+        .math-inner { max-width: 1100px; margin: 0 auto; }
         
-        /* MATH MOBILE */
+        /* Equation row */
+        .math-equation { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .math-term { text-align: center; }
+        .math-term-value { 
+            font-family: var(--font-display); 
+            font-size: clamp(42px, 8vw, 72px); 
+            font-weight: 700; 
+            line-height: 1; 
+            color: white;
+        }
+        .math-term-label { 
+            font-family: var(--font-mono); 
+            font-size: 10px; 
+            text-transform: uppercase; 
+            letter-spacing: 0.12em; 
+            color: rgba(255,255,255,0.4); 
+            margin-top: 10px; 
+        }
+        
+        .math-operator { 
+            font-family: var(--font-display); 
+            font-size: 28px; 
+            color: rgba(255,255,255,0.25); 
+        }
+        
+        /* Result - the hero */
+        .math-result { 
+            text-align: center;
+        }
+        
+        .math-result-value { 
+            font-family: var(--font-display); 
+            font-size: clamp(120px, 25vw, 240px); 
+            font-weight: 700; 
+            color: var(--lime); 
+            line-height: 0.85;
+            letter-spacing: -0.03em;
+        }
+        
+        .math-result-label { 
+            font-family: var(--font-mono); 
+            font-size: 12px; 
+            text-transform: uppercase; 
+            letter-spacing: 0.15em; 
+            color: rgba(255,255,255,0.5); 
+            margin-top: 20px;
+        }
+        
+        /* Mobile */
         @media (max-width: 768px) {
             .math { padding: 64px 20px; }
-            .math-equation { gap: 16px; margin-bottom: 40px; flex-direction: column; }
-            .math-term-value { font-size: 48px; }
-            .math-term-label { font-size: 10px; margin-top: 8px; }
-            .math-operator { font-size: 32px; transform: rotate(90deg); }
-            .math-result { padding: 32px 20px; }
-            .math-result-label { font-size: 10px; padding: 0 10px; }
-            .math-result-value { font-size: 64px; }
+            .math-equation { 
+                gap: 20px;
+                margin-bottom: 40px;
+            }
+            .math-term-value { font-size: 32px; }
+            .math-term-label { font-size: 9px; margin-top: 6px; }
+            .math-operator { font-size: 20px; }
+            .math-result-value { font-size: 100px; }
+            .math-result-label { font-size: 10px; margin-top: 16px; padding: 0 20px; }
+        }
+        
+        @media (max-width: 480px) {
+            .math-equation { 
+                flex-wrap: wrap;
+                gap: 12px 20px;
+            }
+            .math-term-value { font-size: 28px; }
+            .math-result-value { font-size: 80px; }
         }
         
         /* CTA */
@@ -855,13 +912,19 @@
     <section class="math">
         <div class="math-inner">
             <div class="math-equation">
-                <div class="math-term"><span class="math-term-value white">4,200</span><span class="math-term-label">AED/year — LUCAS</span></div>
+                <div class="math-term">
+                    <span class="math-term-value">4,200</span>
+                    <span class="math-term-label">LUCAS / year</span>
+                </div>
                 <span class="math-operator">→</span>
-                <div class="math-term"><span class="math-term-value lime">100K</span><span class="math-term-label">AED — owner lifetime value</span></div>
+                <div class="math-term">
+                    <span class="math-term-value">100K</span>
+                    <span class="math-term-label">Owner protected</span>
+                </div>
             </div>
             <div class="math-result">
-                <span class="math-result-label">Retain one owner and LUCAS pays for itself for the next two decades.</span>
                 <span class="math-result-value">24×</span>
+                <span class="math-result-label">One owner satisfactory report. Two decades of LUCAS.</span>
             </div>
         </div>
     </section>
