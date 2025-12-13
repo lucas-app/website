@@ -888,16 +888,17 @@
         
         .report-photo {
             aspect-ratio: 1;
-            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            background: #f0f0f0;
             border-radius: 8px;
             position: relative;
             overflow: hidden;
         }
         
-        .report-photo:nth-child(1) { background: linear-gradient(135deg, #e8d5c4 0%, #d4c4b4 100%); }
-        .report-photo:nth-child(2) { background: linear-gradient(135deg, #d4e8f4 0%, #c4d8e8 100%); }
-        .report-photo:nth-child(3) { background: linear-gradient(135deg, #f4e8d4 0%, #e8d8c4 100%); }
-        .report-photo:nth-child(4) { background: linear-gradient(135deg, #e4e8e4 0%, #d4d8d4 100%); }
+        .report-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
         
         .report-photos-label {
             font-family: var(--font-mono);
@@ -1760,10 +1761,10 @@
                     </div>
                     
                     <div class="report-photos">
-                        <div class="report-photo"></div>
-                        <div class="report-photo"></div>
-                        <div class="report-photo"></div>
-                        <div class="report-photo"></div>
+                        <div class="report-photo"><img src="https://raw.githubusercontent.com/lucas-app/website/main/pic1.png" alt="Inspection photo 1"></div>
+                        <div class="report-photo"><img src="https://raw.githubusercontent.com/lucas-app/website/main/pic2.png" alt="Inspection photo 2"></div>
+                        <div class="report-photo"><img src="https://raw.githubusercontent.com/lucas-app/website/main/pic3.png" alt="Inspection photo 3"></div>
+                        <div class="report-photo"><img src="https://raw.githubusercontent.com/lucas-app/website/main/pic4.png" alt="Inspection photo 4"></div>
                     </div>
                     <p class="report-photos-label">GPS-verified photos attached · Full 47-point checklist included</p>
                     
