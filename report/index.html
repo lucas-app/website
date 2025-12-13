@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#fefefe">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Inspection Report • Marina Views 1802</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --white: #fefefe;
+            --black: #0d0d0d;
+            --lime: #DEFF9A;
+            --lime-dark: #c8f547;
+            --green: #16a34a;
+            --amber: #d97706;
+            --stone-50: #fafaf9;
+            --stone-100: #f5f5f4;
+            --stone-200: #e7e5e4;
+            --stone-300: #d6d3d1;
+            --stone-400: #a8a29e;
+            --stone-500: #78716c;
+            --stone-600: #57534e;
+            --stone-700: #44403c;
+            --stone-800: #292524;
+            --stone-900: #1c1917;
+            --safe-top: env(safe-area-inset-top, 0px);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--stone-900);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .serif { font-family: 'Fraunces', Georgia, serif; }
+        
+        /* ============================================
+           HERO - The Score as Sculpture
+           ============================================ */
+        .hero {
+            min-height: 100vh;
+            min-height: 100dvh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f8f6 100%);
+        }
+        
+        /* Ambient light effect */
+        .hero-ambient {
+            position: absolute;
+            top: -30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120%;
+            height: 80%;
+            background: radial-gradient(ellipse at center, rgba(222, 255, 154, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        
+        /* Header */
+        .hero-header {
+            padding: calc(var(--safe-top) + 20px) 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+        
+        .logo-img {
+            height: 32px;
+            width: auto;
+            filter: brightness(0);
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .btn {
+            padding: 10px 18px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        
+        .btn svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .btn-ghost {
+            background: transparent;
+            color: var(--stone-600);
+        }
+        
+        .btn-ghost:hover {
+            background: var(--stone-100);
+        }
+        
+        .btn-primary {
+            background: var(--black);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background: var(--stone-800);
+        }
+        
+        /* Hero content */
+        .hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 24px 80px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Property badge */
+        .property-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px 8px 12px;
+            background: var(--white);
+            border: 1px solid var(--stone-200);
+            border-radius: 100px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            animation: fadeDown 0.8s ease-out 0.2s backwards;
+        }
+        
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .property-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .property-badge-text {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--stone-600);
+        }
+        
+        /* Property name */
+        .property-name {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: clamp(36px, 9vw, 56px);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            text-align: center;
+            margin-bottom: 8px;
+            animation: fadeUp 0.8s ease-out 0.3s backwards;
+        }
+        
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .property-location {
+            font-size: 16px;
+            color: var(--stone-500);
+            margin-bottom: 48px;
+            animation: fadeUp 0.8s ease-out 0.4s backwards;
+        }
+        
+        /* THE SCORE - Clean Hero Ring */
+        .score-sculpture {
+            position: relative;
+            width: 240px;
+            height: 240px;
+            margin-bottom: 40px;
+            animation: scaleIn 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s backwards;
+        }
+        
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        /* Rotating halo glow - the magic */
+        .score-halo {
+            position: absolute;
+            inset: -30px;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 0deg,
+                rgba(222, 255, 154, 0.5) 0deg,
+                rgba(200, 245, 71, 0.25) 90deg,
+                rgba(168, 230, 16, 0.35) 180deg,
+                rgba(200, 245, 71, 0.25) 270deg,
+                rgba(222, 255, 154, 0.5) 360deg
+            );
+            filter: blur(40px);
+            animation: rotateHalo 8s linear infinite;
+            opacity: 0.85;
+        }
+        
+        @keyframes rotateHalo {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Secondary pulse glow */
+        .score-glow {
+            position: absolute;
+            inset: -20px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, rgba(222, 255, 154, 0.2) 0%, transparent 70%);
+            animation: glowPulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.08); }
+        }
+        
+        /* Main progress ring */
+        .score-ring-container {
+            position: absolute;
+            inset: 0;
+        }
+        
+        .score-ring-container svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+        
+        .score-ring-bg {
+            fill: none;
+            stroke: rgba(0, 0, 0, 0.06);
+            stroke-width: 10;
+        }
+        
+        .score-ring-progress {
+            fill: none;
+            stroke: url(#scoreGradient);
+            stroke-width: 10;
+            stroke-linecap: round;
+            stroke-dasharray: 691.2;
+            stroke-dashoffset: 691.2;
+            transition: stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 0 12px rgba(222, 255, 154, 0.7));
+        }
+        
+        .score-ring-container.animated .score-ring-progress {
+            stroke-dashoffset: 34.56; /* 691.2 * 0.05 = 5% unfilled for 95% */
+        }
+        
+        /* Inner content */
+        .score-inner {
+            position: absolute;
+            inset: 20px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 8px 40px rgba(0,0,0,0.08),
+                0 0 0 1px rgba(0,0,0,0.03),
+                inset 0 -2px 8px rgba(0,0,0,0.02);
+        }
+        
+        .score-number {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 64px;
+            font-weight: 600;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            color: var(--stone-900);
+        }
+        
+        .score-max {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--stone-400);
+            margin-top: 4px;
+        }
+        
+        /* Status badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: var(--stone-900);
+            border-radius: 100px;
+            margin-bottom: 48px;
+            animation: fadeUp 0.8s ease-out 1.5s backwards;
+        }
+        
+        .status-badge-icon {
+            width: 22px;
+            height: 22px;
+            background: var(--lime);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .status-badge-icon svg {
+            width: 12px;
+            height: 12px;
+            color: var(--black);
+        }
+        
+        .status-badge-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: -0.01em;
+        }
+        
+        /* Quick stats */
+        .quick-stats {
+            display: flex;
+            gap: 40px;
+            animation: fadeUp 0.8s ease-out 1.7s backwards;
+        }
+        
+        @media (max-width: 480px) {
+            .quick-stats {
+                gap: 24px;
+            }
+        }
+        
+        .quick-stat {
+            text-align: center;
+        }
+        
+        .quick-stat-value {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--stone-900);
+            line-height: 1;
+        }
+        
+        .quick-stat-label {
+            font-size: 11px;
+            color: var(--stone-400);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 6px;
+        }
+        
+        /* ============================================
+           SECTIONS
+           ============================================ */
+        .section {
+            padding: 64px 24px;
+        }
+        
+        .section-dark {
+            background: var(--stone-900);
+            color: var(--white);
+        }
+        
+        .section-light {
+            background: var(--stone-50);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            margin-bottom: 32px;
+        }
+        
+        .section-eyebrow {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--stone-400);
+            margin-bottom: 8px;
+        }
+        
+        .section-dark .section-eyebrow {
+            color: var(--lime);
+        }
+        
+        .section-title {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: clamp(24px, 5vw, 32px);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        
+        /* ============================================
+           ROOM BREAKDOWN
+           ============================================ */
+        .rooms-grid {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .room-card {
+            background: var(--white);
+            border: 1px solid var(--stone-200);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .room-card:hover {
+            border-color: var(--stone-300);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        
+        .room-card.attention {
+            border-color: var(--amber);
+            background: linear-gradient(135deg, #fffbeb 0%, var(--white) 100%);
+        }
+        
+        .room-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            cursor: pointer;
+        }
+        
+        .room-score {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 22px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .room-score.excellent {
+            background: var(--lime);
+            color: var(--black);
+        }
+        
+        .room-score.good {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .room-score.attention {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .room-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .room-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--stone-900);
+            margin-bottom: 2px;
+        }
+        
+        .room-meta {
+            font-size: 13px;
+            color: var(--stone-500);
+        }
+        
+        .room-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .room-status.pass {
+            background: var(--stone-100);
+            color: var(--stone-600);
+        }
+        
+        .room-status.issue {
+            background: #fef3c7;
+            color: #b45309;
+        }
+        
+        .room-status svg {
+            width: 14px;
+            height: 14px;
+        }
+        
+        .room-toggle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--stone-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+        
+        .room-toggle svg {
+            width: 16px;
+            height: 16px;
+            color: var(--stone-500);
+            transition: transform 0.3s;
+        }
+        
+        .room-card.open .room-toggle {
+            background: var(--lime);
+        }
+        
+        .room-card.open .room-toggle svg {
+            color: var(--black);
+            transform: rotate(180deg);
+        }
+        
+        .room-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        
+        .room-card.open .room-detail {
+            max-height: 300px;
+        }
+        
+        .room-detail-inner {
+            padding: 0 20px 20px 92px;
+        }
+        
+        .room-notes {
+            font-size: 14px;
+            color: var(--stone-600);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        
+        .room-checklist {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: var(--stone-50);
+            border-radius: 100px;
+            font-size: 12px;
+            color: var(--stone-600);
+        }
+        
+        .check-item svg {
+            width: 14px;
+            height: 14px;
+            color: var(--green);
+        }
+        
+        .check-item.fail svg {
+            color: var(--amber);
+        }
+        
+        /* ============================================
+           PHOTO EVIDENCE
+           ============================================ */
+        .photos-scroll {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            padding-bottom: 16px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .photos-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .photo-card {
+            flex: 0 0 280px;
+            aspect-ratio: 3/4;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            scroll-snap-align: start;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .photo-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .photo-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, transparent 50%);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        
+        .photo-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            padding: 6px 12px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--white);
+        }
+        
+        .photo-badge.attention {
+            background: var(--amber);
+            color: var(--black);
+        }
+        
+        .photo-score {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--white);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        .photo-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        
+        .photo-meta {
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+            font-family: monospace;
+        }
+        
+        /* ============================================
+           ACTION REQUIRED
+           ============================================ */
+        .action-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 24px;
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .action-card::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+        }
+        
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .action-priority {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .priority-badge {
+            padding: 8px 16px;
+            background: var(--stone-900);
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .priority-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #92400e;
+        }
+        
+        .action-cost {
+            text-align: right;
+        }
+        
+        .action-cost-value {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--stone-900);
+        }
+        
+        .action-cost-label {
+            font-size: 11px;
+            color: var(--stone-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .action-title {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--stone-900);
+            margin-bottom: 4px;
+            position: relative;
+        }
+        
+        .action-location {
+            font-size: 14px;
+            color: var(--stone-600);
+            margin-bottom: 16px;
+            position: relative;
+        }
+        
+        .action-desc {
+            font-size: 15px;
+            color: var(--stone-700);
+            line-height: 1.7;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        
+        .action-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            position: relative;
+        }
+        
+        .action-meta-item {
+            background: rgba(255,255,255,0.6);
+            padding: 14px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .action-meta-value {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--stone-900);
+        }
+        
+        .action-meta-label {
+            font-size: 10px;
+            color: var(--stone-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 2px;
+        }
+        
+        /* ============================================
+           INSPECTOR & VERIFICATION
+           ============================================ */
+        .verification-grid {
+            display: grid;
+            gap: 16px;
+        }
+        
+        @media (min-width: 640px) {
+            .verification-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .verification-card {
+            background: var(--stone-800);
+            border-radius: 20px;
+            padding: 24px;
+        }
+        
+        .inspector-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .inspector-avatar {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--lime) 0%, var(--lime-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--black);
+            flex-shrink: 0;
+        }
+        
+        .inspector-info {
+            flex: 1;
+        }
+        
+        .inspector-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--white);
+        }
+        
+        .inspector-title {
+            font-size: 13px;
+            color: var(--stone-400);
+        }
+        
+        .inspector-stats {
+            display: flex;
+            gap: 16px;
+            margin-top: 6px;
+        }
+        
+        .inspector-stat {
+            font-size: 12px;
+            color: var(--stone-400);
+        }
+        
+        .inspector-stat strong {
+            color: var(--lime);
+            font-weight: 600;
+        }
+        
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .detail-item {
+            padding: 14px;
+            background: var(--stone-700);
+            border-radius: 12px;
+        }
+        
+        .detail-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--stone-400);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+        
+        .detail-value {
+            font-size: 13px;
+            color: var(--white);
+        }
+        
+        .detail-value.mono {
+            font-family: monospace;
+            font-size: 11px;
+        }
+        
+        /* Verification code */
+        .verification-code {
+            grid-column: 1 / -1;
+            background: var(--black);
+            border: 1px solid var(--stone-700);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .verification-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--lime);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .verification-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--black);
+        }
+        
+        .verification-info {
+            flex: 1;
+        }
+        
+        .verification-label {
+            font-size: 11px;
+            color: var(--stone-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .verification-value {
+            font-family: monospace;
+            font-size: 16px;
+            color: var(--lime);
+            letter-spacing: 0.03em;
+        }
+        
+        .verification-copy {
+            padding: 10px 18px;
+            background: var(--stone-800);
+            border: none;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--white);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .verification-copy:hover {
+            background: var(--stone-700);
+        }
+        
+        /* ============================================
+           NEXT INSPECTION
+           ============================================ */
+        .next-inspection {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px;
+            background: var(--stone-800);
+            border-radius: 16px;
+            margin-top: 16px;
+        }
+        
+        .next-label {
+            font-size: 14px;
+            color: var(--stone-400);
+        }
+        
+        .next-date {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--lime);
+        }
+        
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            padding: 32px 24px calc(var(--safe-bottom) + 32px);
+            text-align: center;
+            background: var(--stone-900);
+        }
+        
+        .footer-text {
+            font-size: 13px;
+            color: var(--stone-500);
+            margin-bottom: 16px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .footer-logo-img {
+            height: 24px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            opacity: 0.6;
+        }
+        
+        /* ============================================
+           LIGHTBOX
+           ============================================ */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(0,0,0,0.95);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .lightbox.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .lightbox-header {
+            padding: calc(var(--safe-top) + 16px) 24px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .lightbox-close {
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .lightbox-info {
+            text-align: center;
+        }
+        
+        .lightbox-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--white);
+        }
+        
+        .lightbox-meta {
+            font-size: 13px;
+            color: var(--stone-400);
+        }
+        
+        .lightbox-body {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+        
+        .lightbox-footer {
+            padding: 16px 24px calc(var(--safe-bottom) + 16px);
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+        
+        .lightbox-nav {
+            width: 52px;
+            height: 52px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
+        
+        .lightbox-counter {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: var(--stone-400);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-ambient"></div>
+        
+        <header class="hero-header">
+            <div class="logo">
+                <img src="https://raw.githubusercontent.com/lucas-app/website/main/logo.png" alt="LUCAS" class="logo-img">
+            </div>
+            <div class="hero-actions">
+                <button class="btn btn-ghost" onclick="shareReport()">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                    Share
+                </button>
+            </div>
+        </header>
+        
+        <div class="hero-content">
+            <div class="property-badge">
+                <div class="property-badge-dot"></div>
+                <span class="property-badge-text">Verified • Dec 12, 2024</span>
+            </div>
+            
+            <h1 class="property-name serif">Marina Views 1802</h1>
+            <p class="property-location">Dubai Marina, UAE</p>
+            
+            <div class="score-sculpture">
+                <!-- Rotating halo glow -->
+                <div class="score-halo"></div>
+                
+                <!-- Secondary pulse glow -->
+                <div class="score-glow"></div>
+                
+                <!-- Main progress ring -->
+                <div class="score-ring-container" id="scoreRing">
+                    <svg viewBox="0 0 240 240">
+                        <defs>
+                            <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#DEFF9A"/>
+                                <stop offset="50%" stop-color="#c8f547"/>
+                                <stop offset="100%" stop-color="#a8e610"/>
+                            </linearGradient>
+                        </defs>
+                        <circle class="score-ring-bg" cx="120" cy="120" r="110"/>
+                        <circle class="score-ring-progress" cx="120" cy="120" r="110"/>
+                    </svg>
+                </div>
+                
+                <!-- Inner score display -->
+                <div class="score-inner">
+                    <span class="score-number serif" id="scoreNumber">0</span>
+                    <span class="score-max">out of 100</span>
+                </div>
+            </div>
+            
+            <div class="status-badge">
+                <div class="status-badge-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <span class="status-badge-text">Excellent Condition</span>
+            </div>
+            
+            <div class="quick-stats">
+                <div class="quick-stat">
+                    <div class="quick-stat-value serif">47</div>
+                    <div class="quick-stat-label">Checked</div>
+                </div>
+                <div class="quick-stat">
+                    <div class="quick-stat-value serif">7</div>
+                    <div class="quick-stat-label">Rooms</div>
+                </div>
+                <div class="quick-stat">
+                    <div class="quick-stat-value serif">2</div>
+                    <div class="quick-stat-label">Issues</div>
+                </div>
+                <div class="quick-stat">
+                    <div class="quick-stat-value serif">45m</div>
+                    <div class="quick-stat-label">Duration</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Room Breakdown -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow">Room by Room</p>
+                <h2 class="section-title serif">Detailed Breakdown</h2>
+            </div>
+            
+            <div class="rooms-grid">
+                <div class="room-card" onclick="toggleRoom(this)">
+                    <div class="room-header">
+                        <div class="room-score excellent">98</div>
+                        <div class="room-info">
+                            <div class="room-name">Living Room</div>
+                            <div class="room-meta">10 items checked</div>
+                        </div>
+                        <div class="room-status pass">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Pass
+                        </div>
+                        <div class="room-toggle">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </div>
+                    </div>
+                    <div class="room-detail">
+                        <div class="room-detail-inner">
+                            <p class="room-notes">All furniture in excellent condition. No stains, tears, or damage observed. TV and entertainment system fully functional.</p>
+                            <div class="room-checklist">
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Sofa & chairs</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>TV system</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Curtains</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Flooring</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="room-card" onclick="toggleRoom(this)">
+                    <div class="room-header">
+                        <div class="room-score excellent">97</div>
+                        <div class="room-info">
+                            <div class="room-name">Dining Area</div>
+                            <div class="room-meta">6 items checked</div>
+                        </div>
+                        <div class="room-status pass">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Pass
+                        </div>
+                        <div class="room-toggle">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </div>
+                    </div>
+                    <div class="room-detail">
+                        <div class="room-detail-inner">
+                            <p class="room-notes">Dining table and chairs in excellent condition. No scratches or damage. Lighting fixtures operational.</p>
+                            <div class="room-checklist">
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Dining table</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Chairs</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Lighting</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Flooring</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="room-card" onclick="toggleRoom(this)">
+                    <div class="room-header">
+                        <div class="room-score good">94</div>
+                        <div class="room-info">
+                            <div class="room-name">Kitchen</div>
+                            <div class="room-meta">15 items checked</div>
+                        </div>
+                        <div class="room-status pass">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Pass
+                        </div>
+                        <div class="room-toggle">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </div>
+                    </div>
+                    <div class="room-detail">
+                        <div class="room-detail-inner">
+                            <p class="room-notes">All appliances working properly. Minor water marks on faucet cleaned during inspection. Dishwasher seal in good condition.</p>
+                            <div class="room-checklist">
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Refrigerator</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Oven & stove</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Dishwasher</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Countertops</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="room-card attention" onclick="toggleRoom(this)">
+                    <div class="room-header">
+                        <div class="room-score attention">91</div>
+                        <div class="room-info">
+                            <div class="room-name">Master Bedroom</div>
+                            <div class="room-meta">8 items checked</div>
+                        </div>
+                        <div class="room-status issue">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01"/></svg>
+                            1 Issue
+                        </div>
+                        <div class="room-toggle">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </div>
+                    </div>
+                    <div class="room-detail">
+                        <div class="room-detail-inner">
+                            <p class="room-notes">Bed frame and mattress in excellent condition. Wardrobes functional. <strong style="color: #b91c1c;">AC unit showing condensation leak with moisture on wall — requires immediate attention.</strong></p>
+                            <div class="room-checklist">
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Bed & mattress</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Wardrobes</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Lighting</span>
+                                <span class="check-item fail"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01"/></svg>AC condensation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="room-card" onclick="toggleRoom(this)">
+                    <div class="room-header">
+                        <div class="room-score excellent">96</div>
+                        <div class="room-info">
+                            <div class="room-name">Guest Bedroom</div>
+                            <div class="room-meta">6 items checked</div>
+                        </div>
+                        <div class="room-status pass">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Pass
+                        </div>
+                        <div class="room-toggle">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </div>
+                    </div>
+                    <div class="room-detail">
+                        <div class="room-detail-inner">
+                            <p class="room-notes">Guest room fully prepared and clean. Bed linens fresh, storage space adequate. Window blinds operational.</p>
+                            <div class="room-checklist">
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Bed & linens</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Wardrobe</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Window blinds</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>AC unit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="room-card attention" onclick="toggleRoom(this)">
+                    <div class="room-header">
+                        <div class="room-score attention">92</div>
+                        <div class="room-info">
+                            <div class="room-name">Master Bathroom</div>
+                            <div class="room-meta">10 items checked</div>
+                        </div>
+                        <div class="room-status issue">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01"/></svg>
+                            1 Issue
+                        </div>
+                        <div class="room-toggle">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </div>
+                    </div>
+                    <div class="room-detail">
+                        <div class="room-detail-inner">
+                            <p class="room-notes">Silicone sealant around shower enclosure showing minor wear. Recommend re-sealing within 60 days to prevent water damage.</p>
+                            <div class="room-checklist">
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Toilet</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Sink & faucet</span>
+                                <span class="check-item fail"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01"/></svg>Shower sealant</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Tiles</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="room-card" onclick="toggleRoom(this)">
+                    <div class="room-header">
+                        <div class="room-score excellent">96</div>
+                        <div class="room-info">
+                            <div class="room-name">Terrace</div>
+                            <div class="room-meta">8 items checked</div>
+                        </div>
+                        <div class="room-status pass">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Pass
+                        </div>
+                        <div class="room-toggle">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </div>
+                    </div>
+                    <div class="room-detail">
+                        <div class="room-detail-inner">
+                            <p class="room-notes">Outdoor furniture clean and in good condition. Flooring intact with no cracks. Drainage clear and functional. Beautiful marina views.</p>
+                            <div class="room-checklist">
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Outdoor furniture</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Flooring</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Drainage</span>
+                                <span class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Railings</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Photo Evidence -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow">Photo Evidence</p>
+                <h2 class="section-title serif">GPS-Verified Documentation</h2>
+            </div>
+        </div>
+        
+        <div class="container" style="max-width: none; padding: 0 24px;">
+            <div class="photos-scroll">
+                <div class="photo-card" onclick="openLightbox(0)">
+                    <img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-living.jpg" alt="Living Room">
+                    <div class="photo-card-overlay">
+                        <span class="photo-badge">10:32 AM</span>
+                        <span class="photo-score serif">98</span>
+                        <div class="photo-title">Living Room</div>
+                        <div class="photo-meta">25.0763°N 55.1339°E</div>
+                    </div>
+                </div>
+                <div class="photo-card" onclick="openLightbox(1)">
+                    <img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-dining.jpg" alt="Dining Area">
+                    <div class="photo-card-overlay">
+                        <span class="photo-badge">10:38 AM</span>
+                        <span class="photo-score serif">97</span>
+                        <div class="photo-title">Dining Area</div>
+                        <div class="photo-meta">25.0763°N 55.1339°E</div>
+                    </div>
+                </div>
+                <div class="photo-card" onclick="openLightbox(2)">
+                    <img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-kitchen.jpg" alt="Kitchen">
+                    <div class="photo-card-overlay">
+                        <span class="photo-badge">10:44 AM</span>
+                        <span class="photo-score serif">94</span>
+                        <div class="photo-title">Kitchen</div>
+                        <div class="photo-meta">25.0763°N 55.1339°E</div>
+                    </div>
+                </div>
+                <div class="photo-card" onclick="openLightbox(3)">
+                    <img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-masterroom.jpg" alt="Master Bedroom">
+                    <div class="photo-card-overlay">
+                        <span class="photo-badge attention">Issue Found</span>
+                        <span class="photo-score serif">91</span>
+                        <div class="photo-title">Master Bedroom</div>
+                        <div class="photo-meta">25.0763°N 55.1339°E</div>
+                    </div>
+                </div>
+                <div class="photo-card" onclick="openLightbox(4)">
+                    <img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-guestroom.jpg" alt="Guest Bedroom">
+                    <div class="photo-card-overlay">
+                        <span class="photo-badge">10:56 AM</span>
+                        <span class="photo-score serif">96</span>
+                        <div class="photo-title">Guest Bedroom</div>
+                        <div class="photo-meta">25.0763°N 55.1339°E</div>
+                    </div>
+                </div>
+                <div class="photo-card" onclick="openLightbox(5)">
+                    <img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-bathroom.jpg" alt="Bathroom">
+                    <div class="photo-card-overlay">
+                        <span class="photo-badge attention">Issue Found</span>
+                        <span class="photo-score serif">92</span>
+                        <div class="photo-title">Master Bathroom</div>
+                        <div class="photo-meta">25.0763°N 55.1339°E</div>
+                    </div>
+                </div>
+                <div class="photo-card" onclick="openLightbox(6)">
+                    <img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-terrace.jpg" alt="Terrace">
+                    <div class="photo-card-overlay">
+                        <span class="photo-badge">11:08 AM</span>
+                        <span class="photo-score serif">96</span>
+                        <div class="photo-title">Terrace</div>
+                        <div class="photo-meta">25.0763°N 55.1339°E</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Action Required -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow">Action Required</p>
+                <h2 class="section-title serif">2 Maintenance Recommendations</h2>
+            </div>
+            
+            <!-- Issue 1: AC Condensation - HIGH PRIORITY -->
+            <div class="action-card" style="border: 2px solid #ef4444; background: linear-gradient(135deg, #fef2f2 0%, #fff 100%); margin-bottom: 20px;">
+                <div class="action-header" style="background: #fee2e2; margin: -28px -28px 24px; padding: 20px 28px; border-radius: 22px 22px 0 0;">
+                    <div class="action-priority">
+                        <span class="priority-badge" style="background: #ef4444; color: white;">High</span>
+                        <span class="priority-text" style="color: #b91c1c;">Within 14 days</span>
+                    </div>
+                    <div class="action-cost">
+                        <div class="action-cost-value serif">AED 300–500</div>
+                        <div class="action-cost-label">Est. Cost</div>
+                    </div>
+                </div>
+                
+                <div style="margin: 0 -28px 20px; overflow: hidden;">
+                    <img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/issue2-acleaking.png" alt="AC Condensation Issue" style="width: 100%; height: 200px; object-fit: cover;">
+                </div>
+                
+                <h3 class="action-title serif">AC Unit Condensation Leak</h3>
+                <p class="action-location">📍 Master Bedroom</p>
+                <p class="action-desc">Condensation buildup detected around the AC unit with visible moisture on surrounding wall. This requires immediate attention as prolonged moisture exposure can lead to mold growth and structural wall damage. Recommend professional HVAC inspection and drain line cleaning.</p>
+                
+                <div class="action-meta-grid">
+                    <div class="action-meta-item">
+                        <div class="action-meta-value serif">14 days</div>
+                        <div class="action-meta-label">Timeframe</div>
+                    </div>
+                    <div class="action-meta-item">
+                        <div class="action-meta-value serif">Medium</div>
+                        <div class="action-meta-label">Complexity</div>
+                    </div>
+                    <div class="action-meta-item">
+                        <div class="action-meta-value serif" style="color: #ef4444;">Mold risk</div>
+                        <div class="action-meta-label">If Ignored</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Issue 2: Shower Sealant - MEDIUM PRIORITY -->
+            <div class="action-card">
+                <div class="action-header">
+                    <div class="action-priority">
+                        <span class="priority-badge">Medium</span>
+                        <span class="priority-text">Within 60 days</span>
+                    </div>
+                    <div class="action-cost">
+                        <div class="action-cost-value serif">AED 150–250</div>
+                        <div class="action-cost-label">Est. Cost</div>
+                    </div>
+                </div>
+                
+                <div style="margin: 24px -28px 20px; overflow: hidden;">
+                    <img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/issue4-resealshower.png" alt="Shower Sealant Issue" style="width: 100%; height: 200px; object-fit: cover;">
+                </div>
+                
+                <h3 class="action-title serif">Re-seal Shower Enclosure</h3>
+                <p class="action-location">📍 Master Bathroom</p>
+                <p class="action-desc">The silicone sealant around the shower enclosure is showing signs of wear and minor gaps. Addressing this within 60 days will prevent potential water damage to surrounding areas — a significantly more expensive repair if left unattended.</p>
+                
+                <div class="action-meta-grid">
+                    <div class="action-meta-item">
+                        <div class="action-meta-value serif">60 days</div>
+                        <div class="action-meta-label">Timeframe</div>
+                    </div>
+                    <div class="action-meta-item">
+                        <div class="action-meta-value serif">Low</div>
+                        <div class="action-meta-label">Complexity</div>
+                    </div>
+                    <div class="action-meta-item">
+                        <div class="action-meta-value serif">Water damage</div>
+                        <div class="action-meta-label">If Ignored</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Verification -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow">Verification</p>
+                <h2 class="section-title serif">Inspector & Trust</h2>
+            </div>
+            
+            <div class="verification-grid">
+                <div class="verification-card">
+                    <div class="inspector-row">
+                        <div class="inspector-avatar serif">AH</div>
+                        <div class="inspector-info">
+                            <div class="inspector-name">Ahmad Hassan</div>
+                            <div class="inspector-title">LUCAS Certified Inspector</div>
+                            <div class="inspector-stats">
+                                <span class="inspector-stat"><strong>847</strong> inspections</span>
+                                <span class="inspector-stat"><strong>4.9</strong> rating</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="verification-card">
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <div class="detail-label">Inspector ID</div>
+                            <div class="detail-value mono">INS-0847</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Duration</div>
+                            <div class="detail-value">45 min</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">GPS</div>
+                            <div class="detail-value mono">25.07°N</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Accuracy</div>
+                            <div class="detail-value">± 3m</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="verification-code">
+                    <div class="verification-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <div class="verification-info">
+                        <div class="verification-label">Verification Code</div>
+                        <div class="verification-value">LCS-2024-1212-MV1802-A7X9</div>
+                    </div>
+                    <button class="verification-copy" onclick="copyCode()">Copy</button>
+                </div>
+                
+                <div class="next-inspection" style="grid-column: 1 / -1;">
+                    <span class="next-label">Next Scheduled Inspection</span>
+                    <span class="next-date serif">January 12, 2025</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">This report is tamper-proof and verifiable at lucas.app/verify</p>
+        <div class="footer-logo">
+            <img src="https://raw.githubusercontent.com/lucas-app/website/main/logo.png" alt="LUCAS" class="footer-logo-img">
+        </div>
+    </footer>
+    
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-header">
+            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <div class="lightbox-info">
+                <div class="lightbox-title" id="lightboxTitle"></div>
+                <div class="lightbox-meta" id="lightboxMeta"></div>
+            </div>
+            <div style="width: 44px;"></div>
+        </div>
+        <div class="lightbox-body">
+            <img class="lightbox-image" id="lightboxImage" src="" alt="">
+        </div>
+        <div class="lightbox-footer">
+            <button class="lightbox-nav" onclick="prevPhoto()">‹</button>
+            <span class="lightbox-counter" id="lightboxCounter"></span>
+            <button class="lightbox-nav" onclick="nextPhoto()">›</button>
+        </div>
+    </div>
+    
+    <script>
+        // Photos data
+        const photos = [
+            { src: 'https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-living.jpg', title: 'Living Room', time: '10:32 AM', score: 98 },
+            { src: 'https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-dining.jpg', title: 'Dining Area', time: '10:38 AM', score: 97 },
+            { src: 'https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-kitchen.jpg', title: 'Kitchen', time: '10:44 AM', score: 94 },
+            { src: 'https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-masterroom.jpg', title: 'Master Bedroom', time: '10:50 AM', score: 91 },
+            { src: 'https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-guestroom.jpg', title: 'Guest Bedroom', time: '10:56 AM', score: 96 },
+            { src: 'https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-bathroom.jpg', title: 'Master Bathroom', time: '11:02 AM', score: 92 },
+            { src: 'https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-terrace.jpg', title: 'Terrace', time: '11:08 AM', score: 96 }
+        ];
+        let currentPhoto = 0;
+        
+        // Animate score on load
+        function animateScore() {
+            const scoreEl = document.getElementById('scoreNumber');
+            const ring = document.getElementById('scoreRing');
+            const target = 95;
+            const duration = 2000;
+            const start = performance.now();
+            
+            // Start ring animation
+            setTimeout(() => ring.classList.add('animated'), 500);
+            
+            function update(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 4);
+                scoreEl.textContent = Math.floor(eased * target);
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            
+            setTimeout(() => requestAnimationFrame(update), 800);
+        }
+        
+        // Room toggle
+        function toggleRoom(el) {
+            el.classList.toggle('open');
+        }
+        
+        // Lightbox
+        function openLightbox(index) {
+            currentPhoto = index;
+            updateLightbox();
+            document.getElementById('lightbox').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        
+        function updateLightbox() {
+            const photo = photos[currentPhoto];
+            document.getElementById('lightboxImage').src = photo.src;
+            document.getElementById('lightboxTitle').textContent = photo.title;
+            document.getElementById('lightboxMeta').textContent = `${photo.time} • Score: ${photo.score}/100`;
+            document.getElementById('lightboxCounter').textContent = `${currentPhoto + 1} / ${photos.length}`;
+        }
+        
+        function nextPhoto() {
+            currentPhoto = (currentPhoto + 1) % photos.length;
+            updateLightbox();
+        }
+        
+        function prevPhoto() {
+            currentPhoto = (currentPhoto - 1 + photos.length) % photos.length;
+            updateLightbox();
+        }
+        
+        // Keyboard
+        document.addEventListener('keydown', e => {
+            if (!document.getElementById('lightbox').classList.contains('open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextPhoto();
+            if (e.key === 'ArrowLeft') prevPhoto();
+        });
+        
+        // Copy code
+        function copyCode() {
+            navigator.clipboard.writeText('LCS-2024-1212-MV1802-A7X9');
+            event.target.textContent = 'Copied!';
+            setTimeout(() => event.target.textContent = 'Copy', 2000);
+        }
+        
+        // Share
+        function shareReport() {
+            if (navigator.share) {
+                navigator.share({ title: 'Marina Views 1802 — 96/100', text: 'LUCAS Verified Inspection', url: location.href });
+            } else {
+                navigator.clipboard.writeText(location.href);
+                alert('Link copied!');
+            }
+        }
+        
+        // Init
+        animateScore();
+    </script>
+</body>
+</html>
