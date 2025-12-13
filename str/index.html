@@ -30,243 +30,59 @@
             --font-mono: 'Geist Mono', monospace;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: var(--font-body);
-            background: var(--black);
-            color: var(--paper);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-        
-        /* Grain overlay for texture */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            opacity: 0.03;
-            pointer-events: none;
-            z-index: 1000;
-        }
-        
-        ::selection {
-            background: var(--lime);
-            color: var(--black);
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background: var(--black); color: var(--paper); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 1000; }
+        ::selection { background: var(--lime); color: var(--black); }
         
         /* NAV */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 24px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
         .nav.nav-light .nav-logo img { filter: brightness(0) invert(1); }
         .nav.nav-light .nav-logo span { color: white; }
         .nav.nav-light .nav-cta { color: white; border-color: white; }
         .nav.nav-light .nav-cta:hover { background: white; color: black; }
-        
         .nav.nav-dark .nav-logo img { filter: brightness(0); }
         .nav.nav-dark .nav-logo span { color: black; }
         .nav.nav-dark .nav-cta { color: black; border-color: black; }
         .nav.nav-dark .nav-cta:hover { background: black; color: white; }
-        
         .nav-logo { display: flex; align-items: center; text-decoration: none; }
         .nav-logo img { height: 40px; width: auto; transition: filter 0.3s ease; }
         .nav-logo span { font-family: var(--font-display); font-size: 32px; font-weight: 700; letter-spacing: -0.02em; transition: color 0.3s ease; }
-        
-        .nav-cta {
-            font-family: var(--font-mono);
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            text-decoration: none;
-            padding: 14px 28px;
-            border: 1px solid;
-            transition: all 0.3s ease;
-        }
+        .nav-cta { font-family: var(--font-mono); font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; padding: 14px 28px; border: 1px solid; transition: all 0.3s ease; }
         
         /* HERO */
-        .hero {
-            min-height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: stretch;
-            position: relative;
-        }
-        
-        @media (max-width: 768px) {
-            .hero { grid-template-columns: 1fr; min-height: auto; }
-        }
-        
-        .hero-nightmare {
-            background: var(--red-dark);
-            padding: 140px 48px 100px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-nightmare::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 30%), linear-gradient(0deg, rgba(0,0,0,0.5) 0%, transparent 50%);
-            pointer-events: none;
-        }
-        
-        .hero-audience {
-            position: absolute;
-            top: 33px;
-            left: 200px;
-            font-family: var(--font-mono);
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: rgba(255,255,255,0.5);
-            padding-left: 16px;
-            border-left: 1px solid rgba(255,255,255,0.3);
-            z-index: 10;
-            line-height: 36px;
-        }
-        
+        .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; position: relative; }
+        @media (max-width: 768px) { .hero { grid-template-columns: 1fr; min-height: auto; } }
+        .hero-nightmare { background: var(--red-dark); padding: 140px 48px 100px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; position: relative; overflow: hidden; }
+        .hero-nightmare::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 30%), linear-gradient(0deg, rgba(0,0,0,0.5) 0%, transparent 50%); pointer-events: none; }
+        .hero-audience { position: absolute; top: 33px; left: 200px; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); padding-left: 16px; border-left: 1px solid rgba(255,255,255,0.3); z-index: 10; line-height: 36px; }
         @media (max-width: 600px) { .hero-audience { display: none; } }
-        
-        .nightmare-label {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: rgba(255,255,255,0.5);
-            margin-bottom: 24px;
-            position: relative;
-            z-index: 1;
-        }
-        
+        .nightmare-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.5); margin-bottom: 24px; position: relative; z-index: 1; }
         .nightmare-stat { position: relative; z-index: 1; }
         .nightmare-stat-number { font-family: var(--font-display); font-size: clamp(80px, 15vw, 180px); font-weight: 700; line-height: 0.85; color: white; letter-spacing: -0.03em; }
         .nightmare-stat-unit { font-family: var(--font-display); font-size: clamp(24px, 4vw, 48px); font-weight: 600; color: rgba(255,255,255,0.7); margin-left: 8px; }
         .nightmare-stat-label { font-family: var(--font-body); font-size: 18px; color: rgba(255,255,255,0.6); margin-top: 16px; max-width: 280px; line-height: 1.5; }
-        
-        .nightmare-context {
-            position: absolute;
-            bottom: 56px;
-            left: 48px;
-            right: 48px;
-            font-family: var(--font-mono);
-            font-size: 11px;
-            color: rgba(255,255,255,0.4);
-            z-index: 1;
-        }
-        
-        .hero-reality {
-            background: var(--lime);
-            padding: 140px 48px 100px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            position: relative;
-        }
-        
+        .nightmare-context { position: absolute; bottom: 56px; left: 48px; right: 48px; font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.4); z-index: 1; }
+        .hero-reality { background: var(--lime); padding: 140px 48px 100px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; position: relative; }
         .reality-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--black); margin-bottom: 24px; }
         .reality-stat-number { font-family: var(--font-display); font-size: clamp(80px, 15vw, 180px); font-weight: 700; line-height: 0.85; color: var(--black); letter-spacing: -0.03em; }
         .reality-stat-unit { font-family: var(--font-display); font-size: clamp(24px, 4vw, 48px); font-weight: 600; color: var(--black); margin-left: 8px; }
         .reality-stat-label { font-family: var(--font-body); font-size: 18px; color: var(--black); margin-top: 16px; max-width: 280px; line-height: 1.5; }
-        
-        .reality-cta {
-            position: absolute;
-            bottom: 56px;
-            left: 48px;
-            right: 48px;
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        
-        .reality-cta a {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            font-family: var(--font-body);
-            font-size: 16px;
-            font-weight: 700;
-            text-decoration: none;
-            padding: 16px 32px;
-            background: var(--black);
-            color: var(--lime);
-            transition: all 0.3s ease;
-        }
-        
+        .reality-cta { position: absolute; bottom: 56px; left: 48px; right: 48px; display: flex; gap: 16px; flex-wrap: wrap; }
+        .reality-cta a { display: inline-flex; align-items: center; gap: 12px; font-family: var(--font-body); font-size: 16px; font-weight: 700; text-decoration: none; padding: 16px 32px; background: var(--black); color: var(--lime); transition: all 0.3s ease; }
         .reality-cta a:hover { gap: 20px; }
-        
-        .reality-cta a.secondary {
-            background: transparent;
-            color: var(--black);
-            border: 2px solid var(--black);
-            padding: 14px 28px;
-        }
-        
-        .reality-cta a.secondary:hover {
-            background: var(--black);
-            color: var(--lime);
-        }
-        
-        .reality-qualifier {
-            position: absolute;
-            bottom: 115px;
-            left: 48px;
-            font-family: var(--font-mono);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--black);
-        }
-        
-        .hero-divider {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-        }
-        
+        .reality-cta a.secondary { background: transparent; color: var(--black); border: 2px solid var(--black); padding: 14px 28px; }
+        .reality-cta a.secondary:hover { background: var(--black); color: var(--lime); }
+        .reality-qualifier { position: absolute; bottom: 115px; left: 48px; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--black); }
+        .hero-divider { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 16px; }
         @media (max-width: 768px) { .hero-divider { display: none; } }
-        
         .hero-divider-line { width: 1px; height: 80px; background: linear-gradient(180deg, transparent, white, transparent); }
         .hero-divider-text { font-family: var(--font-mono); font-size: 12px; color: white; background: var(--black); padding: 12px 20px; text-transform: uppercase; letter-spacing: 0.15em; }
         
         /* STORY SCENES */
         .story { background: var(--paper); color: var(--text); padding: 0; }
         .story-scene { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 80px 32px; }
-        
         .scene-call { background: var(--paper); }
         .call-content { max-width: 900px; text-align: center; }
         .call-ring { width: 120px; height: 120px; border: 2px solid var(--red); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 48px; animation: ring 2s ease-in-out infinite; }
@@ -275,7 +91,6 @@
         .call-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--red); margin-bottom: 32px; }
         .call-quote { font-family: var(--font-display); font-size: clamp(32px, 5vw, 56px); font-weight: 600; line-height: 1.2; color: var(--text); margin-bottom: 32px; letter-spacing: -0.02em; }
         .call-attribution { font-family: var(--font-body); font-size: 16px; color: var(--text-muted); }
-        
         .scene-evidence { background: var(--off-black); color: var(--paper); }
         .evidence-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; }
         @media (max-width: 768px) { .evidence-grid { grid-template-columns: 1fr; gap: 16px; } }
@@ -283,7 +98,6 @@
         .evidence-card::before { content: '✕'; position: absolute; top: 16px; right: 16px; font-family: var(--font-mono); font-size: 14px; color: var(--red); }
         .evidence-card-title { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
         .evidence-card-content { font-family: var(--font-body); font-size: 18px; font-weight: 500; line-height: 1.5; }
-        
         .scene-cost { background: var(--red); color: white; }
         .cost-content { text-align: center; }
         .cost-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.6); margin-bottom: 24px; }
@@ -307,54 +121,72 @@
         .testimonial-name { font-family: var(--font-body); font-weight: 700; font-size: 16px; }
         .testimonial-role { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
         
-        /* PROOF */
+        /* PROOF - WHAT YOUR OWNERS RECEIVE */
         .proof { background: var(--paper); color: var(--text); padding: 120px 32px; }
-        .proof-header { max-width: 600px; margin: 0 auto 60px; text-align: center; }
+        .proof-header { max-width: 700px; margin: 0 auto 60px; text-align: center; }
         .proof-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); margin-bottom: 16px; }
         .proof-title { font-family: var(--font-display); font-size: clamp(32px, 5vw, 48px); font-weight: 700; letter-spacing: -0.02em; }
+        .proof-subtitle { font-family: var(--font-body); font-size: 18px; color: var(--text-muted); margin-top: 16px; line-height: 1.6; }
+        .proof-content { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+        @media (max-width: 900px) { .proof-content { grid-template-columns: 1fr; gap: 48px; } }
         
-        .report-container { max-width: 800px; margin: 0 auto; }
-        .report { background: white; border-radius: 12px; box-shadow: 0 0 0 1px rgba(0,0,0,0.05), 0 4px 6px rgba(0,0,0,0.04), 0 25px 50px rgba(0,0,0,0.06); overflow: hidden; }
-        .report-browser-bar { background: #f5f5f5; padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #e5e5e5; }
-        .report-browser-dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; }
-        .report-browser-dot:nth-child(1) { background: #ff5f57; }
-        .report-browser-dot:nth-child(2) { background: #ffbd2e; }
-        .report-browser-dot:nth-child(3) { background: #28ca42; }
-        .report-browser-url { flex: 1; margin-left: 12px; background: white; border-radius: 6px; padding: 6px 12px; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+        /* Phone mockup */
+        .phone-mockup { position: relative; max-width: 300px; margin: 0 auto; }
+        .phone-frame { background: #1c1917; border-radius: 40px; padding: 12px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1); }
+        .phone-screen { background: #f5f5f4; border-radius: 32px; overflow: hidden; aspect-ratio: 9/19; position: relative; }
+        .phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 28px; background: #1c1917; border-radius: 0 0 20px 20px; z-index: 10; }
+        .report-preview { height: 100%; overflow: hidden; }
+        .report-preview-hero { background: linear-gradient(135deg, #1c1917 0%, #292524 100%); padding: 44px 20px 24px; text-align: center; }
+        .report-preview-logo { display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 16px; }
+        .report-preview-logo-mark { width: 20px; height: 20px; background: var(--lime); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--black); }
+        .report-preview-logo-text { font-size: 10px; color: rgba(255,255,255,0.6); }
+        .report-preview-property { font-family: var(--font-display); font-size: 14px; font-weight: 700; color: white; margin-bottom: 4px; }
+        .report-preview-location { font-size: 10px; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+        .report-preview-score { position: relative; width: 100px; height: 100px; margin: 0 auto; }
+        .report-preview-score svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+        .report-preview-score-bg { fill: none; stroke: rgba(255,255,255,0.1); stroke-width: 8; }
+        .report-preview-score-ring { fill: none; stroke: var(--lime); stroke-width: 8; stroke-linecap: round; stroke-dasharray: 251; stroke-dashoffset: 12.5; }
+        .report-preview-score-inner { position: absolute; inset: 12px; background: white; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .report-preview-score-number { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--text); line-height: 1; }
+        .report-preview-score-label { font-size: 8px; color: var(--text-muted); }
+        .report-preview-badge { display: inline-flex; align-items: center; gap: 4px; background: rgba(222,255,154,0.2); padding: 4px 10px; border-radius: 100px; margin-top: 12px; }
+        .report-preview-badge-dot { width: 6px; height: 6px; background: var(--lime); border-radius: 50%; }
+        .report-preview-badge-text { font-size: 9px; font-weight: 600; color: var(--lime); }
+        .report-preview-body { background: #f5f5f4; padding: 16px; }
+        .report-preview-card { background: white; border-radius: 12px; padding: 12px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .report-preview-card-header { font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px; }
+        .report-preview-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        .report-preview-stat { text-align: center; }
+        .report-preview-stat-value { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--text); }
+        .report-preview-stat-label { font-size: 8px; color: var(--text-muted); }
+        .report-preview-stat-value.amber { color: #d97706; }
+        .report-preview-room { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
+        .report-preview-room:last-child { border-bottom: none; }
+        .report-preview-room-thumb { width: 36px; height: 36px; background: #e5e5e5; border-radius: 8px; overflow: hidden; }
+        .report-preview-room-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .report-preview-room-info { flex: 1; }
+        .report-preview-room-name { font-size: 11px; font-weight: 600; color: var(--text); }
+        .report-preview-room-status { font-size: 9px; color: var(--text-muted); }
+        .report-preview-room-score { width: 24px; height: 24px; background: rgba(34,197,94,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: #16a34a; }
+        .report-preview-issue { background: #fef3c7; border-left: 3px solid #d97706; border-radius: 8px; padding: 10px; }
+        .report-preview-issue-header { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+        .report-preview-issue-icon { color: #d97706; font-size: 10px; }
+        .report-preview-issue-title { font-size: 10px; font-weight: 600; color: #92400e; }
+        .report-preview-issue-item { display: flex; justify-content: space-between; font-size: 9px; padding: 4px 0; }
+        .report-preview-issue-name { color: #78350f; }
+        .report-preview-issue-cost { font-weight: 600; color: #b45309; }
+        .phone-badge { position: absolute; bottom: -16px; right: -16px; background: var(--lime); color: var(--black); padding: 10px 16px; border-radius: 8px; font-family: var(--font-mono); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transform: rotate(3deg); }
         
-        .report-header { background: var(--black); padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; }
-        .report-logo { display: flex; align-items: center; gap: 12px; }
-        .report-logo-mark { width: 40px; height: 40px; background: var(--lime); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--black); }
-        .report-logo-text { color: white; font-family: var(--font-body); font-weight: 600; }
-        .report-logo-text span { display: block; font-family: var(--font-mono); font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.5); margin-top: 2px; }
-        .report-stamp { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--lime); padding: 8px 16px; border: 1px solid var(--lime); }
-        
-        .report-body { padding: 32px; }
-        .report-property { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 32px; border-bottom: 1px solid #eee; margin-bottom: 32px; }
-        .report-property-name { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-        .report-property-details { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
-        .report-score { text-align: right; }
-        .report-score-number { font-family: var(--font-display); font-size: 56px; font-weight: 700; color: #22c55e; line-height: 1; }
-        .report-score-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #22c55e; }
-        
-        .report-issues { background: #fff8f0; border-left: 4px solid #f59e0b; padding: 24px; margin-bottom: 32px; }
-        .report-issues-header { font-family: var(--font-body); font-size: 14px; font-weight: 700; color: #b45309; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-        .report-issue { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #fde68a; font-size: 14px; }
-        .report-issue:last-child { border-bottom: none; }
-        .report-issue-name { color: var(--text); }
-        .report-issue-cost { font-family: var(--font-mono); font-weight: 500; color: #b45309; }
-        .report-issues-total { display: flex; justify-content: space-between; padding-top: 16px; margin-top: 8px; border-top: 2px solid #fde68a; font-weight: 700; }
-        
-        .report-photos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
-        .report-photo { aspect-ratio: 1; background: #f0f0f0; border-radius: 8px; overflow: hidden; }
-        .report-photo img { width: 100%; height: 100%; object-fit: cover; }
-        .report-photos-label { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); text-align: center; margin-bottom: 24px; }
-        .report-footer { display: flex; justify-content: space-between; padding-top: 24px; border-top: 1px solid #eee; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); flex-wrap: wrap; gap: 8px; }
-        
-        .report-cta { text-align: center; margin-top: 40px; }
-        .report-cta a { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-body); font-size: 16px; font-weight: 600; color: var(--text); text-decoration: none; padding: 16px 32px; background: white; border: 2px solid var(--text); border-radius: 8px; transition: all 0.2s ease; }
-        .report-cta a:hover { background: var(--text); color: white; }
-        .report-cta p { margin-top: 12px; font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+        /* Features list */
+        .proof-features { display: flex; flex-direction: column; gap: 32px; }
+        .proof-feature { display: flex; gap: 20px; }
+        .proof-feature-icon { flex-shrink: 0; width: 48px; height: 48px; background: var(--off-black); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+        .proof-feature-icon i { font-size: 20px; color: var(--lime); }
+        .proof-feature-content h3 { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+        .proof-feature-content p { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+        .proof-cta { margin-top: 40px; }
+        .proof-cta a { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-body); font-size: 16px; font-weight: 700; color: var(--black); text-decoration: none; padding: 16px 28px; background: var(--lime); transition: all 0.3s ease; }
+        .proof-cta a:hover { gap: 16px; background: var(--lime-bright); }
         
         /* HOW */
         .how { background: var(--off-black); padding: 80px 32px; border-top: 1px solid rgba(255,255,255,0.1); }
@@ -365,13 +197,7 @@
         .how-step-number { flex-shrink: 0; width: 32px; height: 32px; background: var(--lime); color: var(--black); font-family: var(--font-display); font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
         .how-step-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: white; margin-bottom: 6px; }
         .how-step-text { font-family: var(--font-body); font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.5; }
-        
-        @media (min-width: 768px) {
-            .how-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
-            .how-step { flex-direction: column; align-items: center; text-align: center; }
-            .how-step-number { width: 40px; height: 40px; font-size: 16px; margin-bottom: 16px; }
-        }
-        
+        @media (min-width: 768px) { .how-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; } .how-step { flex-direction: column; align-items: center; text-align: center; } .how-step-number { width: 40px; height: 40px; font-size: 16px; margin-bottom: 16px; } }
         .how-tagline { text-align: center; margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
         .how-tagline-main { font-family: var(--font-display); font-size: clamp(20px, 3vw, 28px); font-weight: 700; color: white; margin-bottom: 8px; }
         .how-tagline-sub { font-family: var(--font-body); font-size: 16px; color: rgba(255,255,255,0.5); }
@@ -478,7 +304,7 @@
             </div>
             <div class="reality-cta">
                 <a href="#cta">Start free pilot <i class="fa-solid fa-arrow-right"></i></a>
-                <a href="https://lucas-app.github.io/website/report/" target="_blank" class="secondary"><i class="fa-solid fa-file-lines"></i> Sample Report</a>
+                <a href="sample-report.html" target="_blank" class="secondary"><i class="fa-solid fa-file-lines"></i> Sample Report</a>
             </div>
             <p class="reality-qualifier">For operators managing 10+ units in Dubai</p>
         </div>
@@ -546,76 +372,153 @@
     <section class="proof">
         <div class="proof-header">
             <span class="proof-label">What your owners receive</span>
-            <h2 class="proof-title">The report that ends "why didn't you catch this?"</h2>
+            <h2 class="proof-title">Not a PDF. An experience.</h2>
+            <p class="proof-subtitle">Interactive, mobile-first reports that build trust instantly. Tap to explore rooms, swipe through photos, verify authenticity.</p>
         </div>
         
-        <div class="report-container">
-            <div class="report">
-                <div class="report-browser-bar">
-                    <div class="report-browser-dot"></div>
-                    <div class="report-browser-dot"></div>
-                    <div class="report-browser-dot"></div>
-                    <div class="report-browser-url">lucas-app.github.io/website/report</div>
+        <div class="proof-content">
+            <!-- Phone Mockup -->
+            <div class="phone-mockup">
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <div class="phone-notch"></div>
+                        <div class="report-preview">
+                            <div class="report-preview-hero">
+                                <div class="report-preview-logo">
+                                    <div class="report-preview-logo-mark">L</div>
+                                    <span class="report-preview-logo-text">LUCAS Report</span>
+                                </div>
+                                <p class="report-preview-property">Marina Views 1802</p>
+                                <p class="report-preview-location">Dubai Marina, UAE</p>
+                                
+                                <div class="report-preview-score">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle cx="50" cy="50" r="40" class="report-preview-score-bg"/>
+                                        <circle cx="50" cy="50" r="40" class="report-preview-score-ring"/>
+                                    </svg>
+                                    <div class="report-preview-score-inner">
+                                        <span class="report-preview-score-number">95</span>
+                                        <span class="report-preview-score-label">out of 100</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="report-preview-badge">
+                                    <div class="report-preview-badge-dot"></div>
+                                    <span class="report-preview-badge-text">Excellent</span>
+                                </div>
+                            </div>
+                            
+                            <div class="report-preview-body">
+                                <div class="report-preview-card">
+                                    <p class="report-preview-card-header">At a Glance</p>
+                                    <div class="report-preview-stats">
+                                        <div class="report-preview-stat">
+                                            <p class="report-preview-stat-value">7</p>
+                                            <p class="report-preview-stat-label">Rooms</p>
+                                        </div>
+                                        <div class="report-preview-stat">
+                                            <p class="report-preview-stat-value">47</p>
+                                            <p class="report-preview-stat-label">Photos</p>
+                                        </div>
+                                        <div class="report-preview-stat">
+                                            <p class="report-preview-stat-value amber">2</p>
+                                            <p class="report-preview-stat-label">Issues</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="report-preview-card">
+                                    <div class="report-preview-room">
+                                        <div class="report-preview-room-thumb">
+                                            <img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-living.jpg" alt="Living">
+                                        </div>
+                                        <div class="report-preview-room-info">
+                                            <p class="report-preview-room-name">Living Room</p>
+                                            <p class="report-preview-room-status">All items verified</p>
+                                        </div>
+                                        <div class="report-preview-room-score">98</div>
+                                    </div>
+                                    <div class="report-preview-room">
+                                        <div class="report-preview-room-thumb">
+                                            <img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-kitchen.jpg" alt="Kitchen">
+                                        </div>
+                                        <div class="report-preview-room-info">
+                                            <p class="report-preview-room-name">Kitchen</p>
+                                            <p class="report-preview-room-status">All items verified</p>
+                                        </div>
+                                        <div class="report-preview-room-score">94</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="report-preview-issue">
+                                    <div class="report-preview-issue-header">
+                                        <i class="fa-solid fa-flag report-preview-issue-icon"></i>
+                                        <span class="report-preview-issue-title">2 issues caught early</span>
+                                    </div>
+                                    <div class="report-preview-issue-item">
+                                        <span class="report-preview-issue-name">AC condensation leak</span>
+                                        <span class="report-preview-issue-cost">~400 AED</span>
+                                    </div>
+                                    <div class="report-preview-issue-item">
+                                        <span class="report-preview-issue-name">Shower needs reseal</span>
+                                        <span class="report-preview-issue-cost">~200 AED</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="report-header">
-                    <div class="report-logo">
-                        <div class="report-logo-mark">L</div>
-                        <div class="report-logo-text">LUCAS Verification<span>Monthly Inspection Report</span></div>
-                    </div>
-                    <span class="report-stamp">✓ Verified</span>
-                </div>
-                
-                <div class="report-body">
-                    <div class="report-property">
-                        <div>
-                            <h3 class="report-property-name">Marina Views 1802</h3>
-                            <p class="report-property-details">Dubai Marina · 2BR · Owner: Ahmed K.</p>
-                        </div>
-                        <div class="report-score">
-                            <span class="report-score-number">95</span>
-                            <span class="report-score-label">Excellent</span>
-                        </div>
-                    </div>
-                    
-                    <div class="report-issues">
-                        <p class="report-issues-header"><i class="fa-solid fa-flag"></i> 2 issues caught early</p>
-                        <div class="report-issue">
-                            <span class="report-issue-name">AC unit condensation leak</span>
-                            <span class="report-issue-cost">~400 AED</span>
-                        </div>
-                        <div class="report-issue">
-                            <span class="report-issue-name">Shower enclosure — needs reseal</span>
-                            <span class="report-issue-cost">~200 AED</span>
-                        </div>
-                        <div class="report-issues-total">
-                            <span>Fix now before it spreads</span>
-                            <span class="report-issue-cost">~600 AED</span>
-                        </div>
-                    </div>
-                    
-                    <div class="report-photos">
-                        <div class="report-photo"><img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-living.jpg" alt="Living"></div>
-                        <div class="report-photo"><img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-kitchen.jpg" alt="Kitchen"></div>
-                        <div class="report-photo"><img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-masterroom.jpg" alt="Bedroom"></div>
-                        <div class="report-photo"><img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-bathroom.jpg" alt="Bathroom"></div>
-                    </div>
-                    <p class="report-photos-label">GPS-verified photos attached · Full 47-point checklist included</p>
-                    
-                    <div class="report-footer">
-                        <span><i class="fa-solid fa-location-dot"></i> GPS: 25.0762° N, 55.1330° E</span>
-                        <span><i class="fa-solid fa-clock"></i> Dec 12, 2024 · 10:32 AM</span>
-                        <span><i class="fa-solid fa-user-check"></i> Inspector: Ahmad H.</span>
-                    </div>
-                </div>
+                <div class="phone-badge">Mobile-First</div>
             </div>
             
-            <div class="report-cta">
-                <a href="https://lucas-app.github.io/website/report/" target="_blank">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    View full interactive report
-                </a>
-                <p>See exactly what your owners will receive</p>
+            <!-- Features -->
+            <div class="proof-features">
+                <div class="proof-feature">
+                    <div class="proof-feature-icon"><i class="fa-solid fa-hand-pointer"></i></div>
+                    <div class="proof-feature-content">
+                        <h3>Interactive, not static</h3>
+                        <p>Tap rooms to expand details. Swipe through 47+ photos. Pinch to zoom. It's an experience owners actually engage with.</p>
+                    </div>
+                </div>
+                
+                <div class="proof-feature">
+                    <div class="proof-feature-icon"><i class="fa-solid fa-bullseye"></i></div>
+                    <div class="proof-feature-content">
+                        <h3>One score tells the story</h3>
+                        <p>95/100 means excellent. Context badges show where the property ranks. No ambiguity, no confusion.</p>
+                    </div>
+                </div>
+                
+                <div class="proof-feature">
+                    <div class="proof-feature-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="proof-feature-content">
+                        <h3>Every photo GPS-verified</h3>
+                        <p>Timestamped, geotagged, tamper-proof. Owners see exactly what we saw, when we saw it, where we were.</p>
+                    </div>
+                </div>
+                
+                <div class="proof-feature">
+                    <div class="proof-feature-icon"><i class="fa-solid fa-share-nodes"></i></div>
+                    <div class="proof-feature-content">
+                        <h3>Share issues instantly</h3>
+                        <p>Each issue has location, photos, cost estimate, and priority. One tap to share via WhatsApp or email.</p>
+                    </div>
+                </div>
+                
+                <div class="proof-feature">
+                    <div class="proof-feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="proof-feature-content">
+                        <h3>Third-party credibility</h3>
+                        <p>Unique verification code. QR scannable. Independent reports owners actually trust — because they're not from you.</p>
+                    </div>
+                </div>
+                
+                <div class="proof-cta">
+                    <a href="sample-report.html" target="_blank">
+                        View full sample report
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -655,7 +558,7 @@
         <p class="cta-subheadline">10 properties. 1 month. Full reports. No commitment.</p>
         
         <form class="cta-form" action="https://formspree.io/f/xzzoryvn" method="POST" id="pilot-form">
-            <input type="hidden" name="form_source" value="STR Bold Redesign v3">
+            <input type="hidden" name="form_source" value="STR Bold Redesign v4">
             <div class="cta-form-row">
                 <input type="text" name="name" required class="cta-input" placeholder="Name">
                 <input type="text" name="company" required class="cta-input" placeholder="Company">
