@@ -1339,8 +1339,310 @@
         }
         
         /* ============================================
-           INSPECTOR & VERIFICATION
+           INSPECTOR & VERIFICATION - PREMIUM
            ============================================ */
+        
+        /* Trust Banner */
+        .trust-banner {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(222, 255, 154, 0.1) 0%, rgba(168, 230, 16, 0.05) 100%);
+            border: 1px solid rgba(222, 255, 154, 0.2);
+            border-radius: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .trust-banner-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--lime);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .trust-banner-icon svg {
+            width: 22px;
+            height: 22px;
+            color: var(--black);
+        }
+        
+        .trust-banner-title {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        
+        .trust-banner-text {
+            font-size: 13px;
+            color: var(--stone-400);
+            line-height: 1.5;
+        }
+        
+        /* Inspector Card Large */
+        .inspector-card-large {
+            background: var(--stone-800);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .inspector-card-header {
+            padding: 12px 20px;
+            background: var(--stone-700);
+            border-bottom: 1px solid var(--stone-600);
+        }
+        
+        .inspector-card-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--stone-400);
+        }
+        
+        .inspector-card-body {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .inspector-avatar-large {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--lime) 0%, var(--lime-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--black);
+            flex-shrink: 0;
+        }
+        
+        .inspector-details {
+            flex: 1;
+        }
+        
+        .inspector-name-large {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        
+        .inspector-certification {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--lime);
+            margin-bottom: 12px;
+        }
+        
+        .inspector-meta-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .inspector-meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .inspector-meta-value {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--white);
+        }
+        
+        .inspector-meta-label {
+            font-size: 11px;
+            color: var(--stone-500);
+        }
+        
+        /* Verification Details Grid */
+        .verification-details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        @media (min-width: 640px) {
+            .verification-details-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .verification-detail-card {
+            background: var(--stone-800);
+            border-radius: 14px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .verification-detail-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--stone-700);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .verification-detail-icon svg {
+            width: 18px;
+            height: 18px;
+            color: var(--lime);
+        }
+        
+        .verification-detail-label {
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--stone-500);
+        }
+        
+        .verification-detail-value {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--white);
+            margin-top: 2px;
+        }
+        
+        .verification-detail-value.mono {
+            font-family: monospace;
+            font-size: 13px;
+        }
+        
+        .verification-detail-sub {
+            font-size: 11px;
+            color: var(--stone-500);
+            margin-top: 2px;
+        }
+        
+        /* Verification Code Card */
+        .verification-code-card {
+            background: linear-gradient(135deg, var(--black) 0%, var(--stone-900) 100%);
+            border: 1px solid var(--stone-700);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        @media (min-width: 640px) {
+            .verification-code-card {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+        
+        .verification-code-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        
+        .verification-code-badge {
+            width: 44px;
+            height: 44px;
+            background: var(--lime);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .verification-code-badge svg {
+            width: 22px;
+            height: 22px;
+            color: var(--black);
+        }
+        
+        .verification-code-label {
+            font-size: 11px;
+            color: var(--stone-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .verification-code-value {
+            font-family: monospace;
+            font-size: 15px;
+            color: var(--lime);
+            letter-spacing: 0.02em;
+            margin-top: 2px;
+        }
+        
+        @media (min-width: 640px) {
+            .verification-code-value {
+                font-size: 17px;
+            }
+        }
+        
+        .verification-code-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .verification-code-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 16px;
+            background: var(--stone-800);
+            border: 1px solid var(--stone-700);
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--white);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .verification-code-btn:hover {
+            background: var(--stone-700);
+        }
+        
+        .verification-code-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .verification-code-btn.primary {
+            background: var(--lime);
+            border-color: var(--lime);
+            color: var(--black);
+        }
+        
+        .verification-code-btn.primary:hover {
+            background: var(--lime-dark);
+            border-color: var(--lime-dark);
+        }
+        
+        /* Legacy styles kept for compatibility */
         .verification-grid {
             display: grid;
             gap: 16px;
@@ -1358,270 +1660,27 @@
             padding: 24px;
         }
         
-        .inspector-row {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        
-        .inspector-avatar {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, var(--lime) 0%, var(--lime-dark) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Fraunces', Georgia, serif;
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--black);
-            flex-shrink: 0;
-        }
-        
-        .inspector-info {
-            flex: 1;
-        }
-        
-        .inspector-name {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--white);
-        }
-        
-        .inspector-title {
-            font-size: 13px;
-            color: var(--stone-400);
-        }
-        
-        .inspector-stats {
-            display: flex;
-            gap: 16px;
-            margin-top: 6px;
-        }
-        
-        .inspector-stat {
-            font-size: 12px;
-            color: var(--stone-400);
-        }
-        
-        .inspector-stat strong {
-            color: var(--lime);
-            font-weight: 600;
-        }
-        
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-        
-        .detail-item {
-            padding: 14px;
-            background: var(--stone-700);
-            border-radius: 12px;
-        }
-        
-        .detail-label {
-            font-size: 10px;
-            font-weight: 600;
-            color: var(--stone-400);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 4px;
-        }
-        
-        .detail-value {
-            font-size: 13px;
-            color: var(--white);
-        }
-        
-        .detail-value.mono {
-            font-family: monospace;
-            font-size: 11px;
-        }
-        
-        /* Verification code */
-        .verification-code {
+        .next-inspection {
             grid-column: 1 / -1;
-            background: var(--black);
-            border: 1px solid var(--stone-700);
-            border-radius: 16px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        
-        .verification-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--lime);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        
-        .verification-icon svg {
-            width: 24px;
-            height: 24px;
-            color: var(--black);
-        }
-        
-        .verification-info {
-            flex: 1;
-        }
-        
-        .verification-label {
-            font-size: 11px;
-            color: var(--stone-500);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .verification-value {
-            font-family: monospace;
-            font-size: 16px;
-            color: var(--lime);
-            letter-spacing: 0.03em;
-        }
-        
-        .verification-copy {
-            padding: 10px 18px;
-            background: var(--stone-800);
-            border: none;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--white);
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        
-        .verification-copy:hover {
-            background: var(--stone-700);
-        }
-        
-        /* QR Code Card */
-        .qr-card {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        
-        .qr-code {
-            width: 120px;
-            height: 120px;
-            background: var(--white);
-            border-radius: 12px;
-            padding: 8px;
-            margin-bottom: 12px;
-        }
-        
-        .qr-code svg {
-            width: 100%;
-            height: 100%;
-        }
-        
-        .qr-label {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--stone-900);
-            margin-bottom: 4px;
-        }
-        
-        .qr-sublabel {
-            font-size: 11px;
-            color: var(--stone-500);
-        }
-        
-        /* Mini Map */
-        .map-card {
-            background: var(--stone-800);
-            border-radius: 16px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .map-container {
-            width: 100%;
-            height: 160px;
-            background: linear-gradient(135deg, var(--stone-700) 0%, var(--stone-800) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .map-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.9;
-        }
-        
-        .map-pin {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -100%);
-            width: 36px;
-            height: 36px;
-            background: var(--lime);
-            border-radius: 50% 50% 50% 0;
-            transform: translate(-50%, -100%) rotate(-45deg);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .map-pin::after {
-            content: '';
-            width: 12px;
-            height: 12px;
-            background: var(--black);
-            border-radius: 50%;
-            transform: rotate(45deg);
-        }
-        
-        .map-info {
-            padding: 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            padding: 20px 24px;
+            background: linear-gradient(135deg, var(--stone-800) 0%, var(--stone-900) 100%);
+            border-radius: 16px;
+            border: 1px solid var(--stone-700);
         }
         
-        .map-address {
+        .next-label {
             font-size: 13px;
-            color: var(--white);
-            font-weight: 500;
-        }
-        
-        .map-coords {
-            font-size: 11px;
             color: var(--stone-400);
-            font-family: monospace;
-            margin-top: 2px;
         }
         
-        .map-link {
-            padding: 8px 14px;
-            background: var(--stone-700);
-            border-radius: 8px;
-            font-size: 12px;
+        .next-date {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 18px;
             font-weight: 600;
-            color: var(--white);
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-        
-        .map-link:hover {
-            background: var(--stone-600);
+            color: var(--lime);
         }
         
         /* Photo Groups */
@@ -3016,155 +3075,119 @@
     <section class="section section-dark">
         <div class="container">
             <div class="section-header">
-                <p class="section-eyebrow">Verification</p>
-                <h2 class="section-title serif">Inspector & Trust</h2>
+                <p class="section-eyebrow">Verified & Secure</p>
+                <h2 class="section-title serif">Report Authenticity</h2>
             </div>
             
-            <div class="verification-grid">
-                <div class="verification-card">
-                    <div class="inspector-row">
-                        <div class="inspector-avatar serif">AH</div>
-                        <div class="inspector-info">
-                            <div class="inspector-name">Ahmad Hassan</div>
-                            <div class="inspector-title">LUCAS Certified Inspector</div>
-                            <div class="inspector-stats">
-                                <span class="inspector-stat"><strong>847</strong> inspections</span>
-                                <span class="inspector-stat"><strong>4.9</strong> rating</span>
+            <!-- Trust Banner -->
+            <div class="trust-banner">
+                <div class="trust-banner-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                </div>
+                <div class="trust-banner-content">
+                    <div class="trust-banner-title">This report is tamper-proof</div>
+                    <div class="trust-banner-text">GPS-verified location, timestamped photos, and blockchain-secured data ensure complete authenticity.</div>
+                </div>
+            </div>
+            
+            <!-- Inspector Card -->
+            <div class="inspector-card-large">
+                <div class="inspector-card-header">
+                    <span class="inspector-card-label">Inspected by</span>
+                </div>
+                <div class="inspector-card-body">
+                    <div class="inspector-avatar-large serif">AH</div>
+                    <div class="inspector-details">
+                        <div class="inspector-name-large">Ahmad Hassan</div>
+                        <div class="inspector-certification">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                            LUCAS Certified Inspector
+                        </div>
+                        <div class="inspector-meta-row">
+                            <div class="inspector-meta-item">
+                                <span class="inspector-meta-value">847</span>
+                                <span class="inspector-meta-label">Inspections</span>
+                            </div>
+                            <div class="inspector-meta-item">
+                                <span class="inspector-meta-value">4.9★</span>
+                                <span class="inspector-meta-label">Rating</span>
+                            </div>
+                            <div class="inspector-meta-item">
+                                <span class="inspector-meta-value">3 yrs</span>
+                                <span class="inspector-meta-label">Experience</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- QR Code -->
-                <div class="qr-card">
-                    <div class="qr-code">
-                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- QR Code pattern -->
-                            <rect width="100" height="100" fill="white"/>
-                            <!-- Position patterns -->
-                            <rect x="4" y="4" width="24" height="24" fill="#0d0d0d"/>
-                            <rect x="8" y="8" width="16" height="16" fill="white"/>
-                            <rect x="12" y="12" width="8" height="8" fill="#0d0d0d"/>
-                            <rect x="72" y="4" width="24" height="24" fill="#0d0d0d"/>
-                            <rect x="76" y="8" width="16" height="16" fill="white"/>
-                            <rect x="80" y="12" width="8" height="8" fill="#0d0d0d"/>
-                            <rect x="4" y="72" width="24" height="24" fill="#0d0d0d"/>
-                            <rect x="8" y="76" width="16" height="16" fill="white"/>
-                            <rect x="12" y="80" width="8" height="8" fill="#0d0d0d"/>
-                            <!-- Data modules (simplified pattern) -->
-                            <rect x="32" y="4" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="40" y="4" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="52" y="4" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="60" y="4" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="32" y="12" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="44" y="12" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="56" y="12" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="36" y="20" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="48" y="20" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="60" y="20" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="4" y="32" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="16" y="32" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="24" y="32" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="36" y="32" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="48" y="32" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="60" y="32" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="72" y="32" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="84" y="32" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="92" y="32" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="8" y="40" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="20" y="40" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="32" y="40" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="44" y="40" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="56" y="40" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="68" y="40" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="80" y="40" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="4" y="48" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="12" y="48" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="24" y="48" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="36" y="48" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="52" y="48" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="64" y="48" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="76" y="48" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="88" y="48" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="8" y="56" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="20" y="56" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="40" y="56" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="48" y="56" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="60" y="56" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="72" y="56" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="84" y="56" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="92" y="56" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="4" y="64" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="16" y="64" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="28" y="64" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="44" y="64" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="56" y="64" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="68" y="64" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="80" y="64" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="32" y="72" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="40" y="72" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="52" y="72" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="64" y="72" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="76" y="72" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="88" y="72" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="32" y="80" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="44" y="80" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="60" y="80" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="72" y="80" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="84" y="80" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="36" y="88" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="48" y="88" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="56" y="88" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="68" y="88" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="80" y="88" width="4" height="4" fill="#0d0d0d"/>
-                            <rect x="92" y="88" width="4" height="4" fill="#0d0d0d"/>
-                            <!-- LUCAS logo placeholder in center -->
-                            <rect x="40" y="40" width="20" height="20" fill="white"/>
-                            <rect x="44" y="44" width="12" height="12" rx="2" fill="#DEFF9A"/>
-                        </svg>
+            </div>
+            
+            <!-- Verification Details Grid -->
+            <div class="verification-details-grid">
+                <div class="verification-detail-card">
+                    <div class="verification-detail-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                     </div>
-                    <div class="qr-label">Scan to Verify</div>
-                    <div class="qr-sublabel">lucas.app/verify</div>
-                </div>
-                
-                <!-- Mini Map -->
-                <div class="map-card" style="grid-column: 1 / -1;">
-                    <div class="map-container">
-                        <img src="https://api.mapbox.com/styles/v1/mapbox/dark-v11/static/55.1339,25.0763,14,0/800x300@2x?access_token=pk.placeholder&logo=false" 
-                             alt="Location Map" 
-                             class="map-image"
-                             onerror="this.style.display='none'">
-                        <!-- Fallback gradient if map doesn't load -->
-                        <div style="position:absolute;inset:0;background:linear-gradient(135deg, #292524 0%, #1c1917 100%);display:flex;align-items:center;justify-content:center;">
-                            <svg width="48" height="48" fill="none" stroke="#44403c" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        </div>
-                        <div class="map-pin"></div>
-                    </div>
-                    <div class="map-info">
-                        <div>
-                            <div class="map-address">Marina Views Tower, Unit 1802</div>
-                            <div class="map-coords">25.0763°N, 55.1339°E · ±3m accuracy</div>
-                        </div>
-                        <a href="https://maps.google.com/?q=25.0763,55.1339" target="_blank" class="map-link">
-                            Open in Maps
-                        </a>
+                    <div class="verification-detail-content">
+                        <div class="verification-detail-label">Location Verified</div>
+                        <div class="verification-detail-value">Marina Views 1802</div>
+                        <div class="verification-detail-sub">25.0763°N, 55.1339°E · ±3m</div>
                     </div>
                 </div>
                 
-                <div class="verification-code">
-                    <div class="verification-icon">
+                <div class="verification-detail-card">
+                    <div class="verification-detail-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <div class="verification-detail-content">
+                        <div class="verification-detail-label">Inspection Time</div>
+                        <div class="verification-detail-value">Dec 12, 2024</div>
+                        <div class="verification-detail-sub">10:32 AM – 11:17 AM (45 min)</div>
+                    </div>
+                </div>
+                
+                <div class="verification-detail-card">
+                    <div class="verification-detail-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </div>
+                    <div class="verification-detail-content">
+                        <div class="verification-detail-label">Report ID</div>
+                        <div class="verification-detail-value mono">MV1802-A7X9</div>
+                        <div class="verification-detail-sub">Generated automatically</div>
+                    </div>
+                </div>
+                
+                <div class="verification-detail-card">
+                    <div class="verification-detail-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    </div>
+                    <div class="verification-detail-content">
+                        <div class="verification-detail-label">Next Inspection</div>
+                        <div class="verification-detail-value">Jan 12, 2025</div>
+                        <div class="verification-detail-sub">30 days from now</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Verification Code -->
+            <div class="verification-code-card">
+                <div class="verification-code-left">
+                    <div class="verification-code-badge">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                     </div>
-                    <div class="verification-info">
-                        <div class="verification-label">Verification Code</div>
-                        <div class="verification-value">LCS-2024-1212-MV1802-A7X9</div>
+                    <div>
+                        <div class="verification-code-label">Verification Code</div>
+                        <div class="verification-code-value">LCS-2024-1212-MV1802-A7X9</div>
                     </div>
-                    <button class="verification-copy" onclick="copyCode()">Copy</button>
                 </div>
-                
-                <div class="next-inspection" style="grid-column: 1 / -1;">
-                    <span class="next-label">Next Scheduled Inspection</span>
-                    <span class="next-date serif">January 12, 2025</span>
+                <div class="verification-code-actions">
+                    <button class="verification-code-btn" onclick="copyCode()">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        Copy
+                    </button>
+                    <a href="https://lucas.app/verify/LCS-2024-1212-MV1802-A7X9" target="_blank" class="verification-code-btn primary">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        Verify Online
+                    </a>
                 </div>
             </div>
         </div>
@@ -3215,18 +3238,26 @@
         function animateScore() {
             const scoreEl = document.getElementById('scoreNumber');
             const ring = document.getElementById('scoreRing');
+            
+            if (!scoreEl || !ring) {
+                console.error('Score elements not found');
+                return;
+            }
+            
             const target = 95;
             const duration = 2000;
             const start = performance.now();
             
             // Start ring animation
-            setTimeout(() => ring.classList.add('animated'), 500);
+            setTimeout(() => {
+                if (ring) ring.classList.add('animated');
+            }, 500);
             
             function update(now) {
                 const elapsed = now - start;
                 const progress = Math.min(elapsed / duration, 1);
                 const eased = 1 - Math.pow(1 - progress, 4);
-                scoreEl.textContent = Math.floor(eased * target);
+                if (scoreEl) scoreEl.textContent = Math.floor(eased * target);
                 if (progress < 1) requestAnimationFrame(update);
             }
             
@@ -3399,9 +3430,8 @@
         // Init
         animateScore();
         
-        // Scroll-triggered animations
-        const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.animate-on-scroll');
+        // Scroll-triggered animations - with immediate trigger for visible elements
+        const setupAnimations = () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -3411,22 +3441,42 @@
                 });
             }, {
                 threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
+                rootMargin: '0px 0px -30px 0px'
             });
             
-            elements.forEach(el => observer.observe(el));
+            // Apply animation classes to key elements
+            document.querySelectorAll('.section-header').forEach(el => {
+                el.classList.add('animate-on-scroll');
+                observer.observe(el);
+            });
+            
+            document.querySelectorAll('.room-card').forEach((el, i) => {
+                el.classList.add('animate-on-scroll');
+                el.classList.add('delay-' + ((i % 3) + 1));
+                observer.observe(el);
+            });
+            
+            document.querySelectorAll('.action-card').forEach((el, i) => {
+                el.classList.add('animate-on-scroll');
+                el.classList.add('delay-' + (i + 1));
+                observer.observe(el);
+            });
+            
+            document.querySelectorAll('.glance-item').forEach((el, i) => {
+                el.classList.add('animate-on-scroll');
+                el.style.transitionDelay = (i * 0.08) + 's';
+                observer.observe(el);
+            });
+            
+            const glanceSummary = document.querySelector('.glance-summary');
+            if (glanceSummary) {
+                glanceSummary.classList.add('animate-on-scroll');
+                observer.observe(glanceSummary);
+            }
         };
         
-        // Apply animation classes to key elements
-        document.querySelectorAll('.section-header').forEach(el => el.classList.add('animate-on-scroll'));
-        document.querySelectorAll('.room-card').forEach((el, i) => {
-            el.classList.add('animate-on-scroll');
-            el.classList.add('delay-' + ((i % 3) + 1));
-        });
-        document.querySelectorAll('.action-card').forEach((el, i) => {
-            el.classList.add('animate-on-scroll');
-            el.classList.add('delay-' + (i + 1));
-        });
-        document.querySelectorAll('.verification-card').forEach((el, i) => {
-            el.classList.add('animate-on-scroll');
-            el
+        // Run after a small delay to ensure DOM is ready
+        setTimeout(setupAnimations, 100);
+    </script>
+</body>
+</html>
