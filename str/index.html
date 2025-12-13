@@ -20,7 +20,7 @@
             --cream: #fdfcf9;
             --red: #e53935;
             --red-dark: #b71c1c;
-            --lime: #c8e600;
+            --lime: #DEFF9A;
             --lime-bright: #d4ff00;
             --text: #1a1a1a;
             --text-muted: #666;
@@ -67,9 +67,7 @@
             color: var(--black);
         }
         
-        /* ==========================================
-           NAVBAR - Minimal, gets out of the way
-           ========================================== */
+        /* NAV */
         .nav {
             position: fixed;
             top: 0;
@@ -83,67 +81,19 @@
             transition: all 0.3s ease;
         }
         
-        /* Dark mode (for dark/red backgrounds) */
-        .nav.nav-light {
-            /* Logo and text are white */
-        }
+        .nav.nav-light .nav-logo img { filter: brightness(0) invert(1); }
+        .nav.nav-light .nav-logo span { color: white; }
+        .nav.nav-light .nav-cta { color: white; border-color: white; }
+        .nav.nav-light .nav-cta:hover { background: white; color: black; }
         
-        .nav.nav-light .nav-logo img {
-            filter: brightness(0) invert(1); /* White */
-        }
+        .nav.nav-dark .nav-logo img { filter: brightness(0); }
+        .nav.nav-dark .nav-logo span { color: black; }
+        .nav.nav-dark .nav-cta { color: black; border-color: black; }
+        .nav.nav-dark .nav-cta:hover { background: black; color: white; }
         
-        .nav.nav-light .nav-logo span {
-            color: white;
-        }
-        
-        .nav.nav-light .nav-cta {
-            color: white;
-            border-color: white;
-        }
-        
-        .nav.nav-light .nav-cta:hover {
-            background: white;
-            color: black;
-        }
-        
-        /* Light mode (for lime/paper backgrounds) */
-        .nav.nav-dark .nav-logo img {
-            filter: brightness(0); /* Black */
-        }
-        
-        .nav.nav-dark .nav-logo span {
-            color: black;
-        }
-        
-        .nav.nav-dark .nav-cta {
-            color: black;
-            border-color: black;
-        }
-        
-        .nav.nav-dark .nav-cta:hover {
-            background: black;
-            color: white;
-        }
-        
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-        
-        .nav-logo img {
-            height: 40px;
-            width: auto;
-            transition: filter 0.3s ease;
-        }
-        
-        .nav-logo span {
-            font-family: var(--font-display);
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            transition: color 0.3s ease;
-        }
+        .nav-logo { display: flex; align-items: center; text-decoration: none; }
+        .nav-logo img { height: 40px; width: auto; transition: filter 0.3s ease; }
+        .nav-logo span { font-family: var(--font-display); font-size: 32px; font-weight: 700; letter-spacing: -0.02em; transition: color 0.3s ease; }
         
         .nav-cta {
             font-family: var(--font-mono);
@@ -156,9 +106,7 @@
             transition: all 0.3s ease;
         }
         
-        /* ==========================================
-           HERO - The Split Reality
-           ========================================== */
+        /* HERO */
         .hero {
             min-height: 100vh;
             display: grid;
@@ -168,13 +116,9 @@
         }
         
         @media (max-width: 768px) {
-            .hero {
-                grid-template-columns: 1fr;
-                min-height: auto;
-            }
+            .hero { grid-template-columns: 1fr; min-height: auto; }
         }
         
-        /* LEFT: The Nightmare */
         .hero-nightmare {
             background: var(--red-dark);
             padding: 140px 48px 100px;
@@ -189,13 +133,8 @@
         .hero-nightmare::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 30%),
-                linear-gradient(0deg, rgba(0,0,0,0.5) 0%, transparent 50%);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 30%), linear-gradient(0deg, rgba(0,0,0,0.5) 0%, transparent 50%);
             pointer-events: none;
         }
         
@@ -214,17 +153,7 @@
             line-height: 36px;
         }
         
-        @media (max-width: 900px) {
-            .hero-audience {
-                left: 170px;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .hero-audience {
-                display: none;
-            }
-        }
+        @media (max-width: 600px) { .hero-audience { display: none; } }
         
         .nightmare-label {
             font-family: var(--font-mono);
@@ -233,42 +162,14 @@
             letter-spacing: 0.2em;
             color: rgba(255,255,255,0.5);
             margin-bottom: 24px;
-            min-height: 16px;
             position: relative;
             z-index: 1;
         }
         
-        .nightmare-stat {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .nightmare-stat-number {
-            font-family: var(--font-display);
-            font-size: clamp(80px, 15vw, 180px);
-            font-weight: 700;
-            line-height: 0.85;
-            color: white;
-            letter-spacing: -0.03em;
-        }
-        
-        .nightmare-stat-unit {
-            font-family: var(--font-display);
-            font-size: clamp(24px, 4vw, 48px);
-            font-weight: 600;
-            color: rgba(255,255,255,0.7);
-            margin-left: 8px;
-        }
-        
-        .nightmare-stat-label {
-            font-family: var(--font-body);
-            font-size: 18px;
-            color: rgba(255,255,255,0.6);
-            margin-top: 16px;
-            max-width: 280px;
-            line-height: 1.5;
-            min-height: 80px;
-        }
+        .nightmare-stat { position: relative; z-index: 1; }
+        .nightmare-stat-number { font-family: var(--font-display); font-size: clamp(80px, 15vw, 180px); font-weight: 700; line-height: 0.85; color: white; letter-spacing: -0.03em; }
+        .nightmare-stat-unit { font-family: var(--font-display); font-size: clamp(24px, 4vw, 48px); font-weight: 600; color: rgba(255,255,255,0.7); margin-left: 8px; }
+        .nightmare-stat-label { font-family: var(--font-body); font-size: 18px; color: rgba(255,255,255,0.6); margin-top: 16px; max-width: 280px; line-height: 1.5; }
         
         .nightmare-context {
             position: absolute;
@@ -281,7 +182,6 @@
             z-index: 1;
         }
         
-        /* RIGHT: The LUCAS Reality */
         .hero-reality {
             background: var(--lime);
             padding: 140px 48px 100px;
@@ -292,52 +192,19 @@
             position: relative;
         }
         
-        .reality-label {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--black);
-            margin-bottom: 24px;
-            min-height: 16px;
-        }
-        
-        .reality-stat {
-            position: relative;
-        }
-        
-        .reality-stat-number {
-            font-family: var(--font-display);
-            font-size: clamp(80px, 15vw, 180px);
-            font-weight: 700;
-            line-height: 0.85;
-            color: var(--black);
-            letter-spacing: -0.03em;
-        }
-        
-        .reality-stat-unit {
-            font-family: var(--font-display);
-            font-size: clamp(24px, 4vw, 48px);
-            font-weight: 600;
-            color: var(--black);
-            margin-left: 8px;
-        }
-        
-        .reality-stat-label {
-            font-family: var(--font-body);
-            font-size: 18px;
-            color: var(--black);
-            margin-top: 16px;
-            max-width: 280px;
-            line-height: 1.5;
-            min-height: 80px;
-        }
+        .reality-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--black); margin-bottom: 24px; }
+        .reality-stat-number { font-family: var(--font-display); font-size: clamp(80px, 15vw, 180px); font-weight: 700; line-height: 0.85; color: var(--black); letter-spacing: -0.03em; }
+        .reality-stat-unit { font-family: var(--font-display); font-size: clamp(24px, 4vw, 48px); font-weight: 600; color: var(--black); margin-left: 8px; }
+        .reality-stat-label { font-family: var(--font-body); font-size: 18px; color: var(--black); margin-top: 16px; max-width: 280px; line-height: 1.5; }
         
         .reality-cta {
             position: absolute;
             bottom: 56px;
             left: 48px;
             right: 48px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
         }
         
         .reality-cta a {
@@ -347,7 +214,6 @@
             font-family: var(--font-body);
             font-size: 16px;
             font-weight: 700;
-            color: var(--black);
             text-decoration: none;
             padding: 16px 32px;
             background: var(--black);
@@ -355,15 +221,24 @@
             transition: all 0.3s ease;
         }
         
-        .reality-cta a:hover {
-            gap: 20px;
+        .reality-cta a:hover { gap: 20px; }
+        
+        .reality-cta a.secondary {
+            background: transparent;
+            color: var(--black);
+            border: 2px solid var(--black);
+            padding: 14px 28px;
+        }
+        
+        .reality-cta a.secondary:hover {
+            background: var(--black);
+            color: var(--lime);
         }
         
         .reality-qualifier {
             position: absolute;
             bottom: 115px;
             left: 48px;
-            right: 48px;
             font-family: var(--font-mono);
             font-size: 11px;
             text-transform: uppercase;
@@ -371,7 +246,6 @@
             color: var(--black);
         }
         
-        /* Center divider */
         .hero-divider {
             position: absolute;
             top: 50%;
@@ -384,1228 +258,199 @@
             gap: 16px;
         }
         
-        @media (max-width: 768px) {
-            .hero-divider {
-                display: none;
-            }
-        }
+        @media (max-width: 768px) { .hero-divider { display: none; } }
         
-        .hero-divider-line {
-            width: 1px;
-            height: 80px;
-            background: linear-gradient(180deg, transparent, white, transparent);
-        }
+        .hero-divider-line { width: 1px; height: 80px; background: linear-gradient(180deg, transparent, white, transparent); }
+        .hero-divider-text { font-family: var(--font-mono); font-size: 12px; color: white; background: var(--black); padding: 12px 20px; text-transform: uppercase; letter-spacing: 0.15em; }
         
-        .hero-divider-text {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: white;
-            background: var(--black);
-            padding: 12px 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-        }
+        /* STORY SCENES */
+        .story { background: var(--paper); color: var(--text); padding: 0; }
+        .story-scene { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 80px 32px; }
         
-        /* ==========================================
-           THE STORY - Immersive narrative
-           ========================================== */
-        .story {
-            background: var(--paper);
-            color: var(--text);
-            padding: 0;
-        }
+        .scene-call { background: var(--paper); }
+        .call-content { max-width: 900px; text-align: center; }
+        .call-ring { width: 120px; height: 120px; border: 2px solid var(--red); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 48px; animation: ring 2s ease-in-out infinite; }
+        @keyframes ring { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+        .call-ring i { font-size: 40px; color: var(--red); }
+        .call-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--red); margin-bottom: 32px; }
+        .call-quote { font-family: var(--font-display); font-size: clamp(32px, 5vw, 56px); font-weight: 600; line-height: 1.2; color: var(--text); margin-bottom: 32px; letter-spacing: -0.02em; }
+        .call-attribution { font-family: var(--font-body); font-size: 16px; color: var(--text-muted); }
         
-        .story-scene {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 80px 32px;
-            position: relative;
-        }
+        .scene-evidence { background: var(--off-black); color: var(--paper); }
+        .evidence-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; }
+        @media (max-width: 768px) { .evidence-grid { grid-template-columns: 1fr; gap: 16px; } }
+        .evidence-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 32px; position: relative; }
+        .evidence-card::before { content: '✕'; position: absolute; top: 16px; right: 16px; font-family: var(--font-mono); font-size: 14px; color: var(--red); }
+        .evidence-card-title { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
+        .evidence-card-content { font-family: var(--font-body); font-size: 18px; font-weight: 500; line-height: 1.5; }
         
-        /* Scene 1: The Call */
-        .scene-call {
-            background: var(--paper);
-        }
+        .scene-cost { background: var(--red); color: white; }
+        .cost-content { text-align: center; }
+        .cost-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.6); margin-bottom: 24px; }
+        .cost-number { font-family: var(--font-display); font-size: clamp(100px, 20vw, 280px); font-weight: 700; line-height: 0.85; letter-spacing: -0.03em; }
+        .cost-unit { font-family: var(--font-display); font-size: clamp(24px, 5vw, 56px); font-weight: 600; color: rgba(255,255,255,0.7); }
+        .cost-context { font-family: var(--font-body); font-size: 18px; color: rgba(255,255,255,0.7); margin-top: 24px; }
         
-        .call-content {
-            max-width: 900px;
-            text-align: center;
-        }
+        /* FLIP */
+        .flip { background: var(--black); padding: 120px 32px; text-align: center; }
+        .flip-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.3em; color: var(--lime); margin-bottom: 32px; }
+        .flip-headline { font-family: var(--font-body); font-size: clamp(28px, 5vw, 48px); font-weight: 500; line-height: 1.4; max-width: 800px; margin: 0 auto; color: rgba(255,255,255,0.9); }
+        .flip-headline .lime { color: var(--lime); font-weight: 700; }
         
-        .call-ring {
-            width: 120px;
-            height: 120px;
-            border: 2px solid var(--red);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 48px;
-            position: relative;
-            animation: ring 2s ease-in-out infinite;
-        }
+        /* TESTIMONIAL */
+        .testimonial { background: var(--paper); color: var(--text); padding: 120px 32px; }
+        .testimonial-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+        .testimonial-quote { font-family: var(--font-display); font-size: clamp(28px, 4vw, 40px); font-weight: 600; line-height: 1.3; letter-spacing: -0.02em; margin-bottom: 48px; }
+        .testimonial-author { display: flex; align-items: center; justify-content: center; gap: 16px; }
+        .testimonial-avatar { width: 56px; height: 56px; background: var(--off-black); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; color: var(--lime); font-size: 18px; }
+        .testimonial-info { text-align: left; }
+        .testimonial-name { font-family: var(--font-body); font-weight: 700; font-size: 16px; }
+        .testimonial-role { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
         
-        @keyframes ring {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-        }
+        /* PROOF */
+        .proof { background: var(--paper); color: var(--text); padding: 120px 32px; }
+        .proof-header { max-width: 600px; margin: 0 auto 60px; text-align: center; }
+        .proof-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); margin-bottom: 16px; }
+        .proof-title { font-family: var(--font-display); font-size: clamp(32px, 5vw, 48px); font-weight: 700; letter-spacing: -0.02em; }
         
-        .call-ring::before,
-        .call-ring::after {
-            content: '';
-            position: absolute;
-            border: 1px solid var(--red);
-            border-radius: 50%;
-            opacity: 0;
-            animation: ripple 2s ease-out infinite;
-        }
-        
-        .call-ring::before {
-            inset: -20px;
-            animation-delay: 0s;
-        }
-        
-        .call-ring::after {
-            inset: -40px;
-            animation-delay: 0.5s;
-        }
-        
-        @keyframes ripple {
-            0% { opacity: 0.5; transform: scale(0.8); }
-            100% { opacity: 0; transform: scale(1.2); }
-        }
-        
-        .call-ring i {
-            font-size: 40px;
-            color: var(--red);
-        }
-        
-        .call-label {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--red);
-            margin-bottom: 32px;
-        }
-        
-        .call-quote {
-            font-family: var(--font-display);
-            font-size: clamp(32px, 5vw, 56px);
-            font-weight: 600;
-            line-height: 1.2;
-            color: var(--text);
-            margin-bottom: 32px;
-            letter-spacing: -0.02em;
-        }
-        
-        .call-attribution {
-            font-family: var(--font-body);
-            font-size: 16px;
-            color: var(--text-muted);
-        }
-        
-        /* Scene 2: The Evidence (or lack thereof) */
-        .scene-evidence {
-            background: var(--off-black);
-            color: var(--paper);
-        }
-        
-        .evidence-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            max-width: 1000px;
-        }
-        
-        @media (max-width: 768px) {
-            .evidence-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-        }
-        
-        .evidence-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 32px;
-            position: relative;
-        }
-        
-        .evidence-card::before {
-            content: '✕';
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            font-family: var(--font-mono);
-            font-size: 14px;
-            color: var(--red);
-        }
-        
-        .evidence-card-title {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: rgba(255,255,255,0.4);
-            margin-bottom: 16px;
-        }
-        
-        .evidence-card-content {
-            font-family: var(--font-body);
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 1.5;
-        }
-        
-        /* Scene 3: The Cost */
-        .scene-cost {
-            background: var(--red);
-            color: white;
-        }
-        
-        .cost-content {
-            text-align: center;
-        }
-        
-        .cost-label {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 24px;
-        }
-        
-        .cost-number {
-            font-family: var(--font-display);
-            font-size: clamp(100px, 20vw, 280px);
-            font-weight: 700;
-            line-height: 0.85;
-            letter-spacing: -0.03em;
-        }
-        
-        .cost-unit {
-            font-family: var(--font-display);
-            font-size: clamp(24px, 5vw, 56px);
-            font-weight: 600;
-            color: rgba(255,255,255,0.7);
-        }
-        
-        .cost-context {
-            font-family: var(--font-body);
-            font-size: 18px;
-            color: rgba(255,255,255,0.7);
-            margin-top: 24px;
-        }
-        
-        /* ==========================================
-           THE FLIP - Now with LUCAS
-           ========================================== */
-        .flip {
-            background: var(--black);
-            padding: 120px 32px;
-            text-align: center;
-        }
-        
-        .flip-label {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            color: var(--lime);
-            margin-bottom: 32px;
-        }
-        
-        .flip-headline {
-            font-family: var(--font-body);
-            font-size: clamp(28px, 5vw, 48px);
-            font-weight: 500;
-            line-height: 1.4;
-            letter-spacing: -0.01em;
-            max-width: 800px;
-            margin: 0 auto;
-            color: rgba(255,255,255,0.9);
-            position: relative;
-        }
-        
-        .flip-headline::before {
-            content: '"';
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: var(--font-display);
-            font-size: 80px;
-            color: var(--lime);
-            opacity: 0.3;
-            line-height: 1;
-        }
-        
-        .flip-headline .lime {
-            color: var(--lime);
-            font-weight: 700;
-        }
-        
-        /* ==========================================
-           THE PROOF - Real report showcase
-           ========================================== */
-        .proof {
-            background: var(--paper);
-            color: var(--text);
-            padding: 120px 32px;
-        }
-        
-        .proof-header {
-            max-width: 600px;
-            margin: 0 auto 60px;
-            text-align: center;
-        }
-        
-        .proof-label {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-        }
-        
-        .proof-title {
-            font-family: var(--font-display);
-            font-size: clamp(32px, 5vw, 48px);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-        
-        /* Report as app/dashboard preview */
-        .report-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .report {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 
-                0 0 0 1px rgba(0,0,0,0.05),
-                0 4px 6px rgba(0,0,0,0.04),
-                0 10px 20px rgba(0,0,0,0.04),
-                0 25px 50px rgba(0,0,0,0.06);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .report-browser-bar {
-            background: #f5f5f5;
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 1px solid #e5e5e5;
-        }
-        
-        .report-browser-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #ddd;
-        }
-        
+        .report-container { max-width: 800px; margin: 0 auto; }
+        .report { background: white; border-radius: 12px; box-shadow: 0 0 0 1px rgba(0,0,0,0.05), 0 4px 6px rgba(0,0,0,0.04), 0 25px 50px rgba(0,0,0,0.06); overflow: hidden; }
+        .report-browser-bar { background: #f5f5f5; padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #e5e5e5; }
+        .report-browser-dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; }
         .report-browser-dot:nth-child(1) { background: #ff5f57; }
         .report-browser-dot:nth-child(2) { background: #ffbd2e; }
         .report-browser-dot:nth-child(3) { background: #28ca42; }
+        .report-browser-url { flex: 1; margin-left: 12px; background: white; border-radius: 6px; padding: 6px 12px; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
         
-        .report-browser-url {
-            flex: 1;
-            margin-left: 12px;
-            background: white;
-            border-radius: 6px;
-            padding: 6px 12px;
-            font-family: var(--font-mono);
-            font-size: 11px;
-            color: var(--text-muted);
-        }
+        .report-header { background: var(--black); padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; }
+        .report-logo { display: flex; align-items: center; gap: 12px; }
+        .report-logo-mark { width: 40px; height: 40px; background: var(--lime); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--black); }
+        .report-logo-text { color: white; font-family: var(--font-body); font-weight: 600; }
+        .report-logo-text span { display: block; font-family: var(--font-mono); font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.5); margin-top: 2px; }
+        .report-stamp { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--lime); padding: 8px 16px; border: 1px solid var(--lime); }
         
-        .report-header {
-            background: var(--black);
-            padding: 24px 32px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .report-body { padding: 32px; }
+        .report-property { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 32px; border-bottom: 1px solid #eee; margin-bottom: 32px; }
+        .report-property-name { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+        .report-property-details { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+        .report-score { text-align: right; }
+        .report-score-number { font-family: var(--font-display); font-size: 56px; font-weight: 700; color: #22c55e; line-height: 1; }
+        .report-score-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #22c55e; }
         
-        .report-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .report-issues { background: #fff8f0; border-left: 4px solid #f59e0b; padding: 24px; margin-bottom: 32px; }
+        .report-issues-header { font-family: var(--font-body); font-size: 14px; font-weight: 700; color: #b45309; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .report-issue { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #fde68a; font-size: 14px; }
+        .report-issue:last-child { border-bottom: none; }
+        .report-issue-name { color: var(--text); }
+        .report-issue-cost { font-family: var(--font-mono); font-weight: 500; color: #b45309; }
+        .report-issues-total { display: flex; justify-content: space-between; padding-top: 16px; margin-top: 8px; border-top: 2px solid #fde68a; font-weight: 700; }
         
-        .report-logo-mark {
-            width: 40px;
-            height: 40px;
-            background: var(--lime);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--black);
-        }
+        .report-photos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+        .report-photo { aspect-ratio: 1; background: #f0f0f0; border-radius: 8px; overflow: hidden; }
+        .report-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .report-photos-label { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); text-align: center; margin-bottom: 24px; }
+        .report-footer { display: flex; justify-content: space-between; padding-top: 24px; border-top: 1px solid #eee; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); flex-wrap: wrap; gap: 8px; }
         
-        .report-logo-text {
-            color: white;
-            font-family: var(--font-body);
-            font-weight: 600;
-        }
+        .report-cta { text-align: center; margin-top: 40px; }
+        .report-cta a { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-body); font-size: 16px; font-weight: 600; color: var(--text); text-decoration: none; padding: 16px 32px; background: white; border: 2px solid var(--text); border-radius: 8px; transition: all 0.2s ease; }
+        .report-cta a:hover { background: var(--text); color: white; }
+        .report-cta p { margin-top: 12px; font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
         
-        .report-logo-text span {
-            display: block;
-            font-family: var(--font-mono);
-            font-size: 11px;
-            font-weight: 400;
-            color: rgba(255,255,255,0.5);
-            margin-top: 2px;
-        }
-        
-        .report-stamp {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--lime);
-            padding: 8px 16px;
-            border: 1px solid var(--lime);
-        }
-        
-        .report-body {
-            padding: 32px;
-        }
-        
-        .report-property {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding-bottom: 32px;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 32px;
-        }
-        
-        .report-property-name {
-            font-family: var(--font-display);
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 4px;
-        }
-        
-        .report-property-details {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-        
-        .report-score {
-            text-align: right;
-        }
-        
-        .report-score-number {
-            font-family: var(--font-display);
-            font-size: 56px;
-            font-weight: 700;
-            color: #22c55e;
-            line-height: 1;
-        }
-        
-        .report-score-label {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #22c55e;
-        }
-        
-        /* Issues found - the value */
-        .report-issues {
-            background: #fff8f0;
-            border-left: 4px solid #f59e0b;
-            padding: 24px;
-            margin-bottom: 32px;
-        }
-        
-        .report-issues-header {
-            font-family: var(--font-body);
-            font-size: 14px;
-            font-weight: 700;
-            color: #b45309;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .report-issue {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px dashed #fde68a;
-            font-size: 14px;
-        }
-        
-        .report-issue:last-child {
-            border-bottom: none;
-        }
-        
-        .report-issue-name {
-            color: var(--text);
-        }
-        
-        .report-issue-cost {
-            font-family: var(--font-mono);
-            font-weight: 500;
-            color: #b45309;
-        }
-        
-        .report-issues-total {
-            display: flex;
-            justify-content: space-between;
-            padding-top: 16px;
-            margin-top: 8px;
-            border-top: 2px solid #fde68a;
-            font-weight: 700;
-        }
-        
-        /* Photo grid */
-        .report-photos {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-        
-        .report-photo {
-            aspect-ratio: 1;
-            background: #f0f0f0;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .report-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .report-photos-label {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            color: var(--text-muted);
-            text-align: center;
-            margin-bottom: 24px;
-        }
-        
-        .report-footer {
-            display: flex;
-            justify-content: space-between;
-            padding-top: 24px;
-            border-top: 1px solid #eee;
-            font-family: var(--font-mono);
-            font-size: 11px;
-            color: var(--text-muted);
-        }
-        
-        @media (max-width: 600px) {
-            .report-footer {
-                flex-direction: column;
-                gap: 8px;
-            }
-        }
-        
-        /* Sample report CTA */
-        .report-cta {
-            text-align: center;
-            margin-top: 40px;
-        }
-        
-        .report-cta a {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: var(--font-body);
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text);
-            text-decoration: none;
-            padding: 16px 32px;
-            background: white;
-            border: 2px solid var(--text);
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-        
-        .report-cta a:hover {
-            background: var(--text);
-            color: white;
-        }
-        
-        .report-cta p {
-            margin-top: 12px;
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-        
-        /* ==========================================
-           HOW IT WORKS - Simple 3 steps
-           ========================================== */
-        .how {
-            background: var(--off-black);
-            padding: 80px 32px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .how-inner {
-            max-width: 960px;
-            margin: 0 auto;
-        }
-        
-        .how-label {
-            display: block;
-            font-family: var(--font-mono);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: rgba(255,255,255,0.4);
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .how-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-        
-        .how-step {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-        }
-        
-        .how-step-number {
-            flex-shrink: 0;
-            width: 32px;
-            height: 32px;
-            background: var(--lime);
-            color: var(--black);
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .how-step-content {
-            flex: 1;
-        }
-        
-        .how-step-title {
-            font-family: var(--font-display);
-            font-size: 18px;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 6px;
-        }
-        
-        .how-step-text {
-            font-family: var(--font-body);
-            font-size: 15px;
-            color: rgba(255,255,255,0.6);
-            line-height: 1.5;
-        }
+        /* HOW */
+        .how { background: var(--off-black); padding: 80px 32px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .how-inner { max-width: 960px; margin: 0 auto; }
+        .how-label { display: block; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.4); text-align: center; margin-bottom: 40px; }
+        .how-steps { display: flex; flex-direction: column; gap: 24px; }
+        .how-step { display: flex; align-items: flex-start; gap: 20px; }
+        .how-step-number { flex-shrink: 0; width: 32px; height: 32px; background: var(--lime); color: var(--black); font-family: var(--font-display); font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+        .how-step-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: white; margin-bottom: 6px; }
+        .how-step-text { font-family: var(--font-body); font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.5; }
         
         @media (min-width: 768px) {
-            .how-steps {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 32px;
-            }
-            
-            .how-step {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            
-            .how-step-number {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
-                margin-bottom: 16px;
-            }
-            
-            .how-step-title {
-                font-size: 16px;
-                margin-bottom: 8px;
-            }
-            
-            .how-step-text {
-                font-size: 14px;
-            }
+            .how-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+            .how-step { flex-direction: column; align-items: center; text-align: center; }
+            .how-step-number { width: 40px; height: 40px; font-size: 16px; margin-bottom: 16px; }
         }
         
-        .how-tagline {
-            text-align: center;
-            margin-top: 56px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
+        .how-tagline { text-align: center; margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .how-tagline-main { font-family: var(--font-display); font-size: clamp(20px, 3vw, 28px); font-weight: 700; color: white; margin-bottom: 8px; }
+        .how-tagline-sub { font-family: var(--font-body); font-size: 16px; color: rgba(255,255,255,0.5); }
         
-        .how-tagline-main {
-            font-family: var(--font-display);
-            font-size: clamp(20px, 3vw, 28px);
-            font-weight: 700;
-            color: white;
-            margin-bottom: 8px;
-        }
-        
-        .how-tagline-sub {
-            font-family: var(--font-body);
-            font-size: 16px;
-            color: rgba(255,255,255,0.5);
-        }
-        
-        /* ==========================================
-           THE MATH - Simple, brutal
-           ========================================== */
-        .math {
-            background: var(--black);
-            padding: 120px 32px;
-        }
-        
-        .math-inner {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .math-equation {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 32px;
-            margin-bottom: 64px;
-        }
-        
-        .math-term {
-            text-align: center;
-        }
-        
-        .math-term-value {
-            font-family: var(--font-display);
-            font-size: clamp(48px, 10vw, 96px);
-            font-weight: 700;
-            line-height: 1;
-        }
-        
-        .math-term-value.red { color: var(--red); }
-        .math-term-value.lime { color: var(--lime); }
+        /* MATH */
+        .math { background: var(--black); padding: 120px 32px; }
+        .math-inner { max-width: 1000px; margin: 0 auto; }
+        .math-equation { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 32px; margin-bottom: 64px; }
+        .math-term { text-align: center; }
+        .math-term-value { font-family: var(--font-display); font-size: clamp(48px, 10vw, 96px); font-weight: 700; line-height: 1; }
         .math-term-value.white { color: white; }
+        .math-term-value.lime { color: var(--lime); }
+        .math-term-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.5); margin-top: 12px; }
+        .math-operator { font-family: var(--font-display); font-size: 48px; color: rgba(255,255,255,0.3); }
+        .math-result { text-align: center; padding: 48px; border: 1px solid rgba(255,255,255,0.1); }
+        .math-result-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+        .math-result-value { font-family: var(--font-display); font-size: clamp(64px, 12vw, 120px); font-weight: 700; color: var(--lime); line-height: 1; }
         
-        .math-term-label {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: rgba(255,255,255,0.5);
-            margin-top: 12px;
-        }
+        /* CTA */
+        .cta { background: var(--lime); color: var(--black); padding: 120px 32px; text-align: center; }
+        .cta-headline { font-family: var(--font-display); font-size: clamp(48px, 10vw, 120px); font-weight: 700; line-height: 0.9; letter-spacing: -0.03em; margin-bottom: 24px; }
+        .cta-subheadline { font-family: var(--font-body); font-size: 20px; color: rgba(0,0,0,0.6); margin-bottom: 48px; }
+        .cta-form { max-width: 500px; margin: 0 auto; }
+        .cta-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+        @media (max-width: 600px) { .cta-form-row { grid-template-columns: 1fr; } }
+        .cta-input { width: 100%; padding: 20px 24px; font-family: var(--font-body); font-size: 16px; border: 2px solid var(--black); background: transparent; color: var(--black); outline: none; }
+        .cta-input::placeholder { color: rgba(0,0,0,0.4); }
+        .cta-input:focus { background: white; }
+        .cta-select { width: 100%; padding: 20px 24px; font-family: var(--font-body); font-size: 16px; border: 2px solid var(--black); background: transparent; color: var(--black); cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23000' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 20px center; }
+        .cta-submit { width: 100%; padding: 24px; font-family: var(--font-body); font-size: 18px; font-weight: 700; border: none; background: var(--black); color: var(--lime); cursor: pointer; transition: all 0.3s; margin-top: 12px; }
+        .cta-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+        .cta-note { font-family: var(--font-mono); font-size: 12px; color: rgba(0,0,0,0.5); margin-top: 24px; }
+        .cta-whatsapp { margin-top: 32px; padding-top: 32px; border-top: 1px solid rgba(0,0,0,0.1); }
+        .cta-whatsapp a { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-body); font-weight: 600; color: var(--black); text-decoration: none; }
         
-        .math-operator {
-            font-family: var(--font-display);
-            font-size: 48px;
-            color: rgba(255,255,255,0.3);
-        }
+        /* FAQ */
+        .faq { background: var(--black); padding: 100px 32px; }
+        .faq-inner { max-width: 540px; margin: 0 auto; }
+        .faq-label { display: block; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.3); text-align: center; margin-bottom: 48px; }
+        .chat-window { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 32px; }
+        .chat-messages { display: flex; flex-direction: column; gap: 24px; }
+        .chat-message { display: flex; gap: 12px; max-width: 90%; }
+        .chat-message-user { align-self: flex-end; flex-direction: row-reverse; }
+        .chat-message-lucas { align-self: flex-start; }
+        .chat-avatar { flex-shrink: 0; width: 32px; height: 32px; background: var(--lime); color: var(--black); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 13px; }
+        .chat-bubble { padding: 14px 18px; border-radius: 16px; font-family: var(--font-body); font-size: 15px; line-height: 1.6; }
+        .chat-message-user .chat-bubble { background: var(--lime); color: var(--black); border-bottom-right-radius: 4px; font-weight: 500; }
+        .chat-message-lucas .chat-bubble { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.85); border-bottom-left-radius: 4px; }
+        .chat-cta { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 32px; padding: 18px 32px; background: transparent; border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; font-family: var(--font-body); font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.7); text-decoration: none; transition: all 0.3s ease; }
+        .chat-cta:hover { background: rgba(255,255,255,0.05); border-color: var(--lime); color: var(--lime); }
         
-        .math-result {
-            text-align: center;
-            padding: 48px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
+        /* FOOTER */
+        .footer { background: var(--black); color: var(--paper); padding: 48px 32px; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+        .footer-logo { display: flex; align-items: center; text-decoration: none; }
+        .footer-logo img { height: 28px; width: auto; filter: brightness(0) invert(1); }
+        .footer-logo span { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: white; }
+        .footer-links { display: flex; gap: 32px; font-family: var(--font-mono); font-size: 12px; }
+        .footer-links span { color: rgba(255,255,255,0.5); }
+        .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; }
+        .footer-links a:hover { color: var(--lime); }
         
-        .math-result-label {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: rgba(255,255,255,0.5);
-            margin-bottom: 16px;
-        }
-        
-        .math-result-value {
-            font-family: var(--font-display);
-            font-size: clamp(64px, 12vw, 120px);
-            font-weight: 700;
-            color: var(--lime);
-            line-height: 1;
-        }
-        
-        .math-result-context {
-            font-family: var(--font-body);
-            font-size: 18px;
-            color: rgba(255,255,255,0.6);
-            margin-top: 16px;
-        }
-        
-        /* ==========================================
-           SOCIAL PROOF - Real, specific
-           ========================================== */
-        .testimonial {
-            background: var(--paper);
-            color: var(--text);
-            padding: 120px 32px;
-        }
-        
-        .testimonial-inner {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .testimonial-quote {
-            font-family: var(--font-display);
-            font-size: clamp(28px, 4vw, 40px);
-            font-weight: 600;
-            line-height: 1.3;
-            letter-spacing: -0.02em;
-            margin-bottom: 48px;
-            position: relative;
-        }
-        
-        .testimonial-quote::before {
-            content: '"';
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: var(--font-display);
-            font-size: 120px;
-            color: var(--lime);
-            line-height: 1;
-            opacity: 0.3;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-        }
-        
-        .testimonial-avatar {
-            width: 56px;
-            height: 56px;
-            background: var(--off-black);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-display);
-            font-weight: 700;
-            color: var(--lime);
-            font-size: 18px;
-        }
-        
-        .testimonial-info {
-            text-align: left;
-        }
-        
-        .testimonial-name {
-            font-family: var(--font-body);
-            font-weight: 700;
-            font-size: 16px;
-        }
-        
-        .testimonial-role {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-        
-        /* ==========================================
-           CTA - Direct, no bullshit
-           ========================================== */
-        .cta {
-            background: var(--lime);
-            color: var(--black);
-            padding: 120px 32px;
-            text-align: center;
-        }
-        
-        .cta-headline {
-            font-family: var(--font-display);
-            font-size: clamp(48px, 10vw, 120px);
-            font-weight: 700;
-            line-height: 0.9;
-            letter-spacing: -0.03em;
-            margin-bottom: 24px;
-        }
-        
-        .cta-subheadline {
-            font-family: var(--font-body);
-            font-size: 20px;
-            color: rgba(0,0,0,0.6);
-            margin-bottom: 48px;
-        }
-        
-        .cta-form {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        .cta-form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-        
-        @media (max-width: 600px) {
-            .cta-form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .cta-input {
-            width: 100%;
-            padding: 20px 24px;
-            font-family: var(--font-body);
-            font-size: 16px;
-            border: 2px solid var(--black);
-            background: transparent;
-            color: var(--black);
-            outline: none;
-            transition: all 0.2s;
-        }
-        
-        .cta-input::placeholder {
-            color: rgba(0,0,0,0.4);
-        }
-        
-        .cta-input:focus {
-            background: white;
-        }
-        
-        .cta-select {
-            width: 100%;
-            padding: 20px 24px;
-            font-family: var(--font-body);
-            font-size: 16px;
-            border: 2px solid var(--black);
-            background: transparent;
-            color: var(--black);
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23000' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 20px center;
-        }
-        
-        .cta-select option {
-            background: var(--lime);
-        }
-        
-        .cta-submit {
-            width: 100%;
-            padding: 24px;
-            font-family: var(--font-body);
-            font-size: 18px;
-            font-weight: 700;
-            border: none;
-            background: var(--black);
-            color: var(--lime);
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 12px;
-        }
-        
-        .cta-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-        }
-        
-        .cta-note {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: rgba(0,0,0,0.5);
-            margin-top: 24px;
-        }
-        
-        .cta-whatsapp {
-            margin-top: 32px;
-            padding-top: 32px;
-            border-top: 1px solid rgba(0,0,0,0.1);
-        }
-        
-        .cta-whatsapp a {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: var(--font-body);
-            font-weight: 600;
-            color: var(--black);
-            text-decoration: none;
-        }
-        
-        .cta-whatsapp a:hover {
-            text-decoration: underline;
-        }
-        
-        /* ==========================================
-           FAQ - Refined Chat
-           ========================================== */
-        .faq {
-            background: var(--black);
-            padding: 100px 32px;
-        }
-        
-        .faq-inner {
-            max-width: 540px;
-            margin: 0 auto;
-        }
-        
-        .faq-label {
-            display: block;
-            font-family: var(--font-mono);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: rgba(255,255,255,0.3);
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        
-        .chat-container {
-        }
-        
-        .chat-window {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 32px;
-        }
-        
-        .chat-messages {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-        
-        .chat-message {
-            display: flex;
-            gap: 12px;
-            max-width: 90%;
-        }
-        
-        .chat-message-user {
-            align-self: flex-end;
-            flex-direction: row-reverse;
-        }
-        
-        .chat-message-lucas {
-            align-self: flex-start;
-        }
-        
-        .chat-avatar {
-            flex-shrink: 0;
-            width: 32px;
-            height: 32px;
-            background: var(--lime);
-            color: var(--black);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 13px;
-        }
-        
-        .chat-bubble {
-            padding: 14px 18px;
-            border-radius: 16px;
-            font-family: var(--font-body);
-            font-size: 15px;
-            line-height: 1.6;
-        }
-        
-        .chat-message-user .chat-bubble {
-            background: var(--lime);
-            color: var(--black);
-            border-bottom-right-radius: 4px;
-            font-weight: 500;
-        }
-        
-        .chat-message-lucas .chat-bubble {
-            background: rgba(255,255,255,0.08);
-            color: rgba(255,255,255,0.85);
-            border-bottom-left-radius: 4px;
-        }
-        
-        .chat-cta {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 32px;
-            padding: 18px 32px;
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 12px;
-            font-family: var(--font-body);
-            font-size: 15px;
-            font-weight: 500;
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .chat-cta:hover {
-            background: rgba(255,255,255,0.05);
-            border-color: var(--lime);
-            color: var(--lime);
-        }
-        
-        .chat-cta i {
-            font-size: 20px;
-        }
-            font-family: var(--font-body);
-            font-size: 15px;
-            line-height: 1.6;
-            color: rgba(255,255,255,0.6);
-        }
-        
-        /* ==========================================
-           FOOTER - Minimal
-           ========================================== */
-        .footer {
-            background: var(--black);
-            color: var(--paper);
-            padding: 48px 32px;
-        }
-        
-        .footer-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        @media (max-width: 600px) {
-            .footer-inner {
-                flex-direction: column;
-                gap: 24px;
-                text-align: center;
-            }
-        }
-        
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-        
-        .footer-logo img {
-            height: 28px;
-            width: auto;
-            filter: brightness(0) invert(1);
-        }
-        
-        .footer-logo span {
-            font-family: var(--font-display);
-            font-size: 18px;
-            font-weight: 700;
-            color: white;
-        }
-        
-        .footer-links {
-            display: flex;
-            gap: 32px;
-            font-family: var(--font-mono);
-            font-size: 12px;
-        }
-        
-        .footer-links span {
-            color: rgba(255,255,255,0.5);
-        }
-        
-        .footer-links a {
-            color: rgba(255,255,255,0.5);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        .footer-links a:hover {
-            color: var(--lime);
-        }
-        
-        /* ==========================================
-           STICKY MOBILE CTA
-           ========================================== */
-        .sticky-cta {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 90;
-            padding: 16px;
-            background: var(--black);
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .sticky-cta.visible {
-            transform: translateY(0);
-        }
-        
-        @media (min-width: 768px) {
-            .sticky-cta {
-                display: none;
-            }
-        }
-        
-        .sticky-cta a {
-            display: block;
-            width: 100%;
-            padding: 20px;
-            background: var(--lime);
-            color: var(--black);
-            font-family: var(--font-body);
-            font-weight: 700;
-            text-align: center;
-            text-decoration: none;
-        }
+        /* STICKY */
+        .sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; z-index: 90; padding: 16px; background: var(--black); transform: translateY(100%); transition: transform 0.3s ease; }
+        .sticky-cta.visible { transform: translateY(0); }
+        @media (min-width: 768px) { .sticky-cta { display: none; } }
+        .sticky-cta a { display: block; width: 100%; padding: 20px; background: var(--lime); color: var(--black); font-family: var(--font-body); font-weight: 700; text-align: center; text-decoration: none; }
     </style>
 </head>
 
 <body>
-    <!-- NAV -->
     <nav class="nav nav-light" id="nav">
         <a href="/" class="nav-logo">
-            <img src="/logo.png" alt="LUCAS" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <img src="https://raw.githubusercontent.com/lucas-app/website/main/logo.png" alt="LUCAS" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <span style="display: none;">LUCAS</span>
         </a>
         <a href="#cta" class="nav-cta">Start Free Pilot</a>
     </nav>
 
-    <!-- HERO: The Split -->
     <section class="hero">
         <div class="hero-nightmare">
             <span class="hero-audience">for holiday home operators</span>
@@ -1633,18 +478,16 @@
             </div>
             <div class="reality-cta">
                 <a href="#cta">Start free pilot <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="https://lucas-app.github.io/website/report/" target="_blank" class="secondary"><i class="fa-solid fa-file-lines"></i> Sample Report</a>
             </div>
             <p class="reality-qualifier">For operators managing 10+ units in Dubai</p>
         </div>
     </section>
 
-    <!-- STORY: The Call -->
     <section class="story">
         <div class="story-scene scene-call">
             <div class="call-content">
-                <div class="call-ring">
-                    <i class="fa-solid fa-phone"></i>
-                </div>
+                <div class="call-ring"><i class="fa-solid fa-phone"></i></div>
                 <span class="call-label">The call every operator dreads</span>
                 <h2 class="call-quote">"I found water damage behind the cabinet. It's been there for months. You told me everything was fine."</h2>
                 <p class="call-attribution">— Mohammed, landlord, after visiting his JBR unit</p>
@@ -1678,7 +521,6 @@
         </div>
     </section>
 
-    <!-- THE FLIP -->
     <section class="flip">
         <span class="flip-label">With LUCAS</span>
         <h2 class="flip-headline">
@@ -1686,7 +528,6 @@
         </h2>
     </section>
 
-    <!-- TESTIMONIAL (moved up for early social proof) -->
     <section class="testimonial">
         <div class="testimonial-inner">
             <blockquote class="testimonial-quote">
@@ -1702,7 +543,6 @@
         </div>
     </section>
 
-    <!-- THE PROOF -->
     <section class="proof">
         <div class="proof-header">
             <span class="proof-label">What your owners receive</span>
@@ -1715,16 +555,13 @@
                     <div class="report-browser-dot"></div>
                     <div class="report-browser-dot"></div>
                     <div class="report-browser-dot"></div>
-                    <div class="report-browser-url">app.lucas.app/reports/marina-views-1847</div>
+                    <div class="report-browser-url">lucas-app.github.io/website/report</div>
                 </div>
                 
                 <div class="report-header">
                     <div class="report-logo">
                         <div class="report-logo-mark">L</div>
-                        <div class="report-logo-text">
-                            LUCAS Verification
-                            <span>Monthly Inspection Report</span>
-                        </div>
+                        <div class="report-logo-text">LUCAS Verification<span>Monthly Inspection Report</span></div>
                     </div>
                     <span class="report-stamp">✓ Verified</span>
                 </div>
@@ -1732,93 +569,65 @@
                 <div class="report-body">
                     <div class="report-property">
                         <div>
-                            <h3 class="report-property-name">Marina Views 1847</h3>
-                            <p class="report-property-details">Dubai Marina · 1BR · Owner: Ahmed K.</p>
+                            <h3 class="report-property-name">Marina Views 1802</h3>
+                            <p class="report-property-details">Dubai Marina · 2BR · Owner: Ahmed K.</p>
                         </div>
                         <div class="report-score">
-                            <span class="report-score-number">92</span>
+                            <span class="report-score-number">95</span>
                             <span class="report-score-label">Excellent</span>
                         </div>
                     </div>
                     
                     <div class="report-issues">
-                        <p class="report-issues-header">
-                            <i class="fa-solid fa-flag"></i>
-                            2 issues caught early
-                        </p>
+                        <p class="report-issues-header"><i class="fa-solid fa-flag"></i> 2 issues caught early</p>
                         <div class="report-issue">
-                            <span class="report-issue-name">AC drain pan — minor overflow starting</span>
-                            <span class="report-issue-cost">~350 AED</span>
+                            <span class="report-issue-name">AC unit condensation leak</span>
+                            <span class="report-issue-cost">~400 AED</span>
                         </div>
                         <div class="report-issue">
-                            <span class="report-issue-name">Bathroom sealant — cracking, needs reseal</span>
+                            <span class="report-issue-name">Shower enclosure — needs reseal</span>
                             <span class="report-issue-cost">~200 AED</span>
                         </div>
                         <div class="report-issues-total">
                             <span>Fix now before it spreads</span>
-                            <span class="report-issue-cost">~550 AED</span>
+                            <span class="report-issue-cost">~600 AED</span>
                         </div>
                     </div>
                     
                     <div class="report-photos">
-                        <div class="report-photo"><img src="https://raw.githubusercontent.com/lucas-app/website/main/pic1.png" alt="Inspection photo 1"></div>
-                        <div class="report-photo"><img src="https://raw.githubusercontent.com/lucas-app/website/main/pic2.png" alt="Inspection photo 2"></div>
-                        <div class="report-photo"><img src="https://raw.githubusercontent.com/lucas-app/website/main/pic3.png" alt="Inspection photo 3"></div>
-                        <div class="report-photo"><img src="https://raw.githubusercontent.com/lucas-app/website/main/pic4.png" alt="Inspection photo 4"></div>
+                        <div class="report-photo"><img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-living.jpg" alt="Living"></div>
+                        <div class="report-photo"><img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-kitchen.jpg" alt="Kitchen"></div>
+                        <div class="report-photo"><img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-masterroom.jpg" alt="Bedroom"></div>
+                        <div class="report-photo"><img src="https://raw.githubusercontent.com/lucas-app/website/main/flatimages/flat-bathroom.jpg" alt="Bathroom"></div>
                     </div>
                     <p class="report-photos-label">GPS-verified photos attached · Full 47-point checklist included</p>
                     
                     <div class="report-footer">
                         <span><i class="fa-solid fa-location-dot"></i> GPS: 25.0762° N, 55.1330° E</span>
-                        <span><i class="fa-solid fa-clock"></i> Dec 15, 2024 · 10:32 AM</span>
-                        <span><i class="fa-solid fa-user-check"></i> Inspector: Khalid M.</span>
+                        <span><i class="fa-solid fa-clock"></i> Dec 12, 2024 · 10:32 AM</span>
+                        <span><i class="fa-solid fa-user-check"></i> Inspector: Ahmad H.</span>
                     </div>
                 </div>
             </div>
             
             <div class="report-cta">
-                <a href="/sample-report.pdf" target="_blank">
-                    <i class="fa-solid fa-file-pdf"></i>
-                    View full sample report
+                <a href="https://lucas-app.github.io/website/report/" target="_blank">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    View full interactive report
                 </a>
                 <p>See exactly what your owners will receive</p>
             </div>
         </div>
     </section>
 
-    <!-- HOW IT WORKS -->
     <section class="how">
         <div class="how-inner">
             <span class="how-label">How it works</span>
             <div class="how-steps">
-                <div class="how-step">
-                    <span class="how-step-number">1</span>
-                    <div class="how-step-content">
-                        <h3 class="how-step-title">We schedule</h3>
-                        <p class="how-step-text">Monthly inspections coordinated with your calendar. Works around bookings.</p>
-                    </div>
-                </div>
-                <div class="how-step">
-                    <span class="how-step-number">2</span>
-                    <div class="how-step-content">
-                        <h3 class="how-step-title">We inspect</h3>
-                        <p class="how-step-text">47-point checklist. GPS-stamped photos. 30–45 min per unit.</p>
-                    </div>
-                </div>
-                <div class="how-step">
-                    <span class="how-step-number">3</span>
-                    <div class="how-step-content">
-                        <h3 class="how-step-title">You review first</h3>
-                        <p class="how-step-text">Full report in 24 hours. You see issues before owners do.</p>
-                    </div>
-                </div>
-                <div class="how-step">
-                    <span class="how-step-number">4</span>
-                    <div class="how-step-content">
-                        <h3 class="how-step-title">You share</h3>
-                        <p class="how-step-text">Send as-is or add notes. Your relationship, your call.</p>
-                    </div>
-                </div>
+                <div class="how-step"><span class="how-step-number">1</span><div class="how-step-content"><h3 class="how-step-title">We schedule</h3><p class="how-step-text">Monthly inspections coordinated with your calendar.</p></div></div>
+                <div class="how-step"><span class="how-step-number">2</span><div class="how-step-content"><h3 class="how-step-title">We inspect</h3><p class="how-step-text">47-point checklist. GPS-stamped photos. 30–45 min.</p></div></div>
+                <div class="how-step"><span class="how-step-number">3</span><div class="how-step-content"><h3 class="how-step-title">You review first</h3><p class="how-step-text">Full report in 24 hours. You see issues before owners.</p></div></div>
+                <div class="how-step"><span class="how-step-number">4</span><div class="how-step-content"><h3 class="how-step-title">You share</h3><p class="how-step-text">Send as-is or add notes. Your relationship, your call.</p></div></div>
             </div>
             <div class="how-tagline">
                 <p class="how-tagline-main">You're always in control.</p>
@@ -1827,21 +636,13 @@
         </div>
     </section>
 
-    <!-- THE MATH -->
     <section class="math">
         <div class="math-inner">
             <div class="math-equation">
-                <div class="math-term">
-                    <span class="math-term-value white">4,200</span>
-                    <span class="math-term-label">AED/year — LUCAS</span>
-                </div>
+                <div class="math-term"><span class="math-term-value white">4,200</span><span class="math-term-label">AED/year — LUCAS</span></div>
                 <span class="math-operator">→</span>
-                <div class="math-term">
-                    <span class="math-term-value lime">100K</span>
-                    <span class="math-term-label">AED — owner lifetime value</span>
-                </div>
+                <div class="math-term"><span class="math-term-value lime">100K</span><span class="math-term-label">AED — owner lifetime value</span></div>
             </div>
-            
             <div class="math-result">
                 <span class="math-result-label">Retain one owner and LUCAS pays for itself for the next two decades.</span>
                 <span class="math-result-value">24×</span>
@@ -1849,7 +650,6 @@
         </div>
     </section>
 
-    <!-- CTA -->
     <section class="cta" id="cta">
         <h2 class="cta-headline">Try it free.</h2>
         <p class="cta-subheadline">10 properties. 1 month. Full reports. No commitment.</p>
@@ -1871,92 +671,31 @@
             </div>
             <button type="submit" class="cta-submit">Start Free Pilot →</button>
         </form>
-        
         <p class="cta-note">We'll WhatsApp you within 24 hours.</p>
-        
-        <div class="cta-whatsapp">
-            <a href="https://wa.me/971585072588" target="_blank">
-                <i class="fa-brands fa-whatsapp"></i>
-                Or message us directly
-            </a>
-        </div>
+        <div class="cta-whatsapp"><a href="https://wa.me/971585072588" target="_blank"><i class="fa-brands fa-whatsapp"></i> Or message us directly</a></div>
     </section>
 
-    <!-- FAQ as Chat -->
     <section class="faq">
         <div class="faq-inner">
             <span class="faq-label">Questions</span>
-            
-            <div class="chat-container">
-                <div class="chat-window">
-                    <div class="chat-messages">
-                        <div class="chat-message chat-message-user">
-                            <div class="chat-bubble">
-                                What's in the 47-point checklist?
-                            </div>
-                        </div>
-                        
-                        <div class="chat-message chat-message-lucas">
-                            <div class="chat-avatar">L</div>
-                            <div class="chat-bubble">
-                                AC, plumbing, appliances, fixtures, walls, flooring, furniture condition, safety items, cleanliness. Everything a guest or owner would notice — documented with photos.
-                            </div>
-                        </div>
-                        
-                        <div class="chat-message chat-message-user">
-                            <div class="chat-bubble">
-                                What if you find something serious?
-                            </div>
-                        </div>
-                        
-                        <div class="chat-message chat-message-lucas">
-                            <div class="chat-avatar">L</div>
-                            <div class="chat-bubble">
-                                You see it first. Always. We flag it in your dashboard and you decide what to tell the owner and when. We document — you control the narrative.
-                            </div>
-                        </div>
-                        
-                        <div class="chat-message chat-message-user">
-                            <div class="chat-bubble">
-                                How do inspectors access units?
-                            </div>
-                        </div>
-                        
-                        <div class="chat-message chat-message-lucas">
-                            <div class="chat-avatar">L</div>
-                            <div class="chat-bubble">
-                                However works for you — lockbox codes, meet your cleaner, key handoff. We coordinate around your schedule and bookings.
-                            </div>
-                        </div>
-                        
-                        <div class="chat-message chat-message-user">
-                            <div class="chat-bubble">
-                                Which areas do you cover?
-                            </div>
-                        </div>
-                        
-                        <div class="chat-message chat-message-lucas">
-                            <div class="chat-avatar">L</div>
-                            <div class="chat-bubble">
-                                All of Dubai. Marina, JBR, Downtown, Business Bay, JVC, Palm — anywhere you have units.
-                            </div>
-                        </div>
-                    </div>
+            <div class="chat-window">
+                <div class="chat-messages">
+                    <div class="chat-message chat-message-user"><div class="chat-bubble">What's in the 47-point checklist?</div></div>
+                    <div class="chat-message chat-message-lucas"><div class="chat-avatar">L</div><div class="chat-bubble">AC, plumbing, appliances, fixtures, walls, flooring, furniture, safety items. Everything a guest or owner would notice — documented with photos.</div></div>
+                    <div class="chat-message chat-message-user"><div class="chat-bubble">What if you find something serious?</div></div>
+                    <div class="chat-message chat-message-lucas"><div class="chat-avatar">L</div><div class="chat-bubble">You see it first. Always. We flag it and you decide what to tell the owner and when.</div></div>
+                    <div class="chat-message chat-message-user"><div class="chat-bubble">Which areas do you cover?</div></div>
+                    <div class="chat-message chat-message-lucas"><div class="chat-avatar">L</div><div class="chat-bubble">All of Dubai. Marina, JBR, Downtown, Business Bay, JVC, Palm — anywhere you have units.</div></div>
                 </div>
-                
-                <a href="https://wa.me/971585072588" target="_blank" class="chat-cta">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    <span>Have more questions? Let's chat</span>
-                </a>
             </div>
+            <a href="https://wa.me/971585072588" target="_blank" class="chat-cta"><i class="fa-brands fa-whatsapp"></i> Have more questions? Let's chat</a>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-inner">
             <a href="/" class="footer-logo">
-                <img src="/logo.png" alt="LUCAS" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <img src="https://raw.githubusercontent.com/lucas-app/website/main/logo.png" alt="LUCAS" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <span style="display: none;">LUCAS</span>
             </a>
             <div class="footer-links">
@@ -1967,38 +706,27 @@
         </div>
     </footer>
 
-    <!-- STICKY MOBILE CTA -->
-    <div class="sticky-cta" id="sticky-cta">
-        <a href="#cta">Start Free Pilot →</a>
-    </div>
+    <div class="sticky-cta" id="sticky-cta"><a href="#cta">Start Free Pilot →</a></div>
 
     <script>
-        // Nav color switching based on background
         const nav = document.getElementById('nav');
-        
-        // Define sections and their nav modes
-        // light = white logo/text (for dark backgrounds)
-        // dark = black logo/text (for light backgrounds)
         const sections = [
-            { el: document.querySelector('.hero'), mode: 'light' }, // Split - starts on red
-            { el: document.querySelector('.scene-call'), mode: 'dark' }, // Paper background
-            { el: document.querySelector('.scene-evidence'), mode: 'light' }, // Black background
-            { el: document.querySelector('.scene-cost'), mode: 'light' }, // Red background
-            { el: document.querySelector('.flip'), mode: 'light' }, // Black background
-            { el: document.querySelector('.testimonial'), mode: 'dark' }, // Paper background (moved up)
-            { el: document.querySelector('.proof'), mode: 'dark' }, // Paper background
-            { el: document.querySelector('.how'), mode: 'light' }, // Dark background (new)
-            { el: document.querySelector('.math'), mode: 'light' }, // Black background
-            { el: document.querySelector('.cta'), mode: 'dark' }, // Lime background
-            { el: document.querySelector('.faq'), mode: 'light' }, // Dark background
-            { el: document.querySelector('.footer'), mode: 'light' }, // Black background
+            { el: document.querySelector('.hero'), mode: 'light' },
+            { el: document.querySelector('.scene-call'), mode: 'dark' },
+            { el: document.querySelector('.scene-evidence'), mode: 'light' },
+            { el: document.querySelector('.scene-cost'), mode: 'light' },
+            { el: document.querySelector('.flip'), mode: 'light' },
+            { el: document.querySelector('.testimonial'), mode: 'dark' },
+            { el: document.querySelector('.proof'), mode: 'dark' },
+            { el: document.querySelector('.how'), mode: 'light' },
+            { el: document.querySelector('.math'), mode: 'light' },
+            { el: document.querySelector('.cta'), mode: 'dark' },
+            { el: document.querySelector('.faq'), mode: 'light' },
+            { el: document.querySelector('.footer'), mode: 'light' },
         ];
         
         function updateNavMode() {
-            const navHeight = nav.offsetHeight;
-            const scrollPos = window.scrollY + navHeight / 2;
-            
-            // Find which section we're in
+            const scrollPos = window.scrollY + nav.offsetHeight / 2;
             let currentMode = 'light';
             for (let i = sections.length - 1; i >= 0; i--) {
                 if (sections[i].el && scrollPos >= sections[i].el.offsetTop) {
@@ -2006,73 +734,38 @@
                     break;
                 }
             }
-            
-            // Update nav class
             nav.classList.remove('nav-light', 'nav-dark');
             nav.classList.add('nav-' + currentMode);
         }
         
         window.addEventListener('scroll', updateNavMode);
-        window.addEventListener('resize', updateNavMode);
-        updateNavMode(); // Initial call
+        updateNavMode();
         
-        // Sticky CTA
         const stickyCta = document.getElementById('sticky-cta');
         const hero = document.querySelector('.hero');
+        new IntersectionObserver((entries) => {
+            entries.forEach(entry => stickyCta.classList.toggle('visible', !entry.isIntersecting));
+        }).observe(hero);
         
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    stickyCta.classList.add('visible');
-                } else {
-                    stickyCta.classList.remove('visible');
-                }
-            });
-        }, { threshold: 0 });
-        
-        observer.observe(hero);
-        
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
+                document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
             });
         });
         
-        // Form submission
         document.getElementById('pilot-form').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const btn = this.querySelector('button[type="submit"]');
+            const btn = this.querySelector('button');
             btn.disabled = true;
             btn.textContent = 'Sending...';
-            
             try {
-                const response = await fetch(this.action, {
-                    method: 'POST',
-                    body: new FormData(this),
-                    headers: { 'Accept': 'application/json' }
-                });
-                
-                if (response.ok) {
-                    this.innerHTML = `
-                        <div style="padding: 40px; text-align: center;">
-                            <div style="width: 64px; height: 64px; background: var(--black); margin: 0 auto 24px; display: flex; align-items: center; justify-content: center;">
-                                <i class="fa-solid fa-check" style="color: var(--lime); font-size: 24px;"></i>
-                            </div>
-                            <p style="font-family: var(--font-display); font-size: 24px; font-weight: 700; margin-bottom: 8px;">Got it.</p>
-                            <p style="color: rgba(0,0,0,0.6);">We'll WhatsApp you within 24 hours.</p>
-                        </div>
-                    `;
+                const res = await fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } });
+                if (res.ok) {
+                    this.innerHTML = '<div style="padding:40px;text-align:center"><div style="width:64px;height:64px;background:var(--black);margin:0 auto 24px;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-check" style="color:var(--lime);font-size:24px"></i></div><p style="font-family:var(--font-display);font-size:24px;font-weight:700;margin-bottom:8px">Got it.</p><p style="color:rgba(0,0,0,0.6)">We\'ll WhatsApp you within 24 hours.</p></div>';
                     stickyCta.style.display = 'none';
                 }
-            } catch (error) {
-                btn.disabled = false;
-                btn.textContent = 'Start Free Pilot →';
-            }
+            } catch (e) { btn.disabled = false; btn.textContent = 'Start Free Pilot →'; }
         });
     </script>
 </body>
