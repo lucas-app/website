@@ -852,10 +852,28 @@
                 <div class="reveal">
                     <div id="icp-content" class="transition-all duration-300">
                         <!-- Headline -->
-                        <h3 id="icp-headline" class="text-3xl sm:text-4xl font-bold mb-6 text-white">Keep Owners. <span id="icp-headline-accent" class="text-lucas-yellow">Not Just Properties.</span></h3>
+                        <h3 id="icp-headline" class="text-3xl sm:text-4xl font-bold mb-5 text-white">Keep Owners. <span id="icp-headline-accent" class="text-lucas-yellow">Not Just Properties.</span></h3>
                         
                         <!-- Description -->
-                        <p id="icp-description" class="text-gray-400 text-lg mb-8">Your biggest threat isn't bad reviews — it's owners switching managers. LUCAS turns monthly inspections into branded reports that show owners exactly how you protect their asset. No more "black box" management. Just proof.</p>
+                        <p id="icp-description" class="text-gray-400 text-base leading-relaxed mb-6">Your biggest threat isn't bad reviews — it's owners switching managers. LUCAS turns monthly inspections into branded reports that show owners exactly how you protect their asset. No more "black box" management. Just proof.</p>
+                        
+                        <!-- Proof Stats - Compact inline -->
+                        <div id="icp-stats" class="flex items-center gap-6 mb-6 pb-6 border-b border-white/10">
+                            <div class="flex items-baseline gap-1.5">
+                                <span class="text-2xl font-bold text-lucas-yellow">+8</span>
+                                <span class="text-[11px] text-gray-500 uppercase tracking-wide">NPS</span>
+                            </div>
+                            <div class="w-px h-5 bg-white/10"></div>
+                            <div class="flex items-baseline gap-1.5">
+                                <span class="text-2xl font-bold text-lucas-yellow">23%</span>
+                                <span class="text-[11px] text-gray-500 uppercase tracking-wide">Less Churn</span>
+                            </div>
+                            <div class="w-px h-5 bg-white/10"></div>
+                            <div class="flex items-baseline gap-1.5">
+                                <span class="text-2xl font-bold text-lucas-yellow">2m</span>
+                                <span class="text-[11px] text-gray-500 uppercase tracking-wide">To Send</span>
+                            </div>
+                        </div>
 
                         <!-- Benefits List -->
                         <div id="icp-benefits" class="space-y-4">
@@ -877,19 +895,10 @@
                                     <p class="text-gray-400 text-sm icp-benefit-desc">"We're the only manager that sends verified condition reports." A real differentiator when pitching for new listings.</p>
                                 </div>
                             </div>
-                            <div class="flex items-start gap-4 icp-benefit">
-                                <div class="w-10 h-10 rounded-lg bg-lucas-yellow/10 border border-lucas-yellow/30 flex items-center justify-center flex-shrink-0 mt-1 icp-benefit-icon">
-                                    <i class="fa-solid fa-shield-halved text-lucas-yellow"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-white font-semibold mb-1 icp-benefit-title">Catch Issues First</h4>
-                                    <p class="text-gray-400 text-sm icp-benefit-desc">Hidden AC leaks and mold that guests won't report — but will mention in reviews. Find them first, show owners you caught them before anyone else.</p>
-                                </div>
-                            </div>
                         </div>
                         
                         <!-- STR Dedicated Page CTA - Only visible for STR Operators tab -->
-                        <a href="/str/" id="str-cta-card" class="group mt-8 block p-5 rounded-2xl bg-gradient-to-r from-lucas-yellow/[0.08] to-transparent border border-lucas-yellow/20 hover:border-lucas-yellow/40 hover:shadow-[0_8px_30px_rgba(222,255,154,0.12)] hover:-translate-y-0.5 transition-all duration-300" style="transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;">
+                        <a href="/str/" id="str-cta-card" class="group mt-6 block p-4 rounded-xl bg-gradient-to-r from-lucas-yellow/[0.08] to-transparent border border-lucas-yellow/20 hover:border-lucas-yellow/40 hover:shadow-[0_8px_30px_rgba(222,255,154,0.12)] hover:-translate-y-0.5 transition-all duration-300" style="transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;">
                             <div class="flex items-center justify-between gap-4">
                                 <div class="flex-1">
                                     <p class="text-white font-semibold group-hover:text-lucas-yellow transition-colors duration-300">What does one lost owner actually cost you?</p>
@@ -982,11 +991,15 @@
             color: 'yellow',
             headline: 'Keep Owners.',
             headlineAccent: 'Not Just Properties.',
+            stats: [
+                { value: '+8', label: 'Owner NPS' },
+                { value: '23%', label: 'Less Churn' },
+                { value: '2m', label: 'To Send' }
+            ],
             description: 'Your biggest threat isn\'t bad reviews — it\'s owners switching managers. LUCAS turns monthly inspections into branded reports that show owners exactly how you protect their asset. No more "black box" management. Just proof.',
             benefits: [
                 { icon: 'fa-user-check', title: 'Reduce Owner Churn', desc: 'Branded monthly condition reports show owners what you fixed and when. Transparency builds trust. Trust reduces churn.' },
-                { icon: 'fa-file-circle-check', title: 'Win New Owners', desc: '"We\'re the only manager that sends verified condition reports." A real differentiator when pitching for new listings.' },
-                { icon: 'fa-shield-halved', title: 'Catch Issues First', desc: 'Hidden AC leaks and mold that guests won\'t report — but will mention in reviews. Find them first, show owners you caught them before anyone else.' }
+                { icon: 'fa-file-circle-check', title: 'Win New Owners', desc: '"We\'re the only manager that sends verified condition reports." A real differentiator when pitching for new listings.' }
             ],
             dashboard: {
                 icon: 'fa-home',
@@ -1012,6 +1025,11 @@
             color: 'blue',
             headline: 'Prove Your Yield Promise',
             headlineAccent: 'to Investors.',
+            stats: [
+                { value: '91', label: 'Avg Score' },
+                { value: '47', label: 'Assets' },
+                { value: 'Q1', label: 'Audit Ready' }
+            ],
             description: 'When investors buy your shares, they\'re trusting that your NAV and yields are real. Without independent inspections, your numbers are still assumptions. LUCAS gives you investor-grade, timestamped proof of each asset\'s condition — so your returns are backed by reality, not marketing.',
             benefits: [
                 { icon: 'fa-shield-halved', title: 'Investor-Grade Verification', desc: 'Every inspection becomes a signed, timestamped record that investors and auditors can verify independently.' },
@@ -1042,6 +1060,11 @@
             color: 'emerald',
             headline: 'See Asset Health.',
             headlineAccent: 'Not Just Reports.',
+            stats: [
+                { value: '156', label: 'Units' },
+                { value: '87', label: 'Avg Score' },
+                { value: '12', label: 'Buildings' }
+            ],
             description: 'Managing 50+ units across multiple buildings? On paper the numbers look fine, but you have no live view of asset health. LUCAS gives you verified condition scores on every building, every month — so you can protect valuations and plan capex before issues hit NOI.',
             benefits: [
                 { icon: 'fa-map-location-dot', title: 'Portfolio-Wide Visibility', desc: 'One dashboard showing condition scores, trends, and issues across all properties. No more blind spots.' },
@@ -1072,6 +1095,11 @@
             color: 'purple',
             headline: 'On-Chain Truth.',
             headlineAccent: 'Off-Chain Assets.',
+            stats: [
+                { value: '24h', label: 'Proof Latency' },
+                { value: '99.9%', label: 'Uptime' },
+                { value: 'v2.1', label: 'API' }
+            ],
             description: 'Your smart contracts can verify token balances. They cannot see the building behind the token. LUCAS turns each inspection into a cryptographic proof of collateral condition — so your protocol can price risk with real data, not PDFs from property managers. Use condition scores to gate mints, adjust LTV, or trigger liquidation alerts.',
             benefits: [
                 { icon: 'fa-cube', title: 'Machine-Readable Proofs', desc: 'Every inspection generates a signed JSON attestation with scores, photos, and metadata. Hash it on-chain, verify it anytime, query it via API.' },
@@ -1197,6 +1225,16 @@
         setTimeout(() => {
             // Update headline
             document.getElementById('icp-headline').innerHTML = `${data.headline} <span id="icp-headline-accent" class="${colors.text}">${data.headlineAccent}</span>`;
+            
+            // Update stats - compact inline format
+            const statsHTML = data.stats.map((s, i) => `
+                ${i > 0 ? '<div class="w-px h-5 bg-white/10"></div>' : ''}
+                <div class="flex items-baseline gap-1.5">
+                    <span class="text-2xl font-bold ${colors.text}">${s.value}</span>
+                    <span class="text-[11px] text-gray-500 uppercase tracking-wide">${s.label}</span>
+                </div>
+            `).join('');
+            document.getElementById('icp-stats').innerHTML = statsHTML;
             
             // Update description
             document.getElementById('icp-description').textContent = data.description;
