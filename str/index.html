@@ -63,8 +63,8 @@
         .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; position: relative; }
         .hero-nightmare { background: var(--red); padding: 140px 48px 100px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; position: relative; overflow: hidden; }
         .hero-nightmare::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(0deg, rgba(0,0,0,0.3) 0%, transparent 50%); pointer-events: none; }
-        .hero-audience { position: absolute; top: 33px; left: 200px; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); padding-left: 16px; border-left: 1px solid rgba(255,255,255,0.3); z-index: 10; line-height: 36px; }
-        .nightmare-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.5); margin-bottom: 24px; position: relative; z-index: 1; }
+        .hero-audience { position: absolute; top: 33px; left: 200px; font-family: var(--font-mono); font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.7); padding-left: 16px; border-left: 1px solid rgba(255,255,255,0.4); z-index: 10; line-height: 36px; }
+        .nightmare-label { font-family: var(--font-mono); font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.7); margin-bottom: 24px; position: relative; z-index: 1; }
         .nightmare-stat { position: relative; z-index: 1; }
         .nightmare-stat-number { font-family: var(--font-display); font-size: clamp(80px, 15vw, 180px); font-weight: 700; line-height: 0.85; color: white; letter-spacing: -0.03em; display: block; }
         .nightmare-stat-currency { font-family: var(--font-display); font-size: clamp(18px, 3.5vw, 40px); font-weight: 600; color: rgba(255,255,255,0.7); letter-spacing: normal; }
@@ -72,7 +72,7 @@
         .nightmare-stat-label { font-family: var(--font-body); font-size: 18px; color: rgba(255,255,255,0.6); margin-top: 20px; max-width: 280px; line-height: 1.5; }
         .nightmare-context { position: absolute; bottom: 56px; left: 48px; right: 48px; font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.4); z-index: 1; }
         .hero-reality { background: var(--lime); padding: 140px 48px 100px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; position: relative; }
-        .reality-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--black); margin-bottom: 24px; }
+        .reality-label { font-family: var(--font-mono); font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em; color: var(--black); margin-bottom: 24px; }
         .reality-stat-number { font-family: var(--font-display); font-size: clamp(80px, 15vw, 180px); font-weight: 700; line-height: 0.85; color: var(--black); letter-spacing: -0.03em; display: block; }
         .reality-stat-currency { font-family: var(--font-display); font-size: clamp(18px, 3.5vw, 40px); font-weight: 600; color: rgba(0,0,0,0.5); letter-spacing: normal; }
         .reality-stat-unit { font-family: var(--font-display); font-size: clamp(18px, 3.5vw, 40px); font-weight: 600; color: rgba(0,0,0,0.5); letter-spacing: normal; }
@@ -205,7 +205,7 @@
         .evidence-card-content { font-family: var(--font-body); font-size: 18px; font-weight: 500; line-height: 1.5; }
         .scene-cost { background: var(--red); color: white; }
         .cost-content { text-align: center; max-width: 800px; }
-        .cost-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.6); margin-bottom: 24px; display: block; }
+        .cost-label { font-family: var(--font-mono); font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.7); margin-bottom: 24px; display: block; }
         .cost-number { font-family: var(--font-display); font-size: clamp(100px, 20vw, 280px); font-weight: 700; line-height: 0.85; letter-spacing: -0.03em; }
         .cost-unit { font-family: var(--font-display); font-size: clamp(24px, 5vw, 56px); font-weight: 600; color: rgba(255,255,255,0.7); }
         .cost-context { font-family: var(--font-body); font-size: 18px; color: rgba(255,255,255,0.7); margin-top: 24px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.5; }
@@ -221,7 +221,7 @@
             .evidence-grid { grid-template-columns: 1fr; gap: 12px; }
             .evidence-card { padding: 24px 20px; }
             .evidence-card-content { font-size: 16px; }
-            .cost-label { font-size: 10px; padding: 0 10px; }
+            .cost-label { font-size: 11px; padding: 0 10px; }
             .cost-number { font-size: 80px; }
             .cost-unit { font-size: 24px; }
             .cost-context { font-size: 16px; padding: 0 10px; }
@@ -691,7 +691,7 @@
                 <div class="call-ring"><i class="fa-solid fa-phone"></i></div>
                 <span class="call-label">The call every operator dreads</span>
                 <h2 class="call-quote">"I found water damage behind the cabinet. It's been there for months. You told me everything was fine."</h2>
-                <p class="call-attribution">— Mohammed, landlord, after visiting his JBR unit</p>
+                <p class="call-attribution">— Owner. Unannounced visit.</p>
             </div>
         </div>
         
@@ -717,7 +717,7 @@
                 <span class="cost-label">The repair: 12,000 AED. The real cost?</span>
                 <p class="cost-number">100K</p>
                 <span class="cost-unit">AED</span>
-                <p class="cost-context">Mohammed would've stayed 4 more years. That's 100K in management fees. Gone — because you had no proof you were checking.</p>
+                <p class="cost-context">The owner would've stayed 4 more years. That's 100K in management fees. Gone — because you had no proof you were checking.</p>
             </div>
         </div>
     </section>
@@ -725,7 +725,7 @@
     <section class="flip">
         <span class="flip-label">With LUCAS</span>
         <h2 class="flip-headline">
-            We caught it three weeks in. Report sent. <span class="lime">800 AED</span> fix. Mohammed didn't find out from a visit — he found out from us, report in hand.
+            We caught it three weeks in. Report sent. <span class="lime">800 AED</span> fix. The owner didn't find out from a visit — he found out from us, report in hand.
         </h2>
     </section>
 
