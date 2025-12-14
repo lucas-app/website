@@ -73,6 +73,7 @@
     <style>
         body { background-color: #050505; color: #fff; font-family: 'Urbanist', sans-serif; }
         .text-cinematic { text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+        .text-cinematic-strong { text-shadow: 0 1px 2px rgba(0,0,0,1), 0 2px 8px rgba(0,0,0,1), 0 0 30px rgba(0,0,0,0.9), 0 0 60px rgba(0,0,0,0.7); }
         .text-glow { text-shadow: 0 0 40px rgba(222, 255, 154, 0.6); }
         .text-glow-cinematic { text-shadow: 0 0 40px rgba(222, 255, 154, 0.6), 0 2px 10px rgba(0,0,0,0.8); }
         .proof-glow { box-shadow: 0 0 80px rgba(222, 255, 154, 0.08); }
@@ -413,7 +414,7 @@
                 </div>
 
                 <!-- Label -->
-                <p class="text-white/90 text-sm font-medium tracking-[0.3em] uppercase mb-6 animate-fade-in">The API for Physical Truth</p>
+                <p class="text-white/90 text-sm font-medium tracking-[0.3em] uppercase mb-6 animate-fade-in text-cinematic-strong">The API for Physical Truth</p>
 
                 <!-- Headline -->
                 <h1 class="text-4xl sm:text-7xl lg:text-8xl font-bold tracking-tight mb-6 sm:mb-8 leading-[0.9]">
@@ -432,7 +433,7 @@
                     
                 <!-- ICP Targeting -->
                 <div class="flex flex-col items-center gap-3 sm:gap-3 animate-fade-in-delay-2 mb-10 sm:mb-12">
-                    <span class="text-[10px] sm:text-xs text-white uppercase tracking-widest font-medium">Built for</span>
+                    <span class="text-[10px] sm:text-xs text-white uppercase tracking-widest font-medium text-cinematic-strong">Built for</span>
                     <div class="flex flex-col items-center gap-2 sm:gap-2.5">
                         <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-2.5">
                             <span class="w-56 sm:w-64 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-black/20 border border-lucas-green/20 text-xs sm:text-sm text-white font-medium hover:bg-black/30 hover:border-lucas-green/30 transition-all text-center backdrop-blur-sm">
@@ -2178,8 +2179,8 @@
     <!-- Footer - World-Class Redesign -->
     <footer class="relative z-10 bg-lucas-dark border-t border-lucas-border">
         <!-- Main Footer Content -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8 items-start">
                 
                 <!-- Brand Column -->
                 <div class="col-span-2">
@@ -2187,12 +2188,12 @@
                         <img src="LUCAS_logo White_on Rectangle_Transparent256.png" alt="LUCAS Logo" class="h-10 w-auto" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
                         <span class="text-2xl font-bold text-white hidden">LUCAS<span class="text-lucas-green">.</span></span>
                     </a>
-                    <p class="text-gray-400 text-sm mb-6 max-w-xs">
+                    <p class="text-gray-400 text-sm mb-4 max-w-xs">
                         Ground truth for real estate.
                     </p>
                     
-                    <!-- Social Icons - Consistent sizing -->
-                    <div class="flex items-center gap-3">
+                    <!-- Social Icons -->
+                    <div class="flex items-center gap-3 mb-6">
                         <a href="https://wa.me/971585072588" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-[#25D366]/10 border border-[#25D366]/30 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all" aria-label="WhatsApp">
                             <i class="fa-brands fa-whatsapp text-lg"></i>
                         </a>
@@ -2205,6 +2206,18 @@
                         <a href="/cdn-cgi/l/email-protection#cba3aea7a7a48ba7bea8aab8e5aabbbb" class="w-10 h-10 rounded-full bg-lucas-card border border-lucas-border flex items-center justify-center text-gray-400 hover:text-lucas-green hover:border-lucas-green/50 transition-all" aria-label="Email">
                             <i class="fa-solid fa-envelope text-lg"></i>
                         </a>
+                    </div>
+                    
+                    <!-- Newsletter -->
+                    <div>
+                        <h4 class="text-white font-semibold text-sm mb-3">Stay Updated</h4>
+                        <p class="text-gray-400 text-sm mb-3">Get product updates and industry insights.</p>
+                        <form class="flex gap-2" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='<i class=\'fa-solid fa-check\'></i>'; this.querySelector('input').disabled=true;">
+                            <input type="email" placeholder="you@company.com" required class="flex-1 px-4 py-2.5 bg-lucas-card border border-lucas-border rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:border-lucas-green/50 transition">
+                            <button type="submit" class="px-4 py-2.5 bg-lucas-green/10 border border-lucas-green/30 text-lucas-green rounded-lg text-sm font-medium hover:bg-lucas-green hover:text-black transition-all whitespace-nowrap">
+                                Subscribe
+                            </button>
+                        </form>
                     </div>
                 </div>
                 
@@ -2270,17 +2283,6 @@
                     </ul>
                 </div>
                 
-                <!-- Newsletter Column -->
-                <div class="col-span-2 md:col-span-4 lg:col-span-1">
-                    <h4 class="text-white font-semibold text-sm mb-4">Stay Updated</h4>
-                    <p class="text-gray-400 text-sm mb-4">Get product updates and industry insights.</p>
-                    <form class="space-y-2" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='<i class=\'fa-solid fa-check\'></i> Subscribed'; this.querySelector('input').disabled=true;">
-                        <input type="email" placeholder="you@company.com" required class="w-full px-4 py-2.5 bg-lucas-card border border-lucas-border rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:border-lucas-green/50 transition">
-                        <button type="submit" class="w-full px-4 py-2.5 bg-lucas-green/10 border border-lucas-green/30 text-lucas-green rounded-lg text-sm font-medium hover:bg-lucas-green hover:text-black transition-all">
-                            Subscribe
-                        </button>
-                    </form>
-                </div>
             </div>
         </div>
         
