@@ -296,10 +296,6 @@
                             API
                             <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-50"></i>
                         </a>
-                        <span class="mx-2 text-white/10">|</span>
-                        <a href="/str/" class="px-3 py-1.5 text-xs font-medium text-gray-500 hover:text-lucas-yellow transition-colors">
-                            For Operators
-                        </a>
                     </div>
                     
                     <!-- Right Side Actions -->
@@ -360,10 +356,6 @@
                 
                 <div class="px-4 mt-4 pt-4 border-t border-white/10">
                     <p class="px-4 text-xs text-gray-500 uppercase tracking-wider mb-2">Resources</p>
-                    <a href="/str/" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-300 hover:text-lucas-yellow hover:bg-lucas-yellow/5 transition">
-                        <i class="fa-solid fa-building-user text-lucas-yellow/70 w-5"></i>
-                        <span class="font-medium">For STR Operators</span>
-                    </a>
                     <a href="lucas-api-docs.html" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition">
                         <i class="fa-solid fa-code text-gray-400 w-5"></i>
                         <span class="font-medium">API Documentation</span>
@@ -493,8 +485,6 @@
                 <div class="relative">
                     <!-- Connection Line - Desktop (horizontal) -->
                     <div class="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-lucas-green/50 via-yellow-500/50 via-orange-500/50 to-red-500/50 -translate-y-1/2 z-0"></div>
-                    <!-- Connection Line - Mobile (vertical) -->
-                    <div class="md:hidden absolute top-0 bottom-0 left-[25%] w-0.5 bg-gradient-to-b from-lucas-green/50 via-yellow-500/50 via-orange-500/50 to-red-500/50 z-0"></div>
                     
                     <!-- Timeline Cards -->
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 relative z-10">
@@ -888,22 +878,6 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- STR Dedicated Page CTA - Only visible for STR Operators tab -->
-                        <a href="/str/" id="str-cta-card" class="group mt-8 block p-5 rounded-2xl bg-gradient-to-r from-lucas-yellow/[0.08] to-transparent border border-lucas-yellow/20 hover:border-lucas-yellow/40 hover:shadow-[0_8px_30px_rgba(222,255,154,0.12)] hover:-translate-y-0.5 transition-all duration-300" style="transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;">
-                            <div class="flex items-center justify-between gap-4">
-                                <div class="flex-1">
-                                    <p class="text-white font-semibold group-hover:text-lucas-yellow transition-colors duration-300">What does one lost owner actually cost you?</p>
-                                    <p class="text-gray-500 text-sm mt-1 group-hover:text-gray-400 transition-colors duration-300">We did the math <span class="inline-block group-hover:translate-x-1 transition-transform duration-300">→</span></p>
-                                </div>
-                                <div class="flex-shrink-0 relative">
-                                    <div class="absolute inset-0 rounded-full bg-lucas-yellow/20 animate-pulse group-hover:animate-none group-hover:opacity-0 transition-opacity" style="animation-duration: 2s;"></div>
-                                    <div class="relative w-10 h-10 rounded-full bg-lucas-yellow/10 border border-lucas-yellow/30 flex items-center justify-center group-hover:bg-lucas-yellow group-hover:border-lucas-yellow group-hover:scale-110 transition-all duration-300">
-                                        <i class="fa-solid fa-arrow-right text-lucas-yellow text-sm group-hover:text-black group-hover:translate-x-0.5 transition-all duration-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
                     </div>
                 </div>
 
@@ -1253,22 +1227,6 @@
                 <span class="text-gray-400">${db.footerLabel}</span>
                 <span class="text-white font-medium">${db.footerValue}</span>
             `;
-            
-            // Show/hide STR CTA card based on selected tab
-            const strCtaCard = document.getElementById('str-cta-card');
-            if (strCtaCard) {
-                if (index === 0) {
-                    strCtaCard.style.display = 'block';
-                    strCtaCard.style.opacity = '0';
-                    strCtaCard.style.transform = 'translateY(10px)';
-                    setTimeout(() => {
-                        strCtaCard.style.opacity = '1';
-                        strCtaCard.style.transform = 'translateY(0)';
-                    }, 100);
-                } else {
-                    strCtaCard.style.display = 'none';
-                }
-            }
 
             // Fade in
             content.style.opacity = '1';
@@ -2125,7 +2083,7 @@
                 <p class="text-lucas-green text-sm font-medium tracking-[0.3em] uppercase mb-4">Get Started</p>
                 <h2 class="text-4xl sm:text-6xl font-bold text-white tracking-tight">Verify Reality.</h2>
                 <h2 class="text-4xl sm:text-6xl font-bold text-gray-400 tracking-tight mb-6">Protect Yield.</h2>
-                <p class="text-gray-400">Start a free pilot and we'll have you set up within 48 hours.</p>
+                <p class="text-gray-400">Request API access and we'll set up your pilot within 48 hours.</p>
             </div>
 
             <!-- Platform Form -->
@@ -2167,7 +2125,7 @@
                     </div>
                     
                     <button type="submit" class="w-full bg-lucas-green text-black font-bold py-4 rounded-xl hover:bg-white transition text-lg">
-                        Start Free Pilot
+                        Request API Access
                     </button>
                 </form>
             </div>
@@ -2181,7 +2139,7 @@
     <footer class="relative z-10 bg-lucas-dark border-t border-lucas-border">
         <!-- Main Footer Content -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 lg:gap-12">
                 
                 <!-- Brand Column -->
                 <div class="col-span-2">
@@ -2224,22 +2182,6 @@
                                 <i class="fa-solid fa-arrow-right text-xs"></i>
                             </a>
                         </li>
-                    </ul>
-                </div>
-                
-                <!-- Solutions Column -->
-                <div>
-                    <h4 class="text-white font-semibold text-sm mb-4">Solutions</h4>
-                    <ul class="space-y-3">
-                        <li>
-                            <a href="/str/" class="text-gray-400 text-sm hover:text-lucas-green transition inline-flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-lucas-yellow"></span>
-                                STR Operators
-                            </a>
-                        </li>
-                        <li><span class="text-gray-500 text-sm inline-flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gray-600"></span>Fractional RE <span class="text-[10px] text-gray-600 ml-1">Soon</span></span></li>
-                        <li><span class="text-gray-500 text-sm inline-flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gray-600"></span>Developers <span class="text-[10px] text-gray-600 ml-1">Soon</span></span></li>
-                        <li><span class="text-gray-500 text-sm inline-flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gray-600"></span>RWA Protocols <span class="text-[10px] text-gray-600 ml-1">Soon</span></span></li>
                     </ul>
                 </div>
                 
