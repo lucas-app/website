@@ -74,6 +74,7 @@
         body { background-color: #050505; color: #fff; font-family: 'Urbanist', sans-serif; }
         .text-cinematic { text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
         .text-glow { text-shadow: 0 0 40px rgba(222, 255, 154, 0.6); }
+        .text-glow-cinematic { text-shadow: 0 0 40px rgba(222, 255, 154, 0.6), 0 2px 10px rgba(0,0,0,0.8); }
         .proof-glow { box-shadow: 0 0 80px rgba(222, 255, 154, 0.08); }
         .video-hero { position: relative; min-height: 100vh; overflow: hidden; }
         .video-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
@@ -400,7 +401,7 @@
             </video>
         </div>
         
-        <div class="absolute inset-0 z-20 bg-gradient-to-t from-lucas-dark via-lucas-dark/30 to-transparent"></div>
+        <div class="absolute inset-0 z-20" style="background: linear-gradient(to bottom, transparent 0%, transparent 35%, rgba(5,5,5,0.3) 55%, rgba(5,5,5,0.6) 75%, transparent 100%);"></div>
         
         <div class="relative z-30 pt-32 pb-16 sm:pt-40 sm:pb-28 min-h-screen flex flex-col justify-center">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -418,7 +419,7 @@
                 <h1 class="text-4xl sm:text-7xl lg:text-8xl font-bold tracking-tight mb-6 sm:mb-8 leading-[0.9]">
                     <span class="text-white text-cinematic">Proof of</span>
                     <br />
-                    <span class="text-lucas-green text-glow">Physical Reserve.</span>
+                    <span class="text-lucas-green text-glow-cinematic">Physical Reserve.</span>
                 </h1>
 
                 <!-- The Hook -->
@@ -434,18 +435,18 @@
                     <span class="text-[10px] sm:text-xs text-white uppercase tracking-widest font-medium">Built for</span>
                     <div class="flex flex-col items-center gap-2 sm:gap-2.5">
                         <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-2.5">
-                            <span class="w-56 sm:w-64 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-lucas-green/5 border border-lucas-green/20 text-xs sm:text-sm text-gray-300 font-medium hover:bg-lucas-green/10 hover:border-lucas-green/30 hover:text-white transition-all text-center">
+                            <span class="w-56 sm:w-64 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-black/20 border border-lucas-green/20 text-xs sm:text-sm text-white font-medium hover:bg-black/30 hover:border-lucas-green/30 transition-all text-center backdrop-blur-sm">
                                 Fractional Real Estate Platforms
                             </span>
-                            <span class="w-56 sm:w-64 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-lucas-green/5 border border-lucas-green/20 text-xs sm:text-sm text-gray-300 font-medium hover:bg-lucas-green/10 hover:border-lucas-green/30 hover:text-white transition-all text-center">
+                            <span class="w-56 sm:w-64 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-black/20 border border-lucas-green/20 text-xs sm:text-sm text-white font-medium hover:bg-black/30 hover:border-lucas-green/30 transition-all text-center backdrop-blur-sm">
                                 Short-Term Rental Operators
                             </span>
                         </div>
                         <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-2.5">
-                            <span class="w-56 sm:w-64 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-lucas-green/5 border border-lucas-green/20 text-xs sm:text-sm text-gray-300 font-medium hover:bg-lucas-green/10 hover:border-lucas-green/30 hover:text-white transition-all text-center">
+                            <span class="w-56 sm:w-64 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-black/20 border border-lucas-green/20 text-xs sm:text-sm text-white font-medium hover:bg-black/30 hover:border-lucas-green/30 transition-all text-center backdrop-blur-sm">
                                 Real Estate Developers & Owners
                             </span>
-                            <span class="w-56 sm:w-64 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-lucas-green/5 border border-lucas-green/20 text-xs sm:text-sm text-gray-300 font-medium hover:bg-lucas-green/10 hover:border-lucas-green/30 hover:text-white transition-all text-center">
+                            <span class="w-56 sm:w-64 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-black/20 border border-lucas-green/20 text-xs sm:text-sm text-white font-medium hover:bg-black/30 hover:border-lucas-green/30 transition-all text-center backdrop-blur-sm">
                                 RWA & Lending Protocols
                             </span>
                         </div>
