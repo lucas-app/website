@@ -2387,7 +2387,7 @@
                 <a href="/" class="header-logo">LUCAS</a>
                 <div class="header-divider"></div>
                 <span class="header-title">Financial Model</span>
-                <span class="header-badge validated">INTERNAL</span>
+                <span class="header-badge validated">MODEL v1.0</span>
             </div>
         </div>
     </header>
@@ -2447,11 +2447,12 @@
                     </div>
                     <div class="decision-funding">
                         <div class="funding-label">Funding Required</div>
+                        <div class="funding-sublabel" style="font-size: 10px; color: var(--gray-400); margin-bottom: 4px;">(Peak deficit + 20% buffer)</div>
                         <div class="funding-amount" id="decision-funding">AED 85K</div>
                         <div class="funding-details">
                             <div class="funding-detail">
                                 <span class="funding-detail-icon">📅</span>
-                                <span id="funding-runway">Covers 6 months runway</span>
+                                <span id="funding-runway">Covers ~6 months fixed costs</span>
                             </div>
                             <div class="funding-detail">
                                 <span class="funding-detail-icon">⚠️</span>
@@ -2552,10 +2553,12 @@
             <!-- Executive Summary -->
             <div class="executive-summary" id="exec-summary">
                 <div class="summary-main">
-                    <div class="summary-eyebrow">📊 <span id="scenario-name">Base Case</span></div>
+                    <div class="summary-eyebrow">📊 <span id="scenario-name">Base Case</span> Summary</div>
                     <p class="summary-insight" id="exec-insight">
-                        At <strong>AED <span id="exec-price">350</span>/property</strong>, LUCAS reaches 
-                        <strong>break-even in <span id="exec-be-text">Month 10</span></strong> with <strong><span id="exec-units">220</span> properties</strong> by Y1 end.
+                        At <strong>AED <span id="exec-price">350</span>/property</strong>, base case projects <strong><span id="exec-units">220</span> properties</strong> in Y1, 
+                        <strong>break-even by <span id="exec-be-text">Month 10</span></strong>, 
+                        Y1 EBITDA of <strong><span id="exec-ebitda-text">AED 42K</span></strong>, 
+                        requiring <strong><span id="exec-funding-text">AED 85K</span></strong> to de-risk.
                     </p>
                 </div>
                 <div class="summary-kpis">
@@ -2626,7 +2629,7 @@
                         <span class="ratio-status"></span>
                     </div>
                     <div class="ratio-value" id="ratio-ltv-value">2.8x</div>
-                    <div class="ratio-target">Target: > 3x</div>
+                    <div class="ratio-target">Per property, target > 3x</div>
                     <div class="ratio-bar"><div class="ratio-bar-fill" style="width: 70%"></div></div>
                 </div>
                 <div class="ratio-card warning" id="ratio-payback">
@@ -2647,12 +2650,12 @@
                     <div class="ratio-target">Target: > 60%</div>
                     <div class="ratio-bar"><div class="ratio-bar-fill" style="width: 100%"></div></div>
                 </div>
-                <div class="ratio-card warning" id="ratio-rule40">
+                <div class="ratio-card warning" id="ratio-ebitda-margin">
                     <div class="ratio-header">
                         <span class="ratio-label">EBITDA Margin</span>
                         <span class="ratio-status"></span>
                     </div>
-                    <div class="ratio-value" id="ratio-rule40-value">-12%</div>
+                    <div class="ratio-value" id="ratio-ebitda-margin-value">-12%</div>
                     <div class="ratio-target">Target: > 10%</div>
                     <div class="ratio-bar"><div class="ratio-bar-fill" style="width: 87%"></div></div>
                 </div>
@@ -2681,7 +2684,7 @@
                     </div>
                     <div class="gap-item">
                         <div class="gap-label">Conversion Rate</div>
-                        <div class="gap-status">→ Assumed 50%, test in pilots</div>
+                        <div class="gap-status">→ Assumed 50%. To be validated in pilots</div>
                     </div>
                 </div>
             </div>
@@ -2777,11 +2780,11 @@
                             <span class="data-row-value" id="ue-gp">AED 235</span>
                         </div>
                         <div class="data-row negative">
-                            <span class="data-row-label">Fixed Cost Allocation</span>
+                            <span class="data-row-label">Allocated Fixed Costs</span>
                             <span class="data-row-value" id="ue-fixed">– AED 92</span>
                         </div>
                         <div class="data-row total">
-                            <span class="data-row-label">Contribution Margin</span>
+                            <span class="data-row-label">Net Contribution</span>
                             <span class="data-row-value" id="ue-cm">AED 143</span>
                         </div>
                     </div>
@@ -2794,7 +2797,7 @@
                     <div class="data-rows">
                         <div class="data-row">
                             <span class="data-row-label">Peak Cash Deficit</span>
-                            <span class="data-row-value" id="cash-deficit">AED -72K</span>
+                            <span class="data-row-value" id="cash-deficit">AED 72K</span>
                         </div>
                         <div class="data-row">
                             <span class="data-row-label">Safety Buffer (20%)</span>
@@ -2953,6 +2956,9 @@
                             <span class="valuation-value" id="val-total">AED 14.4M</span>
                         </div>
                     </div>
+                    <div style="text-align: center; font-size: 11px; color: var(--gray-400); margin-top: 8px;">
+                        4x ARR multiple typical for early-stage B2B SaaS in emerging markets
+                    </div>
                 </div>
                 
                 <!-- Detailed View -->
@@ -3098,9 +3104,9 @@
                             </tr>
                             <tr>
                                 <td>Verdict</td>
-                                <td class="bear-col"><span class="verdict-tag danger">Pivot Needed</span></td>
-                                <td class="base-col"><span class="verdict-tag success">Go</span></td>
-                                <td class="bull-col"><span class="verdict-tag success">Strong Go</span></td>
+                                <td class="bear-col"><span class="verdict-tag danger" id="sc-bear-verdict">Revisit Pricing</span></td>
+                                <td class="base-col"><span class="verdict-tag warning" id="sc-base-verdict">Conditional</span></td>
+                                <td class="bull-col"><span class="verdict-tag success" id="sc-bull-verdict">Strong Go</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -3153,7 +3159,7 @@
                         <span class="slider-value validated" id="val-pilots">5</span>
                     </div>
                     <input type="range" id="slider-pilots" min="2" max="10" step="1" value="5">
-                    <div class="slider-hint research">Research: 3-8 realistic capacity</div>
+                    <div class="slider-hint research">Benchmark: 3-8 realistic capacity</div>
                 </div>
                 <div class="slider-group">
                     <div class="slider-header">
@@ -3161,7 +3167,7 @@
                         <span class="slider-value validated" id="val-conversion">50%</span>
                     </div>
                     <input type="range" id="slider-conversion" min="25" max="70" step="5" value="50">
-                    <div class="slider-hint research">Research: 35-65% industry range</div>
+                    <div class="slider-hint research">Typical range: 35-65% in similar markets</div>
                 </div>
                 <div class="slider-group">
                     <div class="slider-header">
@@ -3169,7 +3175,7 @@
                         <span class="slider-value validated" id="val-avg-units">22</span>
                     </div>
                     <input type="range" id="slider-avg-units" min="10" max="40" step="2" value="22">
-                    <div class="slider-hint research">Research: 15-35 typical range</div>
+                    <div class="slider-hint research">Typical range: 15-35 properties</div>
                 </div>
                 <div class="slider-group">
                     <div class="slider-header">
@@ -3177,7 +3183,7 @@
                         <span class="slider-value validated" id="val-churn">8%</span>
                     </div>
                     <input type="range" id="slider-churn" min="3" max="15" step="1" value="8">
-                    <div class="slider-hint research">Research: 6-15% for new services</div>
+                    <div class="slider-hint research">Typical range: 6-15% for new services</div>
                 </div>
                 <div class="growth-summary">
                     <div class="growth-summary-row">
@@ -3261,6 +3267,18 @@
     <button class="mobile-toggle" id="mobile-toggle">⚙️</button>
 
     <script>
+        // ===== TARGET THRESHOLDS (centralized for maintainability) =====
+        const TARGETS = {
+            ltvCacMin: 3,           // LTV/CAC >= 3x is good
+            ltvCacOk: 2,            // LTV/CAC >= 2x is acceptable
+            paybackMax: 12,         // Payback <= 12 months is good
+            paybackOk: 18,          // Payback <= 18 months is acceptable
+            grossMarginGood: 0.6,   // Gross margin >= 60% is good
+            grossMarginOk: 0.4,     // Gross margin >= 40% is acceptable
+            ebitdaMarginGood: 10,   // EBITDA margin >= 10% is good
+            ebitdaMarginOk: 0       // EBITDA margin >= 0% is acceptable
+        };
+
         // Research-validated scenarios
         const scenarios = {
             bear: {
@@ -3465,7 +3483,7 @@
             
             // Funding
             document.getElementById('decision-funding').textContent = fundingNeed > 0 ? 'AED ' + fmt(fundingNeed) : 'Self-Funded';
-            document.getElementById('funding-runway').textContent = `Covers ${runway} months runway`;
+            document.getElementById('funding-runway').textContent = `Covers ~${runway} months of fixed costs`;
             
             // Key risk based on scenario
             let keyRisk = 'Pricing validation';
@@ -3493,11 +3511,19 @@
             } else {
                 breakevenUnits = Math.ceil(fixedCosts / contributionMargin);
                 document.getElementById('be-units').textContent = breakevenUnits;
-                document.getElementById('be-units-detail').textContent = `At ${breakevenUnits} properties, monthly revenue covers all fixed costs`;
-                document.getElementById('be-formula').textContent = `${fixedCosts.toLocaleString()} ÷ (${a.price} - ${variableCost}) = ${breakevenUnits}`;
                 
                 // Current progress toward breakeven (at M12)
                 const endUnits = data[11]?.netUnits || 0;
+                
+                // Dynamic text based on whether we've hit breakeven
+                if (endUnits >= breakevenUnits) {
+                    document.getElementById('be-units-detail').textContent = `M12 volume (${endUnits}) exceeds breakeven threshold`;
+                } else {
+                    document.getElementById('be-units-detail').textContent = `Breakeven at ${breakevenUnits} properties. M12 projection: ${endUnits}`;
+                }
+                
+                document.getElementById('be-formula').textContent = `${fixedCosts.toLocaleString()} ÷ (${a.price} - ${variableCost}) = ${breakevenUnits}`;
+                
                 const unitsProgress = Math.min((endUnits / breakevenUnits) * 100, 100);
                 document.getElementById('be-units-progress').style.width = unitsProgress + '%';
             }
@@ -3516,7 +3542,7 @@
             const monthlyBurn = fixedCosts;
             const m6Data = data[5];
             const m6Surplus = m6Data?.ebitda || 0;
-            document.getElementById('burn-rate').textContent = `AED ${fmt(monthlyBurn)}/mo burn → ${m6Surplus >= 0 ? '+' : ''}AED ${fmt(m6Surplus)} @ M6`;
+            document.getElementById('burn-rate').textContent = `AED ${fmt(monthlyBurn)} per month burn → ${m6Surplus >= 0 ? '+' : ''}AED ${fmt(m6Surplus)} @ M6`;
         }
         
         function updateSensitivityAnalysis(baseData) {
@@ -3525,7 +3551,7 @@
             
             // Skip if base EBITDA is 0 to avoid division issues
             if (baseEBITDA === 0) {
-                document.getElementById('sensitivity-grid').innerHTML = '<p style="color: var(--text-tertiary); text-align: center; padding: 20px;">Adjust assumptions to see sensitivity analysis</p>';
+                document.getElementById('sensitivity-grid').innerHTML = '<p style="color: var(--gray-500); text-align: center; padding: 20px;">Base case is at roughly break-even. Adjust price or churn to see which levers matter most.</p>';
                 return;
             }
             
@@ -3537,7 +3563,7 @@
                 { name: 'Price (AED)', key: 'price', base: originalAssumptions.price, delta: 0.20 },
                 { name: 'Churn Rate (%)', key: 'churnRate', base: originalAssumptions.churnRate, delta: 0.25, inverse: true },
                 { name: 'Conversion (%)', key: 'conversionRate', base: originalAssumptions.conversionRate, delta: 0.20 },
-                { name: 'Properties/Mgr', key: 'avgUnitsPerOperator', base: originalAssumptions.avgUnitsPerOperator, delta: 0.20 },
+                { name: 'Properties per Manager', key: 'avgUnitsPerOperator', base: originalAssumptions.avgUnitsPerOperator, delta: 0.20 },
                 { name: 'Gig Payout', key: 'gigPayout', base: originalAssumptions.gigPayout, delta: 0.20, inverse: true }
             ];
             
@@ -3922,12 +3948,13 @@
             // Unit Economics Metrics
             const avgLifespan = 1 / (assumptions.churnRate / 100);
             const contributionPerUnit = assumptions.price - (assumptions.gigPayout + assumptions.platformFee);
-            // LTV uses contribution margin, not revenue (more accurate)
+            // LTV: contribution margin per property × expected lifespan in months
             const ltv = contributionPerUnit * avgLifespan;
-            const cac = (assumptions.marketing * 12) / Math.max(1, endOperators);
+            // CAC: marketing spend per property acquired (both at property level for consistency)
+            const cac = (assumptions.marketing * 12) / Math.max(1, endUnits);
             const ltvCac = ltv / cac;
-            const payback = cac / contributionPerUnit; // Payback in contribution margin terms
-            // EBITDA Margin (more useful than duplicating gross margin)
+            const payback = cac / contributionPerUnit; // Months to recoup acquisition cost
+            // EBITDA Margin
             const ebitdaMargin = y1Rev > 0 ? (y1EBITDA / y1Rev) * 100 : 0;
             
             // Key Assumptions Display
@@ -3941,10 +3968,18 @@
             document.getElementById('exec-summary').className = 'executive-summary ' + currentScenario;
             
             const beText = breakEven ? `Month ${breakEven}` : 'Not in Y1';
-            document.getElementById('exec-insight').innerHTML = `At <strong>AED ${assumptions.price}/property</strong>, LUCAS reaches <strong>${breakEven ? 'break-even in ' + beText : 'needs additional runway'}</strong> with <strong>${endUnits} properties</strong> by Y1 end.`;
+            const ebitdaText = 'AED ' + fmt(y1EBITDA);
             
+            // Update hero sentence elements
+            document.getElementById('exec-price').textContent = assumptions.price;
+            document.getElementById('exec-units').textContent = endUnits;
+            document.getElementById('exec-be-text').textContent = beText;
+            document.getElementById('exec-ebitda-text').textContent = ebitdaText;
+            document.getElementById('exec-funding-text').textContent = fundingText;
+            
+            // Update KPI cards
             document.getElementById('sum-be').textContent = beText;
-            document.getElementById('sum-ebitda').textContent = 'AED ' + fmt(y1EBITDA);
+            document.getElementById('sum-ebitda').textContent = ebitdaText;
             document.getElementById('sum-units').textContent = endUnits;
             document.getElementById('sum-funding').textContent = fundingText;
             
@@ -3953,16 +3988,16 @@
             document.getElementById('comp-revenue').textContent = 'AED ' + fmt(y1Rev);
             document.getElementById('comp-be').textContent = breakEven ? 'M' + breakEven : '—';
             
-            // Key Ratios
-            updateRatio('ratio-ltv', ltvCac.toFixed(1) + 'x', ltvCac >= 3 ? 'success' : ltvCac >= 2 ? 'warning' : 'danger', Math.min(ltvCac / 5 * 100, 100));
-            updateRatio('ratio-payback', payback.toFixed(1) + ' mo', payback <= 12 ? 'success' : payback <= 18 ? 'warning' : 'danger', Math.min((1 - payback / 24) * 100, 100));
-            updateRatio('ratio-gm', fmtPct(grossMargin), grossMargin >= 0.6 ? 'success' : grossMargin >= 0.4 ? 'warning' : 'danger', grossMargin * 100);
-            updateRatio('ratio-rule40', Math.round(ebitdaMargin) + '%', ebitdaMargin >= 10 ? 'success' : ebitdaMargin >= 0 ? 'warning' : 'danger', Math.max(0, Math.min((ebitdaMargin + 20) / 40 * 100, 100)));
+            // Key Ratios (using TARGETS for maintainability)
+            updateRatio('ratio-ltv', ltvCac.toFixed(1) + 'x', ltvCac >= TARGETS.ltvCacMin ? 'success' : ltvCac >= TARGETS.ltvCacOk ? 'warning' : 'danger', Math.min(ltvCac / 5 * 100, 100));
+            updateRatio('ratio-payback', payback.toFixed(1) + ' mo', payback <= TARGETS.paybackMax ? 'success' : payback <= TARGETS.paybackOk ? 'warning' : 'danger', Math.min((1 - payback / 24) * 100, 100));
+            updateRatio('ratio-gm', fmtPct(grossMargin), grossMargin >= TARGETS.grossMarginGood ? 'success' : grossMargin >= TARGETS.grossMarginOk ? 'warning' : 'danger', grossMargin * 100);
+            updateRatio('ratio-ebitda-margin', Math.round(ebitdaMargin) + '%', ebitdaMargin >= TARGETS.ebitdaMarginGood ? 'success' : ebitdaMargin >= TARGETS.ebitdaMarginOk ? 'warning' : 'danger', Math.max(0, Math.min((ebitdaMargin + 20) / 40 * 100, 100)));
             
             document.getElementById('ratio-ltv-value').textContent = ltvCac.toFixed(1) + 'x';
             document.getElementById('ratio-payback-value').textContent = payback.toFixed(1) + ' mo';
             document.getElementById('ratio-gm-value').textContent = fmtPct(grossMargin);
-            document.getElementById('ratio-rule40-value').textContent = Math.round(ebitdaMargin) + '%';
+            document.getElementById('ratio-ebitda-margin-value').textContent = Math.round(ebitdaMargin) + '%';
             
             // Milestones
             const ms = [
@@ -4002,8 +4037,10 @@
             document.getElementById('ue-cm').textContent = 'AED ' + Math.round(assumptions.price - avgLaborPerUnit - fixedPerUnit);
             
             // Funding - use same calculation as fundingText for consistency
-            document.getElementById('cash-deficit').textContent = 'AED ' + fmt(lowestCash);
-            document.getElementById('cash-buffer').textContent = peakDeficit > 5000 ? 'AED ' + fmt(peakDeficit * 0.2) : 'AED 0';
+            document.getElementById('cash-deficit').textContent = 'AED ' + fmt(peakDeficit);
+            // Buffer is 20% of peak deficit, same logic as computeFundingNeed
+            const buffer = peakDeficit > 5000 ? Math.ceil((peakDeficit * 0.2) / 1000) * 1000 : 0;
+            document.getElementById('cash-buffer').textContent = 'AED ' + fmt(buffer);
             document.getElementById('cash-raise').textContent = fundingText;
             document.getElementById('cash-be').textContent = beText;
             document.getElementById('cash-end').textContent = 'AED ' + fmt(endCash);
