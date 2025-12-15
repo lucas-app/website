@@ -6,7 +6,7 @@
     <title>LUCAS | Financial Strategy</title>
     <meta name="robots" content="noindex, nofollow">
     
-    <!-- Favicons (same as main site) -->
+    <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -23,7 +23,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         
         :root {
             --lucas-green: #deff9a;
@@ -41,16 +45,17 @@
         }
         
         /* ===== LOGIN ===== */
-        .login-container {
+        #login-screen {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: var(--lucas-dark);
             position: relative;
-            overflow: hidden;
         }
         
-        .login-glow {
+        #login-screen::before {
+            content: '';
             position: absolute;
             top: 50%;
             left: 50%;
@@ -70,26 +75,42 @@
             padding: 48px;
             width: 100%;
             max-width: 420px;
-            text-align: center;
             position: relative;
             z-index: 1;
+        }
+        
+        .login-logo {
+            text-align: center;
+            margin-bottom: 24px;
         }
         
         .login-logo img {
             height: 48px;
             width: auto;
-            margin-bottom: 24px;
+        }
+        
+        .login-logo-text {
+            font-size: 32px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+        
+        .login-logo-text span {
+            color: var(--lucas-green);
         }
         
         .login-badge {
-            display: inline-flex;
+            display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             padding: 6px 14px;
             background: rgba(222, 255, 154, 0.1);
             border: 1px solid rgba(222, 255, 154, 0.2);
             border-radius: 100px;
-            margin-bottom: 24px;
+            margin: 0 auto 24px;
+            width: fit-content;
         }
         
         .badge-dot {
@@ -116,20 +137,21 @@
             font-size: 24px;
             font-weight: 700;
             margin-bottom: 8px;
+            text-align: center;
         }
         
         .login-subtitle {
             color: #666;
             font-size: 14px;
             margin-bottom: 32px;
+            text-align: center;
         }
         
-        .input-group {
+        .form-group {
             margin-bottom: 20px;
-            text-align: left;
         }
         
-        .input-group label {
+        .form-group label {
             display: block;
             color: #888;
             font-size: 11px;
@@ -139,7 +161,7 @@
             letter-spacing: 0.1em;
         }
         
-        .input-group input {
+        .form-group input {
             width: 100%;
             padding: 14px 16px;
             background: var(--lucas-card);
@@ -151,13 +173,13 @@
             transition: all 0.2s;
         }
         
-        .input-group input:focus {
+        .form-group input:focus {
             outline: none;
             border-color: rgba(222, 255, 154, 0.5);
             box-shadow: 0 0 0 3px rgba(222, 255, 154, 0.1);
         }
         
-        .input-group input::placeholder {
+        .form-group input::placeholder {
             color: #444;
         }
         
@@ -170,6 +192,7 @@
             font-size: 13px;
             margin-bottom: 20px;
             display: none;
+            text-align: center;
         }
         
         .error-msg.show {
@@ -205,15 +228,16 @@
             color: #444;
             font-size: 12px;
             margin-top: 24px;
+            text-align: center;
         }
         
         /* ===== DASHBOARD ===== */
-        .dashboard {
+        #dashboard {
             display: none;
             min-height: 100vh;
         }
         
-        .dashboard.show {
+        #dashboard.show {
             display: block;
         }
         
@@ -247,6 +271,16 @@
         .header-left img {
             height: 32px;
             width: auto;
+        }
+        
+        .header-logo-text {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+        }
+        
+        .header-logo-text span {
+            color: var(--lucas-green);
         }
         
         .divider {
@@ -300,84 +334,101 @@
             color: #f87171;
         }
         
-        /* Main Content */
-        .main-content {
-            max-width: 1400px;
+        /* Layout */
+        .layout {
+            display: flex;
+            max-width: 1600px;
             margin: 0 auto;
-            padding: 32px 24px;
         }
         
-        /* Controls Row */
-        .controls-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-bottom: 32px;
-            padding: 20px;
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
             background: var(--lucas-card);
-            border: 1px solid var(--lucas-border);
-            border-radius: 16px;
+            border-right: 1px solid var(--lucas-border);
+            padding: 24px;
+            height: calc(100vh - 64px);
+            overflow-y: auto;
+            position: sticky;
+            top: 64px;
+            flex-shrink: 0;
         }
         
-        .control-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+        .sidebar-section {
+            margin-bottom: 28px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--lucas-border);
         }
         
-        .control-group label {
-            font-size: 10px;
-            color: #666;
+        .sidebar-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .sidebar-section h3 {
+            font-size: 11px;
+            color: var(--lucas-green);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 600;
+            letter-spacing: 0.15em;
+            margin-bottom: 16px;
+            font-weight: 700;
         }
         
+        /* Model Toggle */
         .model-toggle {
             display: flex;
-            background: var(--lucas-dark);
+            flex-direction: column;
+            gap: 6px;
+        }
+        
+        .model-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            background: transparent;
             border: 1px solid var(--lucas-border);
             border-radius: 10px;
-            padding: 4px;
-            gap: 4px;
-        }
-        
-        .model-toggle button {
-            padding: 10px 16px;
-            border: none;
-            background: transparent;
-            color: #666;
-            font-size: 12px;
+            color: #888;
+            font-size: 13px;
             font-weight: 600;
             font-family: inherit;
-            border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s;
+            text-align: left;
         }
         
-        .model-toggle button:hover {
+        .model-btn:hover {
+            border-color: #444;
             color: #fff;
         }
         
-        .model-toggle button.active {
-            background: var(--lucas-green);
-            color: var(--lucas-dark);
+        .model-btn.active {
+            border-color: var(--lucas-green);
+            background: rgba(222, 255, 154, 0.1);
+            color: var(--lucas-green);
         }
         
-        .price-toggle {
-            display: flex;
+        .model-btn .icon {
+            font-size: 16px;
+        }
+        
+        /* Price Grid */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 8px;
         }
         
         .price-btn {
-            padding: 10px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 14px 12px;
             background: transparent;
             border: 1px solid var(--lucas-border);
+            border-radius: 10px;
             color: #888;
-            font-size: 14px;
-            font-weight: 700;
-            font-family: 'Space Mono', monospace;
-            border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s;
         }
@@ -388,14 +439,103 @@
         
         .price-btn.active {
             border-color: var(--lucas-green);
-            color: var(--lucas-green);
             background: rgba(222, 255, 154, 0.1);
+        }
+        
+        .price-btn .num {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+            font-family: 'Space Mono', monospace;
+        }
+        
+        .price-btn.active .num {
+            color: var(--lucas-green);
+        }
+        
+        .price-btn .unit {
+            font-size: 10px;
+            color: #666;
+            margin-top: 2px;
+        }
+        
+        /* Slider */
+        .slider-group {
+            margin-bottom: 18px;
+        }
+        
+        .slider-group:last-child {
+            margin-bottom: 0;
+        }
+        
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .slider-header label {
+            font-size: 12px;
+            color: #888;
+            font-weight: 500;
+        }
+        
+        .slider-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--lucas-green);
+            font-weight: 600;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(to right, rgba(222, 255, 154, 0.3), rgba(222, 255, 154, 0.1));
+            -webkit-appearance: none;
+            appearance: none;
+            cursor: pointer;
+            border: 1px solid rgba(222, 255, 154, 0.2);
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--lucas-green);
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(222, 255, 154, 0.4);
+            transition: transform 0.2s;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+        }
+        
+        input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--lucas-green);
+            cursor: pointer;
+            border: none;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 32px;
+            min-width: 0;
         }
         
         /* Hero Section */
         .hero {
             background: rgba(20, 20, 20, 0.7);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             padding: 28px;
@@ -448,11 +588,11 @@
             gap: 16px;
         }
         
-        @media (max-width: 1000px) {
+        @media (max-width: 1200px) {
             .metrics-grid { grid-template-columns: repeat(3, 1fr); }
         }
         
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
             .metrics-grid { grid-template-columns: repeat(2, 1fr); }
         }
         
@@ -618,11 +758,11 @@
             gap: 12px;
         }
         
-        @media (max-width: 1000px) {
+        @media (max-width: 1200px) {
             .key-grid { grid-template-columns: repeat(3, 1fr); }
         }
         
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
             .key-grid { grid-template-columns: repeat(2, 1fr); }
         }
         
@@ -660,17 +800,71 @@
             font-size: 11px;
         }
         
-        /* Utilities */
-        .hidden { display: none !important; }
+        /* Mobile Sidebar Toggle */
+        .sidebar-toggle {
+            display: none;
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--lucas-green);
+            border: none;
+            color: var(--lucas-dark);
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 200;
+            box-shadow: 0 4px 20px rgba(222, 255, 154, 0.4);
+        }
+        
+        @media (max-width: 900px) {
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 64px;
+                bottom: 0;
+                z-index: 150;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .sidebar-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+        }
+        
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 140;
+        }
+        
+        .overlay.show {
+            display: block;
+        }
     </style>
 </head>
 <body>
     <!-- LOGIN SCREEN -->
-    <div id="login-screen" class="login-container">
-        <div class="login-glow"></div>
+    <div id="login-screen">
         <div class="login-box">
             <div class="login-logo">
-                <img src="logo.png" alt="LUCAS" onerror="this.outerHTML='<div style=\"font-size:32px;font-weight:800;margin-bottom:24px\">LUCAS<span style=color:#deff9a>.</span></div>'">
+                <img src="/logo.png" alt="LUCAS" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="login-logo-text" style="display:none;">LUCAS<span>.</span></div>
             </div>
             
             <div class="login-badge">
@@ -682,16 +876,16 @@
             <p class="login-subtitle">Stakeholder access only</p>
             
             <form id="login-form">
-                <div class="input-group">
+                <div class="form-group">
                     <label>Email</label>
                     <input type="email" id="login-email" placeholder="you@lucas.app" required>
                 </div>
-                <div class="input-group">
+                <div class="form-group">
                     <label>Password</label>
                     <input type="password" id="login-password" placeholder="••••••••" required>
                 </div>
                 <div id="login-error" class="error-msg"></div>
-                <button type="submit" class="login-btn">Access Dashboard</button>
+                <button type="submit" class="login-btn" id="login-btn">Access Dashboard</button>
             </form>
             
             <p class="login-footer">Contact admin for access credentials</p>
@@ -699,12 +893,15 @@
     </div>
 
     <!-- DASHBOARD -->
-    <div id="dashboard" class="dashboard">
+    <div id="dashboard">
         <!-- Header -->
         <header class="header">
             <div class="header-inner">
                 <div class="header-left">
-                    <a href="/"><img src="logo.png" alt="LUCAS" onerror="this.outerHTML='<span style=\"font-size:20px;font-weight:800\">LUCAS<span style=color:#deff9a>.</span></span>'"></a>
+                    <a href="/" style="text-decoration:none;display:flex;align-items:center;">
+                        <img src="/logo.png" alt="LUCAS" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="header-logo-text" style="display:none;">LUCAS<span>.</span></div>
+                    </a>
                     <div class="divider"></div>
                     <span class="header-title">Financial Strategy</span>
                     <span class="internal-badge">INTERNAL</span>
@@ -716,183 +913,299 @@
             </div>
         </header>
 
-        <div class="main-content">
-            <!-- Controls -->
-            <div class="controls-row">
-                <div class="control-group">
-                    <label>Workforce Model</label>
+        <div class="layout">
+            <!-- Sidebar Controls -->
+            <aside class="sidebar" id="sidebar">
+                <!-- Model Selection -->
+                <div class="sidebar-section">
+                    <h3>📊 Workforce Model</h3>
                     <div class="model-toggle">
-                        <button class="active" data-model="hybrid">⚡ Hybrid</button>
-                        <button data-model="gig">📱 Gig Only</button>
-                        <button data-model="fte">👔 FTE Only</button>
+                        <button class="model-btn active" data-model="hybrid">
+                            <span class="icon">⚡</span>
+                            <span>Hybrid</span>
+                        </button>
+                        <button class="model-btn" data-model="gig">
+                            <span class="icon">📱</span>
+                            <span>Gig Only</span>
+                        </button>
+                        <button class="model-btn" data-model="fte">
+                            <span class="icon">👔</span>
+                            <span>FTE Only</span>
+                        </button>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label>Unit Price (AED)</label>
-                    <div class="price-toggle">
-                        <button class="price-btn active" data-price="350">350</button>
-                        <button class="price-btn" data-price="249">249</button>
-                        <button class="price-btn" data-price="149">149</button>
-                        <button class="price-btn" data-price="99">99</button>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Hero -->
-            <section class="hero">
-                <div class="hero-header">
-                    <div>
-                        <h1 id="hero-title">⚡ Hybrid Model</h1>
-                        <p class="hero-sub">12-month projection · AED <span id="hero-price">350</span>/unit</p>
-                    </div>
-                    <span id="rec-tag" class="rec-tag">RECOMMENDED</span>
-                </div>
-                
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <span class="metric-label">Year 1 Revenue</span>
-                        <span class="metric-value" id="m-revenue">AED 2.04M</span>
-                        <span class="metric-subtext" id="m-units">587 units @ M12</span>
-                    </div>
-                    <div class="metric-card highlight" id="m-ebitda-card">
-                        <span class="metric-label">Year 1 EBITDA</span>
-                        <span class="metric-value" id="m-ebitda">AED 480K</span>
-                        <span class="metric-subtext" id="m-ebitda-status">Profitable</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-label">Labor Cost</span>
-                        <span class="metric-value" id="m-labor">AED 520K</span>
-                        <span class="metric-subtext">Total Y1</span>
-                    </div>
-                    <div class="metric-card highlight" id="m-cash-card">
-                        <span class="metric-label">End Cash</span>
-                        <span class="metric-value" id="m-cash">AED 180K</span>
-                        <span class="metric-subtext">Cumulative</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-label">Gig Cost</span>
-                        <span class="metric-value" id="m-gig-cost">AED 108</span>
-                        <span class="metric-subtext">per inspection</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-label">FTE Cost</span>
-                        <span class="metric-value" id="m-fte-cost">AED 134</span>
-                        <span class="metric-subtext">at capacity</span>
+                <!-- Pricing -->
+                <div class="sidebar-section">
+                    <h3>💰 Unit Price (AED)</h3>
+                    <div class="price-grid">
+                        <button class="price-btn active" data-price="350">
+                            <span class="num">350</span>
+                            <span class="unit">AED</span>
+                        </button>
+                        <button class="price-btn" data-price="249">
+                            <span class="num">249</span>
+                            <span class="unit">AED</span>
+                        </button>
+                        <button class="price-btn" data-price="149">
+                            <span class="num">149</span>
+                            <span class="unit">AED</span>
+                        </button>
+                        <button class="price-btn" data-price="99">
+                            <span class="num">99</span>
+                            <span class="unit">AED</span>
+                        </button>
                     </div>
                 </div>
-            </section>
 
-            <!-- Comparison Table -->
-            <section class="section">
-                <h2>Model Comparison</h2>
-                <p class="section-sub">Side-by-side analysis at AED <span id="table-price">350</span>/unit</p>
-                <div class="table-wrap">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th class="rec">Hybrid <span style="background:#deff9a;color:#050505;padding:2px 6px;border-radius:4px;font-size:8px;margin-left:6px">REC</span></th>
-                                <th>Gig Only</th>
-                                <th>FTE Only</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Y1 Revenue</td>
-                                <td class="rec"><span class="value" id="t-hybrid-rev">AED 2.04M</span></td>
-                                <td><span class="value" id="t-gig-rev">AED 2.04M</span></td>
-                                <td><span class="value" id="t-fte-rev">AED 2.04M</span></td>
-                            </tr>
-                            <tr>
-                                <td>Y1 Labor Cost</td>
-                                <td class="rec"><span class="value" id="t-hybrid-labor">AED 520K</span></td>
-                                <td><span class="value" id="t-gig-labor">AED 610K</span></td>
-                                <td><span class="value" id="t-fte-labor">AED 730K</span></td>
-                            </tr>
-                            <tr>
-                                <td>Y1 EBITDA</td>
-                                <td class="rec"><span class="value" id="t-hybrid-ebitda">AED 480K</span></td>
-                                <td><span class="value" id="t-gig-ebitda">AED 400K</span></td>
-                                <td><span class="value" id="t-fte-ebitda">AED 280K</span></td>
-                            </tr>
-                            <tr>
-                                <td>End Cash</td>
-                                <td class="rec"><span class="value" id="t-hybrid-cash">AED 180K</span></td>
-                                <td><span class="value" id="t-gig-cash">AED 100K</span></td>
-                                <td><span class="value" id="t-fte-cash">AED -20K</span></td>
-                            </tr>
-                            <tr>
-                                <td>Break-Even</td>
-                                <td class="rec"><span class="value" id="t-hybrid-be">M4</span></td>
-                                <td><span class="value" id="t-gig-be">M5</span></td>
-                                <td><span class="value" id="t-fte-be">M7</span></td>
-                            </tr>
-                            <tr style="background:#050505;border-top:2px solid #222">
-                                <td>Labor Savings vs FTE</td>
-                                <td class="rec"><span class="savings" id="t-hybrid-save">29%</span></td>
-                                <td><span class="savings" id="t-gig-save">16%</span></td>
-                                <td>—</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <!-- Gig Model -->
+                <div class="sidebar-section">
+                    <h3>📱 Gig Model</h3>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label>Payout / Inspection</label>
+                            <span class="slider-value" id="val-gig-payout">AED 100</span>
+                        </div>
+                        <input type="range" id="slider-gig-payout" min="60" max="150" step="5" value="100">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label>Platform Fee</label>
+                            <span class="slider-value" id="val-platform-fee">AED 8</span>
+                        </div>
+                        <input type="range" id="slider-platform-fee" min="0" max="25" step="1" value="8">
+                    </div>
                 </div>
-            </section>
 
-            <!-- Charts -->
-            <div class="charts-row">
-                <div class="chart-card">
-                    <h3>Cumulative Cash Flow</h3>
-                    <p>Break-even trajectory</p>
-                    <div class="chart-container">
-                        <canvas id="cashFlowChart"></canvas>
+                <!-- FTE Model -->
+                <div class="sidebar-section">
+                    <h3>👔 FTE Model</h3>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label>Base Salary</label>
+                            <span class="slider-value" id="val-fte-salary">AED 4,500</span>
+                        </div>
+                        <input type="range" id="slider-fte-salary" min="3000" max="7000" step="250" value="4500">
                     </div>
                 </div>
-                <div class="chart-card">
-                    <h3>Monthly Labor Cost</h3>
-                    <p>Cost structure comparison</p>
-                    <div class="chart-container">
-                        <canvas id="laborCostChart"></canvas>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Key Numbers -->
-            <section class="section">
-                <h2>Key Numbers</h2>
-                <p class="section-sub">Reference metrics</p>
-                <div class="key-grid">
-                    <div class="key-card">
-                        <span class="key-num" id="k-gig">108</span>
-                        <span class="key-label">AED Gig Cost/Unit</span>
+                <!-- Hybrid Config -->
+                <div class="sidebar-section">
+                    <h3>⚡ Hybrid Config</h3>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label>Phase 1 (Gig Only)</label>
+                            <span class="slider-value" id="val-phase1">6 months</span>
+                        </div>
+                        <input type="range" id="slider-phase1" min="3" max="9" step="1" value="6">
                     </div>
-                    <div class="key-card">
-                        <span class="key-num" id="k-fte">134</span>
-                        <span class="key-label">AED FTE Cost/Unit</span>
-                    </div>
-                    <div class="key-card">
-                        <span class="key-num" id="k-capacity">55</span>
-                        <span class="key-label">FTE Capacity/Month</span>
-                    </div>
-                    <div class="key-card">
-                        <span class="key-num" id="k-breakeven">~69</span>
-                        <span class="key-label">FTE Break-Even Units</span>
-                    </div>
-                    <div class="key-card">
-                        <span class="key-num" id="k-loaded">7,388</span>
-                        <span class="key-label">AED FTE Monthly Cost</span>
-                    </div>
-                    <div class="key-card">
-                        <span class="key-num" id="k-fixed">33,500</span>
-                        <span class="key-label">AED Fixed Overhead</span>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label>Phase 2 FTEs</label>
+                            <span class="slider-value" id="val-phase2-ftes">1</span>
+                        </div>
+                        <input type="range" id="slider-phase2-ftes" min="1" max="5" step="1" value="1">
                     </div>
                 </div>
-            </section>
+
+                <!-- Fixed Costs / OPEX -->
+                <div class="sidebar-section">
+                    <h3>🏢 Fixed Costs (OPEX)</h3>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label>Founder Salary</label>
+                            <span class="slider-value" id="val-founder">AED 15,000</span>
+                        </div>
+                        <input type="range" id="slider-founder" min="0" max="30000" step="1000" value="15000">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label>Marketing</label>
+                            <span class="slider-value" id="val-marketing">AED 5,000</span>
+                        </div>
+                        <input type="range" id="slider-marketing" min="0" max="20000" step="1000" value="5000">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label>Office / Admin</label>
+                            <span class="slider-value" id="val-office">AED 6,000</span>
+                        </div>
+                        <input type="range" id="slider-office" min="0" max="15000" step="500" value="6000">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label>Tech / Infra</label>
+                            <span class="slider-value" id="val-tech">AED 5,500</span>
+                        </div>
+                        <input type="range" id="slider-tech" min="2000" max="15000" step="500" value="5500">
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Overlay for mobile -->
+            <div class="overlay" id="overlay"></div>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Hero -->
+                <section class="hero">
+                    <div class="hero-header">
+                        <div>
+                            <h1 id="hero-title">⚡ Hybrid Model</h1>
+                            <p class="hero-sub">12-month projection · AED <span id="hero-price">350</span>/unit</p>
+                        </div>
+                        <span id="rec-tag" class="rec-tag">RECOMMENDED</span>
+                    </div>
+                    
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <span class="metric-label">Year 1 Revenue</span>
+                            <span class="metric-value" id="m-revenue">AED 2.04M</span>
+                            <span class="metric-subtext" id="m-units">587 units @ M12</span>
+                        </div>
+                        <div class="metric-card highlight" id="m-ebitda-card">
+                            <span class="metric-label">Year 1 EBITDA</span>
+                            <span class="metric-value" id="m-ebitda">AED 480K</span>
+                            <span class="metric-subtext" id="m-ebitda-status">Profitable</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-label">Labor Cost</span>
+                            <span class="metric-value" id="m-labor">AED 520K</span>
+                            <span class="metric-subtext">Total Y1</span>
+                        </div>
+                        <div class="metric-card highlight" id="m-cash-card">
+                            <span class="metric-label">End Cash</span>
+                            <span class="metric-value" id="m-cash">AED 180K</span>
+                            <span class="metric-subtext">Cumulative</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-label">Gig Cost</span>
+                            <span class="metric-value" id="m-gig-cost">AED 108</span>
+                            <span class="metric-subtext">per inspection</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-label">FTE Cost</span>
+                            <span class="metric-value" id="m-fte-cost">AED 134</span>
+                            <span class="metric-subtext">at capacity</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Comparison Table -->
+                <section class="section">
+                    <h2>Model Comparison</h2>
+                    <p class="section-sub">Side-by-side analysis at AED <span id="table-price">350</span>/unit</p>
+                    <div class="table-wrap">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="rec">Hybrid <span style="background:#deff9a;color:#050505;padding:2px 6px;border-radius:4px;font-size:8px;margin-left:6px">REC</span></th>
+                                    <th>Gig Only</th>
+                                    <th>FTE Only</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Y1 Revenue</td>
+                                    <td class="rec"><span class="value" id="t-hybrid-rev">AED 2.04M</span></td>
+                                    <td><span class="value" id="t-gig-rev">AED 2.04M</span></td>
+                                    <td><span class="value" id="t-fte-rev">AED 2.04M</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Y1 Labor Cost</td>
+                                    <td class="rec"><span class="value" id="t-hybrid-labor">AED 520K</span></td>
+                                    <td><span class="value" id="t-gig-labor">AED 610K</span></td>
+                                    <td><span class="value" id="t-fte-labor">AED 730K</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Y1 EBITDA</td>
+                                    <td class="rec"><span class="value" id="t-hybrid-ebitda">AED 480K</span></td>
+                                    <td><span class="value" id="t-gig-ebitda">AED 400K</span></td>
+                                    <td><span class="value" id="t-fte-ebitda">AED 280K</span></td>
+                                </tr>
+                                <tr>
+                                    <td>End Cash</td>
+                                    <td class="rec"><span class="value" id="t-hybrid-cash">AED 180K</span></td>
+                                    <td><span class="value" id="t-gig-cash">AED 100K</span></td>
+                                    <td><span class="value" id="t-fte-cash">AED -20K</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Break-Even</td>
+                                    <td class="rec"><span class="value" id="t-hybrid-be">M4</span></td>
+                                    <td><span class="value" id="t-gig-be">M5</span></td>
+                                    <td><span class="value" id="t-fte-be">M7</span></td>
+                                </tr>
+                                <tr style="background:#050505;border-top:2px solid #222">
+                                    <td>Labor Savings vs FTE</td>
+                                    <td class="rec"><span class="savings" id="t-hybrid-save">29%</span></td>
+                                    <td><span class="savings" id="t-gig-save">16%</span></td>
+                                    <td>—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Charts -->
+                <div class="charts-row">
+                    <div class="chart-card">
+                        <h3>Cumulative Cash Flow</h3>
+                        <p>Break-even trajectory</p>
+                        <div class="chart-container">
+                            <canvas id="cashFlowChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Monthly Labor Cost</h3>
+                        <p>Cost structure comparison</p>
+                        <div class="chart-container">
+                            <canvas id="laborCostChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Numbers -->
+                <section class="section">
+                    <h2>Key Numbers</h2>
+                    <p class="section-sub">Reference metrics</p>
+                    <div class="key-grid">
+                        <div class="key-card">
+                            <span class="key-num" id="k-gig">108</span>
+                            <span class="key-label">AED Gig Cost/Unit</span>
+                        </div>
+                        <div class="key-card">
+                            <span class="key-num" id="k-fte">134</span>
+                            <span class="key-label">AED FTE Cost/Unit</span>
+                        </div>
+                        <div class="key-card">
+                            <span class="key-num" id="k-capacity">55</span>
+                            <span class="key-label">FTE Capacity/Month</span>
+                        </div>
+                        <div class="key-card">
+                            <span class="key-num" id="k-breakeven">~69</span>
+                            <span class="key-label">FTE Break-Even Units</span>
+                        </div>
+                        <div class="key-card">
+                            <span class="key-num" id="k-loaded">7,388</span>
+                            <span class="key-label">AED FTE Monthly Cost</span>
+                        </div>
+                        <div class="key-card">
+                            <span class="key-num" id="k-fixed">33,500</span>
+                            <span class="key-label">AED Fixed Overhead</span>
+                        </div>
+                    </div>
+                </section>
+            </main>
         </div>
 
         <!-- Footer -->
         <footer class="footer">
             <p>LUCAS Financial Model · Confidential · Internal Use Only</p>
         </footer>
+
+        <!-- Mobile Toggle Button -->
+        <button class="sidebar-toggle" id="sidebar-toggle">⚙️</button>
     </div>
 
     <script>
@@ -907,7 +1220,6 @@
         // =============================================
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
-        // Check session on load
         async function checkSession() {
             const { data: { session } } = await supabase.auth.getSession();
             if (session) {
@@ -915,13 +1227,12 @@
             }
         }
         
-        // Login
         document.getElementById('login-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
             const errorEl = document.getElementById('login-error');
-            const btn = e.target.querySelector('button');
+            const btn = document.getElementById('login-btn');
             
             btn.disabled = true;
             btn.textContent = 'Signing in...';
@@ -939,14 +1250,12 @@
             }
         });
         
-        // Sign out
         document.getElementById('signout-btn').addEventListener('click', async () => {
             await supabase.auth.signOut();
             document.getElementById('login-screen').style.display = 'flex';
             document.getElementById('dashboard').classList.remove('show');
         });
         
-        // Show dashboard
         function showDashboard(user) {
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('dashboard').classList.add('show');
@@ -955,9 +1264,9 @@
         }
         
         // =============================================
-        // FINANCIAL MODEL
+        // FINANCIAL MODEL - ASSUMPTIONS
         // =============================================
-        const ASSUMPTIONS = {
+        const assumptions = {
             fteBaseSalary: 4500,
             fteVisaCost: 6500,
             fteVisaMonths: 24,
@@ -978,17 +1287,16 @@
             techBase: 5500,
             storagePerK: 500,
             founderSalary: 15000,
-            office: 3000,
+            office: 6000,
             insurance: 2000,
             marketing: 5000,
-            admin: 3000,
             churnRate: 3,
             phase1EndMonth: 6,
             phase2FteCount: 1,
         };
         
         function calculateDerived() {
-            const a = ASSUMPTIONS;
+            const a = assumptions;
             const fteLoadedMonthlyCost = 
                 a.fteBaseSalary + 
                 (a.fteVisaCost / a.fteVisaMonths) + 
@@ -1001,7 +1309,7 @@
             const fteInspectionsPerMonth = fteInspectionsPerDay * a.workingDays;
             const fteCostPerInspection = fteLoadedMonthlyCost / fteInspectionsPerMonth;
             const gigCostPerInspection = a.gigPayoutPerInspection + a.gigPlatformFee + (a.storagePerK / 1000);
-            const baseFixedCosts = a.techBase + a.founderSalary + a.office + a.insurance + a.marketing + a.admin;
+            const baseFixedCosts = a.techBase + a.founderSalary + a.office + a.insurance + a.marketing;
             
             return { fteLoadedMonthlyCost, fteInspectionsPerMonth, fteCostPerInspection, gigCostPerInspection, baseFixedCosts };
         }
@@ -1010,7 +1318,7 @@
             const monthlyGrowth = [20, 25, 30, 35, 40, 50, 60, 70, 80, 90, 100, 110];
             let cumulative = 0;
             let cumulativeCashFlow = 0;
-            const a = ASSUMPTIONS;
+            const a = assumptions;
             
             return monthlyGrowth.map((newUnits, i) => {
                 const month = i + 1;
@@ -1056,9 +1364,9 @@
         
         function initDashboard() {
             // Model toggle
-            document.querySelectorAll('.model-toggle button').forEach(btn => {
+            document.querySelectorAll('.model-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
-                    document.querySelectorAll('.model-toggle button').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.model-btn').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     currentModel = btn.dataset.model;
                     updateDashboard();
@@ -1075,7 +1383,45 @@
                 });
             });
             
+            // Sliders
+            setupSlider('slider-gig-payout', 'val-gig-payout', 'gigPayoutPerInspection', 'AED ');
+            setupSlider('slider-platform-fee', 'val-platform-fee', 'gigPlatformFee', 'AED ');
+            setupSlider('slider-fte-salary', 'val-fte-salary', 'fteBaseSalary', 'AED ', true);
+            setupSlider('slider-phase1', 'val-phase1', 'phase1EndMonth', '', false, ' months');
+            setupSlider('slider-phase2-ftes', 'val-phase2-ftes', 'phase2FteCount', '');
+            setupSlider('slider-founder', 'val-founder', 'founderSalary', 'AED ', true);
+            setupSlider('slider-marketing', 'val-marketing', 'marketing', 'AED ', true);
+            setupSlider('slider-office', 'val-office', 'office', 'AED ', true);
+            setupSlider('slider-tech', 'val-tech', 'techBase', 'AED ', true);
+            
+            // Mobile sidebar toggle
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const toggleBtn = document.getElementById('sidebar-toggle');
+            
+            toggleBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('show');
+            });
+            
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+            });
+            
             updateDashboard();
+        }
+        
+        function setupSlider(sliderId, valueId, assumptionKey, prefix, format = false, suffix = '') {
+            const slider = document.getElementById(sliderId);
+            const valueEl = document.getElementById(valueId);
+            
+            slider.addEventListener('input', () => {
+                const val = parseInt(slider.value);
+                assumptions[assumptionKey] = val;
+                valueEl.textContent = prefix + (format ? val.toLocaleString() : val) + suffix;
+                updateDashboard();
+            });
         }
         
         function updateDashboard() {
@@ -1085,7 +1431,6 @@
             const fte = generateProjection(currentPrice, 'fte', derived);
             const current = currentModel === 'hybrid' ? hybrid : currentModel === 'gig' ? gig : fte;
             
-            // Helpers
             const sum = (arr, key) => arr.reduce((a, b) => a + b[key], 0);
             const findBE = (arr) => { const m = arr.findIndex(d => d.cumCashFlow > 0); return m > -1 ? m + 1 : null; };
             const fmt = (n) => n >= 1000000 ? (n/1000000).toFixed(2) + 'M' : (n/1000).toFixed(0) + 'K';
@@ -1159,31 +1504,29 @@
                 }
             };
             
-            // Cash Flow Chart
             if (cashFlowChart) cashFlowChart.destroy();
             cashFlowChart = new Chart(document.getElementById('cashFlowChart'), {
                 type: 'line',
                 data: {
                     labels,
                     datasets: [
-                        { label: 'Hybrid', data: hybrid.map(d => d.cumCashFlow), borderColor: '#deff9a', borderWidth: 3, tension: 0.3, fill: false },
-                        { label: 'Gig Only', data: gig.map(d => d.cumCashFlow), borderColor: '#a78bfa', borderWidth: 2, borderDash: [5,5], tension: 0.3, fill: false },
-                        { label: 'FTE Only', data: fte.map(d => d.cumCashFlow), borderColor: '#f87171', borderWidth: 2, borderDash: [5,5], tension: 0.3, fill: false }
+                        { label: 'Hybrid', data: hybrid.map(d => d.cumCashFlow), borderColor: '#deff9a', borderWidth: 3, tension: 0.3, fill: false, pointRadius: 0 },
+                        { label: 'Gig Only', data: gig.map(d => d.cumCashFlow), borderColor: '#a78bfa', borderWidth: 2, borderDash: [5,5], tension: 0.3, fill: false, pointRadius: 0 },
+                        { label: 'FTE Only', data: fte.map(d => d.cumCashFlow), borderColor: '#f87171', borderWidth: 2, borderDash: [5,5], tension: 0.3, fill: false, pointRadius: 0 }
                     ]
                 },
                 options: chartConfig
             });
             
-            // Labor Cost Chart
             if (laborCostChart) laborCostChart.destroy();
             laborCostChart = new Chart(document.getElementById('laborCostChart'), {
                 type: 'line',
                 data: {
                     labels,
                     datasets: [
-                        { label: 'Hybrid', data: hybrid.map(d => d.laborCost), borderColor: '#deff9a', backgroundColor: 'rgba(222,255,154,0.1)', borderWidth: 2, tension: 0.3, fill: true },
-                        { label: 'Gig Only', data: gig.map(d => d.laborCost), borderColor: '#a78bfa', backgroundColor: 'rgba(167,139,250,0.05)', borderWidth: 2, tension: 0.3, fill: true },
-                        { label: 'FTE Only', data: fte.map(d => d.laborCost), borderColor: '#f87171', backgroundColor: 'rgba(248,113,113,0.05)', borderWidth: 2, tension: 0.3, fill: true }
+                        { label: 'Hybrid', data: hybrid.map(d => d.laborCost), borderColor: '#deff9a', backgroundColor: 'rgba(222,255,154,0.1)', borderWidth: 2, tension: 0.3, fill: true, pointRadius: 0 },
+                        { label: 'Gig Only', data: gig.map(d => d.laborCost), borderColor: '#a78bfa', backgroundColor: 'rgba(167,139,250,0.05)', borderWidth: 2, tension: 0.3, fill: true, pointRadius: 0 },
+                        { label: 'FTE Only', data: fte.map(d => d.laborCost), borderColor: '#f87171', backgroundColor: 'rgba(248,113,113,0.05)', borderWidth: 2, tension: 0.3, fill: true, pointRadius: 0 }
                     ]
                 },
                 options: chartConfig
