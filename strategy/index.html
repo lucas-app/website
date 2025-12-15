@@ -218,6 +218,46 @@
             margin-top: 24px;
         }
         
+        .demo-divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: var(--text-tertiary);
+            font-size: 12px;
+        }
+        
+        .demo-divider::before,
+        .demo-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-default);
+        }
+        
+        .demo-divider span {
+            padding: 0 12px;
+        }
+        
+        .demo-btn {
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .demo-btn:hover {
+            border-color: var(--lime);
+            background: var(--lime-subtle);
+            color: var(--lime-text);
+        }
+        
         /* ===== DASHBOARD ===== */
         #dashboard { display: none; min-height: 100vh; }
         #dashboard.show { display: block; }
@@ -1674,6 +1714,8 @@
                 <button type="submit" class="login-btn" id="login-btn">Access Dashboard</button>
             </form>
             <p class="login-footer">Contact admin for access credentials</p>
+            <div class="demo-divider"><span>or</span></div>
+            <button type="button" class="demo-btn" id="demo-btn">View Demo Dashboard</button>
         </div>
     </div>
 
@@ -2414,7 +2456,7 @@
 
     <script>
         const SUPABASE_URL = 'https://irztntmenxchzicfegid.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlyenRudG1lbnhjaHppY2ZlZ2lkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQxMTA4ODQsImV4cCI6MjA3OTY4Njg4NH0.EjaO-HXjzElo_eHqEWzagsqGg-gEVqUxY1ri-MhofPw';
+        const SUPABASE_ANON_KEY = 'YOUR_ANON_KEY_HERE';
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         // Scenarios
@@ -2482,6 +2524,11 @@
             await supabase.auth.signOut();
             document.getElementById('login-screen').style.display = 'flex';
             document.getElementById('dashboard').classList.remove('show');
+        });
+        
+        // Demo mode - bypass auth for testing
+        document.getElementById('demo-btn').addEventListener('click', () => {
+            showDashboard({ email: 'demo@lucas.app' });
         });
 
         function showDashboard(user) {
