@@ -568,6 +568,73 @@
             border-radius: 6px;
         }
         
+        /* Scenario Toggle */
+        .scenario-toggle {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .scenario-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 14px 8px;
+            background: var(--bg-input);
+            border: 2px solid transparent;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        
+        .scenario-btn:hover {
+            background: var(--bg-hover);
+            border-color: var(--border-default);
+        }
+        
+        .scenario-btn.active {
+            background: var(--lime-subtle);
+            border-color: var(--lime);
+        }
+        
+        .scenario-btn[data-scenario="bear"].active {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #ef4444;
+        }
+        
+        .scenario-btn[data-scenario="bull"].active {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: #22c55e;
+        }
+        
+        .scenario-icon {
+            font-size: 20px;
+        }
+        
+        .scenario-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+        }
+        
+        .scenario-btn.active .scenario-label {
+            color: var(--text-primary);
+        }
+        
+        .scenario-description {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            line-height: 1.5;
+            padding: 12px;
+            background: var(--bg-input);
+            border-radius: var(--radius-sm);
+        }
+        
         input[type="range"] {
             -webkit-appearance: none;
             appearance: none;
@@ -663,6 +730,7 @@
             display: flex;
             align-items: center;
             gap: 32px;
+            transition: all 0.3s ease;
         }
         
         .executive-summary::before {
@@ -673,6 +741,25 @@
             bottom: 0;
             width: 4px;
             background: linear-gradient(180deg, var(--lime) 0%, var(--lime-dark) 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .executive-summary.bear {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(239, 68, 68, 0.02) 100%);
+            border-color: rgba(239, 68, 68, 0.25);
+        }
+        
+        .executive-summary.bear::before {
+            background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+        }
+        
+        .executive-summary.bull {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(34, 197, 94, 0.02) 100%);
+            border-color: rgba(34, 197, 94, 0.25);
+        }
+        
+        .executive-summary.bull::before {
+            background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
         }
         
         .summary-main {
@@ -1039,6 +1126,67 @@
             background: var(--lime-subtle);
         }
         
+        /* Scenario Comparison Table */
+        .scenario-table th.bear-col {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+        }
+        
+        .scenario-table th.base-col {
+            background: var(--lime-subtle);
+            color: var(--lime-text);
+        }
+        
+        .scenario-table th.bull-col {
+            background: rgba(34, 197, 94, 0.1);
+            color: #16a34a;
+        }
+        
+        .scenario-table td.bear-col {
+            background: rgba(239, 68, 68, 0.03);
+        }
+        
+        .scenario-table td.base-col {
+            background: rgba(222, 255, 154, 0.05);
+        }
+        
+        .scenario-table td.bull-col {
+            background: rgba(34, 197, 94, 0.03);
+        }
+        
+        .scenario-table .value.negative {
+            color: var(--negative);
+        }
+        
+        .scenario-table .value.positive {
+            color: var(--positive);
+        }
+        
+        .verdict-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        
+        .verdict-tag.success {
+            background: rgba(34, 197, 94, 0.15);
+            color: #16a34a;
+        }
+        
+        .verdict-tag.danger {
+            background: rgba(239, 68, 68, 0.15);
+            color: #dc2626;
+        }
+        
+        .verdict-tag.warning {
+            background: rgba(245, 158, 11, 0.15);
+            color: #d97706;
+        }
+        
         /* ===== SENSITIVITY ===== */
         .sensitivity-grid {
             display: grid;
@@ -1276,11 +1424,11 @@
             <!-- Main -->
             <main class="main-content">
                 <!-- Executive Summary -->
-                <div class="executive-summary">
+                <div class="executive-summary" id="exec-summary">
                     <div class="summary-main">
                         <div class="summary-eyebrow">
                             <span class="summary-eyebrow-icon">📊</span>
-                            Executive Summary
+                            <span id="scenario-name">Base Case</span>
                         </div>
                         <p class="summary-insight" id="exec-insight">
                             At <strong>AED 350/unit</strong> with the Hybrid model, LUCAS becomes 
@@ -1467,6 +1615,70 @@
                     </div>
                 </div>
 
+                <!-- Scenario Comparison -->
+                <div class="section">
+                    <div class="section-header">
+                        <div class="section-title">Scenario Comparison</div>
+                        <div class="section-subtitle">Bear vs Base vs Bull at a glance</div>
+                    </div>
+                    <div class="table-card">
+                        <table class="comparison-table scenario-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="bear-col">🐻 Bear</th>
+                                    <th class="base-col">📊 Base</th>
+                                    <th class="bull-col">🐂 Bull</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Unit Price</td>
+                                    <td class="bear-col"><span class="value" id="sc-bear-price">AED 249</span></td>
+                                    <td class="base-col"><span class="value" id="sc-base-price">AED 350</span></td>
+                                    <td class="bull-col"><span class="value" id="sc-bull-price">AED 399</span></td>
+                                </tr>
+                                <tr>
+                                    <td>M12 Units</td>
+                                    <td class="bear-col"><span class="value" id="sc-bear-units">89</span></td>
+                                    <td class="base-col"><span class="value" id="sc-base-units">587</span></td>
+                                    <td class="bull-col"><span class="value" id="sc-bull-units">1,247</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Y1 Revenue</td>
+                                    <td class="bear-col"><span class="value" id="sc-bear-rev">AED 184K</span></td>
+                                    <td class="base-col"><span class="value" id="sc-base-rev">AED 824K</span></td>
+                                    <td class="bull-col"><span class="value" id="sc-bull-rev">AED 2.1M</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Y1 EBITDA</td>
+                                    <td class="bear-col"><span class="value negative" id="sc-bear-ebitda">-AED 128K</span></td>
+                                    <td class="base-col"><span class="value positive" id="sc-base-ebitda">AED 77K</span></td>
+                                    <td class="bull-col"><span class="value positive" id="sc-bull-ebitda">AED 580K</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Break-Even</td>
+                                    <td class="bear-col"><span class="value" id="sc-bear-be">Never</span></td>
+                                    <td class="base-col"><span class="value" id="sc-base-be">Month 4</span></td>
+                                    <td class="bull-col"><span class="value" id="sc-bull-be">Month 2</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Peak Cash Need</td>
+                                    <td class="bear-col"><span class="value negative" id="sc-bear-cash">AED 180K</span></td>
+                                    <td class="base-col"><span class="value" id="sc-base-cash">AED 70K</span></td>
+                                    <td class="bull-col"><span class="value" id="sc-bull-cash">AED 35K</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Verdict</td>
+                                    <td class="bear-col"><span class="verdict-tag danger">Needs Funding</span></td>
+                                    <td class="base-col"><span class="verdict-tag success">Viable</span></td>
+                                    <td class="bull-col"><span class="verdict-tag success">Strong</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
                 <!-- Sensitivity -->
                 <div class="section">
                     <div class="section-header">
@@ -1506,6 +1718,28 @@
             <aside class="sidebar" id="sidebar">
                 <div class="sidebar-header">
                     <div class="sidebar-title">⚙️ Model Assumptions</div>
+                </div>
+
+                <!-- Scenario Toggle -->
+                <div class="sidebar-section">
+                    <h4>📊 Scenario</h4>
+                    <div class="scenario-toggle">
+                        <button class="scenario-btn" data-scenario="bear">
+                            <span class="scenario-icon">🐻</span>
+                            <span class="scenario-label">Bear</span>
+                        </button>
+                        <button class="scenario-btn active" data-scenario="base">
+                            <span class="scenario-icon">📊</span>
+                            <span class="scenario-label">Base</span>
+                        </button>
+                        <button class="scenario-btn" data-scenario="bull">
+                            <span class="scenario-icon">🐂</span>
+                            <span class="scenario-label">Bull</span>
+                        </button>
+                    </div>
+                    <div class="scenario-description" id="scenario-description">
+                        Realistic projection based on market research and comparable businesses.
+                    </div>
                 </div>
 
                 <!-- Price -->
@@ -1719,6 +1953,131 @@
         }
         
         // =============================================
+        // SCENARIOS
+        // =============================================
+        const scenarios = {
+            bear: {
+                name: 'Bear Case',
+                description: 'Conservative: Lower price, slower growth, higher churn, tighter margins. Tests survivability.',
+                assumptions: {
+                    price: 249,
+                    m1Units: 10,
+                    growthRate: 12,
+                    churnRate: 5,
+                    gigPayoutPerInspection: 120,
+                    gigPlatformFee: 10,
+                    fteBaseSalary: 5000,
+                    phase2FteCount: 1,
+                    phase1EndMonth: 6,
+                    founderSalary: 18000,
+                    marketing: 8000,
+                    office: 7000,
+                    techBase: 6000
+                }
+            },
+            base: {
+                name: 'Base Case',
+                description: 'Realistic projection based on market research and comparable businesses.',
+                assumptions: {
+                    price: 350,
+                    m1Units: 20,
+                    growthRate: 20,
+                    churnRate: 3,
+                    gigPayoutPerInspection: 100,
+                    gigPlatformFee: 8,
+                    fteBaseSalary: 4500,
+                    phase2FteCount: 1,
+                    phase1EndMonth: 6,
+                    founderSalary: 15000,
+                    marketing: 5000,
+                    office: 6000,
+                    techBase: 5500
+                }
+            },
+            bull: {
+                name: 'Bull Case',
+                description: 'Optimistic: Premium pricing holds, strong word-of-mouth, low churn, efficient operations.',
+                assumptions: {
+                    price: 399,
+                    m1Units: 35,
+                    growthRate: 28,
+                    churnRate: 2,
+                    gigPayoutPerInspection: 90,
+                    gigPlatformFee: 6,
+                    fteBaseSalary: 4500,
+                    phase2FteCount: 2,
+                    phase1EndMonth: 4,
+                    founderSalary: 12000,
+                    marketing: 3000,
+                    office: 5000,
+                    techBase: 5000
+                }
+            }
+        };
+        
+        let currentScenario = 'base';
+        
+        function applyScenario(scenarioKey) {
+            const scenario = scenarios[scenarioKey];
+            if (!scenario) return;
+            
+            currentScenario = scenarioKey;
+            
+            // Update price buttons
+            currentPrice = scenario.assumptions.price;
+            document.querySelectorAll('.price-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (parseInt(btn.dataset.price) === currentPrice) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Update assumptions object
+            Object.keys(scenario.assumptions).forEach(key => {
+                if (key !== 'price' && assumptions.hasOwnProperty(key)) {
+                    assumptions[key] = scenario.assumptions[key];
+                }
+            });
+            
+            // Update all sliders to reflect new values
+            updateSliderUI('slider-m1-units', 'val-m1-units', assumptions.m1Units, '');
+            updateSliderUI('slider-growth-rate', 'val-growth-rate', assumptions.growthRate, '', '%');
+            updateSliderUI('slider-churn', 'val-churn', assumptions.churnRate, '', '%');
+            updateSliderUI('slider-gig-payout', 'val-gig-payout', assumptions.gigPayoutPerInspection, 'AED ');
+            updateSliderUI('slider-platform-fee', 'val-platform-fee', assumptions.gigPlatformFee, 'AED ');
+            updateSliderUI('slider-fte-salary', 'val-fte-salary', assumptions.fteBaseSalary, 'AED ', true);
+            updateSliderUI('slider-phase2-ftes', 'val-phase2-ftes', assumptions.phase2FteCount, '');
+            updateSliderUI('slider-phase1', 'val-phase1', assumptions.phase1EndMonth, '', ' months');
+            updateSliderUI('slider-founder', 'val-founder', assumptions.founderSalary, 'AED ', true);
+            updateSliderUI('slider-marketing', 'val-marketing', assumptions.marketing, 'AED ', true);
+            updateSliderUI('slider-office', 'val-office', assumptions.office, 'AED ', true);
+            updateSliderUI('slider-tech', 'val-tech', assumptions.techBase, 'AED ', true);
+            
+            // Update scenario description
+            document.getElementById('scenario-description').textContent = scenario.description;
+            
+            // Update scenario buttons
+            document.querySelectorAll('.scenario-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.scenario === scenarioKey) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            updateDashboard();
+        }
+        
+        function updateSliderUI(sliderId, valueId, value, prefix, suffix = '') {
+            const slider = document.getElementById(sliderId);
+            const valueEl = document.getElementById(valueId);
+            if (slider && valueEl) {
+                slider.value = value;
+                const displayValue = prefix.includes('AED') && value >= 1000 ? value.toLocaleString() : value;
+                valueEl.textContent = prefix + displayValue + suffix;
+            }
+        }
+        
+        // =============================================
         // MODEL
         // =============================================
         const assumptions = {
@@ -1791,6 +2150,13 @@
         let ebitdaChart, cashChart;
         
         function initDashboard() {
+            // Scenario toggle
+            document.querySelectorAll('.scenario-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    applyScenario(btn.dataset.scenario);
+                });
+            });
+            
             document.querySelectorAll('.model-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     document.querySelectorAll('.model-btn').forEach(b => b.classList.remove('active'));
@@ -1869,6 +2235,12 @@
             const beText = breakEven ? `Month ${breakEven}` : 'Not in Y1';
             const profitableText = y1EBITDA > 0 ? 'profitable' : 'in investment phase';
             document.getElementById('exec-insight').innerHTML = `At <strong>AED ${currentPrice}/unit</strong> with the ${currentModel.charAt(0).toUpperCase() + currentModel.slice(1)} model, LUCAS becomes <strong>${profitableText}${breakEven ? ` in ${beText}` : ''}</strong> with <strong>AED ${fmt(y1EBITDA)} EBITDA</strong> in Year 1.`;
+            
+            // Update scenario name and styling
+            const scenarioNames = { bear: '🐻 Bear Case', base: '📊 Base Case', bull: '🐂 Bull Case' };
+            document.getElementById('scenario-name').textContent = scenarioNames[currentScenario] || 'Base Case';
+            const execSummary = document.getElementById('exec-summary');
+            execSummary.className = 'executive-summary ' + currentScenario;
             document.getElementById('sum-be').textContent = beText;
             document.getElementById('sum-ebitda').textContent = 'AED ' + fmt(y1EBITDA);
             document.getElementById('sum-cash').textContent = 'AED ' + fmt(endCash);
@@ -1926,6 +2298,63 @@
             document.getElementById('sens-price').innerHTML = `Break-even extends to <strong>Month ${lowBE || '—'}</strong>. Y1 EBITDA drops to <strong>AED ${fmt(sum(lowPrice, 'ebitda'))}</strong>. ${sum(lowPrice, 'ebitda') > 0 ? 'Still profitable, but margin shrinks.' : 'Business becomes unprofitable.'}`;
             
             updateCharts(current, hybrid, gig, fte);
+            
+            // Update scenario comparison table
+            updateScenarioComparison();
+        }
+        
+        function updateScenarioComparison() {
+            const derived = calculateDerived();
+            
+            // Calculate each scenario
+            Object.keys(scenarios).forEach(key => {
+                const s = scenarios[key];
+                
+                // Temporarily apply scenario assumptions
+                const originalAssumptions = { ...assumptions };
+                Object.keys(s.assumptions).forEach(k => {
+                    if (k !== 'price' && assumptions.hasOwnProperty(k)) {
+                        assumptions[k] = s.assumptions[k];
+                    }
+                });
+                
+                const scenarioDerived = calculateDerived();
+                const data = generateProjection(s.assumptions.price, currentModel, scenarioDerived);
+                
+                // Restore original
+                Object.keys(originalAssumptions).forEach(k => {
+                    assumptions[k] = originalAssumptions[k];
+                });
+                
+                const sum = (arr, k) => arr.reduce((a, b) => a + b[k], 0);
+                const findBE = (arr) => { const m = arr.findIndex(d => d.cumCashFlow > 0); return m > -1 ? m + 1 : null; };
+                const fmt = (n) => {
+                    if (Math.abs(n) >= 1000000) return (n/1000000).toFixed(1) + 'M';
+                    return Math.round(n/1000) + 'K';
+                };
+                
+                const y1Rev = sum(data, 'revenue');
+                const y1EBITDA = sum(data, 'ebitda');
+                const endUnits = data[11].netUnits;
+                const be = findBE(data);
+                const lowestCash = Math.min(...data.map(d => d.cumCashFlow));
+                const peakCashNeed = Math.abs(Math.min(0, lowestCash));
+                
+                // Update table cells
+                document.getElementById(`sc-${key}-price`).textContent = 'AED ' + s.assumptions.price;
+                document.getElementById(`sc-${key}-units`).textContent = endUnits.toLocaleString();
+                document.getElementById(`sc-${key}-rev`).textContent = 'AED ' + fmt(y1Rev);
+                
+                const ebitdaEl = document.getElementById(`sc-${key}-ebitda`);
+                ebitdaEl.textContent = (y1EBITDA < 0 ? '-' : '') + 'AED ' + fmt(Math.abs(y1EBITDA));
+                ebitdaEl.className = 'value ' + (y1EBITDA >= 0 ? 'positive' : 'negative');
+                
+                document.getElementById(`sc-${key}-be`).textContent = be ? `Month ${be}` : 'Never';
+                
+                const cashEl = document.getElementById(`sc-${key}-cash`);
+                cashEl.textContent = 'AED ' + fmt(peakCashNeed);
+                cashEl.className = 'value ' + (peakCashNeed > 100000 ? 'negative' : '');
+            });
         }
         
         function updateCharts(current, hybrid, gig, fte) {
