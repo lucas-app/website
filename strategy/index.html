@@ -1456,10 +1456,40 @@
                     <h4>📈 Growth</h4>
                     <div class="slider-group">
                         <div class="slider-header">
+                            <label>M1 Starting Units</label>
+                            <span class="slider-value" id="val-m1-units">20</span>
+                        </div>
+                        <input type="range" id="slider-m1-units" min="5" max="100" step="5" value="20">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label>Monthly Growth Rate</label>
+                            <span class="slider-value" id="val-growth-rate">20%</span>
+                        </div>
+                        <input type="range" id="slider-growth-rate" min="5" max="50" step="5" value="20">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header">
                             <label>Monthly Churn</label>
                             <span class="slider-value" id="val-churn">3%</span>
                         </div>
-                        <input type="range" id="slider-churn" min="1" max="8" step="1" value="3">
+                        <input type="range" id="slider-churn" min="0" max="10" step="1" value="3">
+                    </div>
+                    <div style="margin-top: 16px; padding: 12px; background: var(--bg-primary); border-radius: var(--radius-sm);">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <div style="text-align: center; flex: 1;">
+                                <div style="font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">M1 New</div>
+                                <div style="font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700; color: var(--text-primary);" id="projected-m1-new">20</div>
+                            </div>
+                            <div style="text-align: center; flex: 1;">
+                                <div style="font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">M12 New</div>
+                                <div style="font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700; color: var(--text-primary);" id="projected-m12-new">149</div>
+                            </div>
+                        </div>
+                        <div style="text-align: center; padding-top: 8px; border-top: 1px solid var(--border);">
+                            <div style="font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Total M12 Units</div>
+                            <div style="font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 700; color: var(--accent);" id="projected-m12">587</div>
+                        </div>
                     </div>
                 </div>
 
@@ -1589,6 +1619,8 @@
             churnRate: 3,
             phase1EndMonth: 6,
             phase2FteCount: 1,
+            m1Units: 20,
+            growthRate: 20,
         };
         
         function calculateDerived() {
@@ -1611,12 +1643,20 @@
         }
         
         function generateProjection(price, modelType, derived) {
-            const monthlyGrowth = [20, 25, 30, 35, 40, 50, 60, 70, 80, 90, 100, 110];
-            let cumulative = 0;
-            let cumulativeCashFlow = 0;
             const a = assumptions;
             
-            return monthlyGrowth.map((newUnits, i) => {
+            // Generate dynamic growth curve based on M1 units and growth rate
+            const monthlyNewUnits = [];
+            let newUnits = a.m1Units;
+            for (let i = 0; i < 12; i++) {
+                monthlyNewUnits.push(Math.round(newUnits));
+                newUnits = newUnits * (1 + a.growthRate / 100);
+            }
+            
+            let cumulative = 0;
+            let cumulativeCashFlow = 0;
+            
+            return monthlyNewUnits.map((newUnits, i) => {
                 const month = i + 1;
                 cumulative += newUnits;
                 const churnLoss = Math.round(cumulative * (a.churnRate / 100));
@@ -1647,7 +1687,7 @@
                 const ebitda = grossProfit - derived.baseFixedCosts;
                 cumulativeCashFlow += ebitda;
                 
-                return { month, netUnits, revenue, laborCost, grossProfit, ebitda, cumCashFlow: cumulativeCashFlow };
+                return { month, newUnits, netUnits, revenue, laborCost, grossProfit, ebitda, cumCashFlow: cumulativeCashFlow };
             });
         }
         
@@ -1685,6 +1725,8 @@
             setupSlider('slider-fte-salary', 'val-fte-salary', 'fteBaseSalary', 'AED ', true);
             setupSlider('slider-phase2-ftes', 'val-phase2-ftes', 'phase2FteCount', '');
             setupSlider('slider-phase1', 'val-phase1', 'phase1EndMonth', '', false, ' months');
+            setupSlider('slider-m1-units', 'val-m1-units', 'm1Units', '');
+            setupSlider('slider-growth-rate', 'val-growth-rate', 'growthRate', '', false, '%');
             setupSlider('slider-churn', 'val-churn', 'churnRate', '', false, '%');
             setupSlider('slider-founder', 'val-founder', 'founderSalary', 'AED ', true);
             setupSlider('slider-marketing', 'val-marketing', 'marketing', 'AED ', true);
@@ -1756,6 +1798,11 @@
             document.getElementById('m-ebitda').textContent = 'AED ' + fmt(y1EBITDA);
             document.getElementById('m-em').textContent = fmtPct(ebitdaMargin);
             document.getElementById('m-gm').textContent = fmtPct(grossMargin);
+            
+            // Update projected M12 in sidebar
+            document.getElementById('projected-m12').textContent = endUnits;
+            document.getElementById('projected-m1-new').textContent = current[0].newUnits;
+            document.getElementById('projected-m12-new').textContent = current[11].newUnits;
             
             // EBITDA card styling
             const ebitdaCard = document.getElementById('ebitda-card');
