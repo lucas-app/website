@@ -1123,6 +1123,367 @@
             background: var(--lime-subtle);
         }
         
+        /* ===== 3-YEAR PROJECTION ===== */
+        .projection-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+        
+        .projection-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+        
+        .projection-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        
+        .projection-subtitle {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+        
+        .projection-toggle {
+            display: flex;
+            gap: 4px;
+            padding: 4px;
+            background: var(--bg-input);
+            border-radius: var(--radius-sm);
+        }
+        
+        .proj-view-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: inherit;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        
+        .proj-view-btn:hover { color: var(--text-primary); }
+        
+        .proj-view-btn.active {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .projection-content.hidden { display: none; }
+        
+        /* Year Cards */
+        .year-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .year-card {
+            background: var(--bg-input);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .year-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .year-card.year-1 {
+            background: linear-gradient(135deg, rgba(222,255,154,0.15) 0%, rgba(222,255,154,0.05) 100%);
+            border: 1px solid var(--lime-border);
+        }
+        
+        .year-card.year-2 {
+            background: linear-gradient(135deg, rgba(167,139,250,0.12) 0%, rgba(167,139,250,0.04) 100%);
+            border: 1px solid rgba(167,139,250,0.25);
+        }
+        
+        .year-card.year-3 {
+            background: linear-gradient(135deg, rgba(34,197,94,0.12) 0%, rgba(34,197,94,0.04) 100%);
+            border: 1px solid rgba(34,197,94,0.25);
+        }
+        
+        .year-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px 10px;
+            border-radius: 100px;
+            margin-bottom: 8px;
+        }
+        
+        .year-1 .year-badge { background: var(--lime); color: var(--lime-text); }
+        .year-2 .year-badge { background: rgba(167,139,250,0.3); color: #7c3aed; }
+        .year-3 .year-badge { background: rgba(34,197,94,0.2); color: #16a34a; }
+        
+        .year-phase {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+        
+        .year-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .year-metric {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .year-metric.primary {
+            grid-column: span 2;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            margin-bottom: 4px;
+        }
+        
+        .year-metric-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .year-metric.primary .year-metric-value {
+            font-size: 22px;
+        }
+        
+        .year-1 .year-metric.primary .year-metric-value { color: var(--lime-text); }
+        .year-2 .year-metric.primary .year-metric-value { color: #7c3aed; }
+        .year-3 .year-metric.primary .year-metric-value { color: #16a34a; }
+        
+        .year-metric-label {
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        
+        .year-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(0,0,0,0.05);
+        }
+        
+        .year-bar-fill {
+            height: 100%;
+            transition: width 0.5s ease;
+        }
+        
+        .year-1 .year-bar-fill { background: var(--lime); width: 20%; }
+        .year-2 .year-bar-fill { background: #a78bfa; width: 55%; }
+        .year-3 .year-bar-fill { background: #22c55e; width: 100%; }
+        
+        /* Projection Chart */
+        .projection-chart-container {
+            height: 200px;
+            margin-bottom: 20px;
+        }
+        
+        /* Valuation Strip */
+        .valuation-strip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, var(--bg-input) 0%, var(--bg-body) 100%);
+            border-radius: var(--radius-md);
+            border: 1px dashed var(--border-default);
+        }
+        
+        .valuation-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .valuation-item.highlight {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--lime-subtle) 0%, rgba(222,255,154,0.2) 100%);
+            border: 1px solid var(--lime-border);
+            border-radius: var(--radius-sm);
+        }
+        
+        .valuation-label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-tertiary);
+            margin-bottom: 2px;
+        }
+        
+        .valuation-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .valuation-item.highlight .valuation-value {
+            font-size: 22px;
+            color: var(--lime-text);
+        }
+        
+        .valuation-divider {
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--text-tertiary);
+        }
+        
+        /* Detailed View */
+        .projection-assumptions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .assumption-group {
+            background: var(--bg-input);
+            border-radius: var(--radius-md);
+            padding: 20px;
+        }
+        
+        .assumption-group h5 {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+        
+        .assumption-row {
+            margin-bottom: 14px;
+        }
+        
+        .assumption-row:last-child { margin-bottom: 0; }
+        
+        .assumption-row label {
+            display: block;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+        
+        .assumption-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .assumption-control input[type="range"] {
+            flex: 1;
+        }
+        
+        .assumption-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--lime-text);
+            background: var(--lime-subtle);
+            padding: 3px 8px;
+            border-radius: 4px;
+            min-width: 55px;
+            text-align: center;
+        }
+        
+        /* Projection Table */
+        .projection-table-wrap {
+            overflow-x: auto;
+        }
+        
+        .projection-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        
+        .projection-table th,
+        .projection-table td {
+            padding: 14px 16px;
+            text-align: right;
+        }
+        
+        .projection-table th:first-child,
+        .projection-table td:first-child {
+            text-align: left;
+        }
+        
+        .projection-table thead th {
+            background: var(--bg-input);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-secondary);
+        }
+        
+        .projection-table thead th:nth-child(2) { color: var(--lime-text); }
+        .projection-table thead th:nth-child(3) { color: #7c3aed; }
+        .projection-table thead th:nth-child(4) { color: #16a34a; }
+        
+        .projection-table tbody tr {
+            border-top: 1px solid var(--border-light);
+        }
+        
+        .projection-table tbody tr:hover {
+            background: var(--bg-hover);
+        }
+        
+        .projection-table td {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+        }
+        
+        .projection-table td:first-child {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        
+        .projection-table .total-row {
+            background: var(--bg-input);
+            font-weight: 700;
+        }
+        
+        .projection-table .positive { color: var(--positive); }
+        .projection-table .negative { color: var(--negative); }
+        
+        @media (max-width: 900px) {
+            .year-cards { grid-template-columns: 1fr; }
+            .projection-assumptions { grid-template-columns: 1fr; }
+            .valuation-strip { flex-wrap: wrap; gap: 12px; }
+        }
+        
         /* ===== SCENARIO COMPARISON ===== */
         .section { margin-bottom: 24px; }
         
@@ -1567,6 +1928,208 @@
                     </div>
                 </div>
 
+                <!-- 3-Year Projection -->
+                <div class="projection-section">
+                    <div class="projection-header">
+                        <div>
+                            <div class="projection-title">📈 3-Year Growth Trajectory</div>
+                            <div class="projection-subtitle">From startup to scale — the LUCAS growth story</div>
+                        </div>
+                        <div class="projection-toggle">
+                            <button class="proj-view-btn active" data-view="summary">Summary</button>
+                            <button class="proj-view-btn" data-view="detailed">Detailed</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Summary View -->
+                    <div class="projection-content" id="proj-summary">
+                        <div class="year-cards">
+                            <div class="year-card year-1">
+                                <div class="year-badge">Year 1</div>
+                                <div class="year-phase">Launch & Validate</div>
+                                <div class="year-metrics">
+                                    <div class="year-metric primary">
+                                        <span class="year-metric-value" id="y1-revenue">AED 824K</span>
+                                        <span class="year-metric-label">Revenue</span>
+                                    </div>
+                                    <div class="year-metric">
+                                        <span class="year-metric-value" id="y1-ebitda">AED 77K</span>
+                                        <span class="year-metric-label">EBITDA</span>
+                                    </div>
+                                    <div class="year-metric">
+                                        <span class="year-metric-value" id="y1-units">587</span>
+                                        <span class="year-metric-label">Units</span>
+                                    </div>
+                                    <div class="year-metric">
+                                        <span class="year-metric-value" id="y1-team">1</span>
+                                        <span class="year-metric-label">Team</span>
+                                    </div>
+                                </div>
+                                <div class="year-bar"><div class="year-bar-fill" id="y1-bar"></div></div>
+                            </div>
+                            
+                            <div class="year-card year-2">
+                                <div class="year-badge">Year 2</div>
+                                <div class="year-phase">Scale & Optimize</div>
+                                <div class="year-metrics">
+                                    <div class="year-metric primary">
+                                        <span class="year-metric-value" id="y2-revenue">AED 2.8M</span>
+                                        <span class="year-metric-label">Revenue</span>
+                                    </div>
+                                    <div class="year-metric">
+                                        <span class="year-metric-value" id="y2-ebitda">AED 890K</span>
+                                        <span class="year-metric-label">EBITDA</span>
+                                    </div>
+                                    <div class="year-metric">
+                                        <span class="year-metric-value" id="y2-units">1,850</span>
+                                        <span class="year-metric-label">Units</span>
+                                    </div>
+                                    <div class="year-metric">
+                                        <span class="year-metric-value" id="y2-team">4</span>
+                                        <span class="year-metric-label">Team</span>
+                                    </div>
+                                </div>
+                                <div class="year-bar"><div class="year-bar-fill" id="y2-bar"></div></div>
+                            </div>
+                            
+                            <div class="year-card year-3">
+                                <div class="year-badge">Year 3</div>
+                                <div class="year-phase">Market Leadership</div>
+                                <div class="year-metrics">
+                                    <div class="year-metric primary">
+                                        <span class="year-metric-value" id="y3-revenue">AED 5.2M</span>
+                                        <span class="year-metric-label">Revenue</span>
+                                    </div>
+                                    <div class="year-metric">
+                                        <span class="year-metric-value" id="y3-ebitda">AED 1.8M</span>
+                                        <span class="year-metric-label">EBITDA</span>
+                                    </div>
+                                    <div class="year-metric">
+                                        <span class="year-metric-value" id="y3-units">3,200</span>
+                                        <span class="year-metric-label">Units</span>
+                                    </div>
+                                    <div class="year-metric">
+                                        <span class="year-metric-value" id="y3-team">8</span>
+                                        <span class="year-metric-label">Team</span>
+                                    </div>
+                                </div>
+                                <div class="year-bar"><div class="year-bar-fill" id="y3-bar"></div></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Growth Chart -->
+                        <div class="projection-chart-container">
+                            <canvas id="projectionChart"></canvas>
+                        </div>
+                        
+                        <!-- Valuation Indicator -->
+                        <div class="valuation-strip">
+                            <div class="valuation-item">
+                                <span class="valuation-label">Y3 ARR</span>
+                                <span class="valuation-value" id="val-arr">AED 6.2M</span>
+                            </div>
+                            <div class="valuation-divider">×</div>
+                            <div class="valuation-item">
+                                <span class="valuation-label">Multiple</span>
+                                <span class="valuation-value">4x</span>
+                            </div>
+                            <div class="valuation-divider">=</div>
+                            <div class="valuation-item highlight">
+                                <span class="valuation-label">Implied Valuation</span>
+                                <span class="valuation-value" id="val-total">AED 24.8M</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Detailed View -->
+                    <div class="projection-content hidden" id="proj-detailed">
+                        <div class="projection-assumptions">
+                            <div class="assumption-group">
+                                <h5>📈 Growth Assumptions</h5>
+                                <div class="assumption-row">
+                                    <label>Y2 Monthly Growth</label>
+                                    <div class="assumption-control">
+                                        <input type="range" id="slider-y2-growth" min="5" max="25" value="12">
+                                        <span class="assumption-value" id="val-y2-growth">12%</span>
+                                    </div>
+                                </div>
+                                <div class="assumption-row">
+                                    <label>Y3 Monthly Growth</label>
+                                    <div class="assumption-control">
+                                        <input type="range" id="slider-y3-growth" min="3" max="15" value="8">
+                                        <span class="assumption-value" id="val-y3-growth">8%</span>
+                                    </div>
+                                </div>
+                                <div class="assumption-row">
+                                    <label>Churn Improvement</label>
+                                    <div class="assumption-control">
+                                        <input type="range" id="slider-churn-improve" min="0" max="50" value="20">
+                                        <span class="assumption-value" id="val-churn-improve">20%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="assumption-group">
+                                <h5>👥 Team Scaling</h5>
+                                <div class="assumption-row">
+                                    <label>Y2 New Hires</label>
+                                    <div class="assumption-control">
+                                        <input type="range" id="slider-y2-hires" min="0" max="10" value="3">
+                                        <span class="assumption-value" id="val-y2-hires">3</span>
+                                    </div>
+                                </div>
+                                <div class="assumption-row">
+                                    <label>Y3 New Hires</label>
+                                    <div class="assumption-control">
+                                        <input type="range" id="slider-y3-hires" min="0" max="15" value="4">
+                                        <span class="assumption-value" id="val-y3-hires">4</span>
+                                    </div>
+                                </div>
+                                <div class="assumption-row">
+                                    <label>Avg Salary / Hire</label>
+                                    <div class="assumption-control">
+                                        <input type="range" id="slider-avg-salary" min="5000" max="15000" step="500" value="8000">
+                                        <span class="assumption-value" id="val-avg-salary">AED 8K</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="assumption-group">
+                                <h5>🏢 Cost Scaling</h5>
+                                <div class="assumption-row">
+                                    <label>Fixed Cost Growth / Year</label>
+                                    <div class="assumption-control">
+                                        <input type="range" id="slider-fixed-growth" min="10" max="100" value="40">
+                                        <span class="assumption-value" id="val-fixed-growth">40%</span>
+                                    </div>
+                                </div>
+                                <div class="assumption-row">
+                                    <label>Marketing Scale-up</label>
+                                    <div class="assumption-control">
+                                        <input type="range" id="slider-marketing-growth" min="0" max="200" value="50">
+                                        <span class="assumption-value" id="val-marketing-growth">50%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Detailed Table -->
+                        <div class="projection-table-wrap">
+                            <table class="projection-table" id="projection-table">
+                                <thead>
+                                    <tr>
+                                        <th>Metric</th>
+                                        <th>Year 1</th>
+                                        <th>Year 2</th>
+                                        <th>Year 3</th>
+                                        <th>3-Year Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="projection-table-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Scenario Comparison -->
                 <div class="section">
                     <div class="section-header">
@@ -1859,22 +2422,22 @@
             bear: {
                 name: '🐻 Bear Case',
                 description: 'Conservative: Lower price, slower growth, higher churn.',
-                assumptions: { price: 249, m1Units: 10, growthRate: 12, churnRate: 5, gigPayoutPerInspection: 120, gigPlatformFee: 10, fteBaseSalary: 5000, phase2FteCount: 1, phase1EndMonth: 6, founderSalary: 18000, teamSalaries: 5000, marketing: 8000, office: 7000, techBase: 6000 }
+                assumptions: { price: 249, m1Units: 10, growthRate: 12, churnRate: 5, gigPayoutPerInspection: 120, gigPlatformFee: 10, fteBaseSalary: 5000, phase2FteCount: 1, phase1EndMonth: 6, founderSalary: 18000, teamSalaries: 5000, marketing: 8000, office: 7000, techBase: 6000, y2GrowthRate: 8, y3GrowthRate: 5, churnImprovement: 10, y2Hires: 2, y3Hires: 2, avgHireSalary: 8000, fixedCostGrowth: 50, marketingGrowth: 30 }
             },
             base: {
                 name: '📊 Base Case',
                 description: 'Realistic projection based on market research.',
-                assumptions: { price: 350, m1Units: 20, growthRate: 20, churnRate: 3, gigPayoutPerInspection: 100, gigPlatformFee: 8, fteBaseSalary: 4500, phase2FteCount: 1, phase1EndMonth: 6, founderSalary: 15000, teamSalaries: 0, marketing: 5000, office: 6000, techBase: 5500 }
+                assumptions: { price: 350, m1Units: 20, growthRate: 20, churnRate: 3, gigPayoutPerInspection: 100, gigPlatformFee: 8, fteBaseSalary: 4500, phase2FteCount: 1, phase1EndMonth: 6, founderSalary: 15000, teamSalaries: 0, marketing: 5000, office: 6000, techBase: 5500, y2GrowthRate: 12, y3GrowthRate: 8, churnImprovement: 20, y2Hires: 3, y3Hires: 4, avgHireSalary: 8000, fixedCostGrowth: 40, marketingGrowth: 50 }
             },
             bull: {
                 name: '🐂 Bull Case',
                 description: 'Optimistic: Premium pricing, strong growth, low churn.',
-                assumptions: { price: 399, m1Units: 35, growthRate: 28, churnRate: 2, gigPayoutPerInspection: 90, gigPlatformFee: 6, fteBaseSalary: 4500, phase2FteCount: 2, phase1EndMonth: 4, founderSalary: 12000, teamSalaries: 8000, marketing: 3000, office: 5000, techBase: 5000 }
+                assumptions: { price: 399, m1Units: 35, growthRate: 28, churnRate: 2, gigPayoutPerInspection: 90, gigPlatformFee: 6, fteBaseSalary: 4500, phase2FteCount: 2, phase1EndMonth: 4, founderSalary: 12000, teamSalaries: 8000, marketing: 3000, office: 5000, techBase: 5000, y2GrowthRate: 18, y3GrowthRate: 12, churnImprovement: 30, y2Hires: 5, y3Hires: 6, avgHireSalary: 9000, fixedCostGrowth: 35, marketingGrowth: 40 }
             }
         };
 
         let currentScenario = 'base', currentModel = 'hybrid', currentPrice = 350;
-        let ebitdaChart, cashChart;
+        let ebitdaChart, cashChart, projectionChart;
 
         const assumptions = {
             fteBaseSalary: 4500, fteVisaCost: 6500, fteVisaMonths: 24, fteHealthInsurance: 1200,
@@ -1883,8 +2446,19 @@
             inspectionTime: 45, travelTime: 30, workingHours: 8, fteEfficiency: 70, workingDays: 22,
             techBase: 5500, storagePerK: 500, founderSalary: 15000, teamSalaries: 0, office: 6000, insurance: 2000, marketing: 5000,
             churnRate: 3, phase1EndMonth: 6, phase2FteCount: 1, m1Units: 20, growthRate: 20,
-            cacPerUnit: 250
+            cacPerUnit: 250,
+            // Multi-year assumptions
+            y2GrowthRate: 12,
+            y3GrowthRate: 8,
+            churnImprovement: 20,
+            y2Hires: 3,
+            y3Hires: 4,
+            avgHireSalary: 8000,
+            fixedCostGrowth: 40,
+            marketingGrowth: 50
         };
+        
+        let projectionChart = null;
 
         // Auth
         async function checkSession() {
@@ -1979,6 +2553,15 @@
             updateSliderUI('slider-marketing', 'val-marketing', assumptions.marketing, 'AED ', true);
             updateSliderUI('slider-office', 'val-office', assumptions.office, 'AED ', true);
             updateSliderUI('slider-tech', 'val-tech', assumptions.techBase, 'AED ', true);
+            // Multi-year sliders
+            updateSliderUI('slider-y2-growth', 'val-y2-growth', assumptions.y2GrowthRate, '', '%');
+            updateSliderUI('slider-y3-growth', 'val-y3-growth', assumptions.y3GrowthRate, '', '%');
+            updateSliderUI('slider-churn-improve', 'val-churn-improve', assumptions.churnImprovement, '', '%');
+            updateSliderUI('slider-y2-hires', 'val-y2-hires', assumptions.y2Hires, '');
+            updateSliderUI('slider-y3-hires', 'val-y3-hires', assumptions.y3Hires, '');
+            updateSliderUIK('slider-avg-salary', 'val-avg-salary', assumptions.avgHireSalary);
+            updateSliderUI('slider-fixed-growth', 'val-fixed-growth', assumptions.fixedCostGrowth, '', '%');
+            updateSliderUI('slider-marketing-growth', 'val-marketing-growth', assumptions.marketingGrowth, '', '%');
             document.getElementById('scenario-description').textContent = s.description;
             document.querySelectorAll('.scenario-btn').forEach(b => { b.classList.remove('active'); if (b.dataset.scenario === key) b.classList.add('active'); });
             updateDashboard();
@@ -1988,25 +2571,50 @@
             const s = document.getElementById(id), v = document.getElementById(valId);
             if (s && v) { s.value = val; v.textContent = prefix + (prefix.includes('AED') && val >= 1000 ? val.toLocaleString() : val) + suffix; }
         }
+        
+        function updateSliderUIK(id, valId, val) {
+            const s = document.getElementById(id), v = document.getElementById(valId);
+            if (s && v) { s.value = val; v.textContent = 'AED ' + (val / 1000) + 'K'; }
+        }
 
         // Dashboard
         function initDashboard() {
             document.querySelectorAll('.scenario-btn').forEach(b => b.addEventListener('click', () => applyScenario(b.dataset.scenario)));
             document.querySelectorAll('.model-btn').forEach(b => b.addEventListener('click', () => { document.querySelectorAll('.model-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); currentModel = b.dataset.model; updateDashboard(); }));
             document.querySelectorAll('.price-btn').forEach(b => b.addEventListener('click', () => { document.querySelectorAll('.price-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); currentPrice = parseInt(b.dataset.price); updateDashboard(); }));
+            
+            // Projection view toggle
+            document.querySelectorAll('.proj-view-btn').forEach(b => b.addEventListener('click', () => {
+                document.querySelectorAll('.proj-view-btn').forEach(x => x.classList.remove('active'));
+                b.classList.add('active');
+                document.getElementById('proj-summary').classList.toggle('hidden', b.dataset.view !== 'summary');
+                document.getElementById('proj-detailed').classList.toggle('hidden', b.dataset.view !== 'detailed');
+            }));
+            
             setupSlider('slider-gig-payout', 'val-gig-payout', 'gigPayoutPerInspection', 'AED ');
             setupSlider('slider-platform-fee', 'val-platform-fee', 'gigPlatformFee', 'AED ');
             setupSlider('slider-fte-salary', 'val-fte-salary', 'fteBaseSalary', 'AED ', true);
             setupSlider('slider-phase2-ftes', 'val-phase2-ftes', 'phase2FteCount', '');
-            setupSlider('slider-phase1', 'val-phase1', 'phase1EndMonth', '', ' mo');
+            setupSlider('slider-phase1', 'val-phase1', 'phase1EndMonth', '', false, ' mo');
             setupSlider('slider-m1-units', 'val-m1-units', 'm1Units', '');
-            setupSlider('slider-growth-rate', 'val-growth-rate', 'growthRate', '', '%');
-            setupSlider('slider-churn', 'val-churn', 'churnRate', '', '%');
+            setupSlider('slider-growth-rate', 'val-growth-rate', 'growthRate', '', false, '%');
+            setupSlider('slider-churn', 'val-churn', 'churnRate', '', false, '%');
             setupSlider('slider-founder', 'val-founder', 'founderSalary', 'AED ', true);
             setupSlider('slider-team', 'val-team', 'teamSalaries', 'AED ', true);
             setupSlider('slider-marketing', 'val-marketing', 'marketing', 'AED ', true);
             setupSlider('slider-office', 'val-office', 'office', 'AED ', true);
             setupSlider('slider-tech', 'val-tech', 'techBase', 'AED ', true);
+            
+            // Multi-year projection sliders
+            setupSlider('slider-y2-growth', 'val-y2-growth', 'y2GrowthRate', '', false, '%');
+            setupSlider('slider-y3-growth', 'val-y3-growth', 'y3GrowthRate', '', false, '%');
+            setupSlider('slider-churn-improve', 'val-churn-improve', 'churnImprovement', '', false, '%');
+            setupSlider('slider-y2-hires', 'val-y2-hires', 'y2Hires', '');
+            setupSlider('slider-y3-hires', 'val-y3-hires', 'y3Hires', '');
+            setupSliderK('slider-avg-salary', 'val-avg-salary', 'avgHireSalary');
+            setupSlider('slider-fixed-growth', 'val-fixed-growth', 'fixedCostGrowth', '', false, '%');
+            setupSlider('slider-marketing-growth', 'val-marketing-growth', 'marketingGrowth', '', false, '%');
+            
             document.getElementById('mobile-toggle').addEventListener('click', () => document.getElementById('sidebar').classList.toggle('open'));
             updateDashboard();
         }
@@ -2015,6 +2623,75 @@
             const s = document.getElementById(id), v = document.getElementById(valId);
             if (!s) return;
             s.addEventListener('input', () => { const val = parseInt(s.value); assumptions[key] = val; v.textContent = prefix + (format ? val.toLocaleString() : val) + suffix; updateDashboard(); });
+        }
+        
+        function setupSliderK(id, valId, key) {
+            const s = document.getElementById(id), v = document.getElementById(valId);
+            if (!s) return;
+            s.addEventListener('input', () => { const val = parseInt(s.value); assumptions[key] = val; v.textContent = 'AED ' + (val/1000) + 'K'; updateDashboard(); });
+        }
+        
+        function generateMultiYearProjection(y1Data, derived) {
+            const a = assumptions;
+            
+            // Y1 totals
+            const y1Revenue = y1Data.reduce((sum, d) => sum + d.revenue, 0);
+            const y1EBITDA = y1Data.reduce((sum, d) => sum + d.ebitda, 0);
+            const y1EndUnits = y1Data[11].netUnits;
+            const y1FixedCosts = derived.baseFixedCosts * 12;
+            const y1LaborCosts = y1Data.reduce((sum, d) => sum + d.laborCost, 0);
+            const y1Team = 1 + Math.ceil(a.teamSalaries / 8000);
+            
+            // Y2 Projections
+            const y2ChurnRate = a.churnRate * (1 - a.churnImprovement / 100);
+            const y2FixedCosts = derived.baseFixedCosts * (1 + a.fixedCostGrowth / 100);
+            const y2TeamCost = a.y2Hires * a.avgHireSalary;
+            const y2TotalFixed = (y2FixedCosts + y2TeamCost) * 12;
+            
+            let y2Units = y1EndUnits;
+            let y2Revenue = 0;
+            let y2LaborCost = 0;
+            for (let m = 0; m < 12; m++) {
+                const newUnits = Math.round(y2Units * (a.y2GrowthRate / 100));
+                y2Units += newUnits;
+                const churnLoss = Math.round(y2Units * (y2ChurnRate / 100));
+                y2Units -= churnLoss;
+                y2Revenue += y2Units * currentPrice;
+                y2LaborCost += y2Units * derived.gigCostPerInspection * 0.85;
+            }
+            const y2EBITDA = y2Revenue - y2LaborCost - y2TotalFixed;
+            const y2Team = y1Team + a.y2Hires;
+            
+            // Y3 Projections
+            const y3ChurnRate = y2ChurnRate * (1 - a.churnImprovement / 200);
+            const y3FixedCosts = y2FixedCosts * (1 + a.fixedCostGrowth / 100);
+            const y3TeamCost = (a.y2Hires + a.y3Hires) * a.avgHireSalary;
+            const y3TotalFixed = (y3FixedCosts + y3TeamCost) * 12;
+            
+            let y3Units = y2Units;
+            let y3Revenue = 0;
+            let y3LaborCost = 0;
+            for (let m = 0; m < 12; m++) {
+                const newUnits = Math.round(y3Units * (a.y3GrowthRate / 100));
+                y3Units += newUnits;
+                const churnLoss = Math.round(y3Units * (y3ChurnRate / 100));
+                y3Units -= churnLoss;
+                y3Revenue += y3Units * currentPrice;
+                y3LaborCost += y3Units * derived.gigCostPerInspection * 0.75;
+            }
+            const y3EBITDA = y3Revenue - y3LaborCost - y3TotalFixed;
+            const y3Team = y2Team + a.y3Hires;
+            
+            const y3ARR = y3Units * currentPrice * 12;
+            const valuation = y3ARR * 4;
+            
+            return {
+                y1: { revenue: y1Revenue, ebitda: y1EBITDA, units: y1EndUnits, team: y1Team, laborCost: y1LaborCosts, fixedCosts: y1FixedCosts },
+                y2: { revenue: y2Revenue, ebitda: y2EBITDA, units: y2Units, team: y2Team, laborCost: y2LaborCost, fixedCosts: y2TotalFixed },
+                y3: { revenue: y3Revenue, ebitda: y3EBITDA, units: y3Units, team: y3Team, laborCost: y3LaborCost, fixedCosts: y3TotalFixed },
+                arr: y3ARR,
+                valuation: valuation
+            };
         }
 
         function updateDashboard() {
@@ -2161,6 +2838,138 @@
 
             // Charts
             updateCharts(current, hybrid, gig, fte);
+            
+            // Multi-year projection
+            updateMultiYearProjection(current, derived);
+        }
+        
+        function updateMultiYearProjection(y1Data, derived) {
+            const proj = generateMultiYearProjection(y1Data, derived);
+            const fmt = n => Math.abs(n) >= 1e6 ? (n/1e6).toFixed(1) + 'M' : Math.round(n/1e3) + 'K';
+            
+            // Year cards
+            document.getElementById('y1-revenue').textContent = 'AED ' + fmt(proj.y1.revenue);
+            document.getElementById('y1-ebitda').textContent = 'AED ' + fmt(proj.y1.ebitda);
+            document.getElementById('y1-units').textContent = proj.y1.units.toLocaleString();
+            document.getElementById('y1-team').textContent = proj.y1.team;
+            
+            document.getElementById('y2-revenue').textContent = 'AED ' + fmt(proj.y2.revenue);
+            document.getElementById('y2-ebitda').textContent = 'AED ' + fmt(proj.y2.ebitda);
+            document.getElementById('y2-units').textContent = proj.y2.units.toLocaleString();
+            document.getElementById('y2-team').textContent = proj.y2.team;
+            
+            document.getElementById('y3-revenue').textContent = 'AED ' + fmt(proj.y3.revenue);
+            document.getElementById('y3-ebitda').textContent = 'AED ' + fmt(proj.y3.ebitda);
+            document.getElementById('y3-units').textContent = proj.y3.units.toLocaleString();
+            document.getElementById('y3-team').textContent = proj.y3.team;
+            
+            // Progress bars
+            const maxRev = proj.y3.revenue;
+            document.getElementById('y1-bar').style.width = (proj.y1.revenue / maxRev * 100) + '%';
+            document.getElementById('y2-bar').style.width = (proj.y2.revenue / maxRev * 100) + '%';
+            document.getElementById('y3-bar').style.width = '100%';
+            
+            // Valuation
+            document.getElementById('val-arr').textContent = 'AED ' + fmt(proj.arr);
+            document.getElementById('val-total').textContent = 'AED ' + fmt(proj.valuation);
+            
+            // Detailed table
+            updateProjectionTable(proj);
+            
+            // Projection chart
+            updateProjectionChart(proj);
+        }
+        
+        function updateProjectionTable(proj) {
+            const fmt = n => Math.abs(n) >= 1e6 ? (n/1e6).toFixed(1) + 'M' : Math.round(n/1e3) + 'K';
+            const total3yr = {
+                revenue: proj.y1.revenue + proj.y2.revenue + proj.y3.revenue,
+                laborCost: proj.y1.laborCost + proj.y2.laborCost + proj.y3.laborCost,
+                fixedCosts: proj.y1.fixedCosts + proj.y2.fixedCosts + proj.y3.fixedCosts,
+                ebitda: proj.y1.ebitda + proj.y2.ebitda + proj.y3.ebitda
+            };
+            
+            const rows = [
+                { label: 'Revenue', y1: proj.y1.revenue, y2: proj.y2.revenue, y3: proj.y3.revenue, total: total3yr.revenue },
+                { label: 'Labor Costs', y1: -proj.y1.laborCost, y2: -proj.y2.laborCost, y3: -proj.y3.laborCost, total: -total3yr.laborCost, neg: true },
+                { label: 'Gross Profit', y1: proj.y1.revenue - proj.y1.laborCost, y2: proj.y2.revenue - proj.y2.laborCost, y3: proj.y3.revenue - proj.y3.laborCost, total: total3yr.revenue - total3yr.laborCost },
+                { label: 'Fixed Costs', y1: -proj.y1.fixedCosts, y2: -proj.y2.fixedCosts, y3: -proj.y3.fixedCosts, total: -total3yr.fixedCosts, neg: true },
+                { label: 'EBITDA', y1: proj.y1.ebitda, y2: proj.y2.ebitda, y3: proj.y3.ebitda, total: total3yr.ebitda, highlight: true },
+                { label: 'End Units', y1: proj.y1.units, y2: proj.y2.units, y3: proj.y3.units, total: proj.y3.units, isUnits: true },
+                { label: 'Team Size', y1: proj.y1.team, y2: proj.y2.team, y3: proj.y3.team, total: proj.y3.team, isUnits: true }
+            ];
+            
+            let html = '';
+            rows.forEach(r => {
+                const cls = r.highlight ? 'total-row' : '';
+                const y1Cls = !r.isUnits && r.y1 < 0 ? 'negative' : (!r.isUnits && r.y1 > 0 && r.highlight ? 'positive' : '');
+                const y2Cls = !r.isUnits && r.y2 < 0 ? 'negative' : (!r.isUnits && r.y2 > 0 && r.highlight ? 'positive' : '');
+                const y3Cls = !r.isUnits && r.y3 < 0 ? 'negative' : (!r.isUnits && r.y3 > 0 && r.highlight ? 'positive' : '');
+                const tCls = !r.isUnits && r.total < 0 ? 'negative' : (!r.isUnits && r.total > 0 && r.highlight ? 'positive' : '');
+                
+                html += `<tr class="${cls}">
+                    <td>${r.label}</td>
+                    <td class="${y1Cls}">${r.isUnits ? r.y1.toLocaleString() : 'AED ' + fmt(Math.abs(r.y1))}</td>
+                    <td class="${y2Cls}">${r.isUnits ? r.y2.toLocaleString() : 'AED ' + fmt(Math.abs(r.y2))}</td>
+                    <td class="${y3Cls}">${r.isUnits ? r.y3.toLocaleString() : 'AED ' + fmt(Math.abs(r.y3))}</td>
+                    <td class="${tCls}"><strong>${r.isUnits ? r.total.toLocaleString() : 'AED ' + fmt(Math.abs(r.total))}</strong></td>
+                </tr>`;
+            });
+            
+            document.getElementById('projection-table-body').innerHTML = html;
+        }
+        
+        function updateProjectionChart(proj) {
+            const ctx = document.getElementById('projectionChart');
+            if (!ctx) return;
+            
+            if (projectionChart) projectionChart.destroy();
+            
+            projectionChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Year 1', 'Year 2', 'Year 3'],
+                    datasets: [
+                        {
+                            label: 'Revenue',
+                            data: [proj.y1.revenue, proj.y2.revenue, proj.y3.revenue],
+                            backgroundColor: ['rgba(222,255,154,0.6)', 'rgba(167,139,250,0.5)', 'rgba(34,197,94,0.5)'],
+                            borderColor: ['#deff9a', '#a78bfa', '#22c55e'],
+                            borderWidth: 2,
+                            borderRadius: 6,
+                            order: 2
+                        },
+                        {
+                            label: 'EBITDA',
+                            data: [proj.y1.ebitda, proj.y2.ebitda, proj.y3.ebitda],
+                            type: 'line',
+                            borderColor: '#111827',
+                            backgroundColor: 'transparent',
+                            borderWidth: 3,
+                            pointBackgroundColor: '#111827',
+                            pointRadius: 6,
+                            pointHoverRadius: 8,
+                            tension: 0.3,
+                            order: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: { color: '#6b7280', usePointStyle: true, font: { size: 11 } }
+                        }
+                    },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: '#9ca3af', font: { size: 11, weight: '600' } } },
+                        y: { grid: { color: '#eef1f4' }, ticks: { color: '#9ca3af', font: { size: 10 }, callback: v => (v/1e6).toFixed(1) + 'M' } }
+                    }
+                }
+            });
         }
 
         function updateRatio(id, value, status, barWidth) {
