@@ -6,23 +6,16 @@
     <title>LUCAS | Financial Strategy</title>
     <meta name="robots" content="noindex, nofollow">
     
-    <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    
-    <!-- Fonts - Using SF Pro Display style via Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
         :root {
-            /* LUCAS Brand */
             --lime: #deff9a;
             --lime-hover: #d4f583;
             --lime-dark: #b8e04e;
@@ -31,206 +24,165 @@
             --lime-subtle: rgba(222, 255, 154, 0.08);
             --lime-border: rgba(222, 255, 154, 0.3);
             
-            /* Light Theme */
             --bg-body: #fafbfc;
             --bg-card: #ffffff;
-            --bg-elevated: #ffffff;
             --bg-input: #f4f6f8;
             --bg-hover: #f8f9fa;
             
-            /* Borders & Dividers */
             --border-light: #eef1f4;
             --border-default: #e4e8ec;
-            --border-strong: #d1d5db;
             
-            /* Text */
             --text-primary: #111827;
             --text-secondary: #6b7280;
             --text-tertiary: #9ca3af;
-            --text-inverse: #111827;
             
-            /* Semantic */
             --positive: #22c55e;
             --positive-bg: #f0fdf4;
+            --positive-border: rgba(34, 197, 94, 0.2);
             --warning: #f59e0b;
             --warning-bg: #fffbeb;
+            --warning-border: rgba(245, 158, 11, 0.2);
             --negative: #ef4444;
             --negative-bg: #fef2f2;
+            --negative-border: rgba(239, 68, 68, 0.2);
             
-            /* Chart Colors */
-            --chart-primary: #deff9a;
-            --chart-secondary: #a78bfa;
-            --chart-tertiary: #f472b6;
+            --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
+            --shadow-lime: 0 4px 14px rgba(222,255,154,0.35);
             
-            /* Shadows */
-            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.03);
-            --shadow-lime: 0 4px 14px rgba(222, 255, 154, 0.35);
-            --shadow-lime-lg: 0 8px 30px rgba(222, 255, 154, 0.4);
-            
-            /* Spacing & Sizing */
-            --sidebar-width: 340px;
-            --header-height: 72px;
+            --sidebar-width: 320px;
+            --header-height: 64px;
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 16px;
             --radius-xl: 20px;
-            --radius-2xl: 24px;
         }
         
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background: var(--bg-body);
             color: var(--text-primary);
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
         
-        /* ===== TYPOGRAPHY ===== */
-        .mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
+        .mono { font-family: 'JetBrains Mono', monospace; }
         
-        /* ===== LOGIN SCREEN ===== */
+        /* ===== LOGIN ===== */
         #login-screen {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: 
-                radial-gradient(ellipse at 50% 0%, rgba(222, 255, 154, 0.15) 0%, transparent 50%),
-                linear-gradient(180deg, #fafbfc 0%, #f4f6f8 100%);
+            background: radial-gradient(ellipse at 50% 0%, rgba(222,255,154,0.15) 0%, transparent 50%),
+                        linear-gradient(180deg, #fafbfc 0%, #f4f6f8 100%);
             padding: 24px;
         }
         
         .login-card {
             background: var(--bg-card);
-            border-radius: var(--radius-2xl);
-            padding: 56px 48px;
+            border-radius: var(--radius-xl);
+            padding: 48px 40px;
             width: 100%;
-            max-width: 440px;
-            box-shadow: var(--shadow-xl), 0 0 0 1px var(--border-light);
+            max-width: 400px;
+            box-shadow: var(--shadow-lg), 0 0 0 1px var(--border-light);
         }
         
         .login-logo {
             display: flex;
             justify-content: center;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
         }
         
-        .login-logo img {
-            height: 36px;
-            width: auto;
-        }
+        .login-logo img { height: 32px; }
         
         .login-badge {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 18px;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 16px;
             background: var(--lime-subtle);
             border: 1px solid var(--lime-border);
             border-radius: 100px;
-            margin: 0 auto 32px;
+            margin: 0 auto 24px;
             width: fit-content;
         }
         
         .login-badge-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--lime);
+            width: 6px; height: 6px;
+            background: var(--lime-dark);
             border-radius: 50%;
-            box-shadow: 0 0 8px var(--lime);
             animation: pulse 2s ease-in-out infinite;
         }
         
         @keyframes pulse {
-            0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--lime); }
-            50% { opacity: 0.6; box-shadow: 0 0 4px var(--lime); }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
         
         .login-badge-text {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             color: var(--lime-text);
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
         
         .login-card h2 {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
             text-align: center;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-            letter-spacing: -0.02em;
+            margin-bottom: 6px;
         }
         
         .login-subtitle {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--text-secondary);
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
         }
         
-        .form-group {
-            margin-bottom: 24px;
-        }
+        .form-group { margin-bottom: 20px; }
         
         .form-group label {
             display: block;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             color: var(--text-secondary);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .form-group input {
             width: 100%;
-            padding: 16px 18px;
+            padding: 14px 16px;
             background: var(--bg-input);
             border: 1px solid transparent;
             border-radius: var(--radius-md);
-            font-size: 15px;
+            font-size: 14px;
             font-family: inherit;
             color: var(--text-primary);
-            transition: all 0.2s ease;
-        }
-        
-        .form-group input:hover {
-            border-color: var(--border-default);
+            transition: all 0.2s;
         }
         
         .form-group input:focus {
             outline: none;
             background: var(--bg-card);
             border-color: var(--lime);
-            box-shadow: 0 0 0 4px var(--lime-subtle);
-        }
-        
-        .form-group input::placeholder {
-            color: var(--text-tertiary);
+            box-shadow: 0 0 0 3px var(--lime-subtle);
         }
         
         .error-msg {
             background: var(--negative-bg);
-            border: 1px solid rgba(239, 68, 68, 0.2);
+            border: 1px solid var(--negative-border);
             color: var(--negative);
-            padding: 14px 18px;
-            border-radius: var(--radius-md);
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 24px;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            margin-bottom: 20px;
             display: none;
             text-align: center;
         }
@@ -239,63 +191,47 @@
         
         .login-btn {
             width: 100%;
-            padding: 18px;
+            padding: 16px;
             background: var(--lime);
             border: none;
             border-radius: var(--radius-md);
-            color: var(--text-inverse);
-            font-size: 15px;
+            color: var(--text-primary);
+            font-size: 14px;
             font-weight: 700;
             font-family: inherit;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.2s;
             box-shadow: var(--shadow-lime);
         }
         
         .login-btn:hover:not(:disabled) {
             background: var(--lime-hover);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lime-lg);
+            transform: translateY(-1px);
         }
         
-        .login-btn:active:not(:disabled) {
-            transform: translateY(0);
-        }
-        
-        .login-btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none;
-        }
+        .login-btn:disabled { opacity: 0.7; cursor: not-allowed; }
         
         .login-footer {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-tertiary);
             text-align: center;
-            margin-top: 32px;
+            margin-top: 24px;
         }
         
         /* ===== DASHBOARD ===== */
-        #dashboard {
-            display: none;
-            min-height: 100vh;
-        }
-        
+        #dashboard { display: none; min-height: 100vh; }
         #dashboard.show { display: block; }
         
-        /* Header */
         .header {
             height: var(--header-height);
             background: var(--bg-card);
             border-bottom: 1px solid var(--border-light);
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 100;
             display: flex;
             align-items: center;
-            padding: 0 32px;
+            padding: 0 24px;
         }
         
         .header-inner {
@@ -308,78 +244,59 @@
         .header-left {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 16px;
         }
         
-        .header-logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .header-logo img {
-            height: 26px;
-            width: auto;
-        }
+        .header-logo img { height: 22px; }
         
         .header-divider {
             width: 1px;
-            height: 28px;
+            height: 24px;
             background: var(--border-default);
         }
         
-        .header-nav {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
         .header-title {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             color: var(--text-secondary);
         }
         
         .header-badge {
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 700;
             letter-spacing: 0.08em;
-            text-transform: uppercase;
             color: var(--lime-text);
             background: var(--lime-subtle);
             border: 1px solid var(--lime-border);
-            padding: 5px 12px;
+            padding: 4px 10px;
             border-radius: 100px;
         }
         
-        /* Model Toggle */
         .model-toggle {
             display: flex;
-            align-items: center;
             gap: 4px;
-            padding: 6px;
+            padding: 4px;
             background: var(--bg-input);
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius-md);
         }
         
         .model-btn {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 20px;
+            gap: 6px;
+            padding: 10px 16px;
             background: transparent;
             border: none;
-            border-radius: var(--radius-md);
-            font-size: 13px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
             font-weight: 600;
             font-family: inherit;
             color: var(--text-secondary);
             cursor: pointer;
-            transition: all 0.15s ease;
+            transition: all 0.15s;
         }
         
-        .model-btn:hover {
-            color: var(--text-primary);
-        }
+        .model-btn:hover { color: var(--text-primary); }
         
         .model-btn.active {
             background: var(--bg-card);
@@ -387,32 +304,28 @@
             box-shadow: var(--shadow-sm);
         }
         
-        .model-btn .icon {
-            font-size: 15px;
-        }
-        
         .header-right {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 16px;
         }
         
         .user-info {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-tertiary);
         }
         
         .signout-btn {
-            padding: 10px 18px;
+            padding: 8px 14px;
             background: transparent;
             border: 1px solid var(--border-default);
-            border-radius: var(--radius-md);
-            font-size: 13px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
             font-weight: 600;
             font-family: inherit;
             color: var(--text-secondary);
             cursor: pointer;
-            transition: all 0.15s ease;
+            transition: all 0.15s;
         }
         
         .signout-btn:hover {
@@ -421,22 +334,19 @@
             background: var(--negative-bg);
         }
         
-        /* Layout */
         .layout {
             display: flex;
             padding-top: var(--header-height);
             min-height: 100vh;
         }
         
-        /* Main Content */
         .main-content {
             flex: 1;
-            padding: 40px;
+            padding: 32px;
             margin-right: var(--sidebar-width);
             max-width: calc(100% - var(--sidebar-width));
         }
         
-        /* Sidebar */
         .sidebar {
             width: var(--sidebar-width);
             background: var(--bg-card);
@@ -446,38 +356,33 @@
             right: 0;
             bottom: 0;
             overflow-y: auto;
-            padding: 32px 28px;
+            padding: 24px 20px;
         }
         
         .sidebar-header {
-            margin-bottom: 32px;
+            margin-bottom: 24px;
         }
         
         .sidebar-title {
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 700;
             color: var(--text-primary);
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
         
-        .sidebar-section {
-            margin-bottom: 36px;
-        }
+        .sidebar-section { margin-bottom: 28px; }
         
         .sidebar-section h4 {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             color: var(--text-tertiary);
-            margin-bottom: 20px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         
         .sidebar-section h4::after {
@@ -487,30 +392,81 @@
             background: var(--border-light);
         }
         
+        /* Scenario Toggle */
+        .scenario-toggle {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+        
+        .scenario-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            padding: 12px 6px;
+            background: var(--bg-input);
+            border: 2px solid transparent;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        
+        .scenario-btn:hover { border-color: var(--border-default); }
+        
+        .scenario-btn.active {
+            background: var(--lime-subtle);
+            border-color: var(--lime);
+        }
+        
+        .scenario-btn[data-scenario="bear"].active {
+            background: rgba(239,68,68,0.08);
+            border-color: #ef4444;
+        }
+        
+        .scenario-btn[data-scenario="bull"].active {
+            background: rgba(34,197,94,0.08);
+            border-color: #22c55e;
+        }
+        
+        .scenario-icon { font-size: 18px; }
+        
+        .scenario-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+        
+        .scenario-description {
+            font-size: 11px;
+            color: var(--text-tertiary);
+            line-height: 1.5;
+            padding: 10px;
+            background: var(--bg-input);
+            border-radius: var(--radius-sm);
+        }
+        
         /* Price Grid */
         .price-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
         }
         
         .price-btn {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 16px 12px;
+            padding: 10px 4px;
             background: var(--bg-input);
             border: 2px solid transparent;
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-sm);
             cursor: pointer;
-            transition: all 0.15s ease;
+            transition: all 0.15s;
         }
         
-        .price-btn:hover {
-            background: var(--bg-hover);
-            border-color: var(--border-default);
-        }
+        .price-btn:hover { border-color: var(--border-default); }
         
         .price-btn.active {
             background: var(--lime-subtle);
@@ -519,431 +475,440 @@
         
         .price-btn .num {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 22px;
+            font-size: 16px;
             font-weight: 700;
             color: var(--text-primary);
-            line-height: 1;
         }
         
-        .price-btn.active .num {
-            color: var(--lime-text);
-        }
+        .price-btn.active .num { color: var(--lime-text); }
         
         .price-btn .label {
-            font-size: 11px;
-            font-weight: 500;
+            font-size: 9px;
             color: var(--text-tertiary);
-            margin-top: 6px;
+            margin-top: 2px;
         }
         
         /* Sliders */
-        .slider-group {
-            margin-bottom: 22px;
-        }
-        
-        .slider-group:last-child {
-            margin-bottom: 0;
-        }
+        .slider-group { margin-bottom: 18px; }
+        .slider-group:last-child { margin-bottom: 0; }
         
         .slider-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
         
         .slider-header label {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
             color: var(--text-secondary);
         }
         
         .slider-value {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 600;
             color: var(--lime-text);
             background: var(--lime-subtle);
-            padding: 4px 10px;
-            border-radius: 6px;
-        }
-        
-        /* Scenario Toggle */
-        .scenario-toggle {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-        
-        .scenario-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            padding: 14px 8px;
-            background: var(--bg-input);
-            border: 2px solid transparent;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            transition: all 0.15s ease;
-        }
-        
-        .scenario-btn:hover {
-            background: var(--bg-hover);
-            border-color: var(--border-default);
-        }
-        
-        .scenario-btn.active {
-            background: var(--lime-subtle);
-            border-color: var(--lime);
-        }
-        
-        .scenario-btn[data-scenario="bear"].active {
-            background: rgba(239, 68, 68, 0.1);
-            border-color: #ef4444;
-        }
-        
-        .scenario-btn[data-scenario="bull"].active {
-            background: rgba(34, 197, 94, 0.1);
-            border-color: #22c55e;
-        }
-        
-        .scenario-icon {
-            font-size: 20px;
-        }
-        
-        .scenario-label {
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-secondary);
-        }
-        
-        .scenario-btn.active .scenario-label {
-            color: var(--text-primary);
-        }
-        
-        .scenario-description {
-            font-size: 12px;
-            color: var(--text-tertiary);
-            line-height: 1.5;
-            padding: 12px;
-            background: var(--bg-input);
-            border-radius: var(--radius-sm);
+            padding: 3px 8px;
+            border-radius: 4px;
         }
         
         input[type="range"] {
             -webkit-appearance: none;
-            appearance: none;
             width: 100%;
-            height: 6px;
+            height: 4px;
             background: var(--border-light);
-            border-radius: 3px;
+            border-radius: 2px;
             cursor: pointer;
         }
         
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             background: var(--lime);
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 2px 8px var(--lime-glow);
-            transition: all 0.15s ease;
+            box-shadow: 0 2px 6px var(--lime-glow);
+            transition: transform 0.15s;
         }
         
         input[type="range"]::-webkit-slider-thumb:hover {
             transform: scale(1.15);
-            box-shadow: 0 4px 12px var(--lime-glow);
         }
         
-        input[type="range"]::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
-            background: var(--lime);
-            border-radius: 50%;
-            cursor: pointer;
-            border: none;
-        }
-        
-        /* Growth Summary Box */
+        /* Growth Summary */
         .growth-summary {
-            margin-top: 20px;
-            padding: 18px;
+            margin-top: 14px;
+            padding: 14px;
             background: linear-gradient(135deg, var(--lime-subtle) 0%, transparent 100%);
             border: 1px solid var(--lime-border);
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-sm);
         }
         
         .growth-summary-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
         }
         
-        .growth-summary-item {
-            text-align: center;
-            flex: 1;
-        }
+        .growth-summary-item { text-align: center; flex: 1; }
         
         .growth-summary-label {
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: var(--text-tertiary);
-            margin-bottom: 4px;
         }
         
         .growth-summary-value {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             color: var(--text-primary);
         }
         
         .growth-summary-total {
             text-align: center;
-            padding-top: 14px;
+            padding-top: 10px;
             border-top: 1px solid var(--lime-border);
         }
         
         .growth-summary-total .growth-summary-value {
-            font-size: 28px;
+            font-size: 22px;
             color: var(--lime-text);
         }
         
         /* ===== EXECUTIVE SUMMARY ===== */
         .executive-summary {
             position: relative;
-            background: linear-gradient(135deg, rgba(222, 255, 154, 0.10) 0%, rgba(222, 255, 154, 0.02) 100%);
+            background: linear-gradient(135deg, rgba(222,255,154,0.08) 0%, transparent 100%);
             border: 1px solid var(--lime-border);
             border-radius: var(--radius-lg);
-            padding: 20px 28px;
-            margin-bottom: 32px;
-            overflow: hidden;
+            padding: 20px 24px;
+            margin-bottom: 24px;
             display: flex;
             align-items: center;
-            gap: 32px;
-            transition: all 0.3s ease;
+            gap: 24px;
+            transition: all 0.3s;
         }
         
         .executive-summary::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
+            top: 0; left: 0; bottom: 0;
             width: 4px;
-            background: linear-gradient(180deg, var(--lime) 0%, var(--lime-dark) 100%);
-            transition: all 0.3s ease;
+            background: var(--lime);
+            border-radius: 4px 0 0 4px;
         }
         
         .executive-summary.bear {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(239, 68, 68, 0.02) 100%);
-            border-color: rgba(239, 68, 68, 0.25);
+            background: linear-gradient(135deg, rgba(239,68,68,0.06) 0%, transparent 100%);
+            border-color: rgba(239,68,68,0.2);
         }
-        
-        .executive-summary.bear::before {
-            background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
-        }
+        .executive-summary.bear::before { background: #ef4444; }
         
         .executive-summary.bull {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(34, 197, 94, 0.02) 100%);
-            border-color: rgba(34, 197, 94, 0.25);
+            background: linear-gradient(135deg, rgba(34,197,94,0.06) 0%, transparent 100%);
+            border-color: rgba(34,197,94,0.2);
         }
+        .executive-summary.bull::before { background: #22c55e; }
         
-        .executive-summary.bull::before {
-            background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
-        }
-        
-        .summary-main {
-            flex: 1;
-            min-width: 0;
-        }
+        .summary-main { flex: 1; min-width: 0; }
         
         .summary-eyebrow {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             color: var(--lime-text);
-            margin-bottom: 8px;
-        }
-        
-        .summary-eyebrow-icon {
-            width: 20px;
-            height: 20px;
-            background: var(--lime);
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
+            margin-bottom: 6px;
         }
         
         .summary-insight {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 500;
             line-height: 1.6;
             color: var(--text-primary);
-            margin: 0;
         }
         
         .summary-insight strong {
             font-weight: 700;
             color: var(--lime-text);
             background: var(--lime-subtle);
-            padding: 1px 6px;
+            padding: 1px 5px;
             border-radius: 4px;
         }
         
         .summary-kpis {
             display: flex;
-            gap: 24px;
+            gap: 20px;
             flex-shrink: 0;
         }
         
         .summary-kpi {
             text-align: center;
-            padding: 0 16px;
+            padding: 0 12px;
             border-left: 1px solid var(--lime-border);
         }
         
-        .summary-kpi:first-child {
-            border-left: none;
-            padding-left: 0;
-        }
+        .summary-kpi:first-child { border-left: none; padding-left: 0; }
         
         .summary-kpi-value {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             color: var(--text-primary);
-            line-height: 1.2;
         }
         
         .summary-kpi-label {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 500;
             color: var(--text-secondary);
-            margin-top: 2px;
         }
         
-        /* ===== METRIC CARDS ===== */
-        .metrics-row {
+        /* ===== KEY RATIOS ===== */
+        .ratios-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 32px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
         }
         
-        .metric-card {
+        .ratio-card {
             background: var(--bg-card);
             border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 28px;
-            transition: all 0.2s ease;
-            box-shadow: var(--shadow-xs);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.2s;
         }
         
-        .metric-card:hover {
+        .ratio-card:hover {
             border-color: var(--border-default);
             box-shadow: var(--shadow-md);
         }
         
-        .metric-card.highlight {
-            background: linear-gradient(135deg, rgba(222, 255, 154, 0.15) 0%, rgba(222, 255, 154, 0.05) 100%);
-            border-color: var(--lime-border);
-        }
+        .ratio-card.success { border-color: var(--positive-border); }
+        .ratio-card.warning { border-color: var(--warning-border); }
+        .ratio-card.danger { border-color: var(--negative-border); }
         
-        .metric-card.positive {
-            background: var(--positive-bg);
-            border-color: rgba(34, 197, 94, 0.2);
-        }
-        
-        .metric-card.negative {
-            background: var(--negative-bg);
-            border-color: rgba(239, 68, 68, 0.2);
-        }
-        
-        .metric-label {
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--text-tertiary);
+        .ratio-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin-bottom: 12px;
         }
         
-        .metric-value {
+        .ratio-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-tertiary);
+        }
+        
+        .ratio-status {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-tertiary);
+        }
+        
+        .ratio-card.success .ratio-status { background: var(--positive); }
+        .ratio-card.warning .ratio-status { background: var(--warning); }
+        .ratio-card.danger .ratio-status { background: var(--negative); }
+        
+        .ratio-value {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
             color: var(--text-primary);
             line-height: 1;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         
-        .metric-card.highlight .metric-value {
-            color: var(--lime-text);
+        .ratio-card.success .ratio-value { color: var(--positive); }
+        .ratio-card.danger .ratio-value { color: var(--negative); }
+        
+        .ratio-target {
+            font-size: 11px;
+            color: var(--text-tertiary);
         }
         
-        .metric-card.positive .metric-value {
+        .ratio-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--border-light);
+        }
+        
+        .ratio-bar-fill {
+            height: 100%;
+            background: var(--lime);
+            transition: width 0.3s;
+        }
+        
+        .ratio-card.success .ratio-bar-fill { background: var(--positive); }
+        .ratio-card.warning .ratio-bar-fill { background: var(--warning); }
+        .ratio-card.danger .ratio-bar-fill { background: var(--negative); }
+        
+        /* ===== MILESTONES ===== */
+        .milestones-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .milestones-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .milestones-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .milestones-subtitle {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+        
+        .milestone-track {
+            display: flex;
+            align-items: flex-start;
+            gap: 0;
+            position: relative;
+        }
+        
+        .milestone-track::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            height: 3px;
+            background: var(--border-light);
+            z-index: 0;
+        }
+        
+        .milestone {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .milestone-node {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 3px solid var(--border-default);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-tertiary);
+            margin-bottom: 12px;
+            transition: all 0.3s;
+        }
+        
+        .milestone.on-track .milestone-node {
+            border-color: var(--positive);
             color: var(--positive);
+            background: var(--positive-bg);
         }
         
-        .metric-card.negative .metric-value {
+        .milestone.at-risk .milestone-node {
+            border-color: var(--warning);
+            color: var(--warning);
+            background: var(--warning-bg);
+        }
+        
+        .milestone.off-track .milestone-node {
+            border-color: var(--negative);
             color: var(--negative);
+            background: var(--negative-bg);
         }
         
-        .metric-subtext {
-            font-size: 13px;
-            color: var(--text-secondary);
+        .milestone-content { max-width: 120px; }
+        
+        .milestone-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        
+        .milestone-target {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--lime-text);
+            margin-bottom: 4px;
+        }
+        
+        .milestone-kill {
+            font-size: 10px;
+            color: var(--text-tertiary);
+        }
+        
+        .milestone-kill strong {
+            color: var(--negative);
+            font-weight: 600;
         }
         
         /* ===== CHARTS ===== */
         .charts-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-bottom: 32px;
+            gap: 20px;
+            margin-bottom: 24px;
         }
         
         .chart-card {
             background: var(--bg-card);
             border: 1px solid var(--border-light);
             border-radius: var(--radius-lg);
-            padding: 28px;
-            box-shadow: var(--shadow-xs);
+            padding: 24px;
         }
         
-        .chart-header {
-            margin-bottom: 24px;
-        }
+        .chart-header { margin-bottom: 20px; }
         
         .chart-title {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
         
         .chart-subtitle {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-tertiary);
         }
         
         .chart-container {
-            height: 260px;
+            height: 220px;
             position: relative;
         }
         
@@ -951,71 +916,61 @@
         .data-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-bottom: 32px;
+            gap: 20px;
+            margin-bottom: 24px;
         }
         
         .data-card {
             background: var(--bg-card);
             border: 1px solid var(--border-light);
             border-radius: var(--radius-lg);
-            padding: 28px;
-            box-shadow: var(--shadow-xs);
+            padding: 24px;
         }
         
-        .data-card-header {
-            margin-bottom: 24px;
-        }
+        .data-card-header { margin-bottom: 20px; }
         
         .data-card-title {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
         
         .data-card-subtitle {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-tertiary);
         }
-        
-        .data-rows {}
         
         .data-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 14px 0;
+            padding: 10px 0;
             border-bottom: 1px solid var(--border-light);
         }
         
-        .data-row:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
+        .data-row:last-child { border-bottom: none; }
         
         .data-row.total {
-            margin-top: 8px;
-            padding-top: 18px;
+            margin-top: 6px;
+            padding-top: 14px;
             border-top: 2px solid var(--text-primary);
             border-bottom: none;
         }
         
         .data-row-label {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-secondary);
         }
         
         .data-row-value {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 15px;
+            font-size: 13px;
             font-weight: 600;
             color: var(--text-primary);
         }
         
-        .data-row.negative .data-row-value {
-            color: var(--text-tertiary);
-        }
+        .data-row.negative .data-row-value { color: var(--text-tertiary); }
         
         .data-row.total .data-row-label,
         .data-row.total .data-row-value {
@@ -1023,24 +978,136 @@
             color: var(--text-primary);
         }
         
-        /* ===== COMPARISON TABLE ===== */
-        .section {
-            margin-bottom: 40px;
+        /* ===== P&L TABLE ===== */
+        .pnl-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            margin-bottom: 24px;
+            overflow: hidden;
         }
         
-        .section-header {
-            margin-bottom: 20px;
+        .pnl-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-light);
         }
         
-        .section-title {
-            font-size: 18px;
+        .pnl-title {
+            font-size: 14px;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 4px;
+        }
+        
+        .pnl-subtitle {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+        
+        .export-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+            font-family: inherit;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        
+        .export-btn:hover {
+            background: var(--lime-subtle);
+            border-color: var(--lime);
+            color: var(--lime-text);
+        }
+        
+        .pnl-table-wrap {
+            overflow-x: auto;
+        }
+        
+        .pnl-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        
+        .pnl-table th,
+        .pnl-table td {
+            padding: 12px 14px;
+            text-align: right;
+            white-space: nowrap;
+        }
+        
+        .pnl-table th:first-child,
+        .pnl-table td:first-child {
+            text-align: left;
+            position: sticky;
+            left: 0;
+            background: var(--bg-card);
+            z-index: 1;
+        }
+        
+        .pnl-table thead th {
+            background: var(--bg-input);
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            font-size: 10px;
+        }
+        
+        .pnl-table tbody tr {
+            border-top: 1px solid var(--border-light);
+        }
+        
+        .pnl-table tbody tr:hover {
+            background: var(--bg-hover);
+        }
+        
+        .pnl-table .row-label {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        
+        .pnl-table .positive { color: var(--positive); }
+        .pnl-table .negative { color: var(--negative); }
+        
+        .pnl-table .total-row {
+            background: var(--bg-input);
+            font-weight: 700;
+        }
+        
+        .pnl-table .total-row td { color: var(--text-primary); }
+        
+        .pnl-table .subtotal-row {
+            background: var(--lime-subtle);
+        }
+        
+        .pnl-table .subtotal-row td:first-child {
+            background: var(--lime-subtle);
+        }
+        
+        /* ===== SCENARIO COMPARISON ===== */
+        .section { margin-bottom: 24px; }
+        
+        .section-header { margin-bottom: 16px; }
+        
+        .section-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
         }
         
         .section-subtitle {
-            font-size: 14px;
+            font-size: 12px;
             color: var(--text-tertiary);
         }
         
@@ -1049,52 +1116,62 @@
             border: 1px solid var(--border-light);
             border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: var(--shadow-xs);
         }
         
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
+            font-size: 13px;
         }
         
         .comparison-table th {
-            padding: 18px 24px;
-            font-size: 12px;
+            padding: 14px 20px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.05em;
             color: var(--text-tertiary);
             background: var(--bg-input);
             text-align: center;
         }
         
-        .comparison-table th:first-child {
-            text-align: left;
-        }
+        .comparison-table th:first-child { text-align: left; }
         
         .comparison-table th.recommended {
             color: var(--lime-text);
             background: var(--lime-subtle);
         }
         
+        .comparison-table th.bear-col {
+            color: #dc2626;
+            background: rgba(239,68,68,0.08);
+        }
+        
+        .comparison-table th.base-col {
+            color: var(--lime-text);
+            background: var(--lime-subtle);
+        }
+        
+        .comparison-table th.bull-col {
+            color: #16a34a;
+            background: rgba(34,197,94,0.08);
+        }
+        
         .rec-badge {
             display: inline-block;
-            font-size: 9px;
+            font-size: 8px;
             font-weight: 700;
             background: var(--lime);
-            color: var(--text-inverse);
-            padding: 4px 10px;
+            color: var(--text-primary);
+            padding: 3px 8px;
             border-radius: 100px;
-            margin-left: 10px;
-            box-shadow: var(--shadow-lime);
+            margin-left: 8px;
         }
         
         .comparison-table td {
-            padding: 18px 24px;
-            font-size: 14px;
+            padding: 14px 20px;
             text-align: center;
             border-top: 1px solid var(--border-light);
-            color: var(--text-primary);
         }
         
         .comparison-table td:first-child {
@@ -1103,252 +1180,81 @@
             font-weight: 500;
         }
         
-        .comparison-table td.recommended {
-            background: var(--lime-subtle);
-        }
+        .comparison-table td.recommended { background: rgba(222,255,154,0.05); }
+        .comparison-table td.bear-col { background: rgba(239,68,68,0.03); }
+        .comparison-table td.base-col { background: rgba(222,255,154,0.05); }
+        .comparison-table td.bull-col { background: rgba(34,197,94,0.03); }
         
         .comparison-table .value {
             font-family: 'JetBrains Mono', monospace;
             font-weight: 600;
         }
         
-        .comparison-table .positive {
-            color: var(--positive);
-            font-weight: 700;
-        }
-        
-        .comparison-table tr:last-child td {
-            background: var(--bg-input);
-            font-weight: 600;
-        }
-        
-        .comparison-table tr:last-child td.recommended {
-            background: var(--lime-subtle);
-        }
-        
-        /* Scenario Comparison Table */
-        .scenario-table th.bear-col {
-            background: rgba(239, 68, 68, 0.1);
-            color: #dc2626;
-        }
-        
-        .scenario-table th.base-col {
-            background: var(--lime-subtle);
-            color: var(--lime-text);
-        }
-        
-        .scenario-table th.bull-col {
-            background: rgba(34, 197, 94, 0.1);
-            color: #16a34a;
-        }
-        
-        .scenario-table td.bear-col {
-            background: rgba(239, 68, 68, 0.03);
-        }
-        
-        .scenario-table td.base-col {
-            background: rgba(222, 255, 154, 0.05);
-        }
-        
-        .scenario-table td.bull-col {
-            background: rgba(34, 197, 94, 0.03);
-        }
-        
-        .scenario-table .value.negative {
-            color: var(--negative);
-        }
-        
-        .scenario-table .value.positive {
-            color: var(--positive);
-        }
+        .comparison-table .value.positive { color: var(--positive); }
+        .comparison-table .value.negative { color: var(--negative); }
         
         .verdict-tag {
             display: inline-block;
             padding: 4px 10px;
             border-radius: 100px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.03em;
         }
         
-        .verdict-tag.success {
-            background: rgba(34, 197, 94, 0.15);
-            color: #16a34a;
-        }
-        
-        .verdict-tag.danger {
-            background: rgba(239, 68, 68, 0.15);
-            color: #dc2626;
-        }
-        
-        .verdict-tag.warning {
-            background: rgba(245, 158, 11, 0.15);
-            color: #d97706;
-        }
-        
-        /* ===== SENSITIVITY ===== */
-        .sensitivity-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        
-        .sensitivity-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            box-shadow: var(--shadow-xs);
-            transition: all 0.2s ease;
-        }
-        
-        .sensitivity-card:hover {
-            border-color: var(--border-default);
-            box-shadow: var(--shadow-md);
-        }
-        
-        .sensitivity-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            margin-bottom: 16px;
-        }
-        
-        .sensitivity-icon.warning {
-            background: var(--warning-bg);
-        }
-        
-        .sensitivity-icon.negative {
-            background: var(--negative-bg);
-        }
-        
-        .sensitivity-icon.lime {
-            background: var(--lime-subtle);
-        }
-        
-        .sensitivity-question {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 12px;
-        }
-        
-        .sensitivity-answer {
-            font-size: 14px;
-            line-height: 1.7;
-            color: var(--text-secondary);
-        }
-        
-        .sensitivity-answer strong {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
+        .verdict-tag.success { background: rgba(34,197,94,0.12); color: #16a34a; }
+        .verdict-tag.danger { background: rgba(239,68,68,0.12); color: #dc2626; }
+        .verdict-tag.warning { background: rgba(245,158,11,0.12); color: #d97706; }
         
         /* ===== FOOTER ===== */
         .footer {
             text-align: center;
-            padding: 32px;
+            padding: 24px;
             color: var(--text-tertiary);
-            font-size: 13px;
+            font-size: 11px;
             border-top: 1px solid var(--border-light);
-            margin-top: 40px;
         }
         
         /* ===== MOBILE ===== */
         .mobile-toggle {
             display: none;
             position: fixed;
-            bottom: 28px;
-            right: 28px;
-            width: 60px;
-            height: 60px;
+            bottom: 20px;
+            right: 20px;
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
             background: var(--lime);
             border: none;
-            color: var(--text-inverse);
-            font-size: 22px;
+            font-size: 20px;
             cursor: pointer;
             z-index: 200;
-            box-shadow: var(--shadow-lime-lg);
-            transition: all 0.2s ease;
+            box-shadow: var(--shadow-lime);
         }
         
-        .mobile-toggle:hover {
-            transform: scale(1.05);
-        }
-        
-        @media (max-width: 1200px) {
-            .metrics-row { grid-template-columns: repeat(2, 1fr); }
-            .sensitivity-grid { grid-template-columns: 1fr; }
-            .executive-summary {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
-            }
-            .summary-kpis {
-                width: 100%;
-                justify-content: flex-start;
-            }
+        @media (max-width: 1100px) {
+            .ratios-grid { grid-template-columns: repeat(2, 1fr); }
+            .milestone-track { flex-wrap: wrap; gap: 20px; }
+            .milestone-track::before { display: none; }
         }
         
         @media (max-width: 900px) {
-            .main-content {
-                margin-right: 0;
-                max-width: 100%;
-                padding: 24px;
-            }
-            
-            .sidebar {
-                display: none;
-            }
-            
-            .sidebar.open {
-                display: block;
-                position: fixed;
-                top: var(--header-height);
-                left: 0;
-                right: 0;
-                bottom: 0;
-                width: 100%;
-                z-index: 150;
-            }
-            
-            .mobile-toggle {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            
-            .model-toggle {
-                display: none;
-            }
-            
-            .charts-grid,
-            .data-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .metrics-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .summary-kpis {
-                gap: 24px;
-            }
+            .main-content { margin-right: 0; max-width: 100%; padding: 20px; }
+            .sidebar { display: none; }
+            .sidebar.open { display: block; position: fixed; top: var(--header-height); left: 0; right: 0; bottom: 0; width: 100%; z-index: 150; }
+            .mobile-toggle { display: flex; align-items: center; justify-content: center; }
+            .model-toggle { display: none; }
+            .charts-grid, .data-grid { grid-template-columns: 1fr; }
+            .ratios-grid { grid-template-columns: repeat(2, 1fr); }
+            .executive-summary { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .summary-kpis { width: 100%; justify-content: flex-start; flex-wrap: wrap; }
         }
         
-        /* ===== PRINT ===== */
         @media print {
             .header { position: relative; }
-            .sidebar { display: none; }
+            .sidebar, .signout-btn, .mobile-toggle, .export-btn { display: none; }
             .main-content { margin-right: 0; max-width: 100%; }
-            .signout-btn { display: none; }
-            .mobile-toggle { display: none; }
         }
     </style>
 </head>
@@ -1359,15 +1265,12 @@
             <div class="login-logo">
                 <img src="/logo-black.png" alt="LUCAS">
             </div>
-            
             <div class="login-badge">
                 <span class="login-badge-dot"></span>
-                <span class="login-badge-text">Internal Portal</span>
+                <span class="login-badge-text">INTERNAL PORTAL</span>
             </div>
-            
             <h2>Financial Strategy</h2>
             <p class="login-subtitle">Stakeholder access only</p>
-            
             <form id="login-form">
                 <div class="form-group">
                     <label>Email</label>
@@ -1380,39 +1283,25 @@
                 <div id="login-error" class="error-msg"></div>
                 <button type="submit" class="login-btn" id="login-btn">Access Dashboard</button>
             </form>
-            
             <p class="login-footer">Contact admin for access credentials</p>
         </div>
     </div>
 
     <!-- DASHBOARD -->
     <div id="dashboard">
-        <!-- Header -->
         <header class="header">
             <div class="header-inner">
                 <div class="header-left">
-                    <a href="/" class="header-logo">
-                        <img src="/logo-black.png" alt="LUCAS">
-                    </a>
+                    <a href="/" class="header-logo"><img src="/logo-black.png" alt="LUCAS"></a>
                     <div class="header-divider"></div>
-                    <div class="header-nav">
-                        <span class="header-title">Financial Strategy</span>
-                        <span class="header-badge">Internal</span>
-                    </div>
+                    <span class="header-title">Financial Strategy</span>
+                    <span class="header-badge">INTERNAL</span>
                 </div>
-                
                 <div class="model-toggle">
-                    <button class="model-btn active" data-model="hybrid">
-                        <span class="icon">⚡</span> Hybrid
-                    </button>
-                    <button class="model-btn" data-model="gig">
-                        <span class="icon">📱</span> Gig Only
-                    </button>
-                    <button class="model-btn" data-model="fte">
-                        <span class="icon">👔</span> FTE Only
-                    </button>
+                    <button class="model-btn active" data-model="hybrid">⚡ Hybrid</button>
+                    <button class="model-btn" data-model="gig">📱 Gig</button>
+                    <button class="model-btn" data-model="fte">👔 FTE</button>
                 </div>
-                
                 <div class="header-right">
                     <span class="user-info" id="user-email"></span>
                     <button class="signout-btn" id="signout-btn">Sign Out</button>
@@ -1421,19 +1310,14 @@
         </header>
 
         <div class="layout">
-            <!-- Main -->
             <main class="main-content">
                 <!-- Executive Summary -->
                 <div class="executive-summary" id="exec-summary">
                     <div class="summary-main">
-                        <div class="summary-eyebrow">
-                            <span class="summary-eyebrow-icon">📊</span>
-                            <span id="scenario-name">Base Case</span>
-                        </div>
+                        <div class="summary-eyebrow">📊 <span id="scenario-name">Base Case</span></div>
                         <p class="summary-insight" id="exec-insight">
                             At <strong>AED 350/unit</strong> with the Hybrid model, LUCAS becomes 
-                            <strong>profitable in Month 4</strong> and generates <strong>AED 77K EBITDA</strong> 
-                            in Year 1.
+                            <strong>profitable in Month 4</strong> with <strong>AED 77K EBITDA</strong> in Year 1.
                         </p>
                     </div>
                     <div class="summary-kpis">
@@ -1456,22 +1340,87 @@
                     </div>
                 </div>
 
-                <!-- Key Metrics -->
-                <div class="metrics-row">
-                    <div class="metric-card highlight">
-                        <div class="metric-label">Year 1 Revenue</div>
-                        <div class="metric-value" id="m-revenue">AED 824K</div>
-                        <div class="metric-subtext"><span id="m-units">587</span> units at Month 12</div>
+                <!-- Key Ratios -->
+                <div class="ratios-grid">
+                    <div class="ratio-card success" id="ratio-ltv">
+                        <div class="ratio-header">
+                            <span class="ratio-label">LTV : CAC</span>
+                            <span class="ratio-status"></span>
+                        </div>
+                        <div class="ratio-value" id="ratio-ltv-value">4.2x</div>
+                        <div class="ratio-target">Target: > 3.0x</div>
+                        <div class="ratio-bar"><div class="ratio-bar-fill" style="width: 100%"></div></div>
                     </div>
-                    <div class="metric-card" id="ebitda-card">
-                        <div class="metric-label">Year 1 EBITDA</div>
-                        <div class="metric-value" id="m-ebitda">AED 77K</div>
-                        <div class="metric-subtext"><span id="m-em">9%</span> EBITDA margin</div>
+                    <div class="ratio-card success" id="ratio-payback">
+                        <div class="ratio-header">
+                            <span class="ratio-label">Payback Period</span>
+                            <span class="ratio-status"></span>
+                        </div>
+                        <div class="ratio-value" id="ratio-payback-value">3.8 mo</div>
+                        <div class="ratio-target">Target: < 12 mo</div>
+                        <div class="ratio-bar"><div class="ratio-bar-fill" style="width: 100%"></div></div>
                     </div>
-                    <div class="metric-card">
-                        <div class="metric-label">Gross Margin</div>
-                        <div class="metric-value" id="m-gm">69%</div>
-                        <div class="metric-subtext">Revenue less labor cost</div>
+                    <div class="ratio-card success" id="ratio-gm">
+                        <div class="ratio-header">
+                            <span class="ratio-label">Gross Margin</span>
+                            <span class="ratio-status"></span>
+                        </div>
+                        <div class="ratio-value" id="ratio-gm-value">69%</div>
+                        <div class="ratio-target">Target: > 60%</div>
+                        <div class="ratio-bar"><div class="ratio-bar-fill" style="width: 100%"></div></div>
+                    </div>
+                    <div class="ratio-card success" id="ratio-rule40">
+                        <div class="ratio-header">
+                            <span class="ratio-label">Rule of 40</span>
+                            <span class="ratio-status"></span>
+                        </div>
+                        <div class="ratio-value" id="ratio-rule40-value">89%</div>
+                        <div class="ratio-target">Target: > 40%</div>
+                        <div class="ratio-bar"><div class="ratio-bar-fill" style="width: 100%"></div></div>
+                    </div>
+                </div>
+
+                <!-- Milestones -->
+                <div class="milestones-card">
+                    <div class="milestones-header">
+                        <div>
+                            <div class="milestones-title">🎯 Milestones & Kill Criteria</div>
+                            <div class="milestones-subtitle">Decision points to validate or pivot</div>
+                        </div>
+                    </div>
+                    <div class="milestone-track">
+                        <div class="milestone on-track" id="milestone-1">
+                            <div class="milestone-node">D90</div>
+                            <div class="milestone-content">
+                                <div class="milestone-label">Day 90</div>
+                                <div class="milestone-target" id="ms1-target">20 units</div>
+                                <div class="milestone-kill">Kill: <strong id="ms1-kill">&lt; 10</strong></div>
+                            </div>
+                        </div>
+                        <div class="milestone on-track" id="milestone-2">
+                            <div class="milestone-node">M6</div>
+                            <div class="milestone-content">
+                                <div class="milestone-label">Month 6</div>
+                                <div class="milestone-target" id="ms2-target">200 units</div>
+                                <div class="milestone-kill">Kill: <strong id="ms2-kill">&lt; 100</strong></div>
+                            </div>
+                        </div>
+                        <div class="milestone on-track" id="milestone-3">
+                            <div class="milestone-node">M9</div>
+                            <div class="milestone-content">
+                                <div class="milestone-label">Month 9</div>
+                                <div class="milestone-target" id="ms3-target">400 units</div>
+                                <div class="milestone-kill">Kill: <strong id="ms3-kill">&lt; 200</strong></div>
+                            </div>
+                        </div>
+                        <div class="milestone on-track" id="milestone-4">
+                            <div class="milestone-node">M12</div>
+                            <div class="milestone-content">
+                                <div class="milestone-label">Month 12</div>
+                                <div class="milestone-target" id="ms4-target">600 units</div>
+                                <div class="milestone-kill">Kill: <strong id="ms4-kill">&lt; 350</strong></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1497,12 +1446,12 @@
                     </div>
                 </div>
 
-                <!-- Data Cards -->
+                <!-- Unit Economics & Cash -->
                 <div class="data-grid">
                     <div class="data-card">
                         <div class="data-card-header">
                             <div class="data-card-title">Unit Economics</div>
-                            <div class="data-card-subtitle">Per-unit contribution breakdown</div>
+                            <div class="data-card-subtitle">Per-unit contribution</div>
                         </div>
                         <div class="data-rows">
                             <div class="data-row">
@@ -1530,7 +1479,7 @@
                     <div class="data-card">
                         <div class="data-card-header">
                             <div class="data-card-title">Cash Position</div>
-                            <div class="data-card-subtitle">Runway and liquidity analysis</div>
+                            <div class="data-card-subtitle">Runway & liquidity</div>
                         </div>
                         <div class="data-rows">
                             <div class="data-row">
@@ -1546,70 +1495,40 @@
                                 <span class="data-row-value" id="cash-low">AED -85K</span>
                             </div>
                             <div class="data-row">
-                                <span class="data-row-label">Break-Even Month</span>
-                                <span class="data-row-value" id="cash-be">Month 4</span>
+                                <span class="data-row-label">Funding Required</span>
+                                <span class="data-row-value" id="cash-funding">AED 100K</span>
                             </div>
                             <div class="data-row total">
                                 <span class="data-row-label">Runway</span>
-                                <span class="data-row-value" id="cash-runway">18+ months</span>
+                                <span class="data-row-value" id="cash-runway">18+ mo</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Comparison Table -->
-                <div class="section">
-                    <div class="section-header">
-                        <div class="section-title">Model Comparison</div>
-                        <div class="section-subtitle">Side-by-side at AED <span id="table-price">350</span>/unit</div>
+                <!-- Monthly P&L -->
+                <div class="pnl-section">
+                    <div class="pnl-header">
+                        <div>
+                            <div class="pnl-title">📋 Monthly P&L Projection</div>
+                            <div class="pnl-subtitle">12-month detailed breakdown</div>
+                        </div>
+                        <button class="export-btn" onclick="exportCSV()">
+                            <span>📥</span> Export CSV
+                        </button>
                     </div>
-                    <div class="table-card">
-                        <table class="comparison-table">
+                    <div class="pnl-table-wrap">
+                        <table class="pnl-table" id="pnl-table">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th class="recommended">Hybrid<span class="rec-badge">REC</span></th>
-                                    <th>Gig Only</th>
-                                    <th>FTE Only</th>
+                                    <th>Metric</th>
+                                    <th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th><th>M6</th>
+                                    <th>M7</th><th>M8</th><th>M9</th><th>M10</th><th>M11</th><th>M12</th>
+                                    <th>Y1 Total</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Y1 Revenue</td>
-                                    <td class="recommended"><span class="value" id="t-hybrid-rev">AED 824K</span></td>
-                                    <td><span class="value" id="t-gig-rev">AED 824K</span></td>
-                                    <td><span class="value" id="t-fte-rev">AED 824K</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Y1 Labor Cost</td>
-                                    <td class="recommended"><span class="value" id="t-hybrid-labor">AED 345K</span></td>
-                                    <td><span class="value" id="t-gig-labor">AED 359K</span></td>
-                                    <td><span class="value" id="t-fte-labor">AED 312K</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Gross Margin</td>
-                                    <td class="recommended"><span class="value" id="t-hybrid-gm">58%</span></td>
-                                    <td><span class="value" id="t-gig-gm">56%</span></td>
-                                    <td><span class="value" id="t-fte-gm">62%</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Y1 EBITDA</td>
-                                    <td class="recommended"><span class="value" id="t-hybrid-ebitda">AED 77K</span></td>
-                                    <td><span class="value" id="t-gig-ebitda">AED 63K</span></td>
-                                    <td><span class="value" id="t-fte-ebitda">AED 110K</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Break-Even</td>
-                                    <td class="recommended"><span class="value" id="t-hybrid-be">M4</span></td>
-                                    <td><span class="value" id="t-gig-be">M5</span></td>
-                                    <td><span class="value" id="t-fte-be">M3</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Labor Savings vs FTE</td>
-                                    <td class="recommended"><span class="positive" id="t-hybrid-save">-11%</span></td>
-                                    <td><span class="positive" id="t-gig-save">-15%</span></td>
-                                    <td><span class="value">—</span></td>
-                                </tr>
+                            <tbody id="pnl-body">
+                                <!-- Generated by JS -->
                             </tbody>
                         </table>
                     </div>
@@ -1619,10 +1538,10 @@
                 <div class="section">
                     <div class="section-header">
                         <div class="section-title">Scenario Comparison</div>
-                        <div class="section-subtitle">Bear vs Base vs Bull at a glance</div>
+                        <div class="section-subtitle">Bear vs Base vs Bull outcomes</div>
                     </div>
                     <div class="table-card">
-                        <table class="comparison-table scenario-table">
+                        <table class="comparison-table">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -1679,37 +1598,49 @@
                     </div>
                 </div>
 
-                <!-- Sensitivity -->
+                <!-- Model Comparison -->
                 <div class="section">
                     <div class="section-header">
-                        <div class="section-title">Sensitivity Analysis</div>
-                        <div class="section-subtitle">Impact of changing key assumptions</div>
+                        <div class="section-title">Model Comparison</div>
+                        <div class="section-subtitle">Hybrid vs Gig vs FTE at current price</div>
                     </div>
-                    <div class="sensitivity-grid">
-                        <div class="sensitivity-card">
-                            <div class="sensitivity-icon warning">💰</div>
-                            <div class="sensitivity-question">Price drops to 249?</div>
-                            <p class="sensitivity-answer" id="sens-price">
-                                Break-even extends to <strong>Month 7</strong>. Y1 EBITDA drops to <strong>AED 23K</strong>. 
-                                Still profitable, but margin shrinks.
-                            </p>
-                        </div>
-                        <div class="sensitivity-card">
-                            <div class="sensitivity-icon negative">📉</div>
-                            <div class="sensitivity-question">Churn hits 5%?</div>
-                            <p class="sensitivity-answer" id="sens-churn">
-                                Y1 revenue drops <strong>8%</strong>. EBITDA falls to <strong>AED 42K</strong>. 
-                                Retention becomes critical priority.
-                            </p>
-                        </div>
-                        <div class="sensitivity-card">
-                            <div class="sensitivity-icon lime">👷</div>
-                            <div class="sensitivity-question">Gig payout rises to 120?</div>
-                            <p class="sensitivity-answer" id="sens-gig">
-                                Gross margin drops from <strong>69% to 63%</strong>. 
-                                Accelerates case for FTE transition.
-                            </p>
-                        </div>
+                    <div class="table-card">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="recommended">⚡ Hybrid<span class="rec-badge">REC</span></th>
+                                    <th>📱 Gig</th>
+                                    <th>👔 FTE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Y1 Revenue</td>
+                                    <td class="recommended"><span class="value" id="t-hybrid-rev">AED 824K</span></td>
+                                    <td><span class="value" id="t-gig-rev">AED 824K</span></td>
+                                    <td><span class="value" id="t-fte-rev">AED 824K</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Y1 EBITDA</td>
+                                    <td class="recommended"><span class="value" id="t-hybrid-ebitda">AED 77K</span></td>
+                                    <td><span class="value" id="t-gig-ebitda">AED 63K</span></td>
+                                    <td><span class="value" id="t-fte-ebitda">AED 110K</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Gross Margin</td>
+                                    <td class="recommended"><span class="value" id="t-hybrid-gm">69%</span></td>
+                                    <td><span class="value" id="t-gig-gm">67%</span></td>
+                                    <td><span class="value" id="t-fte-gm">72%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Break-Even</td>
+                                    <td class="recommended"><span class="value" id="t-hybrid-be">M4</span></td>
+                                    <td><span class="value" id="t-gig-be">M5</span></td>
+                                    <td><span class="value" id="t-fte-be">M3</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </main>
@@ -1720,7 +1651,6 @@
                     <div class="sidebar-title">⚙️ Model Assumptions</div>
                 </div>
 
-                <!-- Scenario Toggle -->
                 <div class="sidebar-section">
                     <h4>📊 Scenario</h4>
                     <div class="scenario-toggle">
@@ -1738,34 +1668,20 @@
                         </button>
                     </div>
                     <div class="scenario-description" id="scenario-description">
-                        Realistic projection based on market research and comparable businesses.
+                        Realistic projection based on market research.
                     </div>
                 </div>
 
-                <!-- Price -->
                 <div class="sidebar-section">
                     <h4>💰 Unit Price</h4>
                     <div class="price-grid">
-                        <button class="price-btn active" data-price="350">
-                            <span class="num">350</span>
-                            <span class="label">Optimal</span>
-                        </button>
-                        <button class="price-btn" data-price="249">
-                            <span class="num">249</span>
-                            <span class="label">Viable</span>
-                        </button>
-                        <button class="price-btn" data-price="149">
-                            <span class="num">149</span>
-                            <span class="label">Risky</span>
-                        </button>
-                        <button class="price-btn" data-price="99">
-                            <span class="num">99</span>
-                            <span class="label">Aggressive</span>
-                        </button>
+                        <button class="price-btn active" data-price="350"><span class="num">350</span><span class="label">Optimal</span></button>
+                        <button class="price-btn" data-price="249"><span class="num">249</span><span class="label">Viable</span></button>
+                        <button class="price-btn" data-price="149"><span class="num">149</span><span class="label">Risky</span></button>
+                        <button class="price-btn" data-price="99"><span class="num">99</span><span class="label">Aggr.</span></button>
                     </div>
                 </div>
 
-                <!-- Gig -->
                 <div class="sidebar-section">
                     <h4>📱 Gig Model</h4>
                     <div class="slider-group">
@@ -1784,7 +1700,6 @@
                     </div>
                 </div>
 
-                <!-- FTE -->
                 <div class="sidebar-section">
                     <h4>👔 FTE Model</h4>
                     <div class="slider-group">
@@ -1803,19 +1718,17 @@
                     </div>
                 </div>
 
-                <!-- Hybrid -->
                 <div class="sidebar-section">
-                    <h4>⚡ Hybrid Config</h4>
+                    <h4>⚡ Hybrid</h4>
                     <div class="slider-group">
                         <div class="slider-header">
                             <label>Phase 1 (Gig Only)</label>
-                            <span class="slider-value" id="val-phase1">6 months</span>
+                            <span class="slider-value" id="val-phase1">6 mo</span>
                         </div>
                         <input type="range" id="slider-phase1" min="3" max="9" step="1" value="6">
                     </div>
                 </div>
 
-                <!-- Growth -->
                 <div class="sidebar-section">
                     <h4>📈 Growth</h4>
                     <div class="slider-group">
@@ -1827,7 +1740,7 @@
                     </div>
                     <div class="slider-group">
                         <div class="slider-header">
-                            <label>Monthly Growth Rate</label>
+                            <label>Monthly Growth</label>
                             <span class="slider-value" id="val-growth-rate">20%</span>
                         </div>
                         <input type="range" id="slider-growth-rate" min="5" max="50" step="5" value="20">
@@ -1851,13 +1764,12 @@
                             </div>
                         </div>
                         <div class="growth-summary-total">
-                            <div class="growth-summary-label">Total M12 Units</div>
+                            <div class="growth-summary-label">Total M12</div>
                             <div class="growth-summary-value" id="projected-m12">587</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Fixed Costs -->
                 <div class="sidebar-section">
                     <h4>🏢 Monthly Fixed Costs</h4>
                     <div class="slider-group">
@@ -1892,228 +1804,95 @@
             </aside>
         </div>
 
-        <footer class="footer">
-            LUCAS Financial Strategy · Confidential · Internal Use Only
-        </footer>
-
+        <footer class="footer">LUCAS Financial Strategy · Confidential · Internal Use Only</footer>
         <button class="mobile-toggle" id="mobile-toggle">⚙️</button>
     </div>
 
     <script>
-        // =============================================
-        // CONFIG
-        // =============================================
         const SUPABASE_URL = 'https://irztntmenxchzicfegid.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlyenRudG1lbnhjaHppY2ZlZ2lkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQxMTA4ODQsImV4cCI6MjA3OTY4Njg4NH0.EjaO-HXjzElo_eHqEWzagsqGg-gEVqUxY1ri-MhofPw';
-        
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        
-        // =============================================
-        // AUTH
-        // =============================================
+
+        // Scenarios
+        const scenarios = {
+            bear: {
+                name: '🐻 Bear Case',
+                description: 'Conservative: Lower price, slower growth, higher churn.',
+                assumptions: { price: 249, m1Units: 10, growthRate: 12, churnRate: 5, gigPayoutPerInspection: 120, gigPlatformFee: 10, fteBaseSalary: 5000, phase2FteCount: 1, phase1EndMonth: 6, founderSalary: 18000, marketing: 8000, office: 7000, techBase: 6000 }
+            },
+            base: {
+                name: '📊 Base Case',
+                description: 'Realistic projection based on market research.',
+                assumptions: { price: 350, m1Units: 20, growthRate: 20, churnRate: 3, gigPayoutPerInspection: 100, gigPlatformFee: 8, fteBaseSalary: 4500, phase2FteCount: 1, phase1EndMonth: 6, founderSalary: 15000, marketing: 5000, office: 6000, techBase: 5500 }
+            },
+            bull: {
+                name: '🐂 Bull Case',
+                description: 'Optimistic: Premium pricing, strong growth, low churn.',
+                assumptions: { price: 399, m1Units: 35, growthRate: 28, churnRate: 2, gigPayoutPerInspection: 90, gigPlatformFee: 6, fteBaseSalary: 4500, phase2FteCount: 2, phase1EndMonth: 4, founderSalary: 12000, marketing: 3000, office: 5000, techBase: 5000 }
+            }
+        };
+
+        let currentScenario = 'base', currentModel = 'hybrid', currentPrice = 350;
+        let ebitdaChart, cashChart;
+
+        const assumptions = {
+            fteBaseSalary: 4500, fteVisaCost: 6500, fteVisaMonths: 24, fteHealthInsurance: 1200,
+            fteGratuityPercent: 4.17, fteEquipment: 200, fteBikeLease: 1500, fteFuel: 300, fteMaintenance: 200,
+            gigPayoutPerInspection: 100, gigPlatformFee: 8,
+            inspectionTime: 45, travelTime: 30, workingHours: 8, fteEfficiency: 70, workingDays: 22,
+            techBase: 5500, storagePerK: 500, founderSalary: 15000, office: 6000, insurance: 2000, marketing: 5000,
+            churnRate: 3, phase1EndMonth: 6, phase2FteCount: 1, m1Units: 20, growthRate: 20,
+            cacPerUnit: 250
+        };
+
+        // Auth
         async function checkSession() {
             const { data: { session } } = await supabase.auth.getSession();
             if (session) showDashboard(session.user);
         }
-        
+
         document.getElementById('login-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
             const errorEl = document.getElementById('login-error');
             const btn = document.getElementById('login-btn');
-            
-            btn.disabled = true;
-            btn.textContent = 'Signing in...';
-            errorEl.classList.remove('show');
-            
+            btn.disabled = true; btn.textContent = 'Signing in...'; errorEl.classList.remove('show');
             const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-            
-            if (error) {
-                errorEl.textContent = error.message;
-                errorEl.classList.add('show');
-                btn.disabled = false;
-                btn.textContent = 'Access Dashboard';
-            } else {
-                showDashboard(data.user);
-            }
+            if (error) { errorEl.textContent = error.message; errorEl.classList.add('show'); btn.disabled = false; btn.textContent = 'Access Dashboard'; }
+            else showDashboard(data.user);
         });
-        
+
         document.getElementById('signout-btn').addEventListener('click', async () => {
             await supabase.auth.signOut();
             document.getElementById('login-screen').style.display = 'flex';
             document.getElementById('dashboard').classList.remove('show');
         });
-        
+
         function showDashboard(user) {
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('dashboard').classList.add('show');
             document.getElementById('user-email').textContent = user.email;
             initDashboard();
         }
-        
-        // =============================================
-        // SCENARIOS
-        // =============================================
-        const scenarios = {
-            bear: {
-                name: 'Bear Case',
-                description: 'Conservative: Lower price, slower growth, higher churn, tighter margins. Tests survivability.',
-                assumptions: {
-                    price: 249,
-                    m1Units: 10,
-                    growthRate: 12,
-                    churnRate: 5,
-                    gigPayoutPerInspection: 120,
-                    gigPlatformFee: 10,
-                    fteBaseSalary: 5000,
-                    phase2FteCount: 1,
-                    phase1EndMonth: 6,
-                    founderSalary: 18000,
-                    marketing: 8000,
-                    office: 7000,
-                    techBase: 6000
-                }
-            },
-            base: {
-                name: 'Base Case',
-                description: 'Realistic projection based on market research and comparable businesses.',
-                assumptions: {
-                    price: 350,
-                    m1Units: 20,
-                    growthRate: 20,
-                    churnRate: 3,
-                    gigPayoutPerInspection: 100,
-                    gigPlatformFee: 8,
-                    fteBaseSalary: 4500,
-                    phase2FteCount: 1,
-                    phase1EndMonth: 6,
-                    founderSalary: 15000,
-                    marketing: 5000,
-                    office: 6000,
-                    techBase: 5500
-                }
-            },
-            bull: {
-                name: 'Bull Case',
-                description: 'Optimistic: Premium pricing holds, strong word-of-mouth, low churn, efficient operations.',
-                assumptions: {
-                    price: 399,
-                    m1Units: 35,
-                    growthRate: 28,
-                    churnRate: 2,
-                    gigPayoutPerInspection: 90,
-                    gigPlatformFee: 6,
-                    fteBaseSalary: 4500,
-                    phase2FteCount: 2,
-                    phase1EndMonth: 4,
-                    founderSalary: 12000,
-                    marketing: 3000,
-                    office: 5000,
-                    techBase: 5000
-                }
-            }
-        };
-        
-        let currentScenario = 'base';
-        
-        function applyScenario(scenarioKey) {
-            const scenario = scenarios[scenarioKey];
-            if (!scenario) return;
-            
-            currentScenario = scenarioKey;
-            
-            // Update price buttons
-            currentPrice = scenario.assumptions.price;
-            document.querySelectorAll('.price-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (parseInt(btn.dataset.price) === currentPrice) {
-                    btn.classList.add('active');
-                }
-            });
-            
-            // Update assumptions object
-            Object.keys(scenario.assumptions).forEach(key => {
-                if (key !== 'price' && assumptions.hasOwnProperty(key)) {
-                    assumptions[key] = scenario.assumptions[key];
-                }
-            });
-            
-            // Update all sliders to reflect new values
-            updateSliderUI('slider-m1-units', 'val-m1-units', assumptions.m1Units, '');
-            updateSliderUI('slider-growth-rate', 'val-growth-rate', assumptions.growthRate, '', '%');
-            updateSliderUI('slider-churn', 'val-churn', assumptions.churnRate, '', '%');
-            updateSliderUI('slider-gig-payout', 'val-gig-payout', assumptions.gigPayoutPerInspection, 'AED ');
-            updateSliderUI('slider-platform-fee', 'val-platform-fee', assumptions.gigPlatformFee, 'AED ');
-            updateSliderUI('slider-fte-salary', 'val-fte-salary', assumptions.fteBaseSalary, 'AED ', true);
-            updateSliderUI('slider-phase2-ftes', 'val-phase2-ftes', assumptions.phase2FteCount, '');
-            updateSliderUI('slider-phase1', 'val-phase1', assumptions.phase1EndMonth, '', ' months');
-            updateSliderUI('slider-founder', 'val-founder', assumptions.founderSalary, 'AED ', true);
-            updateSliderUI('slider-marketing', 'val-marketing', assumptions.marketing, 'AED ', true);
-            updateSliderUI('slider-office', 'val-office', assumptions.office, 'AED ', true);
-            updateSliderUI('slider-tech', 'val-tech', assumptions.techBase, 'AED ', true);
-            
-            // Update scenario description
-            document.getElementById('scenario-description').textContent = scenario.description;
-            
-            // Update scenario buttons
-            document.querySelectorAll('.scenario-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.scenario === scenarioKey) {
-                    btn.classList.add('active');
-                }
-            });
-            
-            updateDashboard();
-        }
-        
-        function updateSliderUI(sliderId, valueId, value, prefix, suffix = '') {
-            const slider = document.getElementById(sliderId);
-            const valueEl = document.getElementById(valueId);
-            if (slider && valueEl) {
-                slider.value = value;
-                const displayValue = prefix.includes('AED') && value >= 1000 ? value.toLocaleString() : value;
-                valueEl.textContent = prefix + displayValue + suffix;
-            }
-        }
-        
-        // =============================================
-        // MODEL
-        // =============================================
-        const assumptions = {
-            fteBaseSalary: 4500, fteVisaCost: 6500, fteVisaMonths: 24,
-            fteHealthInsurance: 1200, fteGratuityPercent: 4.17,
-            fteEquipment: 200, fteBikeLease: 1500, fteFuel: 300, fteMaintenance: 200,
-            gigPayoutPerInspection: 100, gigPlatformFee: 8,
-            inspectionTime: 45, travelTime: 30, workingHours: 8, fteEfficiency: 70, workingDays: 22,
-            techBase: 5500, storagePerK: 500, founderSalary: 15000,
-            office: 6000, insurance: 2000, marketing: 5000,
-            churnRate: 3, phase1EndMonth: 6, phase2FteCount: 1,
-            m1Units: 20, growthRate: 20,
-        };
-        
+
+        // Calculations
         function calculateDerived() {
             const a = assumptions;
-            const fteLoadedMonthlyCost = a.fteBaseSalary + (a.fteVisaCost / a.fteVisaMonths) + 
-                (a.fteHealthInsurance / 12) + (a.fteBaseSalary * (a.fteGratuityPercent / 100)) + 
-                a.fteEquipment + a.fteBikeLease + a.fteFuel + a.fteMaintenance;
+            const fteLoadedMonthlyCost = a.fteBaseSalary + (a.fteVisaCost / a.fteVisaMonths) + (a.fteHealthInsurance / 12) + (a.fteBaseSalary * (a.fteGratuityPercent / 100)) + a.fteEquipment + a.fteBikeLease + a.fteFuel + a.fteMaintenance;
             const totalTime = a.inspectionTime + a.travelTime;
             const fteInspectionsPerDay = Math.round((a.workingHours * 60 / totalTime) * (a.fteEfficiency / 100));
             const fteInspectionsPerMonth = fteInspectionsPerDay * a.workingDays;
-            const fteCostPerInspection = fteLoadedMonthlyCost / fteInspectionsPerMonth;
             const gigCostPerInspection = a.gigPayoutPerInspection + a.gigPlatformFee + (a.storagePerK / 1000);
             const baseFixedCosts = a.techBase + a.founderSalary + a.office + a.insurance + a.marketing;
-            return { fteLoadedMonthlyCost, fteInspectionsPerMonth, fteCostPerInspection, gigCostPerInspection, baseFixedCosts };
+            return { fteLoadedMonthlyCost, fteInspectionsPerMonth, gigCostPerInspection, baseFixedCosts };
         }
-        
+
         function generateProjection(price, modelType, derived) {
             const a = assumptions;
             const monthlyNewUnits = [];
             let newUnits = a.m1Units;
-            for (let i = 0; i < 12; i++) {
-                monthlyNewUnits.push(Math.round(newUnits));
-                newUnits = newUnits * (1 + a.growthRate / 100);
-            }
+            for (let i = 0; i < 12; i++) { monthlyNewUnits.push(Math.round(newUnits)); newUnits *= (1 + a.growthRate / 100); }
             let cumulative = 0, cumulativeCashFlow = 0;
             return monthlyNewUnits.map((newUnits, i) => {
                 const month = i + 1;
@@ -2122,285 +1901,265 @@
                 const netUnits = cumulative - churnLoss;
                 const revenue = netUnits * price;
                 let laborCost;
-                if (modelType === 'fte') {
-                    laborCost = Math.ceil(netUnits / derived.fteInspectionsPerMonth) * derived.fteLoadedMonthlyCost;
-                } else if (modelType === 'gig') {
-                    laborCost = netUnits * derived.gigCostPerInspection;
-                } else {
-                    if (month <= a.phase1EndMonth) {
-                        laborCost = netUnits * derived.gigCostPerInspection;
-                    } else {
+                if (modelType === 'fte') laborCost = Math.ceil(netUnits / derived.fteInspectionsPerMonth) * derived.fteLoadedMonthlyCost;
+                else if (modelType === 'gig') laborCost = netUnits * derived.gigCostPerInspection;
+                else {
+                    if (month <= a.phase1EndMonth) laborCost = netUnits * derived.gigCostPerInspection;
+                    else {
                         const fteCapacity = a.phase2FteCount * derived.fteInspectionsPerMonth;
-                        laborCost = netUnits <= fteCapacity * 0.8 
-                            ? a.phase2FteCount * derived.fteLoadedMonthlyCost
-                            : (a.phase2FteCount * derived.fteLoadedMonthlyCost) + (Math.max(0, netUnits - fteCapacity) * derived.gigCostPerInspection);
+                        laborCost = netUnits <= fteCapacity * 0.8 ? a.phase2FteCount * derived.fteLoadedMonthlyCost : (a.phase2FteCount * derived.fteLoadedMonthlyCost) + (Math.max(0, netUnits - fteCapacity) * derived.gigCostPerInspection);
                     }
                 }
                 const grossProfit = revenue - laborCost;
                 const ebitda = grossProfit - derived.baseFixedCosts;
                 cumulativeCashFlow += ebitda;
-                return { month, newUnits, netUnits, revenue, laborCost, grossProfit, ebitda, cumCashFlow: cumulativeCashFlow };
+                return { month, newUnits, netUnits, revenue, laborCost, grossProfit, fixedCosts: derived.baseFixedCosts, ebitda, cumCashFlow: cumulativeCashFlow };
             });
         }
-        
-        // =============================================
-        // DASHBOARD
-        // =============================================
-        let currentModel = 'hybrid', currentPrice = 350;
-        let ebitdaChart, cashChart;
-        
+
+        // Scenario
+        function applyScenario(key) {
+            const s = scenarios[key];
+            if (!s) return;
+            currentScenario = key;
+            currentPrice = s.assumptions.price;
+            document.querySelectorAll('.price-btn').forEach(b => { b.classList.remove('active'); if (parseInt(b.dataset.price) === currentPrice) b.classList.add('active'); });
+            Object.keys(s.assumptions).forEach(k => { if (k !== 'price' && assumptions.hasOwnProperty(k)) assumptions[k] = s.assumptions[k]; });
+            updateSliderUI('slider-m1-units', 'val-m1-units', assumptions.m1Units, '');
+            updateSliderUI('slider-growth-rate', 'val-growth-rate', assumptions.growthRate, '', '%');
+            updateSliderUI('slider-churn', 'val-churn', assumptions.churnRate, '', '%');
+            updateSliderUI('slider-gig-payout', 'val-gig-payout', assumptions.gigPayoutPerInspection, 'AED ');
+            updateSliderUI('slider-platform-fee', 'val-platform-fee', assumptions.gigPlatformFee, 'AED ');
+            updateSliderUI('slider-fte-salary', 'val-fte-salary', assumptions.fteBaseSalary, 'AED ', true);
+            updateSliderUI('slider-phase2-ftes', 'val-phase2-ftes', assumptions.phase2FteCount, '');
+            updateSliderUI('slider-phase1', 'val-phase1', assumptions.phase1EndMonth, '', ' mo');
+            updateSliderUI('slider-founder', 'val-founder', assumptions.founderSalary, 'AED ', true);
+            updateSliderUI('slider-marketing', 'val-marketing', assumptions.marketing, 'AED ', true);
+            updateSliderUI('slider-office', 'val-office', assumptions.office, 'AED ', true);
+            updateSliderUI('slider-tech', 'val-tech', assumptions.techBase, 'AED ', true);
+            document.getElementById('scenario-description').textContent = s.description;
+            document.querySelectorAll('.scenario-btn').forEach(b => { b.classList.remove('active'); if (b.dataset.scenario === key) b.classList.add('active'); });
+            updateDashboard();
+        }
+
+        function updateSliderUI(id, valId, val, prefix, suffix = '') {
+            const s = document.getElementById(id), v = document.getElementById(valId);
+            if (s && v) { s.value = val; v.textContent = prefix + (prefix.includes('AED') && val >= 1000 ? val.toLocaleString() : val) + suffix; }
+        }
+
+        // Dashboard
         function initDashboard() {
-            // Scenario toggle
-            document.querySelectorAll('.scenario-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    applyScenario(btn.dataset.scenario);
-                });
-            });
-            
-            document.querySelectorAll('.model-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.model-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    currentModel = btn.dataset.model;
-                    updateDashboard();
-                });
-            });
-            
-            document.querySelectorAll('.price-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.price-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    currentPrice = parseInt(btn.dataset.price);
-                    updateDashboard();
-                });
-            });
-            
+            document.querySelectorAll('.scenario-btn').forEach(b => b.addEventListener('click', () => applyScenario(b.dataset.scenario)));
+            document.querySelectorAll('.model-btn').forEach(b => b.addEventListener('click', () => { document.querySelectorAll('.model-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); currentModel = b.dataset.model; updateDashboard(); }));
+            document.querySelectorAll('.price-btn').forEach(b => b.addEventListener('click', () => { document.querySelectorAll('.price-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); currentPrice = parseInt(b.dataset.price); updateDashboard(); }));
             setupSlider('slider-gig-payout', 'val-gig-payout', 'gigPayoutPerInspection', 'AED ');
             setupSlider('slider-platform-fee', 'val-platform-fee', 'gigPlatformFee', 'AED ');
             setupSlider('slider-fte-salary', 'val-fte-salary', 'fteBaseSalary', 'AED ', true);
             setupSlider('slider-phase2-ftes', 'val-phase2-ftes', 'phase2FteCount', '');
-            setupSlider('slider-phase1', 'val-phase1', 'phase1EndMonth', '', false, ' months');
+            setupSlider('slider-phase1', 'val-phase1', 'phase1EndMonth', '', ' mo');
             setupSlider('slider-m1-units', 'val-m1-units', 'm1Units', '');
-            setupSlider('slider-growth-rate', 'val-growth-rate', 'growthRate', '', false, '%');
-            setupSlider('slider-churn', 'val-churn', 'churnRate', '', false, '%');
+            setupSlider('slider-growth-rate', 'val-growth-rate', 'growthRate', '', '%');
+            setupSlider('slider-churn', 'val-churn', 'churnRate', '', '%');
             setupSlider('slider-founder', 'val-founder', 'founderSalary', 'AED ', true);
             setupSlider('slider-marketing', 'val-marketing', 'marketing', 'AED ', true);
             setupSlider('slider-office', 'val-office', 'office', 'AED ', true);
             setupSlider('slider-tech', 'val-tech', 'techBase', 'AED ', true);
-            
-            document.getElementById('mobile-toggle').addEventListener('click', () => {
-                document.getElementById('sidebar').classList.toggle('open');
-            });
-            
+            document.getElementById('mobile-toggle').addEventListener('click', () => document.getElementById('sidebar').classList.toggle('open'));
             updateDashboard();
         }
-        
-        function setupSlider(sliderId, valueId, key, prefix, format = false, suffix = '') {
-            const slider = document.getElementById(sliderId);
-            const valueEl = document.getElementById(valueId);
-            if (!slider) return;
-            slider.addEventListener('input', () => {
-                const val = parseInt(slider.value);
-                assumptions[key] = val;
-                valueEl.textContent = prefix + (format ? val.toLocaleString() : val) + suffix;
-                updateDashboard();
-            });
+
+        function setupSlider(id, valId, key, prefix, format = false, suffix = '') {
+            const s = document.getElementById(id), v = document.getElementById(valId);
+            if (!s) return;
+            s.addEventListener('input', () => { const val = parseInt(s.value); assumptions[key] = val; v.textContent = prefix + (format ? val.toLocaleString() : val) + suffix; updateDashboard(); });
         }
-        
+
         function updateDashboard() {
             const derived = calculateDerived();
             const hybrid = generateProjection(currentPrice, 'hybrid', derived);
             const gig = generateProjection(currentPrice, 'gig', derived);
             const fte = generateProjection(currentPrice, 'fte', derived);
             const current = currentModel === 'hybrid' ? hybrid : currentModel === 'gig' ? gig : fte;
-            
-            const sum = (arr, key) => arr.reduce((a, b) => a + b[key], 0);
-            const findBE = (arr) => { const m = arr.findIndex(d => d.cumCashFlow > 0); return m > -1 ? m + 1 : null; };
-            const fmt = (n) => n >= 1000000 ? (n/1000000).toFixed(2) + 'M' : Math.round(n/1000) + 'K';
-            const fmtPct = (n) => Math.round(n * 100) + '%';
-            
-            const y1Rev = sum(current, 'revenue');
-            const y1EBITDA = sum(current, 'ebitda');
-            const y1Labor = sum(current, 'laborCost');
-            const y1GP = sum(current, 'grossProfit');
-            const endCash = current[11].cumCashFlow;
-            const endUnits = current[11].netUnits;
-            const grossMargin = y1GP / y1Rev;
-            const ebitdaMargin = y1EBITDA / y1Rev;
+
+            const sum = (a, k) => a.reduce((x, y) => x + y[k], 0);
+            const findBE = a => { const m = a.findIndex(d => d.cumCashFlow > 0); return m > -1 ? m + 1 : null; };
+            const fmt = n => Math.abs(n) >= 1e6 ? (n/1e6).toFixed(1) + 'M' : Math.round(n/1e3) + 'K';
+            const fmtPct = n => Math.round(n * 100) + '%';
+
+            const y1Rev = sum(current, 'revenue'), y1EBITDA = sum(current, 'ebitda'), y1Labor = sum(current, 'laborCost'), y1GP = sum(current, 'grossProfit');
+            const endCash = current[11].cumCashFlow, endUnits = current[11].netUnits;
+            const grossMargin = y1GP / y1Rev, ebitdaMargin = y1EBITDA / y1Rev;
             const breakEven = findBE(current);
             const lowestCash = Math.min(...current.map(d => d.cumCashFlow));
+            const peakCashNeed = Math.abs(Math.min(0, lowestCash));
             const avgBurn = Math.abs(Math.min(...current.slice(0,6).map(d => d.ebitda)));
-            
+
+            // LTV & CAC
+            const avgLifespan = 1 / (assumptions.churnRate / 100);
+            const ltv = currentPrice * avgLifespan;
+            const cac = assumptions.marketing / assumptions.m1Units;
+            const ltvCacRatio = ltv / cac;
+            const paybackMonths = cac / currentPrice;
+            const rule40 = (assumptions.growthRate + grossMargin * 100);
+
             // Executive
             const beText = breakEven ? `Month ${breakEven}` : 'Not in Y1';
-            const profitableText = y1EBITDA > 0 ? 'profitable' : 'in investment phase';
-            document.getElementById('exec-insight').innerHTML = `At <strong>AED ${currentPrice}/unit</strong> with the ${currentModel.charAt(0).toUpperCase() + currentModel.slice(1)} model, LUCAS becomes <strong>${profitableText}${breakEven ? ` in ${beText}` : ''}</strong> with <strong>AED ${fmt(y1EBITDA)} EBITDA</strong> in Year 1.`;
-            
-            // Update scenario name and styling
-            const scenarioNames = { bear: '🐻 Bear Case', base: '📊 Base Case', bull: '🐂 Bull Case' };
-            document.getElementById('scenario-name').textContent = scenarioNames[currentScenario] || 'Base Case';
-            const execSummary = document.getElementById('exec-summary');
-            execSummary.className = 'executive-summary ' + currentScenario;
+            document.getElementById('exec-insight').innerHTML = `At <strong>AED ${currentPrice}/unit</strong> with ${currentModel.charAt(0).toUpperCase() + currentModel.slice(1)}, LUCAS becomes <strong>${y1EBITDA > 0 ? 'profitable' : 'in investment'}${breakEven ? ` in ${beText}` : ''}</strong> with <strong>AED ${fmt(y1EBITDA)} EBITDA</strong> in Y1.`;
+            document.getElementById('scenario-name').textContent = scenarios[currentScenario]?.name || 'Base Case';
+            document.getElementById('exec-summary').className = 'executive-summary ' + currentScenario;
             document.getElementById('sum-be').textContent = beText;
             document.getElementById('sum-ebitda').textContent = 'AED ' + fmt(y1EBITDA);
             document.getElementById('sum-cash').textContent = 'AED ' + fmt(endCash);
-            document.getElementById('sum-runway').textContent = endCash > 0 ? '18+ mo' : Math.round(Math.abs(endCash / avgBurn)) + ' mo';
-            
-            // Metrics
-            document.getElementById('m-revenue').textContent = 'AED ' + fmt(y1Rev);
-            document.getElementById('m-units').textContent = endUnits;
-            document.getElementById('m-ebitda').textContent = 'AED ' + fmt(y1EBITDA);
-            document.getElementById('m-em').textContent = fmtPct(ebitdaMargin);
-            document.getElementById('m-gm').textContent = fmtPct(grossMargin);
-            document.getElementById('ebitda-card').className = 'metric-card ' + (y1EBITDA > 0 ? 'positive' : 'negative');
-            
+            document.getElementById('sum-runway').textContent = endCash > 0 ? '18+ mo' : Math.ceil(Math.abs(endCash / avgBurn)) + ' mo';
+
+            // Key Ratios
+            updateRatio('ratio-ltv', ltvCacRatio.toFixed(1) + 'x', ltvCacRatio >= 3 ? 'success' : ltvCacRatio >= 2 ? 'warning' : 'danger', Math.min(ltvCacRatio / 5 * 100, 100));
+            updateRatio('ratio-payback', paybackMonths.toFixed(1) + ' mo', paybackMonths <= 12 ? 'success' : paybackMonths <= 18 ? 'warning' : 'danger', Math.min((1 - paybackMonths / 24) * 100, 100));
+            updateRatio('ratio-gm', fmtPct(grossMargin), grossMargin >= 0.6 ? 'success' : grossMargin >= 0.4 ? 'warning' : 'danger', grossMargin * 100);
+            updateRatio('ratio-rule40', Math.round(rule40) + '%', rule40 >= 40 ? 'success' : rule40 >= 20 ? 'warning' : 'danger', Math.min(rule40 / 100 * 100, 100));
+
+            document.getElementById('ratio-ltv-value').textContent = ltvCacRatio.toFixed(1) + 'x';
+            document.getElementById('ratio-payback-value').textContent = paybackMonths.toFixed(1) + ' mo';
+            document.getElementById('ratio-gm-value').textContent = fmtPct(grossMargin);
+            document.getElementById('ratio-rule40-value').textContent = Math.round(rule40) + '%';
+
+            // Milestones
+            const m3Units = current[2]?.netUnits || 0, m6Units = current[5]?.netUnits || 0, m9Units = current[8]?.netUnits || 0, m12Units = endUnits;
+            document.getElementById('ms1-target').textContent = current[2]?.netUnits + ' units';
+            document.getElementById('ms2-target').textContent = m6Units + ' units';
+            document.getElementById('ms3-target').textContent = m9Units + ' units';
+            document.getElementById('ms4-target').textContent = m12Units + ' units';
+            updateMilestone('milestone-1', m3Units, 20, 10);
+            updateMilestone('milestone-2', m6Units, 200, 100);
+            updateMilestone('milestone-3', m9Units, 400, 200);
+            updateMilestone('milestone-4', m12Units, 600, 350);
+
             // Growth
             document.getElementById('projected-m12').textContent = endUnits;
             document.getElementById('projected-m1-new').textContent = current[0].newUnits;
             document.getElementById('projected-m12-new').textContent = current[11].newUnits;
-            
+
             // Unit Economics
             const avgLaborCostPerUnit = y1Labor / sum(current, 'netUnits');
             const fixedPerUnit = (derived.baseFixedCosts * 12) / sum(current, 'netUnits');
-            const gpPerUnit = currentPrice - avgLaborCostPerUnit;
-            const cmPerUnit = gpPerUnit - fixedPerUnit;
             document.getElementById('ue-revenue').textContent = 'AED ' + currentPrice;
             document.getElementById('ue-labor').textContent = '– AED ' + Math.round(avgLaborCostPerUnit);
-            document.getElementById('ue-gp').textContent = 'AED ' + Math.round(gpPerUnit);
+            document.getElementById('ue-gp').textContent = 'AED ' + Math.round(currentPrice - avgLaborCostPerUnit);
             document.getElementById('ue-fixed').textContent = '– AED ' + Math.round(fixedPerUnit);
-            document.getElementById('ue-cm').textContent = 'AED ' + Math.round(cmPerUnit);
-            
+            document.getElementById('ue-cm').textContent = 'AED ' + Math.round(currentPrice - avgLaborCostPerUnit - fixedPerUnit);
+
             // Cash
             document.getElementById('cash-end').textContent = 'AED ' + fmt(endCash);
             document.getElementById('cash-burn').textContent = 'AED ' + fmt(avgBurn);
             document.getElementById('cash-low').textContent = 'AED ' + fmt(lowestCash);
-            document.getElementById('cash-be').textContent = beText;
+            document.getElementById('cash-funding').textContent = 'AED ' + fmt(peakCashNeed + 30000);
             document.getElementById('cash-runway').textContent = endCash > 0 ? '18+ months' : 'Needs funding';
-            
-            // Table
-            document.getElementById('table-price').textContent = currentPrice;
-            [{ key: 'hybrid', data: hybrid }, { key: 'gig', data: gig }, { key: 'fte', data: fte }].forEach(m => {
-                const d = m.data;
-                const rev = sum(d, 'revenue'), labor = sum(d, 'laborCost'), gp = sum(d, 'grossProfit'), ebitda = sum(d, 'ebitda'), be = findBE(d);
-                document.getElementById(`t-${m.key}-rev`).textContent = 'AED ' + fmt(rev);
-                document.getElementById(`t-${m.key}-labor`).textContent = 'AED ' + fmt(labor);
-                document.getElementById(`t-${m.key}-gm`).textContent = fmtPct(gp / rev);
-                document.getElementById(`t-${m.key}-ebitda`).textContent = 'AED ' + fmt(ebitda);
-                document.getElementById(`t-${m.key}-be`).textContent = be ? 'M' + be : '—';
+
+            // P&L Table
+            updatePnLTable(current);
+
+            // Model Comparison
+            [{ k: 'hybrid', d: hybrid }, { k: 'gig', d: gig }, { k: 'fte', d: fte }].forEach(m => {
+                const r = sum(m.d, 'revenue'), g = sum(m.d, 'grossProfit'), e = sum(m.d, 'ebitda'), b = findBE(m.d);
+                document.getElementById(`t-${m.k}-rev`).textContent = 'AED ' + fmt(r);
+                document.getElementById(`t-${m.k}-ebitda`).textContent = 'AED ' + fmt(e);
+                document.getElementById(`t-${m.k}-gm`).textContent = fmtPct(g / r);
+                document.getElementById(`t-${m.k}-be`).textContent = b ? 'M' + b : '—';
             });
-            const fteLab = sum(fte, 'laborCost');
-            document.getElementById('t-hybrid-save').textContent = Math.round((1 - sum(hybrid, 'laborCost') / fteLab) * 100) + '%';
-            document.getElementById('t-gig-save').textContent = Math.round((1 - sum(gig, 'laborCost') / fteLab) * 100) + '%';
-            
-            // Sensitivity
-            const lowPrice = generateProjection(249, currentModel, derived);
-            const lowBE = findBE(lowPrice);
-            document.getElementById('sens-price').innerHTML = `Break-even extends to <strong>Month ${lowBE || '—'}</strong>. Y1 EBITDA drops to <strong>AED ${fmt(sum(lowPrice, 'ebitda'))}</strong>. ${sum(lowPrice, 'ebitda') > 0 ? 'Still profitable, but margin shrinks.' : 'Business becomes unprofitable.'}`;
-            
-            updateCharts(current, hybrid, gig, fte);
-            
-            // Update scenario comparison table
+
+            // Scenario Comparison
             updateScenarioComparison();
+
+            // Charts
+            updateCharts(current, hybrid, gig, fte);
         }
-        
+
+        function updateRatio(id, value, status, barWidth) {
+            const el = document.getElementById(id);
+            el.className = 'ratio-card ' + status;
+            el.querySelector('.ratio-bar-fill').style.width = barWidth + '%';
+        }
+
+        function updateMilestone(id, actual, target, kill) {
+            const el = document.getElementById(id);
+            if (actual >= target) el.className = 'milestone on-track';
+            else if (actual >= kill) el.className = 'milestone at-risk';
+            else el.className = 'milestone off-track';
+        }
+
+        function updatePnLTable(data) {
+            const sum = (a, k) => a.reduce((x, y) => x + y[k], 0);
+            const fmt = n => n >= 0 ? Math.round(n/1000) + 'K' : '-' + Math.round(Math.abs(n)/1000) + 'K';
+            const rows = [
+                { label: 'Units', key: 'netUnits', format: v => v },
+                { label: 'Revenue', key: 'revenue', format: fmt },
+                { label: 'Labor Cost', key: 'laborCost', format: v => '-' + fmt(v), cls: 'negative' },
+                { label: 'Gross Profit', key: 'grossProfit', format: fmt, cls: 'subtotal-row' },
+                { label: 'Fixed Costs', key: 'fixedCosts', format: v => '-' + fmt(v), cls: 'negative' },
+                { label: 'EBITDA', key: 'ebitda', format: fmt, cls: 'total-row' },
+                { label: 'Cum. Cash Flow', key: 'cumCashFlow', format: fmt }
+            ];
+            let html = '';
+            rows.forEach(r => {
+                html += `<tr class="${r.cls || ''}"><td class="row-label">${r.label}</td>`;
+                data.forEach(d => {
+                    const v = d[r.key];
+                    const cls = r.key === 'ebitda' || r.key === 'cumCashFlow' ? (v >= 0 ? 'positive' : 'negative') : '';
+                    html += `<td class="${cls}">${r.format(v)}</td>`;
+                });
+                const total = sum(data, r.key);
+                const tcls = r.key === 'ebitda' || r.key === 'cumCashFlow' ? (total >= 0 ? 'positive' : 'negative') : '';
+                html += `<td class="${tcls}"><strong>${r.key === 'netUnits' ? data[11].netUnits : r.format(total)}</strong></td></tr>`;
+            });
+            document.getElementById('pnl-body').innerHTML = html;
+        }
+
         function updateScenarioComparison() {
-            const derived = calculateDerived();
-            
-            // Calculate each scenario
             Object.keys(scenarios).forEach(key => {
                 const s = scenarios[key];
-                
-                // Temporarily apply scenario assumptions
-                const originalAssumptions = { ...assumptions };
-                Object.keys(s.assumptions).forEach(k => {
-                    if (k !== 'price' && assumptions.hasOwnProperty(k)) {
-                        assumptions[k] = s.assumptions[k];
-                    }
-                });
-                
-                const scenarioDerived = calculateDerived();
-                const data = generateProjection(s.assumptions.price, currentModel, scenarioDerived);
-                
-                // Restore original
-                Object.keys(originalAssumptions).forEach(k => {
-                    assumptions[k] = originalAssumptions[k];
-                });
-                
-                const sum = (arr, k) => arr.reduce((a, b) => a + b[k], 0);
-                const findBE = (arr) => { const m = arr.findIndex(d => d.cumCashFlow > 0); return m > -1 ? m + 1 : null; };
-                const fmt = (n) => {
-                    if (Math.abs(n) >= 1000000) return (n/1000000).toFixed(1) + 'M';
-                    return Math.round(n/1000) + 'K';
-                };
-                
-                const y1Rev = sum(data, 'revenue');
-                const y1EBITDA = sum(data, 'ebitda');
-                const endUnits = data[11].netUnits;
-                const be = findBE(data);
-                const lowestCash = Math.min(...data.map(d => d.cumCashFlow));
-                const peakCashNeed = Math.abs(Math.min(0, lowestCash));
-                
-                // Update table cells
+                const origA = { ...assumptions };
+                Object.keys(s.assumptions).forEach(k => { if (k !== 'price' && assumptions.hasOwnProperty(k)) assumptions[k] = s.assumptions[k]; });
+                const d = generateProjection(s.assumptions.price, currentModel, calculateDerived());
+                Object.keys(origA).forEach(k => assumptions[k] = origA[k]);
+                const sum = (a, k) => a.reduce((x, y) => x + y[k], 0);
+                const findBE = a => { const m = a.findIndex(x => x.cumCashFlow > 0); return m > -1 ? m + 1 : null; };
+                const fmt = n => Math.abs(n) >= 1e6 ? (n/1e6).toFixed(1) + 'M' : Math.round(n/1e3) + 'K';
+                const y1EBITDA = sum(d, 'ebitda'), be = findBE(d), low = Math.min(...d.map(x => x.cumCashFlow));
                 document.getElementById(`sc-${key}-price`).textContent = 'AED ' + s.assumptions.price;
-                document.getElementById(`sc-${key}-units`).textContent = endUnits.toLocaleString();
-                document.getElementById(`sc-${key}-rev`).textContent = 'AED ' + fmt(y1Rev);
-                
-                const ebitdaEl = document.getElementById(`sc-${key}-ebitda`);
-                ebitdaEl.textContent = (y1EBITDA < 0 ? '-' : '') + 'AED ' + fmt(Math.abs(y1EBITDA));
-                ebitdaEl.className = 'value ' + (y1EBITDA >= 0 ? 'positive' : 'negative');
-                
+                document.getElementById(`sc-${key}-units`).textContent = d[11].netUnits.toLocaleString();
+                document.getElementById(`sc-${key}-rev`).textContent = 'AED ' + fmt(sum(d, 'revenue'));
+                const eEl = document.getElementById(`sc-${key}-ebitda`);
+                eEl.textContent = (y1EBITDA < 0 ? '-' : '') + 'AED ' + fmt(Math.abs(y1EBITDA));
+                eEl.className = 'value ' + (y1EBITDA >= 0 ? 'positive' : 'negative');
                 document.getElementById(`sc-${key}-be`).textContent = be ? `Month ${be}` : 'Never';
-                
-                const cashEl = document.getElementById(`sc-${key}-cash`);
-                cashEl.textContent = 'AED ' + fmt(peakCashNeed);
-                cashEl.className = 'value ' + (peakCashNeed > 100000 ? 'negative' : '');
+                document.getElementById(`sc-${key}-cash`).textContent = 'AED ' + fmt(Math.abs(Math.min(0, low)));
             });
         }
-        
+
         function updateCharts(current, hybrid, gig, fte) {
             const labels = ['M1','M2','M3','M4','M5','M6','M7','M8','M9','M10','M11','M12'];
-            const baseConfig = {
-                responsive: true, maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
-                scales: {
-                    x: { grid: { color: '#eef1f4' }, ticks: { color: '#9ca3af', font: { family: 'Inter', size: 11 } } },
-                    y: { grid: { color: '#eef1f4' }, ticks: { color: '#9ca3af', font: { family: 'Inter', size: 11 }, callback: v => (v/1000).toFixed(0) + 'K' } }
-                }
-            };
-            
-            // EBITDA Chart - color coded (lime for positive, red for negative)
+            const cfg = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { color: '#eef1f4' }, ticks: { color: '#9ca3af', font: { size: 10 } } }, y: { grid: { color: '#eef1f4' }, ticks: { color: '#9ca3af', font: { size: 10 }, callback: v => (v/1000).toFixed(0) + 'K' } } } };
             if (ebitdaChart) ebitdaChart.destroy();
-            ebitdaChart = new Chart(document.getElementById('ebitdaChart'), {
-                type: 'bar',
-                data: { 
-                    labels, 
-                    datasets: [{ 
-                        data: current.map(d => d.ebitda), 
-                        backgroundColor: current.map(d => d.ebitda >= 0 ? 'rgba(222, 255, 154, 0.7)' : 'rgba(239, 68, 68, 0.3)'),
-                        borderColor: current.map(d => d.ebitda >= 0 ? '#deff9a' : '#ef4444'),
-                        borderWidth: 2, 
-                        borderRadius: 6 
-                    }] 
-                },
-                options: baseConfig
-            });
-            
-            // Cash Flow Chart
+            ebitdaChart = new Chart(document.getElementById('ebitdaChart'), { type: 'bar', data: { labels, datasets: [{ data: current.map(d => d.ebitda), backgroundColor: current.map(d => d.ebitda >= 0 ? 'rgba(222,255,154,0.7)' : 'rgba(239,68,68,0.3)'), borderColor: current.map(d => d.ebitda >= 0 ? '#deff9a' : '#ef4444'), borderWidth: 2, borderRadius: 4 }] }, options: cfg });
             if (cashChart) cashChart.destroy();
-            cashChart = new Chart(document.getElementById('cashChart'), {
-                type: 'line',
-                data: {
-                    labels,
-                    datasets: [
-                        { label: 'Hybrid', data: hybrid.map(d => d.cumCashFlow), borderColor: '#deff9a', backgroundColor: 'rgba(222,255,154,0.15)', borderWidth: 3, fill: true, tension: 0.4, pointRadius: 0 },
-                        { label: 'Gig', data: gig.map(d => d.cumCashFlow), borderColor: '#a78bfa', borderWidth: 2, borderDash: [5,5], tension: 0.4, pointRadius: 0, fill: false },
-                        { label: 'FTE', data: fte.map(d => d.cumCashFlow), borderColor: '#f472b6', borderWidth: 2, borderDash: [5,5], tension: 0.4, pointRadius: 0, fill: false }
-                    ]
-                },
-                options: { ...baseConfig, plugins: { legend: { display: true, position: 'top', labels: { color: '#6b7280', usePointStyle: true, pointStyle: 'line', font: { family: 'Inter', size: 11 } } } } }
-            });
+            cashChart = new Chart(document.getElementById('cashChart'), { type: 'line', data: { labels, datasets: [{ label: 'Hybrid', data: hybrid.map(d => d.cumCashFlow), borderColor: '#deff9a', backgroundColor: 'rgba(222,255,154,0.1)', borderWidth: 3, fill: true, tension: 0.4, pointRadius: 0 }, { label: 'Gig', data: gig.map(d => d.cumCashFlow), borderColor: '#a78bfa', borderWidth: 2, borderDash: [4,4], tension: 0.4, pointRadius: 0, fill: false }, { label: 'FTE', data: fte.map(d => d.cumCashFlow), borderColor: '#f472b6', borderWidth: 2, borderDash: [4,4], tension: 0.4, pointRadius: 0, fill: false }] }, options: { ...cfg, plugins: { legend: { display: true, position: 'top', labels: { color: '#6b7280', usePointStyle: true, pointStyle: 'line', font: { size: 10 } } } } } });
         }
-        
+
+        function exportCSV() {
+            const table = document.getElementById('pnl-table');
+            let csv = [];
+            for (let row of table.rows) {
+                let cols = [];
+                for (let cell of row.cells) cols.push('"' + cell.innerText.replace(/"/g, '""') + '"');
+                csv.push(cols.join(','));
+            }
+            const blob = new Blob([csv.join('\n')], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = 'lucas-financial-projection.csv'; a.click();
+            URL.revokeObjectURL(url);
+        }
+
         checkSession();
     </script>
 </body>
