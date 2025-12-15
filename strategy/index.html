@@ -539,6 +539,13 @@
             transform: scale(1.15);
         }
         
+        .slider-hint {
+            font-size: 10px;
+            color: var(--text-tertiary);
+            margin-top: 6px;
+            font-style: italic;
+        }
+        
         /* Growth Summary */
         .growth-summary {
             margin-top: 14px;
@@ -857,15 +864,37 @@
             font-size: 12px;
             font-weight: 700;
             color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        
+        .milestone-projected {
+            font-size: 13px;
+            color: var(--text-secondary);
             margin-bottom: 2px;
         }
         
-        .milestone-target {
+        .milestone-projected strong {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 14px;
             font-weight: 700;
             color: var(--lime-text);
-            margin-bottom: 4px;
+        }
+        
+        .milestone.at-risk .milestone-projected strong {
+            color: var(--warning);
+        }
+        
+        .milestone.off-track .milestone-projected strong {
+            color: var(--negative);
+        }
+        
+        .milestone-vs {
+            font-size: 11px;
+            color: var(--text-tertiary);
+            margin-bottom: 2px;
+        }
+        
+        .milestone-vs span {
+            font-family: 'JetBrains Mono', monospace;
         }
         
         .milestone-kill {
@@ -1385,7 +1414,7 @@
                     <div class="milestones-header">
                         <div>
                             <div class="milestones-title">🎯 Milestones & Kill Criteria</div>
-                            <div class="milestones-subtitle">Decision points to validate or pivot</div>
+                            <div class="milestones-subtitle">Projected vs Target — status updates with your assumptions</div>
                         </div>
                     </div>
                     <div class="milestone-track">
@@ -1393,15 +1422,17 @@
                             <div class="milestone-node">D90</div>
                             <div class="milestone-content">
                                 <div class="milestone-label">Day 90</div>
-                                <div class="milestone-target" id="ms1-target">20 units</div>
-                                <div class="milestone-kill">Kill: <strong id="ms1-kill">&lt; 10</strong></div>
+                                <div class="milestone-projected">Projected: <strong id="ms1-target">70</strong></div>
+                                <div class="milestone-vs">Target: <span id="ms1-base">70</span></div>
+                                <div class="milestone-kill">Kill: <strong id="ms1-kill">&lt; 35</strong></div>
                             </div>
                         </div>
                         <div class="milestone on-track" id="milestone-2">
                             <div class="milestone-node">M6</div>
                             <div class="milestone-content">
                                 <div class="milestone-label">Month 6</div>
-                                <div class="milestone-target" id="ms2-target">200 units</div>
+                                <div class="milestone-projected">Projected: <strong id="ms2-target">200</strong></div>
+                                <div class="milestone-vs">Target: <span id="ms2-base">200</span></div>
                                 <div class="milestone-kill">Kill: <strong id="ms2-kill">&lt; 100</strong></div>
                             </div>
                         </div>
@@ -1409,7 +1440,8 @@
                             <div class="milestone-node">M9</div>
                             <div class="milestone-content">
                                 <div class="milestone-label">Month 9</div>
-                                <div class="milestone-target" id="ms3-target">400 units</div>
+                                <div class="milestone-projected">Projected: <strong id="ms3-target">400</strong></div>
+                                <div class="milestone-vs">Target: <span id="ms3-base">400</span></div>
                                 <div class="milestone-kill">Kill: <strong id="ms3-kill">&lt; 200</strong></div>
                             </div>
                         </div>
@@ -1417,8 +1449,9 @@
                             <div class="milestone-node">M12</div>
                             <div class="milestone-content">
                                 <div class="milestone-label">Month 12</div>
-                                <div class="milestone-target" id="ms4-target">600 units</div>
-                                <div class="milestone-kill">Kill: <strong id="ms4-kill">&lt; 350</strong></div>
+                                <div class="milestone-projected">Projected: <strong id="ms4-target">600</strong></div>
+                                <div class="milestone-vs">Target: <span id="ms4-base">600</span></div>
+                                <div class="milestone-kill">Kill: <strong id="ms4-kill">&lt; 300</strong></div>
                             </div>
                         </div>
                     </div>
@@ -1781,6 +1814,14 @@
                     </div>
                     <div class="slider-group">
                         <div class="slider-header">
+                            <label>Team Salaries</label>
+                            <span class="slider-value" id="val-team">AED 0</span>
+                        </div>
+                        <input type="range" id="slider-team" min="0" max="50000" step="1000" value="0">
+                        <div class="slider-hint">Ops, sales, admin (excl. inspectors)</div>
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header">
                             <label>Marketing</label>
                             <span class="slider-value" id="val-marketing">AED 5,000</span>
                         </div>
@@ -1818,17 +1859,17 @@
             bear: {
                 name: '🐻 Bear Case',
                 description: 'Conservative: Lower price, slower growth, higher churn.',
-                assumptions: { price: 249, m1Units: 10, growthRate: 12, churnRate: 5, gigPayoutPerInspection: 120, gigPlatformFee: 10, fteBaseSalary: 5000, phase2FteCount: 1, phase1EndMonth: 6, founderSalary: 18000, marketing: 8000, office: 7000, techBase: 6000 }
+                assumptions: { price: 249, m1Units: 10, growthRate: 12, churnRate: 5, gigPayoutPerInspection: 120, gigPlatformFee: 10, fteBaseSalary: 5000, phase2FteCount: 1, phase1EndMonth: 6, founderSalary: 18000, teamSalaries: 5000, marketing: 8000, office: 7000, techBase: 6000 }
             },
             base: {
                 name: '📊 Base Case',
                 description: 'Realistic projection based on market research.',
-                assumptions: { price: 350, m1Units: 20, growthRate: 20, churnRate: 3, gigPayoutPerInspection: 100, gigPlatformFee: 8, fteBaseSalary: 4500, phase2FteCount: 1, phase1EndMonth: 6, founderSalary: 15000, marketing: 5000, office: 6000, techBase: 5500 }
+                assumptions: { price: 350, m1Units: 20, growthRate: 20, churnRate: 3, gigPayoutPerInspection: 100, gigPlatformFee: 8, fteBaseSalary: 4500, phase2FteCount: 1, phase1EndMonth: 6, founderSalary: 15000, teamSalaries: 0, marketing: 5000, office: 6000, techBase: 5500 }
             },
             bull: {
                 name: '🐂 Bull Case',
                 description: 'Optimistic: Premium pricing, strong growth, low churn.',
-                assumptions: { price: 399, m1Units: 35, growthRate: 28, churnRate: 2, gigPayoutPerInspection: 90, gigPlatformFee: 6, fteBaseSalary: 4500, phase2FteCount: 2, phase1EndMonth: 4, founderSalary: 12000, marketing: 3000, office: 5000, techBase: 5000 }
+                assumptions: { price: 399, m1Units: 35, growthRate: 28, churnRate: 2, gigPayoutPerInspection: 90, gigPlatformFee: 6, fteBaseSalary: 4500, phase2FteCount: 2, phase1EndMonth: 4, founderSalary: 12000, teamSalaries: 8000, marketing: 3000, office: 5000, techBase: 5000 }
             }
         };
 
@@ -1840,7 +1881,7 @@
             fteGratuityPercent: 4.17, fteEquipment: 200, fteBikeLease: 1500, fteFuel: 300, fteMaintenance: 200,
             gigPayoutPerInspection: 100, gigPlatformFee: 8,
             inspectionTime: 45, travelTime: 30, workingHours: 8, fteEfficiency: 70, workingDays: 22,
-            techBase: 5500, storagePerK: 500, founderSalary: 15000, office: 6000, insurance: 2000, marketing: 5000,
+            techBase: 5500, storagePerK: 500, founderSalary: 15000, teamSalaries: 0, office: 6000, insurance: 2000, marketing: 5000,
             churnRate: 3, phase1EndMonth: 6, phase2FteCount: 1, m1Units: 20, growthRate: 20,
             cacPerUnit: 250
         };
@@ -1884,7 +1925,7 @@
             const fteInspectionsPerDay = Math.round((a.workingHours * 60 / totalTime) * (a.fteEfficiency / 100));
             const fteInspectionsPerMonth = fteInspectionsPerDay * a.workingDays;
             const gigCostPerInspection = a.gigPayoutPerInspection + a.gigPlatformFee + (a.storagePerK / 1000);
-            const baseFixedCosts = a.techBase + a.founderSalary + a.office + a.insurance + a.marketing;
+            const baseFixedCosts = a.techBase + a.founderSalary + a.teamSalaries + a.office + a.insurance + a.marketing;
             return { fteLoadedMonthlyCost, fteInspectionsPerMonth, gigCostPerInspection, baseFixedCosts };
         }
 
@@ -1934,6 +1975,7 @@
             updateSliderUI('slider-phase2-ftes', 'val-phase2-ftes', assumptions.phase2FteCount, '');
             updateSliderUI('slider-phase1', 'val-phase1', assumptions.phase1EndMonth, '', ' mo');
             updateSliderUI('slider-founder', 'val-founder', assumptions.founderSalary, 'AED ', true);
+            updateSliderUI('slider-team', 'val-team', assumptions.teamSalaries, 'AED ', true);
             updateSliderUI('slider-marketing', 'val-marketing', assumptions.marketing, 'AED ', true);
             updateSliderUI('slider-office', 'val-office', assumptions.office, 'AED ', true);
             updateSliderUI('slider-tech', 'val-tech', assumptions.techBase, 'AED ', true);
@@ -1961,6 +2003,7 @@
             setupSlider('slider-growth-rate', 'val-growth-rate', 'growthRate', '', '%');
             setupSlider('slider-churn', 'val-churn', 'churnRate', '', '%');
             setupSlider('slider-founder', 'val-founder', 'founderSalary', 'AED ', true);
+            setupSlider('slider-team', 'val-team', 'teamSalaries', 'AED ', true);
             setupSlider('slider-marketing', 'val-marketing', 'marketing', 'AED ', true);
             setupSlider('slider-office', 'val-office', 'office', 'AED ', true);
             setupSlider('slider-tech', 'val-tech', 'techBase', 'AED ', true);
@@ -2023,16 +2066,62 @@
             document.getElementById('ratio-gm-value').textContent = fmtPct(grossMargin);
             document.getElementById('ratio-rule40-value').textContent = Math.round(rule40) + '%';
 
-            // Milestones
-            const m3Units = current[2]?.netUnits || 0, m6Units = current[5]?.netUnits || 0, m9Units = current[8]?.netUnits || 0, m12Units = endUnits;
-            document.getElementById('ms1-target').textContent = current[2]?.netUnits + ' units';
-            document.getElementById('ms2-target').textContent = m6Units + ' units';
-            document.getElementById('ms3-target').textContent = m9Units + ' units';
-            document.getElementById('ms4-target').textContent = m12Units + ' units';
-            updateMilestone('milestone-1', m3Units, 20, 10);
-            updateMilestone('milestone-2', m6Units, 200, 100);
-            updateMilestone('milestone-3', m9Units, 400, 200);
-            updateMilestone('milestone-4', m12Units, 600, 350);
+            // Milestones - Dynamic based on Base Case targets
+            // Temporarily apply Base Case to get targets
+            const origAssumptions = { ...assumptions };
+            Object.keys(scenarios.base.assumptions).forEach(k => { 
+                if (k !== 'price' && assumptions.hasOwnProperty(k)) assumptions[k] = scenarios.base.assumptions[k]; 
+            });
+            const baseDerived = calculateDerived();
+            const baseProjection = generateProjection(scenarios.base.assumptions.price, currentModel, baseDerived);
+            // Restore original assumptions
+            Object.keys(origAssumptions).forEach(k => assumptions[k] = origAssumptions[k]);
+            
+            // Targets = Base Case projections (what good looks like)
+            const targets = {
+                d90: baseProjection[2]?.netUnits || 70,   // Month 3
+                m6: baseProjection[5]?.netUnits || 200,
+                m9: baseProjection[8]?.netUnits || 400,
+                m12: baseProjection[11]?.netUnits || 600
+            };
+            
+            // Kill criteria = 50% of target (minimum viable)
+            const kills = {
+                d90: Math.round(targets.d90 * 0.5),
+                m6: Math.round(targets.m6 * 0.5),
+                m9: Math.round(targets.m9 * 0.5),
+                m12: Math.round(targets.m12 * 0.5)
+            };
+            
+            // Current scenario projections (what you're actually tracking toward)
+            const actuals = {
+                d90: current[2]?.netUnits || 0,
+                m6: current[5]?.netUnits || 0,
+                m9: current[8]?.netUnits || 0,
+                m12: current[11]?.netUnits || 0
+            };
+            
+            // Update UI - show targets from Base, actuals from current scenario
+            document.getElementById('ms1-target').textContent = actuals.d90;
+            document.getElementById('ms2-target').textContent = actuals.m6;
+            document.getElementById('ms3-target').textContent = actuals.m9;
+            document.getElementById('ms4-target').textContent = actuals.m12;
+            
+            document.getElementById('ms1-base').textContent = targets.d90;
+            document.getElementById('ms2-base').textContent = targets.m6;
+            document.getElementById('ms3-base').textContent = targets.m9;
+            document.getElementById('ms4-base').textContent = targets.m12;
+            
+            document.getElementById('ms1-kill').textContent = '< ' + kills.d90;
+            document.getElementById('ms2-kill').textContent = '< ' + kills.m6;
+            document.getElementById('ms3-kill').textContent = '< ' + kills.m9;
+            document.getElementById('ms4-kill').textContent = '< ' + kills.m12;
+            
+            // Status: compare current scenario projections against Base Case targets
+            updateMilestone('milestone-1', actuals.d90, targets.d90, kills.d90);
+            updateMilestone('milestone-2', actuals.m6, targets.m6, kills.m6);
+            updateMilestone('milestone-3', actuals.m9, targets.m9, kills.m9);
+            updateMilestone('milestone-4', actuals.m12, targets.m12, kills.m12);
 
             // Growth
             document.getElementById('projected-m12').textContent = endUnits;
