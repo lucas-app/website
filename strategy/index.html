@@ -2378,6 +2378,225 @@
                 display: none;
             }
         }
+
+        /* Monte Carlo Simulation Styles */
+        .monte-carlo-section {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--gray-200);
+        }
+        .monte-carlo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .monte-carlo-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+        .monte-carlo-subtitle {
+            font-size: 12px;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+        .mc-run-btn {
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        .mc-run-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(26, 54, 93, 0.3);
+        }
+        .mc-run-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .mc-results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .mc-result-card {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+        .mc-result-card.highlight {
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.05), rgba(44, 82, 130, 0.08));
+            border: 1px solid rgba(26, 54, 93, 0.15);
+        }
+        .mc-result-label {
+            font-size: 11px;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .mc-result-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+        .mc-result-detail {
+            font-size: 11px;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+        .mc-charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .mc-chart-container {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .mc-chart-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 12px;
+        }
+        .mc-histogram {
+            height: 180px;
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            padding: 0 4px;
+        }
+        .mc-bar {
+            flex: 1;
+            background: var(--brand-primary);
+            border-radius: 2px 2px 0 0;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+            min-width: 8px;
+        }
+        .mc-bar:hover {
+            opacity: 1;
+        }
+        .mc-bar.negative {
+            background: var(--red-500);
+        }
+        .mc-bar.highlight {
+            background: var(--green-500);
+            opacity: 1;
+        }
+        .mc-axis {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 10px;
+            color: var(--gray-500);
+        }
+        .mc-percentiles {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--gray-200);
+        }
+        .mc-percentile {
+            text-align: center;
+        }
+        .mc-percentile-label {
+            font-size: 10px;
+            color: var(--gray-500);
+        }
+        .mc-percentile-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+        .mc-probability-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .mc-prob-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .mc-prob-label {
+            font-size: 12px;
+            color: var(--gray-600);
+            width: 140px;
+            flex-shrink: 0;
+        }
+        .mc-prob-bar-bg {
+            flex: 1;
+            height: 24px;
+            background: var(--gray-200);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        .mc-prob-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        .mc-prob-bar-fill.high {
+            background: linear-gradient(90deg, var(--green-400), var(--green-500));
+        }
+        .mc-prob-bar-fill.medium {
+            background: linear-gradient(90deg, var(--yellow-400), var(--yellow-500));
+        }
+        .mc-prob-bar-fill.low {
+            background: linear-gradient(90deg, var(--red-400), var(--red-500));
+        }
+        .mc-prob-value {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-700);
+            width: 50px;
+            text-align: right;
+        }
+        .mc-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            color: var(--gray-500);
+        }
+        .mc-spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid var(--gray-200);
+            border-top-color: var(--brand-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 12px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        @media (max-width: 768px) {
+            .mc-results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .mc-charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -3049,6 +3268,115 @@
                 </div>
             </div>
 
+            <!-- Monte Carlo Simulation -->
+            <div class="monte-carlo-section" id="monte-carlo">
+                <div class="monte-carlo-header">
+                    <div>
+                        <div class="monte-carlo-title">🎲 Monte Carlo Simulation</div>
+                        <div class="monte-carlo-subtitle">10,000 iterations with randomized assumptions to model outcome probability distributions</div>
+                    </div>
+                    <button class="mc-run-btn" id="mc-run-btn" onclick="runMonteCarloSimulation()">
+                        <span>▶</span> Run Simulation
+                    </button>
+                </div>
+                
+                <div id="mc-loading" class="mc-loading" style="display: none;">
+                    <div class="mc-spinner"></div>
+                    <span>Running 10,000 simulations...</span>
+                </div>
+                
+                <div id="mc-results" style="display: none;">
+                    <!-- Key Probability Metrics -->
+                    <div class="mc-results-grid">
+                        <div class="mc-result-card highlight">
+                            <div class="mc-result-label">Probability of Profit (Y1)</div>
+                            <div class="mc-result-value" id="mc-prob-profit">—</div>
+                            <div class="mc-result-detail">EBITDA > 0</div>
+                        </div>
+                        <div class="mc-result-card">
+                            <div class="mc-result-label">Expected Y1 EBITDA</div>
+                            <div class="mc-result-value" id="mc-expected-ebitda">—</div>
+                            <div class="mc-result-detail" id="mc-ebitda-range">P10-P90 range</div>
+                        </div>
+                        <div class="mc-result-card">
+                            <div class="mc-result-label">Expected Break-even</div>
+                            <div class="mc-result-value" id="mc-expected-be">—</div>
+                            <div class="mc-result-detail" id="mc-be-prob">% achieve in Y1</div>
+                        </div>
+                        <div class="mc-result-card highlight">
+                            <div class="mc-result-label">Funding Confidence</div>
+                            <div class="mc-result-value" id="mc-funding-conf">—</div>
+                            <div class="mc-result-detail">AED 85K sufficient</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Distribution Charts -->
+                    <div class="mc-charts-grid">
+                        <div class="mc-chart-container">
+                            <div class="mc-chart-title">Y1 EBITDA Distribution</div>
+                            <div class="mc-histogram" id="mc-ebitda-histogram"></div>
+                            <div class="mc-axis">
+                                <span id="mc-ebitda-min">-200K</span>
+                                <span>0</span>
+                                <span id="mc-ebitda-max">400K</span>
+                            </div>
+                            <div class="mc-percentiles">
+                                <div class="mc-percentile">
+                                    <div class="mc-percentile-label">P10 (Downside)</div>
+                                    <div class="mc-percentile-value" id="mc-ebitda-p10">—</div>
+                                </div>
+                                <div class="mc-percentile">
+                                    <div class="mc-percentile-label">P50 (Median)</div>
+                                    <div class="mc-percentile-value" id="mc-ebitda-p50">—</div>
+                                </div>
+                                <div class="mc-percentile">
+                                    <div class="mc-percentile-label">P90 (Upside)</div>
+                                    <div class="mc-percentile-value" id="mc-ebitda-p90">—</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mc-chart-container">
+                            <div class="mc-chart-title">Milestone Achievement Probability</div>
+                            <div class="mc-probability-bars">
+                                <div class="mc-prob-row">
+                                    <span class="mc-prob-label">Break-even in Y1</span>
+                                    <div class="mc-prob-bar-bg">
+                                        <div class="mc-prob-bar-fill" id="mc-prob-be-bar" style="width: 0%"></div>
+                                    </div>
+                                    <span class="mc-prob-value" id="mc-prob-be-val">—</span>
+                                </div>
+                                <div class="mc-prob-row">
+                                    <span class="mc-prob-label">200+ properties (Y1)</span>
+                                    <div class="mc-prob-bar-bg">
+                                        <div class="mc-prob-bar-fill" id="mc-prob-units-bar" style="width: 0%"></div>
+                                    </div>
+                                    <span class="mc-prob-value" id="mc-prob-units-val">—</span>
+                                </div>
+                                <div class="mc-prob-row">
+                                    <span class="mc-prob-label">Funding sufficient</span>
+                                    <div class="mc-prob-bar-bg">
+                                        <div class="mc-prob-bar-fill" id="mc-prob-fund-bar" style="width: 0%"></div>
+                                    </div>
+                                    <span class="mc-prob-value" id="mc-prob-fund-val">—</span>
+                                </div>
+                                <div class="mc-prob-row">
+                                    <span class="mc-prob-label">Y1 Revenue > 500K</span>
+                                    <div class="mc-prob-bar-bg">
+                                        <div class="mc-prob-bar-fill" id="mc-prob-rev-bar" style="width: 0%"></div>
+                                    </div>
+                                    <span class="mc-prob-value" id="mc-prob-rev-val">—</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="mc-placeholder" class="mc-loading">
+                    <span style="color: var(--gray-400);">Click "Run Simulation" to generate probability distributions</span>
+                </div>
+            </div>
+
             <!-- Scenario Comparison -->
             <div class="section">
                 <div class="section-header">
@@ -3543,6 +3871,200 @@
             const m6Data = data[5];
             const m6Surplus = m6Data?.ebitda || 0;
             document.getElementById('burn-rate').textContent = `AED ${fmt(monthlyBurn)} per month burn → ${m6Surplus >= 0 ? '+' : ''}AED ${fmt(m6Surplus)} @ M6`;
+        }
+        
+        // Monte Carlo Simulation
+        function runMonteCarloSimulation() {
+            const btn = document.getElementById('mc-run-btn');
+            const loading = document.getElementById('mc-loading');
+            const results = document.getElementById('mc-results');
+            const placeholder = document.getElementById('mc-placeholder');
+            
+            btn.disabled = true;
+            btn.innerHTML = '<span class="mc-spinner" style="width:16px;height:16px;margin-right:8px;"></span> Running...';
+            loading.style.display = 'flex';
+            results.style.display = 'none';
+            placeholder.style.display = 'none';
+            
+            // Run simulation async to allow UI update
+            setTimeout(() => {
+                const simResults = executeMonteCarloSimulation(10000);
+                displayMonteCarloResults(simResults);
+                
+                loading.style.display = 'none';
+                results.style.display = 'block';
+                btn.disabled = false;
+                btn.innerHTML = '<span>▶</span> Run Simulation';
+            }, 100);
+        }
+        
+        function executeMonteCarloSimulation(iterations) {
+            const baseAssumptions = JSON.parse(JSON.stringify(assumptions));
+            const results = {
+                ebitda: [],
+                revenue: [],
+                units: [],
+                breakEven: [],
+                fundingNeed: []
+            };
+            
+            // Define uncertainty ranges (relative standard deviations)
+            const uncertainty = {
+                price: { mean: baseAssumptions.price, std: baseAssumptions.price * 0.15 },
+                conversionRate: { mean: baseAssumptions.conversionRate, std: 12 },
+                churnRate: { mean: baseAssumptions.churnRate, std: 3 },
+                avgUnitsPerOperator: { mean: baseAssumptions.avgUnitsPerOperator, std: 5 },
+                pilotsPerMonth: { mean: baseAssumptions.pilotsPerMonth, std: 1.5 },
+                gigPayout: { mean: baseAssumptions.gigPayout, std: 15 }
+            };
+            
+            // Box-Muller transform for normal distribution
+            function randomNormal(mean, std) {
+                const u1 = Math.random();
+                const u2 = Math.random();
+                const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
+                return mean + z * std;
+            }
+            
+            // Clamp values to reasonable bounds
+            function clamp(val, min, max) {
+                return Math.max(min, Math.min(max, val));
+            }
+            
+            for (let i = 0; i < iterations; i++) {
+                // Sample random assumptions from distributions
+                const simAssumptions = {
+                    ...baseAssumptions,
+                    price: clamp(randomNormal(uncertainty.price.mean, uncertainty.price.std), 150, 500),
+                    conversionRate: clamp(randomNormal(uncertainty.conversionRate.mean, uncertainty.conversionRate.std), 20, 80),
+                    churnRate: clamp(randomNormal(uncertainty.churnRate.mean, uncertainty.churnRate.std), 2, 20),
+                    avgUnitsPerOperator: clamp(randomNormal(uncertainty.avgUnitsPerOperator.mean, uncertainty.avgUnitsPerOperator.std), 8, 40),
+                    pilotsPerMonth: clamp(randomNormal(uncertainty.pilotsPerMonth.mean, uncertainty.pilotsPerMonth.std), 1, 10),
+                    gigPayout: clamp(randomNormal(uncertainty.gigPayout.mean, uncertainty.gigPayout.std), 70, 150)
+                };
+                
+                // Run projection with sampled assumptions
+                const originalAssumptions = JSON.parse(JSON.stringify(assumptions));
+                Object.assign(assumptions, simAssumptions);
+                
+                const data = calculateProjection();
+                const y1EBITDA = sum(data, 'ebitda');
+                const y1Revenue = sum(data, 'revenue');
+                const endUnits = data[11]?.netUnits || 0;
+                
+                // Find break-even month
+                let breakEven = null;
+                for (let m = 0; m < 12; m++) {
+                    if (data[m]?.ebitda > 0) {
+                        breakEven = m + 1;
+                        break;
+                    }
+                }
+                
+                // Calculate funding need
+                const lowestCash = Math.min(...data.map(d => d.cumCash));
+                const peakDeficit = Math.abs(Math.min(0, lowestCash));
+                const fundingNeed = computeFundingNeed(peakDeficit);
+                
+                results.ebitda.push(y1EBITDA);
+                results.revenue.push(y1Revenue);
+                results.units.push(endUnits);
+                results.breakEven.push(breakEven);
+                results.fundingNeed.push(fundingNeed);
+                
+                // Restore original assumptions
+                Object.assign(assumptions, originalAssumptions);
+            }
+            
+            return results;
+        }
+        
+        function displayMonteCarloResults(results) {
+            const n = results.ebitda.length;
+            
+            // Sort for percentile calculations
+            const sortedEbitda = [...results.ebitda].sort((a, b) => a - b);
+            const sortedUnits = [...results.units].sort((a, b) => a - b);
+            const sortedRevenue = [...results.revenue].sort((a, b) => a - b);
+            
+            // Calculate percentiles
+            const p10Idx = Math.floor(n * 0.1);
+            const p50Idx = Math.floor(n * 0.5);
+            const p90Idx = Math.floor(n * 0.9);
+            
+            const ebitdaP10 = sortedEbitda[p10Idx];
+            const ebitdaP50 = sortedEbitda[p50Idx];
+            const ebitdaP90 = sortedEbitda[p90Idx];
+            
+            // Calculate probabilities
+            const probProfit = (results.ebitda.filter(e => e > 0).length / n * 100).toFixed(0);
+            const probBreakEven = (results.breakEven.filter(b => b !== null).length / n * 100).toFixed(0);
+            const probUnits200 = (results.units.filter(u => u >= 200).length / n * 100).toFixed(0);
+            const probFundingSufficient = (results.fundingNeed.filter(f => f <= 85000).length / n * 100).toFixed(0);
+            const probRevenue500K = (results.revenue.filter(r => r >= 500000).length / n * 100).toFixed(0);
+            
+            // Expected values
+            const expectedEbitda = results.ebitda.reduce((a, b) => a + b, 0) / n;
+            const avgBreakEven = results.breakEven.filter(b => b !== null);
+            const expectedBE = avgBreakEven.length > 0 
+                ? 'M' + Math.round(avgBreakEven.reduce((a, b) => a + b, 0) / avgBreakEven.length)
+                : 'N/A';
+            
+            // Update summary cards
+            document.getElementById('mc-prob-profit').textContent = probProfit + '%';
+            document.getElementById('mc-expected-ebitda').textContent = 'AED ' + fmt(expectedEbitda);
+            document.getElementById('mc-ebitda-range').textContent = `P10: ${fmt(ebitdaP10)} | P90: ${fmt(ebitdaP90)}`;
+            document.getElementById('mc-expected-be').textContent = expectedBE;
+            document.getElementById('mc-be-prob').textContent = probBreakEven + '% achieve in Y1';
+            document.getElementById('mc-funding-conf').textContent = probFundingSufficient + '%';
+            
+            // Update percentile values
+            document.getElementById('mc-ebitda-p10').textContent = 'AED ' + fmt(ebitdaP10);
+            document.getElementById('mc-ebitda-p50').textContent = 'AED ' + fmt(ebitdaP50);
+            document.getElementById('mc-ebitda-p90').textContent = 'AED ' + fmt(ebitdaP90);
+            
+            // Build histogram
+            const histogramEl = document.getElementById('mc-ebitda-histogram');
+            const minEbitda = Math.min(...results.ebitda);
+            const maxEbitda = Math.max(...results.ebitda);
+            const bucketCount = 30;
+            const bucketSize = (maxEbitda - minEbitda) / bucketCount;
+            const buckets = new Array(bucketCount).fill(0);
+            
+            results.ebitda.forEach(e => {
+                const bucketIdx = Math.min(Math.floor((e - minEbitda) / bucketSize), bucketCount - 1);
+                buckets[bucketIdx]++;
+            });
+            
+            const maxBucket = Math.max(...buckets);
+            const zeroIdx = Math.floor((0 - minEbitda) / bucketSize);
+            
+            histogramEl.innerHTML = buckets.map((count, idx) => {
+                const height = (count / maxBucket * 100).toFixed(1);
+                const isNegative = (minEbitda + idx * bucketSize) < 0;
+                const isMedian = idx === Math.floor((ebitdaP50 - minEbitda) / bucketSize);
+                return `<div class="mc-bar ${isNegative ? 'negative' : ''} ${isMedian ? 'highlight' : ''}" 
+                            style="height: ${height}%"
+                            title="${fmt(minEbitda + idx * bucketSize)} - ${fmt(minEbitda + (idx + 1) * bucketSize)}: ${count} iterations"></div>`;
+            }).join('');
+            
+            // Update axis labels
+            document.getElementById('mc-ebitda-min').textContent = fmt(minEbitda);
+            document.getElementById('mc-ebitda-max').textContent = fmt(maxEbitda);
+            
+            // Update probability bars
+            function updateProbBar(barId, valId, prob) {
+                const bar = document.getElementById(barId);
+                const val = document.getElementById(valId);
+                bar.style.width = prob + '%';
+                bar.className = 'mc-prob-bar-fill ' + (prob >= 70 ? 'high' : prob >= 40 ? 'medium' : 'low');
+                val.textContent = prob + '%';
+            }
+            
+            updateProbBar('mc-prob-be-bar', 'mc-prob-be-val', probBreakEven);
+            updateProbBar('mc-prob-units-bar', 'mc-prob-units-val', probUnits200);
+            updateProbBar('mc-prob-fund-bar', 'mc-prob-fund-val', probFundingSufficient);
+            updateProbBar('mc-prob-rev-bar', 'mc-prob-rev-val', probRevenue500K);
         }
         
         function updateSensitivityAnalysis(baseData) {
