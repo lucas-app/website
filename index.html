@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUCAS | Proof of Asset Condition</title>
-    <meta name="description" content="LUCAS: Standardized verification infrastructure for escrow disbursements and construction draw releases in Dubai. 48-hour proofs. Bank-grade validation.">
+    <meta name="description" content="LUCAS: Standardized verification infrastructure for escrow disbursements and construction draw releases in Dubai. 48-hour proofs. Institution-grade validation.">
     
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     
@@ -239,6 +239,17 @@
                 transform: none !important;
             }
             .reveal { opacity: 1; transform: none; }
+        }
+        
+        /* Stronger overlay on mobile for text readability */
+        @media (max-width: 768px) {
+            .video-overlay {
+                background: linear-gradient(to bottom, 
+                    rgba(5,5,5,0.4) 0%, 
+                    rgba(5,5,5,0.25) 30%, 
+                    rgba(5,5,5,0.45) 60%, 
+                    rgba(5,5,5,0.97) 100%) !important;
+            }
         }
         
         /* ============================================ */
@@ -560,7 +571,10 @@
                                     <i class="fa-solid fa-file-shield text-lucas-dark text-sm"></i>
                                 </div>
                                 <div>
-                                    <p class="font-bold text-white text-sm">Draw Release Proof</p>
+                                    <div class="flex items-center gap-2">
+                                        <p class="font-bold text-white text-sm">Draw Release Proof</p>
+                                        <span class="px-2 py-0.5 bg-white/10 text-white/50 text-[10px] font-medium rounded uppercase">Sample</span>
+                                    </div>
                                     <p class="text-xs text-white/40 font-mono">DRP-2025-DXB-00142</p>
                                 </div>
                             </div>
@@ -778,7 +792,7 @@
                     </div>
                     <h3 class="font-bold text-white text-lg mb-2">Inspect</h3>
                     <p class="text-sm text-white/40 leading-relaxed">
-                        Certified inspector dispatched. Structured protocol. GPS-verified evidence capture.
+                        Vetted inspector dispatched. Structured protocol. GPS-verified evidence capture.
                     </p>
                 </div>
                 
@@ -908,7 +922,7 @@
                     </div>
                     <h3 class="text-white font-bold text-lg mb-2">Private Lenders</h3>
                     <p class="text-white/40 text-sm leading-relaxed mb-4">
-                        Family offices and private credit. Bank-grade verification without specialists.
+                        Family offices and private credit. Institution-grade verification without specialists.
                     </p>
                     <ul class="space-y-2 text-xs text-white/50">
                         <li class="flex items-center gap-2">
@@ -1191,6 +1205,7 @@
                         <p id="form-error" class="text-center text-red-400 text-xs hidden" role="alert" aria-live="polite">Something went wrong. Please try again or email hello@lucas.app</p>
                         
                         <p class="text-center text-white/30 text-xs">Dubai-based pilots only. Response within 24 hours.</p>
+                        <p class="text-center text-white/20 text-xs mt-2">NDA available · Procurement-friendly · Start via email if preferred</p>
                     </form>
                 </div>
             </div>
@@ -1255,12 +1270,44 @@
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-xmark');
                 document.body.style.overflow = 'hidden';
+                // Focus first link in menu
+                const firstLink = menu.querySelector('a');
+                if (firstLink) firstLink.focus();
             } else {
                 icon.classList.remove('fa-xmark');
                 icon.classList.add('fa-bars');
                 document.body.style.overflow = '';
+                // Return focus to menu button
+                btn.focus();
             }
         }
+        
+        // ESC key closes mobile menu
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const menu = document.getElementById('mobile-menu');
+                if (menu && menu.classList.contains('open')) {
+                    toggleMobileMenu();
+                }
+            }
+        });
+        
+        // Focus trap for mobile menu
+        document.getElementById('mobile-menu').addEventListener('keydown', function(e) {
+            if (e.key !== 'Tab') return;
+            
+            const focusableElements = this.querySelectorAll('a, button');
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+            
+            if (e.shiftKey && document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+            } else if (!e.shiftKey && document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+            }
+        });
 
         // Scroll reveal
         document.addEventListener('DOMContentLoaded', function() {
