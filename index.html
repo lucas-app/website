@@ -228,6 +228,19 @@
         .animate-fade-in-delay-3 { animation: fadeIn 0.8s ease-out 0.6s forwards; opacity: 0; }
         .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
         
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .video-container video { display: none; }
+            .video-hero { background: #050505; }
+            .animate-float, .animate-bounce, .animate-pulse-glow, 
+            .animate-fade-in, .animate-fade-in-delay, .animate-fade-in-delay-2, .animate-fade-in-delay-3 { 
+                animation: none !important; 
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .reveal { opacity: 1; transform: none; }
+        }
+        
         /* ============================================ */
         /* SCROLL REVEAL */
         /* ============================================ */
@@ -302,7 +315,7 @@
                     <a href="#contact" id="nav-cta" class="hidden sm:inline-flex px-5 py-2.5 bg-lucas-lime text-lucas-dark text-sm font-bold rounded-full hover:bg-white hover:scale-105 transition-all shadow-lg shadow-lucas-lime/20 opacity-0 translate-y-2 pointer-events-none" style="transition: opacity 0.3s, transform 0.3s;">
                         Request Pilot
                     </a>
-                    <button onclick="toggleMobileMenu()" class="lg:hidden p-2 text-white/60 hover:text-white">
+                    <button onclick="toggleMobileMenu()" class="lg:hidden p-2 text-white/60 hover:text-white" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
                         <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
                     </button>
                 </div>
@@ -340,7 +353,7 @@
     <section class="video-hero">
         <!-- Video Background -->
         <div class="video-container">
-            <video autoplay muted loop playsinline disablepictureinpicture preload="auto">
+            <video autoplay muted loop playsinline disablepictureinpicture preload="metadata">
                 <source src="https://cdn.pixabay.com/video/2025/03/16/265261_large.mp4" type="video/mp4">
             </video>
         </div>
@@ -407,6 +420,17 @@
                         <span>See a Sample Proof</span>
                         <i class="fa-solid fa-chevron-down"></i>
                     </a>
+                </div>
+                
+                <!-- Stats -->
+                <div class="mt-12 pt-8 border-t border-white/10 animate-fade-in-delay-3">
+                    <div class="flex items-center justify-center gap-4 sm:gap-6">
+                        <span class="text-white/60 text-sm font-medium">48h SLA</span>
+                        <span class="text-white/20">·</span>
+                        <span class="text-white/60 text-sm font-medium">Chain-of-Custody</span>
+                        <span class="text-white/20">·</span>
+                        <span class="text-white/60 text-sm font-medium">Audit-Ready</span>
+                    </div>
                 </div>
             </div>
             
@@ -493,7 +517,7 @@
                         <div class="flex-1">
                             <h3 class="text-white font-bold text-xl mb-2">Dubai's Escrow Framework Creates Demand</h3>
                             <p class="text-white/50 text-sm leading-relaxed">
-                                Under Dubai Law No. (8) of 2007, every off-plan disbursement requires verification. Recent DLD reporting indicates <span class="text-white font-medium">over 1,500 disbursements worth AED 3B+ processed in a single month</span>. Verification isn't optional. It's the law.
+                                Under Dubai Law No. (8) of 2007, off-plan disbursements require verification before release. Verification is not optional. It is the law.
                             </p>
                         </div>
                     </div>
@@ -1110,6 +1134,12 @@
                     <form id="contact-form" class="space-y-5" action="https://formspree.io/f/xzzoryvn" method="POST">
                         <input type="hidden" name="form_type" value="Pilot Request - Capital Workflows V5">
                         
+                        <!-- Honeypot for spam protection -->
+                        <div class="hidden" aria-hidden="true">
+                            <label>Do not fill this out</label>
+                            <input name="_gotcha" tabindex="-1" autocomplete="off">
+                        </div>
+                        
                         <div>
                             <label class="text-white/40 text-sm mb-2 block">Work Email *</label>
                             <input type="email" name="email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/20 focus:border-lucas-lime focus:outline-none transition" placeholder="you@institution.com">
@@ -1158,7 +1188,7 @@
                             Request Pilot
                         </button>
                         
-                        <p id="form-error" class="text-center text-red-400 text-xs hidden">Something went wrong. Please try again or email hello@lucas.app</p>
+                        <p id="form-error" class="text-center text-red-400 text-xs hidden" role="alert" aria-live="polite">Something went wrong. Please try again or email hello@lucas.app</p>
                         
                         <p class="text-center text-white/30 text-xs">Dubai-based pilots only. Response within 24 hours.</p>
                     </form>
@@ -1212,11 +1242,16 @@
             const menu = document.getElementById('mobile-menu');
             const overlay = document.getElementById('mobile-overlay');
             const icon = document.getElementById('menu-icon');
+            const btn = document.querySelector('button[aria-controls="mobile-menu"]');
             
             menu.classList.toggle('open');
             overlay.classList.toggle('hidden');
             
-            if (menu.classList.contains('open')) {
+            const isOpen = menu.classList.contains('open');
+            btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            btn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+            
+            if (isOpen) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-xmark');
                 document.body.style.overflow = 'hidden';
