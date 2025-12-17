@@ -297,10 +297,10 @@
                     <a href="#pricing" class="px-4 py-2 text-sm font-medium text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-all">Pricing</a>
                 </div>
                 
-                <!-- CTA -->
+                <!-- CTA - Hidden initially, appears on scroll -->
                 <div class="flex items-center gap-4">
-                    <a href="#contact" class="hidden sm:inline-flex px-5 py-2.5 bg-lucas-lime text-lucas-dark text-sm font-bold rounded-full hover:bg-white hover:scale-105 transition-all shadow-lg shadow-lucas-lime/20">
-                        Start Pilot
+                    <a href="#contact" id="nav-cta" class="hidden sm:inline-flex px-5 py-2.5 bg-lucas-lime text-lucas-dark text-sm font-bold rounded-full hover:bg-white hover:scale-105 transition-all shadow-lg shadow-lucas-lime/20 opacity-0 translate-y-2 pointer-events-none" style="transition: opacity 0.3s, transform 0.3s;">
+                        Request Pilot
                     </a>
                     <button onclick="toggleMobileMenu()" class="lg:hidden p-2 text-white/60 hover:text-white">
                         <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
@@ -373,12 +373,17 @@
                     Standardized verification infrastructure for escrow disbursements and construction draw releases.
                 </p>
                 
-                <!-- Outcome Line - The "So What" -->
-                <p class="text-lg text-white/60 max-w-2xl mx-auto mb-10 animate-fade-in-delay-2">
-                    Faster satisfactions. Fewer disputes. Defensible releases with a full audit trail.
+                <!-- Outcome Line - Tightened language -->
+                <p class="text-lg text-white/60 max-w-2xl mx-auto mb-3 animate-fade-in-delay-2">
+                    Shorter release cycles. Fewer disputes. Audit-ready satisfactions in every packet.
+                </p>
+                
+                <!-- Trust Micro-Signal -->
+                <p class="text-sm text-white/40 max-w-xl mx-auto mb-10 animate-fade-in-delay-2 font-mono">
+                    Protocol versioned, validated, and logged with chain-of-custody.
                 </p>
 
-                <!-- ICP Badges - Reordered by strategy -->
+                <!-- ICP Badges - Reordered, removed Private Lenders, added Repair Verification -->
                 <div class="flex flex-col items-center gap-4 mb-12 animate-fade-in-delay-3">
                     <span class="text-xs text-white/40 uppercase tracking-[0.2em] font-medium">Built for</span>
                     <div class="flex flex-wrap justify-center gap-3">
@@ -391,8 +396,8 @@
                             Construction Lenders
                         </span>
                         <span class="icp-badge px-5 py-2.5 rounded-full glass-panel text-sm text-white font-medium border border-white/10 cursor-default">
-                            <i class="fa-solid fa-briefcase text-lucas-lime mr-2 text-xs"></i>
-                            Private Lenders
+                            <i class="fa-solid fa-wrench text-lucas-lime mr-2 text-xs"></i>
+                            Repair Verification
                         </span>
                     </div>
                 </div>
@@ -409,29 +414,15 @@
                     </a>
                 </div>
                 
-                <!-- Key Stats - Improved labels -->
+                <!-- Key Stats - Three defensible claims, updated language -->
                 <div class="mt-16 pt-8 border-t border-white/10 max-w-2xl mx-auto animate-fade-in-delay-3">
-                    <div class="flex items-center justify-center gap-8 sm:gap-12">
-                        <div class="text-center group cursor-default" title="From request to validated proof delivery">
-                            <p class="text-2xl sm:text-3xl font-bold text-white">48h</p>
-                            <p class="text-xs text-white/40 uppercase tracking-wider mt-1">SLA</p>
-                        </div>
-                        <div class="w-px h-10 bg-white/10"></div>
-                        <div class="text-center group cursor-default" title="Protocol, Metadata, Inspector, QA">
-                            <p class="text-2xl sm:text-3xl font-bold text-white">4</p>
-                            <p class="text-xs text-white/40 uppercase tracking-wider mt-1">Integrity Checks</p>
-                        </div>
-                        <div class="w-px h-10 bg-white/10"></div>
-                        <div class="text-center group cursor-default" title="DLD-approved escrow account trustees">
-                            <p class="text-2xl sm:text-3xl font-bold text-white">29</p>
-                            <p class="text-xs text-white/40 uppercase tracking-wider mt-1">DLD Escrow Trustees</p>
-                        </div>
+                    <div class="flex items-center justify-center gap-4 sm:gap-6">
+                        <span class="text-white/70 text-sm sm:text-base font-medium">48h SLA</span>
+                        <span class="text-white/30">·</span>
+                        <span class="text-white/70 text-sm sm:text-base font-medium">Third-Party Verifiable</span>
+                        <span class="text-white/30">·</span>
+                        <span class="text-white/70 text-sm sm:text-base font-medium">Audit-Ready</span>
                     </div>
-                    
-                    <!-- Enterprise Trust Line -->
-                    <p class="text-xs text-white/30 mt-6 font-mono">
-                        Audit-ready evidence bundles · Protocol versioned · Chain-of-custody logging
-                    </p>
                 </div>
             </div>
             
@@ -458,7 +449,7 @@
                     <span class="text-white/40">Projects stall.</span>
                 </h2>
                 <p class="text-white/60 text-lg leading-relaxed">
-                    Every disbursement blocked by ad-hoc verification. Every audit a dispute waiting to happen. Construction finance runs on trust — but trust doesn't scale.
+                    Every disbursement needs a defensible verification packet. But ad-hoc verification blocks releases, and every audit becomes a dispute waiting to happen.
                 </p>
             </div>
             
@@ -521,10 +512,6 @@
                                 Under Dubai Law No. (8) of 2007, every off-plan disbursement requires verification. The DLD reports <span class="text-white font-medium">1,508 disbursements worth AED 3.4B in just 5 weeks</span>. Verification isn't optional — it's the law.
                             </p>
                         </div>
-                        <div class="flex-shrink-0 lg:text-right">
-                            <p class="text-4xl font-bold text-lucas-lime">29</p>
-                            <p class="text-xs text-white/40 uppercase tracking-wider">DLD Trustees</p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -545,8 +532,11 @@
                 <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6">
                     The Proof.
                 </h2>
-                <p class="text-white/60 text-lg leading-relaxed max-w-2xl mx-auto">
+                <p class="text-white/60 text-lg leading-relaxed max-w-2xl mx-auto mb-4">
                     A standardized, validated evidence package that capital providers can consume through dashboards, exports, or APIs. Not a report. <span class="text-white">A proof.</span>
+                </p>
+                <p class="text-white/40 text-sm max-w-xl mx-auto">
+                    Internal teams, auditors, and committees review the same evidence, every time.
                 </p>
             </div>
             
@@ -648,7 +638,7 @@
                             
                             <!-- Footer -->
                             <div class="flex items-center justify-between pt-4 border-t border-white/5 text-xs text-white/30 font-mono">
-                                <span>Hash: 0x8f3a...b7c4</span>
+                                <span>Checksum: Verified</span>
                                 <span>Jan 15, 2025 · 10:30 GST</span>
                             </div>
                         </div>
@@ -690,7 +680,7 @@
                             </div>
                             <div>
                                 <p class="font-semibold text-white text-sm mb-1">Inspector Integrity</p>
-                                <p class="text-xs text-white/40 leading-relaxed">Emirates ID verified. Conflict-of-interest checks passed. Reputation score validated.</p>
+                                <p class="text-xs text-white/40 leading-relaxed">Identity verified. Conflict checks logged. Performance history tracked.</p>
                             </div>
                         </div>
                     </div>
@@ -708,7 +698,7 @@
                     </div>
                     
                     <p class="text-xs text-white/30 leading-relaxed pt-2">
-                        Every proof passes all four gates before delivery. If a gate fails, the proof is rejected and reinspected. No exceptions.
+                        Every proof passes all four gates before delivery. If a gate fails, the proof is rejected and remediated before release.
                     </p>
                 </div>
             </div>
@@ -1025,7 +1015,7 @@
                     <!-- Footer -->
                     <div class="mt-8 pt-6 border-t border-white/5 relative">
                         <p class="text-white/20 text-xs leading-relaxed">
-                            You know what your capital costs per day.<br/>We don't need to tell you.
+                            Your carrying costs are measurable.<br/>Our job is to reduce cycle time and exceptions.
                         </p>
                     </div>
                 </div>
@@ -1042,7 +1032,7 @@
                     
                     <!-- Content -->
                     <div class="flex-1">
-                        <p class="text-lucas-lime/60 text-sm mb-6">Guaranteed turnaround</p>
+                        <p class="text-lucas-lime/60 text-sm mb-6">SLA-backed turnaround</p>
                         
                         <!-- The Time -->
                         <div class="mb-2">
@@ -1073,7 +1063,7 @@
                                 <span class="text-white/70">PDF + JSON + hash</span> — audit-ready
                             </div>
                             <div class="cost-item cost-item-good text-white/50 text-sm">
-                                <span class="text-white/70">Independent</span> — no borrower conflicts
+                                <span class="text-white/70">Conflict-checked</span> — borrower-adjacent risk reduced
                             </div>
                         </div>
                     </div>
@@ -1081,7 +1071,7 @@
                     <!-- CTA -->
                     <div class="mt-8">
                         <a href="#contact" class="block w-full py-4 bg-lucas-lime text-lucas-dark font-bold text-lg rounded-xl hover:bg-white transition-colors text-center">
-                            Start Your Pilot
+                            Request Pilot
                         </a>
                     </div>
                 </div>
@@ -1123,10 +1113,10 @@
             <!-- Header -->
             <div class="text-center mb-12 reveal">
                 <h2 class="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-4">
-                    Start your pilot.
+                    Request a pilot.
                 </h2>
                 <p class="text-white/50 text-lg">
-                    10 proofs. 48-hour turnaround. See LUCAS in action.
+                    10 proofs. 48-hour SLA. See LUCAS in action.
                 </p>
             </div>
             
@@ -1134,7 +1124,7 @@
             <div class="reveal">
                 <div class="proof-card p-8 rounded-2xl border-lucas-lime/20">
                     <form id="contact-form" class="space-y-5" action="https://formspree.io/f/xzzoryvn" method="POST">
-                        <input type="hidden" name="form_type" value="Pilot Request - Capital Workflows V4">
+                        <input type="hidden" name="form_type" value="Pilot Request - Capital Workflows V5">
                         
                         <div>
                             <label class="text-white/40 text-sm mb-2 block">Work Email *</label>
@@ -1146,19 +1136,42 @@
                             <input type="text" name="company" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/20 focus:border-lucas-lime focus:outline-none transition" placeholder="Your organization">
                         </div>
                         
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-white/40 text-sm mb-2 block">I represent...</label>
+                                <select name="type" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-lucas-lime focus:outline-none transition">
+                                    <option value="Escrow Trustee">Escrow Trustee</option>
+                                    <option value="Construction Lender">Construction Lender</option>
+                                    <option value="Private Lender">Private Lender</option>
+                                    <option value="Developer">Developer</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-white/40 text-sm mb-2 block">Role</label>
+                                <select name="role" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-lucas-lime focus:outline-none transition">
+                                    <option value="Escrow Ops">Escrow Ops</option>
+                                    <option value="Risk">Risk</option>
+                                    <option value="Credit">Credit</option>
+                                    <option value="Technical/Engineer">Technical / Engineer</option>
+                                    <option value="Executive">Executive</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
                         <div>
-                            <label class="text-white/40 text-sm mb-2 block">I represent...</label>
-                            <select name="type" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-lucas-lime focus:outline-none transition">
-                                <option value="Escrow Trustee">Escrow Trustee</option>
-                                <option value="Construction Lender">Construction Lender / Bank</option>
-                                <option value="Private Lender">Private Lender / Family Office</option>
-                                <option value="Developer">Developer</option>
-                                <option value="Other">Other</option>
+                            <label class="text-white/40 text-sm mb-2 block">Pilot Scope</label>
+                            <select name="pilot_scope" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-lucas-lime focus:outline-none transition">
+                                <option value="Escrow Disbursement">Escrow Disbursement</option>
+                                <option value="Construction Draw">Construction Draw</option>
+                                <option value="Repair Verification">Repair Verification</option>
+                                <option value="Multiple / Not Sure">Multiple / Not Sure</option>
                             </select>
                         </div>
                         
                         <button type="submit" class="w-full py-4 bg-lucas-lime text-lucas-dark font-bold rounded-xl hover:bg-white transition text-lg">
-                            Request Pilot Access
+                            Request Pilot
                         </button>
                         
                         <p class="text-center text-white/30 text-xs">Dubai-based pilots only. Response within 24 hours.</p>
@@ -1243,13 +1256,26 @@
             reveals.forEach(el => observer.observe(el));
         });
 
-        // Navbar scroll
+        // Navbar scroll + CTA visibility
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
+            const navCta = document.getElementById('nav-cta');
+            
             if (window.pageYOffset > 50) {
                 navbar.classList.add('nav-scrolled');
             } else {
                 navbar.classList.remove('nav-scrolled');
+            }
+            
+            // Show nav CTA after scrolling past hero (approx 600px)
+            if (window.pageYOffset > 600) {
+                navCta.style.opacity = '1';
+                navCta.style.transform = 'translateY(0)';
+                navCta.style.pointerEvents = 'auto';
+            } else {
+                navCta.style.opacity = '0';
+                navCta.style.transform = 'translateY(8px)';
+                navCta.style.pointerEvents = 'none';
             }
         });
 
