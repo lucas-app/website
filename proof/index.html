@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw Release Proof | DRP-2025-DXB-00142 | LUCAS</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* LUCAS Brand */
+            --lucas-dark: #0a0a0a;
+            --lucas-lime: #d4ff00;
+            --lucas-lime-600: #a3c700;  /* Darker for text/icons on white */
+            --lucas-lime-700: #7a9500;  /* Even darker for emphasis */
+            --lucas-lime-100: #f7ffe0;  /* Light tint for backgrounds */
+            --lucas-lime-50: #fbfff0;   /* Very light tint */
+            
+            /* Neutrals */
+            --white: #ffffff;
+            --gray-50: #fafafa;
+            --gray-100: #f4f4f5;
+            --gray-200: #e4e4e7;
+            --gray-300: #d4d4d8;
+            --gray-400: #a1a1aa;
+            --gray-500: #71717a;
+            --gray-600: #52525b;
+            --gray-700: #3f3f46;
+            --gray-800: #27272a;
+            --gray-900: #18181b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-100);
+            color: var(--gray-900);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+            .proof-container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .section {
+                page-break-inside: avoid;
+            }
+            @page {
+                margin: 0.4in;
+                size: A4;
+            }
+        }
+        
+        .proof-container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--white);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 20px 60px rgba(0,0,0,0.08);
+        }
+        
+        /* Header */
+        .proof-header {
+            padding: 20px 32px;
+            border-bottom: 3px solid var(--lucas-lime);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--white);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 44px;
+            width: auto;
+        }
+        
+        .header-meta {
+            text-align: right;
+        }
+        
+        .proof-id-header {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+        
+        .doc-type {
+            font-size: 10px;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Hero Section */
+        .proof-hero {
+            padding: 40px 32px;
+            background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        }
+        
+        .hero-title-block {
+            flex: 1;
+        }
+        
+        .proof-title {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        
+        .proof-subtitle {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--lucas-lime-100);
+            border: 2px solid var(--lucas-lime-600);
+            border-radius: 8px;
+        }
+        
+        .status-badge-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--lucas-lime-600);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .status-badge-icon svg {
+            width: 12px;
+            height: 12px;
+            color: white;
+        }
+        
+        .status-badge-text {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--lucas-lime-700);
+            letter-spacing: 0.02em;
+        }
+        
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--gray-200);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .info-cell {
+            background: var(--white);
+            padding: 16px;
+        }
+        
+        .info-cell-label {
+            font-size: 9px;
+            font-weight: 600;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+        }
+        
+        .info-cell-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        
+        .info-cell-detail {
+            font-size: 12px;
+            color: var(--gray-500);
+            margin-top: 2px;
+        }
+        
+        /* Coverage Cell */
+        .info-cell.coverage {
+            background: var(--lucas-lime-100);
+            border-left: 3px solid var(--lucas-lime-600);
+        }
+        
+        .coverage-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--lucas-lime-700);
+            letter-spacing: -0.02em;
+            line-height: 1;
+        }
+        
+        .coverage-value span {
+            font-size: 16px;
+            color: var(--gray-500);
+        }
+        
+        /* Main Content */
+        .proof-content {
+            padding: 32px;
+        }
+        
+        /* Section */
+        .section {
+            margin-bottom: 32px;
+        }
+        
+        .section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--lucas-lime-100);
+        }
+        
+        .section-number {
+            width: 24px;
+            height: 24px;
+            background: var(--lucas-dark);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--lucas-lime);
+        }
+        
+        .section-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--gray-700);
+        }
+        
+        /* Validation Gates */
+        .gates-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        
+        .gate-card {
+            background: var(--lucas-lime-50);
+            border: 1px solid var(--lucas-lime-100);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        
+        .gate-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--lucas-lime-600);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+        }
+        
+        .gate-icon svg {
+            width: 16px;
+            height: 16px;
+            color: white;
+        }
+        
+        .gate-name {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 2px;
+        }
+        
+        .gate-status {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--lucas-lime-700);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        
+        /* Stats Table */
+        .stats-table {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--gray-200);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .stat-cell {
+            background: var(--white);
+            padding: 16px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        
+        .stat-label {
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 4px;
+        }
+        
+        /* Inspector Row */
+        .inspector-row {
+            display: flex;
+            gap: 24px;
+            padding: 16px;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+        }
+        
+        .inspector-main {
+            flex: 1;
+        }
+        
+        .inspector-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        
+        .inspector-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--gray-500);
+            margin-top: 2px;
+        }
+        
+        .inspector-badges {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 4px;
+            font-size: 10px;
+            color: var(--gray-600);
+        }
+        
+        .badge.verified {
+            background: var(--lucas-lime-100);
+            border-color: var(--lucas-lime-600);
+            color: var(--lucas-lime-700);
+        }
+        
+        .badge svg {
+            width: 10px;
+            height: 10px;
+        }
+        
+        .inspector-rating {
+            text-align: right;
+        }
+        
+        .rating-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        
+        .rating-value span {
+            font-size: 12px;
+            color: var(--gray-400);
+            font-weight: 500;
+        }
+        
+        .rating-label {
+            font-size: 9px;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Chain of Custody */
+        .chain-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+        
+        .chain-table th {
+            text-align: left;
+            padding: 10px 12px;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            font-size: 9px;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .chain-table td {
+            padding: 10px 12px;
+            border: 1px solid var(--gray-200);
+            color: var(--gray-700);
+        }
+        
+        .chain-table tr:last-child td {
+            background: var(--lucas-lime-100);
+            font-weight: 500;
+        }
+        
+        .chain-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--gray-500);
+            white-space: nowrap;
+        }
+        
+        .chain-actor {
+            font-size: 10px;
+            color: var(--gray-400);
+        }
+        
+        /* Verification Footer */
+        .verification-footer {
+            background: var(--gray-50);
+            border-top: 1px solid var(--gray-200);
+            padding: 24px 32px;
+        }
+        
+        .verification-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 32px;
+        }
+        
+        .hash-block {
+            flex: 1;
+        }
+        
+        .hash-label {
+            font-size: 9px;
+            font-weight: 600;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+        }
+        
+        .hash-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--gray-500);
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 4px;
+            padding: 10px 12px;
+            word-break: break-all;
+        }
+        
+        .qr-block {
+            text-align: center;
+            flex-shrink: 0;
+        }
+        
+        .qr-code {
+            width: 64px;
+            height: 64px;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 6px;
+        }
+        
+        .qr-code svg {
+            width: 48px;
+            height: 48px;
+            color: var(--gray-800);
+        }
+        
+        .qr-label {
+            font-size: 9px;
+            color: var(--gray-400);
+        }
+        
+        /* Page Footer */
+        .page-footer {
+            padding: 16px 32px;
+            border-top: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10px;
+            color: var(--gray-400);
+            background: var(--white);
+        }
+        
+        .page-footer a {
+            color: var(--lucas-dark);
+            text-decoration: none;
+            font-weight: 600;
+            background: var(--lucas-lime-100);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        
+        /* Download Bar */
+        .download-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--lucas-dark);
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            z-index: 100;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        
+        .btn-primary {
+            background: var(--lucas-lime);
+            color: var(--lucas-dark);
+        }
+        
+        .btn-primary:hover {
+            background: #e8ff4d;
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .btn svg {
+            width: 14px;
+            height: 14px;
+        }
+        
+        /* Spacing for download bar */
+        .proof-container {
+            margin-bottom: 80px;
+        }
+        
+        @media print {
+            .proof-container {
+                margin-bottom: 0;
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .gates-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stats-table {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .inspector-row {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .inspector-rating {
+                text-align: left;
+            }
+            .verification-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .qr-block {
+                text-align: left;
+            }
+            .hero-top {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="proof-container">
+        <!-- Header -->
+        <header class="proof-header">
+            <div class="logo">
+                <img src="https://raw.githubusercontent.com/lucas-app/website/main/logo-black.png" alt="LUCAS" style="height: 28px;">
+            </div>
+            <div class="header-meta">
+                <div class="doc-type">Draw Release Proof</div>
+                <div class="proof-id-header">DRP-2025-DXB-00142</div>
+            </div>
+        </header>
+        
+        <!-- Hero -->
+        <section class="proof-hero">
+            <div class="hero-top">
+                <div class="hero-title-block">
+                    <h1 class="proof-title">Draw Release Proof</h1>
+                    <p class="proof-subtitle">Issued 17 December 2025 at 14:32 GST</p>
+                </div>
+                <div class="status-badge">
+                    <div class="status-badge-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <path d="M5 12l5 5L20 7"/>
+                        </svg>
+                    </div>
+                    <span class="status-badge-text">Approved</span>
+                </div>
+            </div>
+            
+            <div class="info-grid">
+                <div class="info-cell">
+                    <div class="info-cell-label">Project</div>
+                    <div class="info-cell-value">Creek Harbour Tower 4</div>
+                    <div class="info-cell-detail">Plot 12, Dubai Creek Harbour</div>
+                </div>
+                <div class="info-cell">
+                    <div class="info-cell-label">Milestone</div>
+                    <div class="info-cell-value">Structure Complete</div>
+                    <div class="info-cell-detail">Stage 4 of 7</div>
+                </div>
+                <div class="info-cell">
+                    <div class="info-cell-label">Developer</div>
+                    <div class="info-cell-value">Emaar Properties PJSC</div>
+                    <div class="info-cell-detail">Master Developer</div>
+                </div>
+                <div class="info-cell coverage">
+                    <div class="info-cell-label">Coverage</div>
+                    <div class="coverage-value">87<span>%</span></div>
+                    <div class="info-cell-detail">Target: 85%</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Main Content -->
+        <main class="proof-content">
+            <!-- Validation Gates -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2 class="section-title">Validation Gates</h2>
+                </div>
+                
+                <div class="gates-grid">
+                    <div class="gate-card">
+                        <div class="gate-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12l5 5L20 7"/>
+                            </svg>
+                        </div>
+                        <div class="gate-name">Protocol</div>
+                        <div class="gate-status">Passed</div>
+                    </div>
+                    <div class="gate-card">
+                        <div class="gate-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12l5 5L20 7"/>
+                            </svg>
+                        </div>
+                        <div class="gate-name">Metadata</div>
+                        <div class="gate-status">Passed</div>
+                    </div>
+                    <div class="gate-card">
+                        <div class="gate-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12l5 5L20 7"/>
+                            </svg>
+                        </div>
+                        <div class="gate-name">Inspector</div>
+                        <div class="gate-status">Passed</div>
+                    </div>
+                    <div class="gate-card">
+                        <div class="gate-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12l5 5L20 7"/>
+                            </svg>
+                        </div>
+                        <div class="gate-name">QA Review</div>
+                        <div class="gate-status">Passed</div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Evidence Summary -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2 class="section-title">Evidence Summary</h2>
+                </div>
+                
+                <div class="stats-table">
+                    <div class="stat-cell">
+                        <div class="stat-value">47</div>
+                        <div class="stat-label">Photos</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Measurements</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-value">0</div>
+                        <div class="stat-label">Variances</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-value">2h 34m</div>
+                        <div class="stat-label">Duration</div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Inspector -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2 class="section-title">Inspector</h2>
+                </div>
+                
+                <div class="inspector-row">
+                    <div class="inspector-main">
+                        <div class="inspector-name">Ahmad Al-Rashid</div>
+                        <div class="inspector-id">INS-2024-0847 · RICS Chartered Surveyor</div>
+                        <div class="inspector-badges">
+                            <span class="badge verified">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M5 12l5 5L20 7"/>
+                                </svg>
+                                Identity Verified
+                            </span>
+                            <span class="badge verified">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M5 12l5 5L20 7"/>
+                                </svg>
+                                No Conflicts
+                            </span>
+                            <span class="badge">847 Inspections</span>
+                            <span class="badge">12 Years Exp.</span>
+                        </div>
+                    </div>
+                    <div class="inspector-rating">
+                        <div class="rating-value">4.8 <span>/ 5.0</span></div>
+                        <div class="rating-label">Rating</div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Chain of Custody -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2 class="section-title">Chain of Custody</h2>
+                </div>
+                
+                <table class="chain-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 140px;">Timestamp</th>
+                            <th>Event</th>
+                            <th style="width: 180px;">Actor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="chain-time">16 Dec, 09:14 GST</td>
+                            <td>Inspector arrived on site</td>
+                            <td class="chain-actor">Ahmad Al-Rashid</td>
+                        </tr>
+                        <tr>
+                            <td class="chain-time">16 Dec, 09:18 GST</td>
+                            <td>Evidence capture initiated</td>
+                            <td class="chain-actor">LUCAS Mobile v2.4.1</td>
+                        </tr>
+                        <tr>
+                            <td class="chain-time">16 Dec, 11:48 GST</td>
+                            <td>Evidence capture completed (47 photos, 12 measurements)</td>
+                            <td class="chain-actor">LUCAS Mobile v2.4.1</td>
+                        </tr>
+                        <tr>
+                            <td class="chain-time">16 Dec, 12:04 GST</td>
+                            <td>Automated validation: All 4 gates passed</td>
+                            <td class="chain-actor">Validation Engine v3.1</td>
+                        </tr>
+                        <tr>
+                            <td class="chain-time">16 Dec, 14:22 GST</td>
+                            <td>QA review completed, no anomalies</td>
+                            <td class="chain-actor">Sarah Chen (QA-0092)</td>
+                        </tr>
+                        <tr>
+                            <td class="chain-time">17 Dec, 14:32 GST</td>
+                            <td><strong>Proof issued · Status: APPROVED</strong></td>
+                            <td class="chain-actor">LUCAS Platform</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+        
+        <!-- Verification Footer -->
+        <footer class="verification-footer">
+            <div class="verification-row">
+                <div class="hash-block">
+                    <div class="hash-label">Document Integrity Hash (SHA-256)</div>
+                    <div class="hash-value">8f3a7b2c9d4e5f6a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4c7d2</div>
+                </div>
+                <div class="qr-block">
+                    <div class="qr-code">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <rect x="3" y="3" width="6" height="6"/>
+                            <rect x="15" y="3" width="6" height="6"/>
+                            <rect x="3" y="15" width="6" height="6"/>
+                            <rect x="15" y="15" width="2" height="2"/>
+                            <rect x="19" y="15" width="2" height="2"/>
+                            <rect x="15" y="19" width="2" height="2"/>
+                            <rect x="19" y="19" width="2" height="2"/>
+                            <rect x="17" y="17" width="2" height="2"/>
+                            <rect x="11" y="3" width="2" height="2"/>
+                            <rect x="11" y="7" width="2" height="2"/>
+                            <rect x="11" y="11" width="2" height="2"/>
+                            <rect x="3" y="11" width="2" height="2"/>
+                            <rect x="7" y="11" width="2" height="2"/>
+                        </svg>
+                    </div>
+                    <div class="qr-label">Scan to verify</div>
+                </div>
+            </div>
+        </footer>
+        
+        <!-- Page Footer -->
+        <div class="page-footer">
+            <span>Confidential · For authorized use only</span>
+            <span>Verify: <a href="#">verify.lucas.ae/DRP-2025-DXB-00142</a></span>
+            <span>Page 1 of 1</span>
+        </div>
+    </div>
+    
+    <!-- Download Bar -->
+    <div class="download-bar no-print">
+        <button class="btn btn-secondary" onclick="window.print()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9V2h12v7"/>
+                <path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
+                <rect x="6" y="14" width="12" height="8"/>
+            </svg>
+            Print / Save as PDF
+        </button>
+        <button class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                <polyline points="7,10 12,15 17,10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download JSON
+        </button>
+    </div>
+</body>
+</html>
