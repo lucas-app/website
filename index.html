@@ -327,7 +327,7 @@
             </div>
             <div class="p-4 border-t border-white/10">
                 <a href="#contact" onclick="toggleMobileMenu()" class="flex items-center justify-center gap-2 bg-lucas-lime text-lucas-dark px-5 py-3.5 rounded-xl font-bold">
-                    Start Pilot <i class="fa-solid fa-arrow-right"></i>
+                    Request Pilot <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
         </div>
@@ -373,17 +373,12 @@
                     Standardized verification infrastructure for escrow disbursements and construction draw releases.
                 </p>
                 
-                <!-- Outcome Line - Tightened language -->
-                <p class="text-lg text-white/60 max-w-2xl mx-auto mb-3 animate-fade-in-delay-2">
-                    Shorter release cycles. Fewer disputes. Audit-ready satisfactions in every packet.
-                </p>
-                
-                <!-- Trust Micro-Signal -->
-                <p class="text-sm text-white/40 max-w-xl mx-auto mb-10 animate-fade-in-delay-2 font-mono">
-                    Protocol versioned, validated, and logged with chain-of-custody.
+                <!-- Outcome Line -->
+                <p class="text-lg text-white/60 max-w-2xl mx-auto mb-10 animate-fade-in-delay-2">
+                    Shorter release cycles. Fewer exceptions. Audit-ready proof for every disbursement.
                 </p>
 
-                <!-- ICP Badges - Reordered, removed Private Lenders, added Repair Verification -->
+                <!-- ICP Badges -->
                 <div class="flex flex-col items-center gap-4 mb-12 animate-fade-in-delay-3">
                     <span class="text-xs text-white/40 uppercase tracking-[0.2em] font-medium">Built for</span>
                     <div class="flex flex-wrap justify-center gap-3">
@@ -402,27 +397,16 @@
                     </div>
                 </div>
 
-                <!-- CTA - Single primary, one secondary -->
+                <!-- CTA -->
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-delay-3">
                     <a href="#contact" class="group px-8 py-4 bg-lucas-lime text-lucas-dark font-bold text-lg rounded-full hover:bg-white hover:scale-105 transition-all shadow-lg shadow-lucas-lime/25 inline-flex items-center gap-3">
-                        <span>Start Your Pilot</span>
+                        <span>Request Pilot</span>
                         <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                     </a>
                     <a href="#proof" class="px-6 py-4 text-white/60 hover:text-white transition-colors inline-flex items-center gap-2 font-medium">
                         <span>See a Sample Proof</span>
                         <i class="fa-solid fa-chevron-down"></i>
                     </a>
-                </div>
-                
-                <!-- Key Stats - Three defensible claims, updated language -->
-                <div class="mt-16 pt-8 border-t border-white/10 max-w-2xl mx-auto animate-fade-in-delay-3">
-                    <div class="flex items-center justify-center gap-4 sm:gap-6">
-                        <span class="text-white/70 text-sm sm:text-base font-medium">48h SLA</span>
-                        <span class="text-white/30">·</span>
-                        <span class="text-white/70 text-sm sm:text-base font-medium">Third-Party Verifiable</span>
-                        <span class="text-white/30">·</span>
-                        <span class="text-white/70 text-sm sm:text-base font-medium">Audit-Ready</span>
-                    </div>
                 </div>
             </div>
             
@@ -465,7 +449,7 @@
                         Projects stall when disbursements wait on site confirmation. Consultants take days. Internal reviews take longer. Capital sits idle while deadlines slip.
                     </p>
                     <div class="pt-4 border-t border-white/5">
-                        <span class="text-red-400 text-sm font-mono">7–14 days typical</span>
+                        <span class="text-red-400 text-sm font-mono">Often 7–14 days</span>
                     </div>
                 </div>
                 
@@ -638,7 +622,7 @@
                             
                             <!-- Footer -->
                             <div class="flex items-center justify-between pt-4 border-t border-white/5 text-xs text-white/30 font-mono">
-                                <span>Checksum: Verified</span>
+                                <span>Integrity: Verified</span>
                                 <span>Jan 15, 2025 · 10:30 GST</span>
                             </div>
                         </div>
@@ -668,7 +652,7 @@
                             </div>
                             <div>
                                 <p class="font-semibold text-white text-sm mb-1">Metadata Integrity</p>
-                                <p class="text-xs text-white/40 leading-relaxed">Device, timestamp, and GPS verified. Tamper-evident hashing applied to all evidence.</p>
+                                <p class="text-xs text-white/40 leading-relaxed">Device, timestamp, and GPS verified. Tamper-evident integrity checks applied to all evidence.</p>
                             </div>
                         </div>
                     </div>
@@ -784,7 +768,7 @@
                     </div>
                     <h3 class="font-bold text-white text-lg mb-2">Validate</h3>
                     <p class="text-sm text-white/40 leading-relaxed">
-                        Four validation gates. QA review. Anomaly checks. Hash generated.
+                        Four validation gates. QA review. Anomaly checks. Integrity signature applied.
                     </p>
                 </div>
                 
@@ -828,7 +812,7 @@
                     <span class="text-white/40">Not contractors.</span>
                 </h2>
                 <p class="text-white/50 text-lg leading-relaxed">
-                    LUCAS serves institutions that disburse capital, not parties that receive it. Independence is the product.
+                    LUCAS serves institutions that disburse capital, not parties that receive it. Standardization with chain-of-custody is the product.
                 </p>
             </div>
             
@@ -1060,7 +1044,7 @@
                                 <span class="text-white/70">4 validation gates</span> — every proof
                             </div>
                             <div class="cost-item cost-item-good text-white/50 text-sm">
-                                <span class="text-white/70">PDF + JSON + hash</span> — audit-ready
+                                <span class="text-white/70">PDF + JSON + integrity check</span> — audit-ready
                             </div>
                             <div class="cost-item cost-item-good text-white/50 text-sm">
                                 <span class="text-white/70">Conflict-checked</span> — borrower-adjacent risk reduced
@@ -1254,28 +1238,32 @@
             }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
             
             reveals.forEach(el => observer.observe(el));
+            
+            // Nav CTA visibility based on hero visibility
+            const navCta = document.getElementById('nav-cta');
+            const hero = document.querySelector('.video-hero');
+            const heroObserver = new IntersectionObserver((entries) => {
+                const isHeroVisible = entries[0].isIntersecting;
+                if (!isHeroVisible) {
+                    navCta.style.opacity = '1';
+                    navCta.style.transform = 'translateY(0)';
+                    navCta.style.pointerEvents = 'auto';
+                } else {
+                    navCta.style.opacity = '0';
+                    navCta.style.transform = 'translateY(8px)';
+                    navCta.style.pointerEvents = 'none';
+                }
+            }, { threshold: 0.2 });
+            heroObserver.observe(hero);
         });
 
-        // Navbar scroll + CTA visibility
+        // Navbar scroll (background only)
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
-            const navCta = document.getElementById('nav-cta');
-            
             if (window.pageYOffset > 50) {
                 navbar.classList.add('nav-scrolled');
             } else {
                 navbar.classList.remove('nav-scrolled');
-            }
-            
-            // Show nav CTA after scrolling past hero (approx 600px)
-            if (window.pageYOffset > 600) {
-                navCta.style.opacity = '1';
-                navCta.style.transform = 'translateY(0)';
-                navCta.style.pointerEvents = 'auto';
-            } else {
-                navCta.style.opacity = '0';
-                navCta.style.transform = 'translateY(8px)';
-                navCta.style.pointerEvents = 'none';
             }
         });
 
